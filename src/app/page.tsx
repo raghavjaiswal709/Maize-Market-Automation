@@ -1,64 +1,169 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState, useCallback } from "react";
+import { DailyReport } from "@/types/report";
+import { Header } from "@/components/dashboard/header";
+import { PriceCards } from "@/components/dashboard/price-cards";
+import { SentimentCard } from "@/components/dashboard/sentiment-card";
+import { PredictionChart } from "@/components/dashboard/prediction-chart";
+import { PredictionTable } from "@/components/dashboard/prediction-table";
+import { NewsList } from "@/components/dashboard/news-list";
+import { RecommendationsCard } from "@/components/dashboard/recommendations-card";
+import { FactorsCard } from "@/components/dashboard/factors-card";
+import { DataSourcesCard } from "@/components/dashboard/data-sources-card";
+import { RawNewsCard } from "@/components/dashboard/raw-news-card";
+import { DashboardSkeleton } from "@/components/dashboard/dashboard-skeleton";
+import { ReportSelector } from "@/components/dashboard/report-selector";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+  const [reports, setReports] = useState<DailyReport[]>([]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchReports = useCallback(async () => {
+    try {
+      setLoading(true);
+      console.log("[Frontend] Fetching reports from /api/reports?limit=10");
+      const res = await fetch("/api/reports?limit=10");
+      console.log("[Frontend] Response status:", res.status, res.statusText);
+      
+      if (!res.ok) throw new Error("Failed to fetch");
+      
+      const data = await res.json();
+      console.log("[Frontend] Received data:", {
+        reportsCount: data.reports?.length || 0,
+        total: data.total,
+        hasMore: data.hasMore
+      });
+      
+      if (data.reports && data.reports.length > 0) {
+        console.log("[Frontend] First report:", data.reports[0]);
+      }
+      
+      setReports(data.reports);
+      setError(null);
+    } catch (err) {
+      console.error("[Frontend] Error fetching reports:", err);
+      setError("Unable to load market data. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchReports();
+  }, [fetchReports]);
+
+  if (loading) return <DashboardSkeleton />;
+
+  if (error || reports.length === 0) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-background">
+        <div className="text-center space-y-3 px-4">
+          <p className="text-sm text-destructive font-medium">
+            {error || "No reports available"}
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={fetchReports}
+            className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const report = reports[selectedIndex];
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header report={report} />
+
+      <main className="container mx-auto px-4 py-6 space-y-6 max-w-6xl">
+        {/* Report selector if multiple */}
+        {reports.length > 1 && (
+          <div className="flex justify-end">
+            <ReportSelector
+              reports={reports}
+              selectedId={report._id}
+              onSelect={(id) => {
+                const idx = reports.findIndex((r) => r._id === id);
+                if (idx >= 0) setSelectedIndex(idx);
+              }}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+          </div>
+        )}
+
+        {/* Price overview */}
+        <section>
+          <PriceCards prices={report.current_prices} />
+        </section>
+
+        {/* Chart + Sentiment side by side */}
+        <section className="grid gap-4 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <PredictionChart
+              predictions={report.predictions_10_day}
+              currentPrice={report.current_prices.bihar_avg}
+            />
+          </div>
+          <div>
+            <SentimentCard sentiment={report.market_sentiment} />
+          </div>
+        </section>
+
+        {/* Tabbed section for detailed data */}
+        <Tabs defaultValue="forecast" className="w-full">
+          <TabsList className="w-full grid grid-cols-4 h-9">
+            <TabsTrigger value="forecast" className="text-xs">
+              Forecast
+            </TabsTrigger>
+            <TabsTrigger value="news" className="text-xs">
+              News
+            </TabsTrigger>
+            <TabsTrigger value="advice" className="text-xs">
+              Advice
+            </TabsTrigger>
+            <TabsTrigger value="intel" className="text-xs">
+              Intel
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="forecast" className="mt-4 space-y-4">
+            <PredictionTable predictions={report.predictions_10_day} />
+          </TabsContent>
+
+          <TabsContent value="news" className="mt-4 space-y-4">
+            <NewsList items={report.news_items} />
+          </TabsContent>
+
+          <TabsContent value="advice" className="mt-4 space-y-4">
+            <RecommendationsCard recommendations={report.recommendations} />
+          </TabsContent>
+
+          <TabsContent value="intel" className="mt-4 space-y-4">
+            <RawNewsCard content={report.live_news_raw} />
+          </TabsContent>
+        </Tabs>
+
+        {/* Factors + Sources */}
+        <section className="grid gap-4 lg:grid-cols-2">
+          <FactorsCard factors={report.factors} />
+          <DataSourcesCard
+            sources={report.data_sources}
+            metadata={report.metadata}
+          />
+        </section>
+
+        {/* Footer */}
+        <footer className="border-t border-border pt-4 pb-8">
+          <p className="text-[11px] text-muted-foreground text-center">
+            Report ID: {report._id} &middot; Generated via {report.metadata.automation} &middot; {report.metadata.fetch_method}
+          </p>
+        </footer>
       </main>
     </div>
   );
