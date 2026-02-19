@@ -2,12 +2,15 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useLanguage } from "@/components/language-provider";
 
 interface RawNewsCardProps {
   content: string;
 }
 
 export function RawNewsCard({ content }: RawNewsCardProps) {
+  const { lang } = useLanguage();
+
   // Convert markdown-style content to readable paragraphs
   const lines = content
     .split("\n")
@@ -24,7 +27,7 @@ export function RawNewsCard({ content }: RawNewsCardProps) {
     <Card className="border border-border">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium text-muted-foreground">
-          Detailed Market Intelligence
+          {lang === "hindi" ? "विस्तृत बाजार जानकारी" : "Detailed Market Intelligence"}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">

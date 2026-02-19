@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { DailyReport } from "@/types/report";
+import { useLanguage } from "@/components/language-provider";
 import { Header } from "@/components/dashboard/header";
 import { PriceCards } from "@/components/dashboard/price-cards";
 import { SentimentCard } from "@/components/dashboard/sentiment-card";
@@ -18,15 +19,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Home() {
   const [reports, setReports] = useState<DailyReport[]>([]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { lang } = useLanguage();
 
-  const fetchReports = useCallback(async () => {
+  const fetchReports = useCallback(async (preserveSelection = false) => {
     try {
       setLoading(true);
-      console.log("[Frontend] Fetching reports from /api/reports?limit=10");
-      const res = await fetch("/api/reports?limit=10");
+      console.log(`[Frontend] Fetching reports with lang=${lang}`);
+      const res = await fetch(`/api/reports?limit=50&lang=${lang}`);
       console.log("[Frontend] Response status:", res.status, res.statusText);
       
       if (!res.ok) throw new Error("Failed to fetch");
@@ -35,14 +37,17 @@ export default function Home() {
       console.log("[Frontend] Received data:", {
         reportsCount: data.reports?.length || 0,
         total: data.total,
-        hasMore: data.hasMore
+        hasMore: data.hasMore,
       });
       
-      if (data.reports && data.reports.length > 0) {
-        console.log("[Frontend] First report:", data.reports[0]);
-      }
-      
       setReports(data.reports);
+      // Keep current selection if preserving, or if the selected report still exists
+      if (!preserveSelection && data.reports.length > 0) {
+        // On initial load or data update, select the latest (first) report
+        if (!selectedId || !data.reports.find((r: DailyReport) => r._id === selectedId)) {
+          setSelectedId(data.reports[0]._id);
+        }
+      }
       setError(null);
     } catch (err) {
       console.error("[Frontend] Error fetching reports:", err);
@@ -50,11 +55,19 @@ export default function Home() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [lang, selectedId]);
 
+  // Re-fetch when language changes (preserve current selection)
   useEffect(() => {
-    fetchReports();
-  }, [fetchReports]);
+    fetchReports(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
+
+  // Initial fetch
+  useEffect(() => {
+    fetchReports(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (loading) return <DashboardSkeleton />;
 
@@ -66,7 +79,7 @@ export default function Home() {
             {error || "No reports available"}
           </p>
           <button
-            onClick={fetchReports}
+            onClick={() => fetchReports(false)}
             className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"
           >
             Retry
@@ -76,26 +89,21 @@ export default function Home() {
     );
   }
 
-  const report = reports[selectedIndex];
+  const report = reports.find((r) => r._id === selectedId) || reports[0];
 
   return (
     <div className="min-h-screen bg-background">
-      <Header report={report} />
+      <Header report={report} onDataUpdated={() => fetchReports(false)} />
 
       <main className="container mx-auto px-4 py-6 space-y-6 max-w-6xl">
-        {/* Report selector if multiple */}
-        {reports.length > 1 && (
-          <div className="flex justify-end">
-            <ReportSelector
-              reports={reports}
-              selectedId={report._id}
-              onSelect={(id) => {
-                const idx = reports.findIndex((r) => r._id === id);
-                if (idx >= 0) setSelectedIndex(idx);
-              }}
-            />
-          </div>
-        )}
+        {/* Report selector — calendar + model variant tabs */}
+        <section>
+          <ReportSelector
+            reports={reports}
+            selectedId={report._id}
+            onSelect={(id) => setSelectedId(id)}
+          />
+        </section>
 
         {/* Price overview */}
         <section>
@@ -119,16 +127,16 @@ export default function Home() {
         <Tabs defaultValue="forecast" className="w-full">
           <TabsList className="w-full grid grid-cols-4 h-9">
             <TabsTrigger value="forecast" className="text-xs">
-              Forecast
+              {lang === "hindi" ? "पूर्वानुमान" : "Forecast"}
             </TabsTrigger>
             <TabsTrigger value="news" className="text-xs">
-              News
+              {lang === "hindi" ? "समाचार" : "News"}
             </TabsTrigger>
             <TabsTrigger value="advice" className="text-xs">
-              Advice
+              {lang === "hindi" ? "सलाह" : "Advice"}
             </TabsTrigger>
             <TabsTrigger value="intel" className="text-xs">
-              Intel
+              {lang === "hindi" ? "विवरण" : "Intel"}
             </TabsTrigger>
           </TabsList>
 
@@ -161,7 +169,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="border-t border-border pt-4 pb-8">
           <p className="text-[11px] text-muted-foreground text-center">
-            Report ID: {report._id} &middot; Generated via {report.metadata.automation} &middot; {report.metadata.fetch_method}
+            Report ID: {report._id} &middot; {report.model_label} &middot; {report.metadata.automation} &middot; {report.metadata.fetch_method}
           </p>
         </footer>
       </main>

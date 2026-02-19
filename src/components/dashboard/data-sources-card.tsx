@@ -2,6 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useLanguage } from "@/components/language-provider";
 
 interface DataSourcesCardProps {
   sources: string[];
@@ -14,11 +15,13 @@ interface DataSourcesCardProps {
 }
 
 export function DataSourcesCard({ sources, metadata }: DataSourcesCardProps) {
+  const { lang } = useLanguage();
+
   return (
     <Card className="border border-border">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium text-muted-foreground">
-          Data Sources & Metadata
+          {lang === "hindi" ? "डेटा स्रोत और मेटाडेटा" : "Data Sources & Metadata"}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">

@@ -4,17 +4,20 @@ import { NewsItem } from "@/types/report";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { useLanguage } from "@/components/language-provider";
 
 interface NewsListProps {
   items: NewsItem[];
 }
 
 export function NewsList({ items }: NewsListProps) {
+  const { lang } = useLanguage();
+
   return (
     <Card className="border border-border">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium text-muted-foreground">
-          Market News & Updates
+          {lang === "hindi" ? "बाजार समाचार और अपडेट" : "Market News & Updates"}
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-0 p-0">

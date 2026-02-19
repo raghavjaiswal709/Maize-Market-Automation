@@ -23,6 +23,7 @@ export interface MarketSentiment {
   confidence: number;
   direction: string;
   emoji: string;
+  summary?: string;
 }
 
 export interface Prediction {
@@ -65,6 +66,7 @@ export interface Metadata {
   automation: string;
   fetch_method: string;
   runtime: string;
+  model?: string;
 }
 
 export interface DailyReport {
@@ -73,6 +75,8 @@ export interface DailyReport {
   date: string;
   time: string;
   day_of_week: string;
+  /** Short human-readable label for the AI model / source that generated the report */
+  model_label: string;
   current_prices: CurrentPrices;
   live_news_raw: string;
   news_items: NewsItem[];

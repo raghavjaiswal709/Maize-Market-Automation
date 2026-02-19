@@ -10,17 +10,20 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useLanguage } from "@/components/language-provider";
 
 interface PredictionTableProps {
   predictions: Prediction[];
 }
 
 export function PredictionTable({ predictions }: PredictionTableProps) {
+  const { lang } = useLanguage();
+
   return (
     <Card className="border border-border">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium text-muted-foreground">
-          Forecast Breakdown
+          {lang === "hindi" ? "पूर्वानुमान विवरण" : "Forecast Breakdown"}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
@@ -28,11 +31,11 @@ export function PredictionTable({ predictions }: PredictionTableProps) {
           <Table>
             <TableHeader>
               <TableRow className="hover:bg-transparent">
-                <TableHead className="text-xs w-[60px]">Day</TableHead>
-                <TableHead className="text-xs">Date</TableHead>
-                <TableHead className="text-xs text-right">Price</TableHead>
-                <TableHead className="text-xs text-right">Change</TableHead>
-                <TableHead className="text-xs text-right">Trend</TableHead>
+                <TableHead className="text-xs w-[60px]">{lang === "hindi" ? "दिन" : "Day"}</TableHead>
+                <TableHead className="text-xs">{lang === "hindi" ? "तारीख" : "Date"}</TableHead>
+                <TableHead className="text-xs text-right">{lang === "hindi" ? "कीमत" : "Price"}</TableHead>
+                <TableHead className="text-xs text-right">{lang === "hindi" ? "बदलाव" : "Change"}</TableHead>
+                <TableHead className="text-xs text-right">{lang === "hindi" ? "रुझान" : "Trend"}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
