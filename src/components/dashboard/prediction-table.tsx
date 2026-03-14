@@ -2,18 +2,32 @@
 
 import { Prediction } from "@/types/report";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { useLanguage } from "@/components/language-provider";
 
 interface PredictionTableProps {
   predictions: Prediction[];
+}
+
+/**
+ * Return 1-3 arrow characters based on magnitude of change.
+ * Thresholds: |change| 0 = "—", 1-10 = 1 arrow, 11-25 = 2, 26+ = 3
+ */
+function getArrows(change: number): { arrows: string; level: number } {
+  const abs = Math.abs(change);
+  if (abs === 0) return { arrows: "—", level: 0 };
+
+  const isUp = change > 0;
+  const arrow = isUp ? "↑" : "↓";
+
+  if (abs >= 26) return { arrows: `${arrow}${arrow}${arrow}`, level: 3 };
+  if (abs >= 11) return { arrows: `${arrow}${arrow}`, level: 2 };
+  return { arrows: arrow, level: 1 };
+}
+
+function getArrowColor(change: number): string {
+  if (change > 0) return "text-emerald-600 dark:text-emerald-400";
+  if (change < 0) return "text-red-600 dark:text-red-400";
+  return "text-muted-foreground";
 }
 
 export function PredictionTable({ predictions }: PredictionTableProps) {
@@ -26,55 +40,43 @@ export function PredictionTable({ predictions }: PredictionTableProps) {
           {lang === "hindi" ? "पूर्वानुमान विवरण" : "Forecast Breakdown"}
         </CardTitle>
       </CardHeader>
-      <CardContent className="p-0">
-        <div className="overflow-x-auto">
-          <Table>
-            <TableHeader>
-              <TableRow className="hover:bg-transparent">
-                <TableHead className="text-xs w-[60px]">{lang === "hindi" ? "दिन" : "Day"}</TableHead>
-                <TableHead className="text-xs">{lang === "hindi" ? "तारीख" : "Date"}</TableHead>
-                <TableHead className="text-xs text-right">{lang === "hindi" ? "कीमत" : "Price"}</TableHead>
-                <TableHead className="text-xs text-right">{lang === "hindi" ? "बदलाव" : "Change"}</TableHead>
-                <TableHead className="text-xs text-right">{lang === "hindi" ? "रुझान" : "Trend"}</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {predictions.map((p) => (
-                <TableRow key={p.day} className="text-sm">
-                  <TableCell className="font-medium tabular-nums">{p.day}</TableCell>
-                  <TableCell className="text-muted-foreground">{p.date_formatted}</TableCell>
-                  <TableCell className="text-right font-medium tabular-nums">
-                    {p.price.toLocaleString("en-IN")}
-                  </TableCell>
-                  <TableCell
-                    className={`text-right font-medium tabular-nums ${
-                      p.change < 0
-                        ? "text-red-600 dark:text-red-400"
-                        : p.change > 0
-                        ? "text-emerald-600 dark:text-emerald-400"
-                        : "text-muted-foreground"
-                    }`}
+      <CardContent className="px-0 pb-0 sm:px-0">
+        {/* Mobile: compact card rows */}
+        <div className="divide-y divide-border">
+          {predictions.map((p) => {
+            const { arrows } = getArrows(p.change);
+            const color = getArrowColor(p.change);
+
+            return (
+              <div
+                key={p.day}
+                className="flex items-center justify-between gap-2 px-4 py-2.5 sm:px-6"
+              >
+                {/* Left: Day + Date */}
+                <div className="flex items-center gap-2 min-w-0">
+                  <span className="text-xs font-bold text-muted-foreground w-5 shrink-0 tabular-nums">
+                    {p.day}
+                  </span>
+                  <span className="text-xs text-muted-foreground truncate">
+                    {p.date_formatted}
+                  </span>
+                </div>
+
+                {/* Right: Price + Arrows */}
+                <div className="flex items-center gap-3 shrink-0">
+                  <span className="text-sm font-semibold tabular-nums text-foreground">
+                    ₹{p.price > 0 ? p.price.toLocaleString("en-IN") : "—"}
+                  </span>
+                  <span
+                    className={`text-sm font-bold w-10 text-right ${color}`}
+                    title={`${p.change > 0 ? "+" : ""}${p.change}`}
                   >
-                    {p.change > 0 ? "+" : ""}
-                    {p.change}
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <span
-                      className={`inline-flex items-center text-xs font-medium capitalize ${
-                        p.trend === "down"
-                          ? "text-red-600 dark:text-red-400"
-                          : p.trend === "up"
-                          ? "text-emerald-600 dark:text-emerald-400"
-                          : "text-muted-foreground"
-                      }`}
-                    >
-                      {p.trend}
-                    </span>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+                    {arrows}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </CardContent>
     </Card>

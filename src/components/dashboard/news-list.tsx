@@ -24,7 +24,7 @@ export function NewsList({ items }: NewsListProps) {
         {items.map((item, idx) => (
           <div key={item.id}>
             {idx > 0 && <Separator />}
-            <div className="px-6 py-4 space-y-2">
+            <div className="px-3 py-3 sm:px-6 sm:py-4 space-y-2">
               <div className="flex flex-col gap-1.5 sm:flex-row sm:items-start sm:justify-between">
                 <h3 className="text-sm font-medium text-foreground leading-snug">
                   {item.title}

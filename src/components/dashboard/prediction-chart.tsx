@@ -50,10 +50,10 @@ export function PredictionChart({ predictions, currentPrice }: PredictionChartPr
           </span>
         </div>
       </CardHeader>
-      <CardContent className="pt-2 pb-4">
-        <div className="h-[240px] w-full sm:h-[280px]">
+      <CardContent className="pt-2 pb-3 px-2 sm:px-6 sm:pb-4">
+        <div className="h-50 w-full sm:h-70">
           <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data} margin={{ top: 4, right: 4, bottom: 0, left: -12 }}>
+            <AreaChart data={data} margin={{ top: 4, right: 4, bottom: 0, left: -20 }}>
               <defs>
                 <linearGradient id="priceGrad" x1="0" y1="0" x2="0" y2="1">
                   <stop
@@ -71,14 +71,15 @@ export function PredictionChart({ predictions, currentPrice }: PredictionChartPr
               <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
               <XAxis
                 dataKey="date_formatted"
-                tick={{ fontSize: 11 }}
+                tick={{ fontSize: 9 }}
                 className="text-muted-foreground"
                 tickLine={false}
                 axisLine={false}
+                interval="preserveStartEnd"
               />
               <YAxis
                 domain={[minPrice, maxPrice]}
-                tick={{ fontSize: 11 }}
+                tick={{ fontSize: 9 }}
                 className="text-muted-foreground"
                 tickLine={false}
                 axisLine={false}

@@ -36,7 +36,7 @@ export function FactorsCard({ factors }: FactorsCardProps) {
                 <Badge
                   key={factor}
                   variant={color as "destructive" | "default" | "secondary"}
-                  className="text-xs font-normal"
+                  className="text-[10px] sm:text-xs font-normal"
                 >
                   {factor}
                 </Badge>

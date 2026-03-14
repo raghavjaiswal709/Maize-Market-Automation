@@ -95,7 +95,7 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Header report={report} onDataUpdated={() => fetchReports(false)} />
 
-      <main className="container mx-auto px-4 py-6 space-y-6 max-w-6xl">
+      <main className="container mx-auto px-3 py-4 space-y-4 max-w-6xl sm:px-4 sm:py-6 sm:space-y-6">
         {/* Report selector — calendar + model variant tabs */}
         <section>
           <ReportSelector
@@ -110,9 +110,9 @@ export default function Home() {
           <PriceCards prices={report.current_prices} />
         </section>
 
-        {/* Chart + Sentiment side by side */}
-        <section className="grid gap-4 lg:grid-cols-3">
-          <div className="lg:col-span-2">
+        {/* Chart + Sentiment — stacked on mobile, side by side on desktop */}
+        <section className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-3">
+          <div className="md:col-span-2">
             <PredictionChart
               predictions={report.predictions_10_day}
               currentPrice={report.current_prices.bihar_avg}
@@ -125,40 +125,40 @@ export default function Home() {
 
         {/* Tabbed section for detailed data */}
         <Tabs defaultValue="forecast" className="w-full">
-          <TabsList className="w-full grid grid-cols-4 h-9">
-            <TabsTrigger value="forecast" className="text-xs">
+          <TabsList className="w-full grid grid-cols-4 h-8 sm:h-9">
+            <TabsTrigger value="forecast" className="text-[10px] sm:text-xs">
               {lang === "hindi" ? "पूर्वानुमान" : "Forecast"}
             </TabsTrigger>
-            <TabsTrigger value="news" className="text-xs">
+            <TabsTrigger value="news" className="text-[10px] sm:text-xs">
               {lang === "hindi" ? "समाचार" : "News"}
             </TabsTrigger>
-            <TabsTrigger value="advice" className="text-xs">
+            <TabsTrigger value="advice" className="text-[10px] sm:text-xs">
               {lang === "hindi" ? "सलाह" : "Advice"}
             </TabsTrigger>
-            <TabsTrigger value="intel" className="text-xs">
+            <TabsTrigger value="intel" className="text-[10px] sm:text-xs">
               {lang === "hindi" ? "विवरण" : "Intel"}
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="forecast" className="mt-4 space-y-4">
+          <TabsContent value="forecast" className="mt-3 sm:mt-4 space-y-4">
             <PredictionTable predictions={report.predictions_10_day} />
           </TabsContent>
 
-          <TabsContent value="news" className="mt-4 space-y-4">
+          <TabsContent value="news" className="mt-3 sm:mt-4 space-y-4">
             <NewsList items={report.news_items} />
           </TabsContent>
 
-          <TabsContent value="advice" className="mt-4 space-y-4">
+          <TabsContent value="advice" className="mt-3 sm:mt-4 space-y-4">
             <RecommendationsCard recommendations={report.recommendations} />
           </TabsContent>
 
-          <TabsContent value="intel" className="mt-4 space-y-4">
+          <TabsContent value="intel" className="mt-3 sm:mt-4 space-y-4">
             <RawNewsCard content={report.live_news_raw} />
           </TabsContent>
         </Tabs>
 
         {/* Factors + Sources */}
-        <section className="grid gap-4 lg:grid-cols-2">
+        <section className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-2">
           <FactorsCard factors={report.factors} />
           <DataSourcesCard
             sources={report.data_sources}
@@ -167,9 +167,9 @@ export default function Home() {
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-border pt-4 pb-8">
-          <p className="text-[11px] text-muted-foreground text-center">
-            Report ID: {report._id} &middot; {report.model_label} &middot; {report.metadata.automation} &middot; {report.metadata.fetch_method}
+        <footer className="border-t border-border pt-3 pb-6 sm:pt-4 sm:pb-8">
+          <p className="text-[10px] sm:text-[11px] text-muted-foreground text-center leading-relaxed">
+            {report._id} · {report.model_label}
           </p>
         </footer>
       </main>

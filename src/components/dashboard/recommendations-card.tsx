@@ -15,7 +15,7 @@ export function RecommendationsCard({ recommendations }: RecommendationsCardProp
   const { buyers, sellers } = recommendations;
 
   return (
-    <div className="grid gap-3 sm:grid-cols-2">
+    <div className="grid gap-3 grid-cols-1 sm:grid-cols-2">
       {/* Buyers */}
       <Card className="border border-border">
         <CardHeader className="pb-3">

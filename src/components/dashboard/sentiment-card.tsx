@@ -77,10 +77,6 @@ export function SentimentCard({ sentiment }: SentimentCardProps) {
             {directionLabel}
           </span>
         </div>
-
-        {sentiment.emoji && (
-          <div className="text-lg">{sentiment.emoji}</div>
-        )}
       </CardContent>
     </Card>
   );

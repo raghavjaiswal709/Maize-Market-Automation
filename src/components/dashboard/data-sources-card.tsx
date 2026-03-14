@@ -33,7 +33,7 @@ export function DataSourcesCard({ sources, metadata }: DataSourcesCardProps) {
           ))}
         </div>
         <Separator />
-        <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
+        <div className="grid grid-cols-1 gap-y-1.5 text-[11px] sm:grid-cols-2 sm:gap-x-4 sm:gap-y-2 sm:text-xs">
           <div>
             <span className="text-muted-foreground">Version: </span>
             <span className="font-medium text-foreground">{metadata.report_version}</span>

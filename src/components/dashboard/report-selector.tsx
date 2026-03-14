@@ -158,7 +158,7 @@ export function ReportSelector({ reports, selectedId, onSelect }: ReportSelector
 
       {/* Model variant tabs — only show if multiple variants on selected date */}
       {variants.length > 1 && (
-        <div className="flex gap-1.5 flex-wrap">
+        <div className="flex gap-1.5 overflow-x-auto pb-1 -mx-1 px-1 sm:flex-wrap sm:overflow-visible">
           {variantLabels.map(({ id, label, time }) => {
             const isActive = id === currentReport._id;
             return (
