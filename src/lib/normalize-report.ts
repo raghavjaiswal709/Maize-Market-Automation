@@ -30,21 +30,21 @@ function n(val: any): number {
 }
 
 /** Derive a simple sentiment label from raw overall string */
-function deriveSentimentLabel(rawOverall: string, lang: Lang): string {
+function deriveSentimentLabel(rawOverall: string): string {
   const lower = rawOverall.toLowerCase();
   if (lower.includes("strongly_bearish") || lower.includes("strongly bearish")) {
-    return lang === "hindi" ? "अत्यधिक मंदी" : "Strongly Bearish";
+    return "Strongly Bearish";
   }
   if (lower.includes("bearish")) {
-    return lang === "hindi" ? "मंदी" : "Bearish";
+    return "Bearish";
   }
   if (lower.includes("strongly_bullish") || lower.includes("strongly bullish")) {
-    return lang === "hindi" ? "अत्यधिक तेजी" : "Strongly Bullish";
+    return "Strongly Bullish";
   }
   if (lower.includes("bullish")) {
-    return lang === "hindi" ? "तेजी" : "Bullish";
+    return "Bullish";
   }
-  return lang === "hindi" ? "तटस्थ" : "Neutral";
+  return "Neutral";
 }
 
 function deriveDirection(rawOverall: string): string {
@@ -54,18 +54,18 @@ function deriveDirection(rawOverall: string): string {
   return "neutral";
 }
 
-function deriveStrength(rawOverall: string, lang: Lang): string {
+function deriveStrength(rawOverall: string): string {
   const lower = rawOverall.toLowerCase();
   if (lower.includes("strongly") || lower.includes("strong")) {
-    return lang === "hindi" ? "मजबूत" : "Strong";
+    return "Strong";
   }
   if (lower.includes("moderate")) {
-    return lang === "hindi" ? "मध्यम" : "Moderate";
+    return "Moderate";
   }
   if (lower.includes("mild") || lower.includes("weak")) {
-    return lang === "hindi" ? "हल्की" : "Mild";
+    return "Mild";
   }
-  return lang === "hindi" ? "मध्यम" : "Moderate";
+  return "Moderate";
 }
 
 /** Derive a human-readable model label from metadata */
@@ -121,6 +121,22 @@ export function normalizeReport(raw: any, lang: Lang) {
     price_effect: item.price_effect,
   }));
 
+  // --- video_news ---
+  const video_news = (raw.video_news || []).map((item: any) => ({
+    id: item.id,
+    title: t(item.title, lang),
+    url: item.url || "",
+    source: item.source || "",
+    channel: item.channel || "",
+    published_at: item.published_at || "",
+    published_display: t(item.published_display, lang),
+    duration: item.duration || "",
+    thumbnail_url: item.thumbnail_url || "",
+    description: t(item.description, lang),
+    relevance: item.relevance || "",
+    tags: item.tags || [],
+  }));
+
   // --- market_sentiment ---
   const ms = raw.market_sentiment || {};
 
@@ -131,8 +147,8 @@ export function normalizeReport(raw: any, lang: Lang) {
   const sentimentSummary = ms.summary ? t(ms.summary, lang) : "";
 
   const market_sentiment = {
-    overall: deriveSentimentLabel(rawOverallStr, lang),
-    strength: ms.strength ? t(ms.strength, lang) : deriveStrength(rawOverallStr, lang),
+    overall: deriveSentimentLabel(rawOverallStr),
+    strength: ms.strength ? t(ms.strength, lang) : deriveStrength(rawOverallStr),
     confidence: ms.confidence || 0,
     direction: ms.direction || deriveDirection(rawOverallStr),
     emoji: ms.emoji || "",
@@ -225,6 +241,7 @@ export function normalizeReport(raw: any, lang: Lang) {
     current_prices,
     live_news_raw,
     news_items,
+    video_news,
     market_sentiment,
     predictions_10_day,
     recommendations,

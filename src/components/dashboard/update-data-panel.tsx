@@ -26,7 +26,6 @@ import {
   CalendarIcon,
 } from "lucide-react";
 import { format } from "date-fns";
-import { useLanguage } from "@/components/language-provider";
 
 interface UpdateDataPanelProps {
   onSuccess: () => void;
@@ -42,7 +41,6 @@ const MODEL_OPTIONS = [
 ];
 
 export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
-  const { lang } = useLanguage();
   const [open, setOpen] = useState(false);
   const [jsonText, setJsonText] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -114,10 +112,7 @@ export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
     if (!predictionDate) {
       setResult({
         type: "error",
-        message:
-          lang === "hindi"
-            ? "कृपया पूर्वानुमान तारीख चुनें"
-            : "Please select a prediction date",
+        message: "Please select a prediction date",
       });
       return;
     }
@@ -125,10 +120,7 @@ export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
     if (!selectedModel) {
       setResult({
         type: "error",
-        message:
-          lang === "hindi"
-            ? "कृपया मॉडल/स्रोत चुनें"
-            : "Please select a model/source",
+        message: "Please select a model/source",
       });
       return;
     }
@@ -215,7 +207,7 @@ export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
     } finally {
       setSubmitting(false);
     }
-  }, [jsonText, validateJson, onSuccess, predictionDate, selectedModel, lang]);
+  }, [jsonText, validateJson, onSuccess, predictionDate, selectedModel]);
 
   const liveValidation = jsonText.trim() ? validateJson(jsonText) : null;
 
@@ -227,7 +219,7 @@ export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
         aria-label="Update Data"
       >
         <Upload className="h-3.5 w-3.5" />
-        {lang === "hindi" ? "अपडेट" : "Update"}
+        Update
       </button>
     );
   }
@@ -237,7 +229,7 @@ export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
       <Card className="w-full max-w-2xl max-h-[90vh] overflow-auto border border-border shadow-2xl">
         <CardHeader className="pb-3 flex flex-row items-center justify-between space-y-0">
           <CardTitle className="text-sm font-medium">
-            {lang === "hindi" ? "रिपोर्ट डेटा अपडेट करें" : "Update Report Data"}
+            Update Report Data
           </CardTitle>
           <button
             onClick={() => {
@@ -258,7 +250,7 @@ export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
             {/* Prediction Date picker */}
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-foreground">
-                {lang === "hindi" ? "पूर्वानुमान तारीख" : "Prediction Date"}{" "}
+                Prediction Date{" "}
                 <span className="text-destructive">*</span>
               </label>
               <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
@@ -273,7 +265,7 @@ export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
                       format(predictionDate, "dd MMM yyyy")
                     ) : (
                       <span className="text-muted-foreground">
-                        {lang === "hindi" ? "तारीख चुनें..." : "Pick a date..."}
+                        Pick a date...
                       </span>
                     )}
                   </Button>
@@ -294,15 +286,13 @@ export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
             {/* Model/Source selector */}
             <div className="space-y-1.5">
               <label className="text-xs font-medium text-foreground">
-                {lang === "hindi" ? "मॉडल / स्रोत" : "Model / Source"}{" "}
+                Model / Source{" "}
                 <span className="text-destructive">*</span>
               </label>
               <Select value={selectedModel} onValueChange={setSelectedModel}>
                 <SelectTrigger className="h-9 text-xs">
                   <SelectValue
-                    placeholder={
-                      lang === "hindi" ? "मॉडल चुनें..." : "Select model..."
-                    }
+                    placeholder="Select model..."
                   />
                 </SelectTrigger>
                 <SelectContent>
@@ -324,9 +314,7 @@ export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <label className="text-xs text-muted-foreground">
-                {lang === "hindi"
-                  ? "अपना JSON रिपोर्ट डेटा नीचे पेस्ट करें"
-                  : "Paste your JSON report data below"}
+                Paste your JSON report data below
               </label>
               {liveValidation && (
                 <Badge
@@ -336,12 +324,12 @@ export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
                   {liveValidation.valid ? (
                     <span className="flex items-center gap-1">
                       <Check className="h-3 w-3" />{" "}
-                      {lang === "hindi" ? "वैध JSON" : "Valid JSON"}
+                      Valid JSON
                     </span>
                   ) : (
                     <span className="flex items-center gap-1">
                       <AlertTriangle className="h-3 w-3" />{" "}
-                      {lang === "hindi" ? "अमान्य" : "Invalid"}
+                      Invalid
                     </span>
                   )}
                 </Badge>
@@ -365,9 +353,7 @@ export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
           </div>
 
           <p className="text-[11px] text-muted-foreground">
-            {lang === "hindi"
-              ? "नोट: _id, date, time, और metadata स्वचालित रूप से चयनित तारीख और मॉडल से भरे जाएंगे। JSON में ये फ़ील्ड वैकल्पिक हैं।"
-              : "Note: _id, date, time, and metadata will be auto-filled from the selected date and model. These fields are optional in your JSON."}
+            Note: _id, date, time, and metadata will be auto-filled from the selected date and model. These fields are optional in your JSON.
           </p>
 
           {/* Result message */}
@@ -400,7 +386,7 @@ export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
               }}
               className="text-xs"
             >
-              {lang === "hindi" ? "रद्द करें" : "Cancel"}
+              Cancel
             </Button>
             <Button
               size="sm"
@@ -415,12 +401,12 @@ export function UpdateDataPanel({ onSuccess }: UpdateDataPanelProps) {
               {submitting ? (
                 <>
                   <Loader2 className="h-3 w-3 animate-spin" />
-                  {lang === "hindi" ? "भेज रहे हैं..." : "Submitting..."}
+                  Submitting...
                 </>
               ) : (
                 <>
                   <Upload className="h-3 w-3" />
-                  {lang === "hindi" ? "डेटा जमा करें" : "Submit Data"}
+                  Submit Data
                 </>
               )}
             </Button>

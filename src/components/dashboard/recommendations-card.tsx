@@ -4,14 +4,12 @@ import { Recommendations } from "@/types/report";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { useLanguage } from "@/components/language-provider";
 
 interface RecommendationsCardProps {
   recommendations: Recommendations;
 }
 
 export function RecommendationsCard({ recommendations }: RecommendationsCardProps) {
-  const { lang } = useLanguage();
   const { buyers, sellers } = recommendations;
 
   return (
@@ -21,7 +19,7 @@ export function RecommendationsCard({ recommendations }: RecommendationsCardProp
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {lang === "hindi" ? "खरीददारों के लिए" : "For Buyers"}
+              For Buyers
             </CardTitle>
             <Badge variant="outline" className="text-[10px] uppercase">
               {buyers.action.replace(/_/g, " ")}
@@ -39,7 +37,7 @@ export function RecommendationsCard({ recommendations }: RecommendationsCardProp
           <div className="flex items-center gap-4 text-xs">
             {buyers.target_price > 0 && (
               <div>
-                <span className="text-muted-foreground">{lang === "hindi" ? "लक्ष्य: " : "Target: "}</span>
+                <span className="text-muted-foreground">Target: </span>
                 <span className="font-semibold tabular-nums text-foreground">
                   {buyers.target_price.toLocaleString("en-IN")} INR/q
                 </span>
@@ -47,7 +45,7 @@ export function RecommendationsCard({ recommendations }: RecommendationsCardProp
             )}
             {buyers.target_date && (
               <div>
-                <span className="text-muted-foreground">{lang === "hindi" ? "तक: " : "By: "}</span>
+                <span className="text-muted-foreground">By: </span>
                 <span className="font-medium text-foreground">{buyers.target_date}</span>
               </div>
             )}
@@ -60,7 +58,7 @@ export function RecommendationsCard({ recommendations }: RecommendationsCardProp
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
             <CardTitle className="text-sm font-medium text-muted-foreground">
-              {lang === "hindi" ? "विक्रेताओं के लिए" : "For Sellers"}
+              For Sellers
             </CardTitle>
             <Badge variant="outline" className="text-[10px] uppercase">
               {sellers.action.replace(/_/g, " ")}
@@ -77,7 +75,7 @@ export function RecommendationsCard({ recommendations }: RecommendationsCardProp
           </p>
           {sellers.alternative && (
             <p className="text-xs text-muted-foreground">
-              <span className="font-medium text-foreground">{lang === "hindi" ? "विकल्प: " : "Alternative: "}</span>
+              <span className="font-medium text-foreground">Alternative: </span>
               {sellers.alternative}
             </p>
           )}

@@ -17,6 +17,21 @@ export interface NewsItem {
   price_effect: number;
 }
 
+export interface VideoNewsItem {
+  id: number;
+  title: string;
+  url: string;
+  source: string;
+  channel: string;
+  published_at: string;
+  published_display: string;
+  duration: string;
+  thumbnail_url: string;
+  description: string;
+  relevance: string;
+  tags: string[];
+}
+
 export interface MarketSentiment {
   overall: string;
   strength: string;
@@ -80,6 +95,7 @@ export interface DailyReport {
   current_prices: CurrentPrices;
   live_news_raw: string;
   news_items: NewsItem[];
+  video_news: VideoNewsItem[];
   market_sentiment: MarketSentiment;
   predictions_10_day: Prediction[];
   recommendations: Recommendations;

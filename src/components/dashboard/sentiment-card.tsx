@@ -2,15 +2,13 @@
 
 import { MarketSentiment } from "@/types/report";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useLanguage } from "@/components/language-provider";
+import { TrendingDown, TrendingUp, ArrowRight } from "lucide-react";
 
 interface SentimentCardProps {
   sentiment: MarketSentiment;
 }
 
 export function SentimentCard({ sentiment }: SentimentCardProps) {
-  const { lang } = useLanguage();
-
   const directionColor =
     sentiment.direction === "down"
       ? "text-red-500"
@@ -25,23 +23,31 @@ export function SentimentCard({ sentiment }: SentimentCardProps) {
       ? "bg-emerald-500"
       : "bg-muted-foreground";
 
-  const directionLabel = sentiment.direction === "down"
-    ? (lang === "hindi" ? "↓ गिरावट" : "↓ Downward")
-    : sentiment.direction === "up"
-    ? (lang === "hindi" ? "↑ तेजी" : "↑ Upward")
-    : (lang === "hindi" ? "→ स्थिर" : "→ Sideways");
+  const DirectionIcon =
+    sentiment.direction === "down"
+      ? TrendingDown
+      : sentiment.direction === "up"
+      ? TrendingUp
+      : ArrowRight;
+
+  const directionLabel =
+    sentiment.direction === "down"
+      ? "Downward"
+      : sentiment.direction === "up"
+      ? "Upward"
+      : "Sideways";
 
   return (
     <Card className="border border-border">
       <CardHeader className="pb-2">
         <CardTitle className="text-sm font-medium text-muted-foreground">
-          {lang === "hindi" ? "बाजार भावना" : "Market Sentiment"}
+          Market Sentiment
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
-            {sentiment.emoji && <span className="text-xl">{sentiment.emoji}</span>}
+            <DirectionIcon className={`h-5 w-5 ${directionColor}`} />
             <span className={`text-2xl font-bold leading-tight ${directionColor}`}>
               {sentiment.overall}
             </span>
@@ -60,7 +66,7 @@ export function SentimentCard({ sentiment }: SentimentCardProps) {
 
         <div className="space-y-1.5">
           <div className="flex items-center justify-between text-xs text-muted-foreground">
-            <span>{lang === "hindi" ? "विश्वास" : "Confidence"}</span>
+            <span>Confidence</span>
             <span className="font-medium tabular-nums">{sentiment.confidence}%</span>
           </div>
           <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
@@ -72,7 +78,7 @@ export function SentimentCard({ sentiment }: SentimentCardProps) {
         </div>
 
         <div className="flex items-center gap-2 text-sm">
-          <span className="text-muted-foreground">{lang === "hindi" ? "दिशा:" : "Direction:"}</span>
+          <span className="text-muted-foreground">Direction:</span>
           <span className={`font-medium ${directionColor}`}>
             {directionLabel}
           </span>

@@ -2,7 +2,6 @@
 
 import { useMemo, useState } from "react";
 import { DailyReport } from "@/types/report";
-import { useLanguage } from "@/components/language-provider";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
@@ -65,7 +64,6 @@ function buildVariantLabels(variants: DailyReport[]): { id: string; label: strin
 }
 
 export function ReportSelector({ reports, selectedId, onSelect }: ReportSelectorProps) {
-  const { lang } = useLanguage();
   const [calendarOpen, setCalendarOpen] = useState(false);
 
   // Build date → reports map
@@ -120,8 +118,6 @@ export function ReportSelector({ reports, selectedId, onSelect }: ReportSelector
               <span>
                 {selectedDate
                   ? format(parseISO(selectedDate), "dd MMM yyyy")
-                  : lang === "hindi"
-                  ? "तारीख चुनें"
                   : "Select Date"}
               </span>
             </Button>
@@ -149,9 +145,7 @@ export function ReportSelector({ reports, selectedId, onSelect }: ReportSelector
         {/* Show date info */}
         <span className="text-xs text-muted-foreground">
           {variants.length > 1
-            ? lang === "hindi"
-              ? `${variants.length} रिपोर्ट उपलब्ध`
-              : `${variants.length} reports available`
+            ? `${variants.length} reports available`
             : ""}
         </span>
       </div>

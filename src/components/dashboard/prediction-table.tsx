@@ -2,7 +2,6 @@
 
 import { Prediction } from "@/types/report";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useLanguage } from "@/components/language-provider";
 
 interface PredictionTableProps {
   predictions: Prediction[];
@@ -31,13 +30,11 @@ function getArrowColor(change: number): string {
 }
 
 export function PredictionTable({ predictions }: PredictionTableProps) {
-  const { lang } = useLanguage();
-
   return (
     <Card className="border border-border">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium text-muted-foreground">
-          {lang === "hindi" ? "पूर्वानुमान विवरण" : "Forecast Breakdown"}
+          Forecast Breakdown
         </CardTitle>
       </CardHeader>
       <CardContent className="px-0 pb-0 sm:px-0">

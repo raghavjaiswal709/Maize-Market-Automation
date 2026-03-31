@@ -2,32 +2,30 @@
 
 import { CurrentPrices } from "@/types/report";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useLanguage } from "@/components/language-provider";
 
 interface PriceCardsProps {
   prices: CurrentPrices;
 }
 
-const priceLabels: Record<string, { hinglish: string; hindi: string }> = {
-  bihar_avg: { hinglish: "Bihar Avg", hindi: "बिहार औसत" },
-  purnea: { hinglish: "Purnea", hindi: "पूर्णिया" },
-  indore: { hinglish: "Indore", hindi: "इंदौर" },
-  all_india_avg: { hinglish: "All India Avg", hindi: "अखिल भारत औसत" },
+const priceLabels: Record<string, string> = {
+  bihar_avg: "Bihar Avg",
+  purnea: "Purnea",
+  indore: "Indore",
+  all_india_avg: "All India Avg",
 };
 
 export function PriceCards({ prices }: PriceCardsProps) {
-  const { lang } = useLanguage();
   const entries = Object.entries(priceLabels);
 
   return (
     <div className="grid grid-cols-2 gap-2 sm:gap-3 sm:grid-cols-4">
-      {entries.map(([key, labels]) => {
+      {entries.map(([key, label]) => {
         const value = prices[key as keyof CurrentPrices] as number;
         return (
           <Card key={key} className="border border-border">
             <CardHeader className="pb-0.5 pt-3 px-3 sm:pb-1 sm:pt-4 sm:px-4">
               <CardTitle className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">
-                {lang === "hindi" ? labels.hindi : labels.hinglish}
+                {label}
               </CardTitle>
             </CardHeader>
             <CardContent className="px-3 pb-3 sm:px-4 sm:pb-4">

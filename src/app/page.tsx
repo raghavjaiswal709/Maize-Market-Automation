@@ -2,7 +2,13 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { DailyReport } from "@/types/report";
-import { useLanguage } from "@/components/language-provider";
+
+// Reels components
+import { OverviewReels } from "@/components/reels/overview-reels";
+import { NewsReels } from "@/components/reels/news-reels";
+import { VideoReels } from "@/components/reels/video-reels";
+
+// Dashboard components (kept as-is for Tab 3)
 import { Header } from "@/components/dashboard/header";
 import { PriceCards } from "@/components/dashboard/price-cards";
 import { SentimentCard } from "@/components/dashboard/sentiment-card";
@@ -17,73 +23,83 @@ import { DashboardSkeleton } from "@/components/dashboard/dashboard-skeleton";
 import { ReportSelector } from "@/components/dashboard/report-selector";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import { BarChart3, Newspaper, LayoutDashboard, Video, Menu } from "lucide-react";
+import { ReportSidebar } from "@/components/sidebar/report-sidebar";
+
+// ═══════════════════════════════════════════════
+// Global tab type
+// ═══════════════════════════════════════════════
+type AppTab = "overview" | "news" | "videos" | "dashboard";
+
 export default function Home() {
   const [reports, setReports] = useState<DailyReport[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const { lang } = useLanguage();
+  const [activeTab, setActiveTab] = useState<AppTab>("overview");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const fetchReports = useCallback(async (preserveSelection = false) => {
-    try {
-      setLoading(true);
-      console.log(`[Frontend] Fetching reports with lang=${lang}`);
-      const res = await fetch(`/api/reports?limit=50&lang=${lang}`);
-      console.log("[Frontend] Response status:", res.status, res.statusText);
-      
-      if (!res.ok) throw new Error("Failed to fetch");
-      
-      const data = await res.json();
-      console.log("[Frontend] Received data:", {
-        reportsCount: data.reports?.length || 0,
-        total: data.total,
-        hasMore: data.hasMore,
-      });
-      
-      setReports(data.reports);
-      // Keep current selection if preserving, or if the selected report still exists
-      if (!preserveSelection && data.reports.length > 0) {
-        // On initial load or data update, select the latest (first) report
-        if (!selectedId || !data.reports.find((r: DailyReport) => r._id === selectedId)) {
-          setSelectedId(data.reports[0]._id);
+  const fetchReports = useCallback(
+    async (preserveSelection = false) => {
+      try {
+        setLoading(true);
+        const res = await fetch(`/api/reports?limit=50&lang=hinglish`);
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data = await res.json();
+        setReports(data.reports);
+        if (!preserveSelection && data.reports.length > 0) {
+          if (
+            !selectedId ||
+            !data.reports.find((r: DailyReport) => r._id === selectedId)
+          ) {
+            setSelectedId(data.reports[0]._id);
+          }
         }
+        setError(null);
+      } catch (err) {
+        console.error("[Frontend] Error fetching reports:", err);
+        setError("Unable to load market data. Please try again.");
+      } finally {
+        setLoading(false);
       }
-      setError(null);
-    } catch (err) {
-      console.error("[Frontend] Error fetching reports:", err);
-      setError("Unable to load market data. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  }, [lang, selectedId]);
+    },
+    [selectedId]
+  );
 
-  // Re-fetch when language changes (preserve current selection)
-  useEffect(() => {
-    fetchReports(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang]);
-
-  // Initial fetch
   useEffect(() => {
     fetchReports(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (loading) return <DashboardSkeleton />;
+  // ─────────────────────── Loading ───────────────────────
+  if (loading) {
+    return (
+      <div className="min-h-dvh bg-background">
+        <GlobalTabBar active={activeTab} onChange={setActiveTab} onMenuClick={() => setSidebarOpen(true)} />
+        <div className="pt-11">
+          <DashboardSkeleton />
+        </div>
+      </div>
+    );
+  }
 
+  // ─────────────────────── Error / Empty ───────────────────────
   if (error || reports.length === 0) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-background">
-        <div className="text-center space-y-3 px-4">
-          <p className="text-sm text-destructive font-medium">
-            {error || "No reports available"}
-          </p>
-          <button
-            onClick={() => fetchReports(false)}
-            className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"
-          >
-            Retry
-          </button>
+      <div className="min-h-dvh bg-background">
+        <GlobalTabBar active={activeTab} onChange={setActiveTab} onMenuClick={() => setSidebarOpen(true)} />
+        <div className="flex items-center justify-center min-h-[80dvh]">
+          <div className="text-center space-y-3 px-4">
+            <p className="text-sm text-destructive font-medium">
+              {error || "No reports available"}
+            </p>
+            <button
+              onClick={() => fetchReports(false)}
+              className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"
+            >
+              Retry
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -92,7 +108,120 @@ export default function Home() {
   const report = reports.find((r) => r._id === selectedId) || reports[0];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-dvh bg-background">
+      {/* ═══ SIDEBAR ═══ */}
+      <ReportSidebar
+        open={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        reports={reports}
+        selectedId={report._id}
+        onSelect={(id) => {
+          setSelectedId(id);
+          setSidebarOpen(false);
+        }}
+      />
+
+      {/* ═══ GLOBAL TAB BAR ═══ */}
+      <GlobalTabBar active={activeTab} onChange={setActiveTab} onMenuClick={() => setSidebarOpen(true)} />
+
+      {/* ═══ TAB CONTENT ═══ */}
+      {activeTab === "overview" && <OverviewReels report={report} />}
+
+      {activeTab === "news" && (
+        <NewsReels items={report.news_items} reportDate={report.date} />
+      )}
+
+      {activeTab === "videos" && (
+        <VideoReels items={report.video_news} reportDate={report.date} />
+      )}
+
+      {activeTab === "dashboard" && (
+        <DashboardView
+          reports={reports}
+          report={report}
+          selectedId={report._id}
+          setSelectedId={setSelectedId}
+          fetchReports={fetchReports}
+        />
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════
+// Global Tab Bar — fixed at top, always visible
+// ═══════════════════════════════════════════════
+function GlobalTabBar({
+  active,
+  onChange,
+  onMenuClick,
+}: {
+  active: AppTab;
+  onChange: (tab: AppTab) => void;
+  onMenuClick: () => void;
+}) {
+  const tabs: { key: AppTab; label: string; icon: typeof BarChart3 }[] = [
+    { key: "overview", label: "Overview", icon: BarChart3 },
+    { key: "news", label: "News", icon: Newspaper },
+    { key: "videos", label: "Videos", icon: Video },
+    { key: "dashboard", label: "Dashboard", icon: LayoutDashboard },
+  ];
+
+  return (
+    <div className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+      <div className="flex items-center gap-0.5 px-1.5 py-1.5 max-w-lg mx-auto">
+        {/* Hamburger menu button */}
+        <button
+          onClick={onMenuClick}
+          className="p-1.5 rounded-md hover:bg-accent transition-colors mr-1"
+          aria-label="Open report list"
+        >
+          <Menu className="h-4 w-4 text-muted-foreground" />
+        </button>
+
+        {/* Tabs */}
+        <div className="flex items-center gap-0.5 flex-1 justify-center">
+          {tabs.map(({ key, label, icon: Icon }) => {
+            const isActive = active === key;
+            return (
+              <button
+                key={key}
+                onClick={() => onChange(key)}
+                className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide transition-all duration-200 ${
+                  isActive
+                    ? "bg-foreground text-background shadow-sm"
+                    : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                }`}
+              >
+                <Icon className="h-3 w-3" />
+                {label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════
+// Dashboard View — EXACT COPY of existing layout
+// ═══════════════════════════════════════════════
+function DashboardView({
+  reports,
+  report,
+  selectedId,
+  setSelectedId,
+  fetchReports,
+}: {
+  reports: DailyReport[];
+  report: DailyReport;
+  selectedId: string;
+  setSelectedId: (id: string) => void;
+  fetchReports: (preserveSelection?: boolean) => Promise<void>;
+}) {
+  return (
+    <div className="pt-11">
       <Header report={report} onDataUpdated={() => fetchReports(false)} />
 
       <main className="container mx-auto px-3 py-4 space-y-4 max-w-6xl sm:px-4 sm:py-6 sm:space-y-6">
@@ -100,7 +229,7 @@ export default function Home() {
         <section>
           <ReportSelector
             reports={reports}
-            selectedId={report._id}
+            selectedId={selectedId}
             onSelect={(id) => setSelectedId(id)}
           />
         </section>
@@ -110,7 +239,7 @@ export default function Home() {
           <PriceCards prices={report.current_prices} />
         </section>
 
-        {/* Chart + Sentiment — stacked on mobile, side by side on desktop */}
+        {/* Chart + Sentiment */}
         <section className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-3">
           <div className="md:col-span-2">
             <PredictionChart
@@ -127,16 +256,16 @@ export default function Home() {
         <Tabs defaultValue="forecast" className="w-full">
           <TabsList className="w-full grid grid-cols-4 h-8 sm:h-9">
             <TabsTrigger value="forecast" className="text-[10px] sm:text-xs">
-              {lang === "hindi" ? "पूर्वानुमान" : "Forecast"}
+              Forecast
             </TabsTrigger>
             <TabsTrigger value="news" className="text-[10px] sm:text-xs">
-              {lang === "hindi" ? "समाचार" : "News"}
+              News
             </TabsTrigger>
             <TabsTrigger value="advice" className="text-[10px] sm:text-xs">
-              {lang === "hindi" ? "सलाह" : "Advice"}
+              Advice
             </TabsTrigger>
             <TabsTrigger value="intel" className="text-[10px] sm:text-xs">
-              {lang === "hindi" ? "विवरण" : "Intel"}
+              Intel
             </TabsTrigger>
           </TabsList>
 
@@ -169,7 +298,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="border-t border-border pt-3 pb-6 sm:pt-4 sm:pb-8">
           <p className="text-[10px] sm:text-[11px] text-muted-foreground text-center leading-relaxed">
-            {report._id} · {report.model_label}
+            {report._id} &middot; {report.model_label}
           </p>
         </footer>
       </main>

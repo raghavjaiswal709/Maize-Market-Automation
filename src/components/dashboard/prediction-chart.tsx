@@ -11,7 +11,6 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
-import { useLanguage } from "@/components/language-provider";
 
 interface PredictionChartProps {
   predictions: Prediction[];
@@ -19,10 +18,8 @@ interface PredictionChartProps {
 }
 
 export function PredictionChart({ predictions, currentPrice }: PredictionChartProps) {
-  const { lang } = useLanguage();
-
   const data = [
-    { date_formatted: lang === "hindi" ? "आज" : "Today", price: currentPrice, change: 0 },
+    { date_formatted: "Today", price: currentPrice, change: 0 },
     ...predictions,
   ];
 
@@ -38,7 +35,7 @@ export function PredictionChart({ predictions, currentPrice }: PredictionChartPr
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-sm font-medium text-muted-foreground">
-            {lang === "hindi" ? "10-दिन कीमत पूर्वानुमान" : "10-Day Price Forecast"}
+            10-Day Price Forecast
           </CardTitle>
           <span
             className={`text-sm font-semibold tabular-nums ${
