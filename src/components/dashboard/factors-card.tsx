@@ -16,7 +16,7 @@ export function FactorsCard({ factors }: FactorsCardProps) {
   ];
 
   return (
-    <Card className="border border-border">
+    <Card className="border border-border w-full overflow-hidden">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium text-muted-foreground">
           Market Factors
@@ -33,7 +33,7 @@ export function FactorsCard({ factors }: FactorsCardProps) {
                 <Badge
                   key={factor}
                   variant={color as "destructive" | "default" | "secondary"}
-                  className="text-[10px] sm:text-xs font-normal"
+                  className="text-[10px] font-normal whitespace-normal break-words max-w-full h-auto py-0.5 leading-snug"
                 >
                   {factor}
                 </Badge>

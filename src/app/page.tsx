@@ -168,33 +168,33 @@ function GlobalTabBar({
   ];
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="flex items-center gap-0.5 px-1.5 py-1.5 max-w-lg mx-auto">
-        {/* Hamburger menu button */}
+    <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none px-2 pt-2 pb-1">
+      <div className="flex items-center gap-2 w-full">
+        {/* Hamburger — separate floating glass circle */}
         <button
           onClick={onMenuClick}
-          className="p-1.5 rounded-md hover:bg-accent transition-colors mr-1"
+          className="glass-pill pointer-events-auto h-9 w-9 shrink-0 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
           aria-label="Open report list"
         >
-          <Menu className="h-4 w-4 text-muted-foreground" />
+          <Menu className="h-4 w-4 text-foreground/80" />
         </button>
 
-        {/* Tabs */}
-        <div className="flex items-center gap-0.5 flex-1 justify-center">
+        {/* Tabs — grouped in a floating glass pill, fills remaining width */}
+        <div className="glass-pill pointer-events-auto flex items-center p-0.75 rounded-full flex-1 min-w-0">
           {tabs.map(({ key, label, icon: Icon }) => {
             const isActive = active === key;
             return (
               <button
                 key={key}
                 onClick={() => onChange(key)}
-                className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide transition-all duration-200 ${
+                className={`flex items-center justify-center gap-1 flex-1 min-w-0 py-1.5 rounded-full text-[9px] font-semibold uppercase tracking-normal transition-all duration-200 ${
                   isActive
-                    ? "bg-foreground text-background shadow-sm"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                    ? "glass-pill-active text-foreground"
+                    : "text-foreground/50 hover:text-foreground/80"
                 }`}
               >
-                <Icon className="h-3 w-3" />
-                {label}
+                <Icon className="h-3.5 w-3.5 shrink-0" />
+                <span className="truncate">{label}</span>
               </button>
             );
           })}

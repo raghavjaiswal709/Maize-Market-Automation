@@ -235,33 +235,35 @@ export function ReelsContainer({ count, renderSlide }: ReelsContainerProps) {
         ))}
       </div>
 
-      {/* Up/Down arrows */}
-      {currentIndex > 0 && (
-        <button
-          onClick={() => scrollTo("up")}
-          className="absolute top-4 left-1/2 -translate-x-1/2 z-10 p-2 rounded-full backdrop-blur-sm transition-opacity"
-          style={{
-            backgroundColor: `${contrastText(palette[currentIndex])}20`,
-            color: contrastText(palette[currentIndex]),
-          }}
-          aria-label="Previous slide"
-        >
-          <ChevronUp className="h-5 w-5" />
-        </button>
-      )}
-      {currentIndex < count - 1 && (
-        <button
-          onClick={() => scrollTo("down")}
-          className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 p-2 rounded-full backdrop-blur-sm animate-bounce transition-opacity"
-          style={{
-            backgroundColor: `${contrastText(palette[currentIndex])}20`,
-            color: contrastText(palette[currentIndex]),
-          }}
-          aria-label="Next slide"
-        >
-          <ChevronDown className="h-5 w-5" />
-        </button>
-      )}
+      {/* Up/Down arrows — right edge */}
+      <div className="absolute right-3 bottom-16 z-10 flex flex-col gap-2">
+        {currentIndex > 0 && (
+          <button
+            onClick={() => scrollTo("up")}
+            className="p-2 rounded-full backdrop-blur-sm transition-opacity"
+            style={{
+              backgroundColor: `${contrastText(palette[currentIndex])}20`,
+              color: contrastText(palette[currentIndex]),
+            }}
+            aria-label="Previous slide"
+          >
+            <ChevronUp className="h-5 w-5" />
+          </button>
+        )}
+        {currentIndex < count - 1 && (
+          <button
+            onClick={() => scrollTo("down")}
+            className="p-2 rounded-full backdrop-blur-sm animate-bounce transition-opacity"
+            style={{
+              backgroundColor: `${contrastText(palette[currentIndex])}20`,
+              color: contrastText(palette[currentIndex]),
+            }}
+            aria-label="Next slide"
+          >
+            <ChevronDown className="h-5 w-5" />
+          </button>
+        )}
+      </div>
 
       {/* Slide counter */}
       <div
