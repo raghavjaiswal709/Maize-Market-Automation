@@ -82,9 +82,11 @@ interface ReelsContainerProps {
 export function ReelsContainer({ count, renderSlide }: ReelsContainerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const isAnimating = useRef(false);
+  const touchStartY = useRef(0);
+  const touchDelta = useRef(0);
   const [palette] = useState(() => {
     const shuffled = shuffle(COLORS);
-    // Extend if needed to cover all slides
     const result: string[] = [];
     for (let i = 0; i < count; i++) {
       result.push(shuffled[i % shuffled.length]);
@@ -92,66 +94,123 @@ export function ReelsContainer({ count, renderSlide }: ReelsContainerProps) {
     return result;
   });
 
-  // Track current slide from scroll position
-  const handleScroll = useCallback(() => {
-    if (!containerRef.current) return;
-    const scrollTop = containerRef.current.scrollTop;
-    const height = containerRef.current.clientHeight;
-    const idx = Math.round(scrollTop / height);
-    setCurrentIndex(Math.min(idx, count - 1));
-  }, [count]);
+  /** Navigate exactly one slide in the given direction */
+  const goTo = useCallback(
+    (idx: number) => {
+      if (idx < 0 || idx >= count || isAnimating.current) return;
+      isAnimating.current = true;
+      setCurrentIndex(idx);
+      // Unlock after the CSS transition finishes
+      setTimeout(() => {
+        isAnimating.current = false;
+      }, 420);
+    },
+    [count]
+  );
 
+  const scrollTo = useCallback(
+    (direction: "up" | "down") => {
+      const next = direction === "up" ? currentIndex - 1 : currentIndex + 1;
+      goTo(next);
+    },
+    [currentIndex, goTo]
+  );
+
+  // ── Touch handling: one swipe = one slide, strictly ──
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
-    el.addEventListener("scroll", handleScroll, { passive: true });
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
 
-  const scrollTo = (direction: "up" | "down") => {
-    if (!containerRef.current) return;
-    const height = containerRef.current.clientHeight;
-    const targetIdx = direction === "up" ? currentIndex - 1 : currentIndex + 1;
-    if (targetIdx < 0 || targetIdx >= count) return;
-    containerRef.current.scrollTo({
-      top: targetIdx * height,
-      behavior: "smooth",
-    });
-  };
+    const SWIPE_THRESHOLD = 40; // px – minimum drag to trigger a slide change
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY.current = e.touches[0].clientY;
+      touchDelta.current = 0;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      e.preventDefault(); // prevent native scroll
+      touchDelta.current = touchStartY.current - e.touches[0].clientY;
+    };
+
+    const onTouchEnd = () => {
+      if (isAnimating.current) return;
+      if (touchDelta.current > SWIPE_THRESHOLD) {
+        // Swiped up → next slide
+        scrollTo("down");
+      } else if (touchDelta.current < -SWIPE_THRESHOLD) {
+        // Swiped down → prev slide
+        scrollTo("up");
+      }
+      touchDelta.current = 0;
+    };
+
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [scrollTo]);
+
+  // ── Mouse-wheel handling: one wheel burst = one slide ──
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      if (isAnimating.current) return;
+      if (e.deltaY > 20) {
+        scrollTo("down");
+      } else if (e.deltaY < -20) {
+        scrollTo("up");
+      }
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [scrollTo]);
 
   if (count === 0) return null;
 
   return (
     <div className="relative h-dvh w-full overflow-hidden">
-      {/* Scroll container */}
+      {/* Slide track — translated via CSS transform, no native scrolling */}
       <div
         ref={containerRef}
-        className="h-full w-full overflow-y-scroll"
-        style={{
-          scrollSnapType: "y mandatory",
-          WebkitOverflowScrolling: "touch",
-        }}
+        className="h-full w-full"
+        style={{ touchAction: "none", overscrollBehavior: "none" }}
       >
-        {Array.from({ length: count }).map((_, i) => {
-          const bg = palette[i];
-          const text = contrastText(bg);
-          const muted = contrastMuted(bg);
-          return (
-            <div
-              key={i}
-              className="h-dvh w-full flex items-center justify-center px-6 py-16 sm:px-10"
-              style={{
-                scrollSnapAlign: "start",
-                backgroundColor: bg,
-                color: text,
-              }}
-            >
-              <div className="w-full max-w-lg mx-auto">
-                {renderSlide(i, { bg, text, muted })}
+        <div
+          className="w-full transition-transform duration-400 ease-out"
+          style={{
+            transform: `translateY(-${currentIndex * 100}dvh)`,
+          }}
+        >
+          {Array.from({ length: count }).map((_, i) => {
+            const bg = palette[i];
+            const text = contrastText(bg);
+            const muted = contrastMuted(bg);
+            return (
+              <div
+                key={i}
+                className="h-dvh w-full flex items-center justify-center px-6 py-16 sm:px-10"
+                style={{
+                  backgroundColor: bg,
+                  color: text,
+                }}
+              >
+                <div className="w-full max-w-lg mx-auto">
+                  {renderSlide(i, { bg, text, muted })}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
       {/* Navigation dots */}
@@ -159,12 +218,7 @@ export function ReelsContainer({ count, renderSlide }: ReelsContainerProps) {
         {Array.from({ length: count }).map((_, i) => (
           <button
             key={i}
-            onClick={() => {
-              containerRef.current?.scrollTo({
-                top: i * (containerRef.current?.clientHeight || 0),
-                behavior: "smooth",
-              });
-            }}
+            onClick={() => goTo(i)}
             className="transition-all duration-300"
             style={{
               width: i === currentIndex ? 10 : 6,

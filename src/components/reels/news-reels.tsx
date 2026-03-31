@@ -120,32 +120,75 @@ export function NewsReels({ items, reportDate }: NewsReelsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalSlides = 1 + items.length;
+  const isAnimating = useRef(false);
+  const touchStartY = useRef(0);
+  const touchDelta = useRef(0);
 
-  const handleScroll = useCallback(() => {
-    if (!containerRef.current) return;
-    const scrollTop = containerRef.current.scrollTop;
-    const height = containerRef.current.clientHeight;
-    const idx = Math.round(scrollTop / height);
-    setCurrentIndex(Math.min(idx, totalSlides - 1));
-  }, [totalSlides]);
+  /** Navigate exactly one slide */
+  const goTo = useCallback(
+    (idx: number) => {
+      if (idx < 0 || idx >= totalSlides || isAnimating.current) return;
+      isAnimating.current = true;
+      setCurrentIndex(idx);
+      setTimeout(() => {
+        isAnimating.current = false;
+      }, 420);
+    },
+    [totalSlides]
+  );
 
+  const scrollTo = useCallback(
+    (direction: "up" | "down") => {
+      const next = direction === "up" ? currentIndex - 1 : currentIndex + 1;
+      goTo(next);
+    },
+    [currentIndex, goTo]
+  );
+
+  // ── Touch handling: one swipe = one slide ──
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
-    el.addEventListener("scroll", handleScroll, { passive: true });
-    return () => el.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+    const SWIPE_THRESHOLD = 40;
 
-  const scrollTo = (direction: "up" | "down") => {
-    if (!containerRef.current) return;
-    const height = containerRef.current.clientHeight;
-    const targetIdx = direction === "up" ? currentIndex - 1 : currentIndex + 1;
-    if (targetIdx < 0 || targetIdx >= totalSlides) return;
-    containerRef.current.scrollTo({
-      top: targetIdx * height,
-      behavior: "smooth",
-    });
-  };
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY.current = e.touches[0].clientY;
+      touchDelta.current = 0;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      touchDelta.current = touchStartY.current - e.touches[0].clientY;
+    };
+    const onTouchEnd = () => {
+      if (isAnimating.current) return;
+      if (touchDelta.current > SWIPE_THRESHOLD) scrollTo("down");
+      else if (touchDelta.current < -SWIPE_THRESHOLD) scrollTo("up");
+      touchDelta.current = 0;
+    };
+
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [scrollTo]);
+
+  // ── Mouse wheel: one burst = one slide ──
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      if (isAnimating.current) return;
+      if (e.deltaY > 20) scrollTo("down");
+      else if (e.deltaY < -20) scrollTo("up");
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [scrollTo]);
 
   /** Get bg for a given slide index */
   const bgForSlide = (i: number): string => {
@@ -166,37 +209,38 @@ export function NewsReels({ items, reportDate }: NewsReelsProps) {
 
   return (
     <div className="relative h-dvh w-full overflow-hidden">
-      {/* Scroll container */}
+      {/* Slide track — transform based, no native scrolling */}
       <div
         ref={containerRef}
-        className="h-full w-full overflow-y-scroll"
-        style={{
-          scrollSnapType: "y mandatory",
-          WebkitOverflowScrolling: "touch",
-        }}
+        className="h-full w-full"
+        style={{ touchAction: "none", overscrollBehavior: "none" }}
       >
-        {Array.from({ length: totalSlides }).map((_, i) => {
-          const bg = bgForSlide(i);
-          return (
-            <div
-              key={i}
-              className="h-dvh w-full flex items-center justify-center px-6 py-16 sm:px-10"
-              style={{
-                scrollSnapAlign: "start",
-                backgroundColor: bg,
-                color: "#ffffff",
-              }}
-            >
-              <div className="w-full max-w-lg mx-auto">
-                {i === 0 ? (
-                  <NewsIntroSlide count={items.length} date={reportDate} />
-                ) : (
-                  <NewsSlide item={items[i - 1]} />
-                )}
+        <div
+          className="w-full transition-transform duration-400 ease-out"
+          style={{ transform: `translateY(-${currentIndex * 100}dvh)` }}
+        >
+          {Array.from({ length: totalSlides }).map((_, i) => {
+            const bg = bgForSlide(i);
+            return (
+              <div
+                key={i}
+                className="h-dvh w-full flex items-center justify-center px-6 py-16 sm:px-10"
+                style={{
+                  backgroundColor: bg,
+                  color: "#ffffff",
+                }}
+              >
+                <div className="w-full max-w-lg mx-auto">
+                  {i === 0 ? (
+                    <NewsIntroSlide count={items.length} date={reportDate} />
+                  ) : (
+                    <NewsSlide item={items[i - 1]} />
+                  )}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
       {/* Navigation dots */}
@@ -204,12 +248,7 @@ export function NewsReels({ items, reportDate }: NewsReelsProps) {
         {Array.from({ length: totalSlides }).map((_, i) => (
           <button
             key={i}
-            onClick={() => {
-              containerRef.current?.scrollTo({
-                top: i * (containerRef.current?.clientHeight || 0),
-                behavior: "smooth",
-              });
-            }}
+            onClick={() => goTo(i)}
             className="transition-all duration-300"
             style={{
               width: i === currentIndex ? 10 : 6,
