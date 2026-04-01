@@ -180,6 +180,7 @@ function VideoSlide({
 // ──────────────────────────────────────────────
 export function VideoReels({ items, reportDate }: VideoReelsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalSlides = 1 + items.length; // intro + videos
   const isAnimating = useRef(false);
@@ -192,6 +193,7 @@ export function VideoReels({ items, reportDate }: VideoReelsProps) {
       if (idx < 0 || idx >= totalSlides || isAnimating.current) return;
       isAnimating.current = true;
       setCurrentIndex(idx);
+      setTimeout(() => { slideRefs.current[idx]?.scrollTo({ top: 0 }); }, 10);
       setTimeout(() => {
         isAnimating.current = false;
       }, 420);
@@ -223,8 +225,16 @@ export function VideoReels({ items, reportDate }: VideoReelsProps) {
     };
     const onTouchEnd = () => {
       if (isAnimating.current) return;
-      if (touchDelta.current > SWIPE_THRESHOLD) scrollTo("down");
-      else if (touchDelta.current < -SWIPE_THRESHOLD) scrollTo("up");
+      const slideEl = slideRefs.current[currentIndex];
+      const slideScrollTop = slideEl?.scrollTop ?? 0;
+      const slideScrollMax = (slideEl?.scrollHeight ?? 0) - (slideEl?.clientHeight ?? 0);
+      if (touchDelta.current > SWIPE_THRESHOLD) {
+        if (slideScrollTop < slideScrollMax - 4) return;
+        scrollTo("down");
+      } else if (touchDelta.current < -SWIPE_THRESHOLD) {
+        if (slideScrollTop > 4) return;
+        scrollTo("up");
+      }
       touchDelta.current = 0;
     };
 
@@ -236,7 +246,7 @@ export function VideoReels({ items, reportDate }: VideoReelsProps) {
       el.removeEventListener("touchmove", onTouchMove);
       el.removeEventListener("touchend", onTouchEnd);
     };
-  }, [scrollTo]);
+  }, [scrollTo, currentIndex]);
 
   // ── Mouse wheel: one burst = one slide ──
   useEffect(() => {
@@ -278,21 +288,26 @@ export function VideoReels({ items, reportDate }: VideoReelsProps) {
           {Array.from({ length: totalSlides }).map((_, i) => (
             <div
               key={i}
-              className="h-dvh w-full flex items-center justify-center px-6 py-16 sm:px-10"
+              ref={(el) => { slideRefs.current[i] = el; }}
+              className="h-dvh w-full overflow-y-auto overscroll-contain flex flex-col px-6 sm:px-10"
               style={{
                 backgroundColor: "#0a0a0a",
+                justifyContent: i === 0 ? "center" : "flex-start",
+                alignItems: i === 0 ? "center" : "stretch",
+                paddingTop: i === 0 ? 0 : "4.5rem",
+                paddingBottom: "5rem",
               }}
             >
-              <div className="w-full max-w-lg mx-auto">
-                {i === 0 ? (
-                  <VideoIntroSlide count={items.length} date={reportDate} />
-                ) : (
+              {i === 0 ? (
+                <VideoIntroSlide count={items.length} date={reportDate} />
+              ) : (
+                <div className="w-full max-w-lg mx-auto">
                   <VideoSlide
                     item={items[i - 1]}
                     isActive={currentIndex === i}
                   />
-                )}
-              </div>
+                </div>
+              )}
             </div>
           ))}
         </div>

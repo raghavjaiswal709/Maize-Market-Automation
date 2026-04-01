@@ -68,6 +68,28 @@ function deriveStrength(rawOverall: string): string {
   return "Moderate";
 }
 
+/**
+ * Strip "Paragraph N —", "Para N —", "Paragraph N:", numbered labels and
+ * section headers like "PARAGRAPH 1 — KYA HUA:" that the AI sometimes
+ * generates literally in text fields.
+ * Converts them into clean double-newline paragraph breaks so the UI can
+ * format them properly.
+ */
+function cleanText(str: string): string {
+  if (!str) return str;
+  return str
+    // "Paragraph 1 — KYA HUA:" or "Para 1 — ...", various dash types
+    .replace(/\bParagraph\s+\d+\s*[—–\-]+\s*/gi, "\n\n")
+    .replace(/\bPara\s+\d+\s*[—–\-]+\s*/gi, "\n\n")
+    // Numbered section headers like "1. KYA HUA:" at line start
+    .replace(/^\d+\.\s+[A-Z][A-Z\s]+:\s*/gm, "\n\n")
+    // Collapse more than two consecutive newlines into two
+    .replace(/\n{3,}/g, "\n\n")
+    // Remove leading newlines
+    .replace(/^\n+/, "")
+    .trim();
+}
+
 /** Derive a human-readable model label from metadata */
 function deriveModelLabel(meta: any): string {
   // If a model field is explicitly set, use it
@@ -117,7 +139,7 @@ export function normalizeReport(raw: any, lang: Lang) {
     category: t(item.category, lang),
     impact: item.impact,
     severity: item.severity,
-    explanation_hinglish: t(item.explanation || item.explanation_hinglish, lang),
+    explanation_hinglish: cleanText(t(item.explanation || item.explanation_hinglish, lang)),
     price_effect: item.price_effect,
   }));
 
@@ -152,7 +174,7 @@ export function normalizeReport(raw: any, lang: Lang) {
     confidence: ms.confidence || 0,
     direction: ms.direction || deriveDirection(rawOverallStr),
     emoji: ms.emoji || "",
-    summary: sentimentSummary,
+    summary: cleanText(sentimentSummary),
   };
 
   // --- predictions_10_day ---
@@ -199,18 +221,18 @@ export function normalizeReport(raw: any, lang: Lang) {
   const recommendations = {
     buyers: {
       action: buyers.action || "",
-      action_hinglish: t(buyers.action_text || buyers.action_hinglish, lang),
-      reason: t(buyers.reason, lang),
-      advice: buyers.advice ? t(buyers.advice, lang) : "",
+      action_hinglish: cleanText(t(buyers.action_text || buyers.action_hinglish, lang)),
+      reason: cleanText(t(buyers.reason, lang)),
+      advice: buyers.advice ? cleanText(t(buyers.advice, lang)) : "",
       target_price: buyers.target_price || 0,
       target_date: buyers.target_date || "",
     },
     sellers: {
       action: sellers.action || "",
-      action_hinglish: t(sellers.action_text || sellers.action_hinglish, lang),
-      reason: t(sellers.reason, lang),
-      advice: sellers.advice ? t(sellers.advice, lang) : "",
-      alternative: t(sellers.alternative, lang),
+      action_hinglish: cleanText(t(sellers.action_text || sellers.action_hinglish, lang)),
+      reason: cleanText(t(sellers.reason, lang)),
+      advice: sellers.advice ? cleanText(t(sellers.advice, lang)) : "",
+      alternative: cleanText(t(sellers.alternative, lang)),
     },
   };
 

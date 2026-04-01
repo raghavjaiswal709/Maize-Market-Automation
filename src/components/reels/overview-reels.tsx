@@ -2,6 +2,7 @@
 
 import { DailyReport, Prediction } from "@/types/report";
 import { ReelsContainer, SlideColors } from "./reels-container";
+import { FormattedText } from "./formatted-text";
 import {
   TrendingUp,
   TrendingDown,
@@ -141,9 +142,13 @@ function SentimentSlide({ report, colors }: { report: DailyReport; colors: Slide
         </div>
       </div>
       {summary && (
-        <p className="text-sm leading-relaxed max-w-xs" style={{ color: colors.muted }}>
-          {summary}
-        </p>
+        <FormattedText
+          text={summary}
+          modalTitle="Market Sentiment"
+          textColorClass="text-white/75"
+          modalBgColor="#1a1a2e"
+          limit={160}
+        />
       )}
     </div>
   );
@@ -275,12 +280,20 @@ function BuyerSlide({ report, colors }: { report: DailyReport; colors: SlideColo
       >
         {buyers.action.replace(/_/g, " ")}
       </div>
-      <p className="text-xl sm:text-2xl font-bold leading-snug" style={{ color: colors.text }}>
-        {buyers.action_hinglish}
-      </p>
-      <p className="text-sm leading-relaxed max-w-xs" style={{ color: colors.muted }}>
-        {buyers.reason}
-      </p>
+      <FormattedText
+        text={buyers.action_hinglish}
+        modalTitle="Buyer Action"
+        textColorClass="text-white"
+        modalBgColor="#1a1a2e"
+        limit={160}
+      />
+      <FormattedText
+        text={buyers.reason}
+        modalTitle="Why — Buyer Reason"
+        textColorClass="text-white/70"
+        modalBgColor="#1a1a2e"
+        limit={140}
+      />
       {buyers.target_price > 0 && (
         <div className="flex items-center gap-2">
           <Target className="h-4 w-4" style={{ color: colors.text }} />
@@ -315,16 +328,28 @@ function SellerSlide({ report, colors }: { report: DailyReport; colors: SlideCol
       >
         {sellers.action.replace(/_/g, " ")}
       </div>
-      <p className="text-xl sm:text-2xl font-bold leading-snug" style={{ color: colors.text }}>
-        {sellers.action_hinglish}
-      </p>
-      <p className="text-sm leading-relaxed max-w-xs" style={{ color: colors.muted }}>
-        {sellers.reason}
-      </p>
+      <FormattedText
+        text={sellers.action_hinglish}
+        modalTitle="Seller Action"
+        textColorClass="text-white"
+        modalBgColor="#1a1a2e"
+        limit={160}
+      />
+      <FormattedText
+        text={sellers.reason}
+        modalTitle="Why — Seller Reason"
+        textColorClass="text-white/70"
+        modalBgColor="#1a1a2e"
+        limit={140}
+      />
       {sellers.alternative && (
-        <p className="text-xs font-medium max-w-xs" style={{ color: colors.muted }}>
-          Alternative: {sellers.alternative}
-        </p>
+        <FormattedText
+          text={`Alternative: ${sellers.alternative}`}
+          modalTitle="Alternative"
+          textColorClass="text-white/60"
+          modalBgColor="#1a1a2e"
+          limit={120}
+        />
       )}
     </div>
   );

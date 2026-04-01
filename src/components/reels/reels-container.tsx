@@ -81,6 +81,7 @@ interface ReelsContainerProps {
 
 export function ReelsContainer({ count, renderSlide }: ReelsContainerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const isAnimating = useRef(false);
   const touchStartY = useRef(0);
@@ -100,6 +101,7 @@ export function ReelsContainer({ count, renderSlide }: ReelsContainerProps) {
       if (idx < 0 || idx >= count || isAnimating.current) return;
       isAnimating.current = true;
       setCurrentIndex(idx);
+      setTimeout(() => { slideRefs.current[idx]?.scrollTo({ top: 0 }); }, 10);
       // Unlock after the CSS transition finishes
       setTimeout(() => {
         isAnimating.current = false;
@@ -135,11 +137,14 @@ export function ReelsContainer({ count, renderSlide }: ReelsContainerProps) {
 
     const onTouchEnd = () => {
       if (isAnimating.current) return;
+      const slideEl = slideRefs.current[currentIndex];
+      const slideScrollTop = slideEl?.scrollTop ?? 0;
+      const slideScrollMax = (slideEl?.scrollHeight ?? 0) - (slideEl?.clientHeight ?? 0);
       if (touchDelta.current > SWIPE_THRESHOLD) {
-        // Swiped up → next slide
+        if (slideScrollTop < slideScrollMax - 4) return;
         scrollTo("down");
       } else if (touchDelta.current < -SWIPE_THRESHOLD) {
-        // Swiped down → prev slide
+        if (slideScrollTop > 4) return;
         scrollTo("up");
       }
       touchDelta.current = 0;
@@ -154,7 +159,7 @@ export function ReelsContainer({ count, renderSlide }: ReelsContainerProps) {
       el.removeEventListener("touchmove", onTouchMove);
       el.removeEventListener("touchend", onTouchEnd);
     };
-  }, [scrollTo]);
+  }, [scrollTo, currentIndex]);
 
   // ── Mouse-wheel handling: one wheel burst = one slide ──
   useEffect(() => {
@@ -198,10 +203,14 @@ export function ReelsContainer({ count, renderSlide }: ReelsContainerProps) {
             return (
               <div
                 key={i}
-                className="h-dvh w-full flex items-center justify-center px-6 py-16 sm:px-10"
+                ref={(el) => { slideRefs.current[i] = el; }}
+                className="h-dvh w-full overflow-y-auto overscroll-contain flex flex-col items-center px-6 sm:px-10"
                 style={{
                   backgroundColor: bg,
                   color: text,
+                  paddingTop: "4.5rem",
+                  paddingBottom: "5rem",
+                  justifyContent: "center",
                 }}
               >
                 <div className="w-full max-w-lg mx-auto">

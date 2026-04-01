@@ -13,6 +13,7 @@ import {
   ChevronUp,
   ChevronDown,
 } from "lucide-react";
+import { FormattedText } from "./formatted-text";
 
 interface NewsReelsProps {
   items: NewsItem[];
@@ -62,9 +63,13 @@ function NewsSlide({ item }: { item: NewsItem }) {
       </h2>
 
       {/* Explanation */}
-      <p className="text-base sm:text-lg leading-relaxed text-white/75">
-        {item.explanation_hinglish}
-      </p>
+      <FormattedText
+        text={item.explanation_hinglish}
+        modalTitle={item.category}
+        textColorClass="text-white/75"
+        modalBgColor={sentimentBg(item.impact)}
+        limit={180}
+      />
 
       {/* Price impact row */}
       <div className="flex items-center justify-between rounded-2xl px-5 py-4 bg-white/10">
@@ -118,6 +123,7 @@ function NewsIntroSlide({ count, date }: { count: number; date: string }) {
 // ──────────────────────────────────────────────
 export function NewsReels({ items, reportDate }: NewsReelsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalSlides = 1 + items.length;
   const isAnimating = useRef(false);
@@ -130,6 +136,10 @@ export function NewsReels({ items, reportDate }: NewsReelsProps) {
       if (idx < 0 || idx >= totalSlides || isAnimating.current) return;
       isAnimating.current = true;
       setCurrentIndex(idx);
+      // Reset scroll of the destination slide so it always starts at top
+      setTimeout(() => {
+        slideRefs.current[idx]?.scrollTo({ top: 0 });
+      }, 10);
       setTimeout(() => {
         isAnimating.current = false;
       }, 420);
@@ -161,8 +171,17 @@ export function NewsReels({ items, reportDate }: NewsReelsProps) {
     };
     const onTouchEnd = () => {
       if (isAnimating.current) return;
-      if (touchDelta.current > SWIPE_THRESHOLD) scrollTo("down");
-      else if (touchDelta.current < -SWIPE_THRESHOLD) scrollTo("up");
+      const slideEl = slideRefs.current[currentIndex];
+      const slideScrollTop = slideEl?.scrollTop ?? 0;
+      const slideScrollMax = (slideEl?.scrollHeight ?? 0) - (slideEl?.clientHeight ?? 0);
+      // Block swipe-down when slide is not at bottom (user scrolling content)
+      if (touchDelta.current > SWIPE_THRESHOLD) {
+        if (slideScrollTop < slideScrollMax - 4) return; // still content below — don't change slide
+        scrollTo("down");
+      } else if (touchDelta.current < -SWIPE_THRESHOLD) {
+        if (slideScrollTop > 4) return; // still content above — don't change slide
+        scrollTo("up");
+      }
       touchDelta.current = 0;
     };
 
@@ -174,7 +193,7 @@ export function NewsReels({ items, reportDate }: NewsReelsProps) {
       el.removeEventListener("touchmove", onTouchMove);
       el.removeEventListener("touchend", onTouchEnd);
     };
-  }, [scrollTo]);
+  }, [scrollTo, currentIndex]);
 
   // ── Mouse wheel: one burst = one slide ──
   useEffect(() => {
@@ -221,22 +240,29 @@ export function NewsReels({ items, reportDate }: NewsReelsProps) {
         >
           {Array.from({ length: totalSlides }).map((_, i) => {
             const bg = bgForSlide(i);
+            const isIntro = i === 0;
             return (
               <div
                 key={i}
-                className="h-dvh w-full flex items-center justify-center px-6 py-16 sm:px-10"
+                ref={(el) => { slideRefs.current[i] = el; }}
+                className="h-dvh w-full overflow-y-auto overscroll-contain flex flex-col px-6 sm:px-10"
                 style={{
                   backgroundColor: bg,
                   color: "#ffffff",
+                  // Intro stays centered; news slides start at top with generous padding
+                  justifyContent: isIntro ? "center" : "flex-start",
+                  alignItems: isIntro ? "center" : "stretch",
+                  paddingTop: isIntro ? 0 : "4.5rem",
+                  paddingBottom: "5rem",
                 }}
               >
-                <div className="w-full max-w-lg mx-auto">
-                  {i === 0 ? (
-                    <NewsIntroSlide count={items.length} date={reportDate} />
-                  ) : (
+                {isIntro ? (
+                  <NewsIntroSlide count={items.length} date={reportDate} />
+                ) : (
+                  <div className="w-full max-w-lg mx-auto">
                     <NewsSlide item={items[i - 1]} />
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             );
           })}

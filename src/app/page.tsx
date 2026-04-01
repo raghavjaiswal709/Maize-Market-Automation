@@ -168,8 +168,9 @@ function GlobalTabBar({
   ];
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none px-2 pt-2 pb-1">
-      <div className="flex items-center gap-2 w-full">
+    <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none pt-2 px-2 pb-1 flex justify-center">
+      {/* On mobile: full width. On desktop: fixed-width centered pill */}
+      <div className="flex items-center gap-2 w-full sm:w-auto sm:min-w-105 sm:max-w-130">
         {/* Hamburger — separate floating glass circle */}
         <button
           onClick={onMenuClick}
@@ -179,7 +180,7 @@ function GlobalTabBar({
           <Menu className="h-4 w-4 text-foreground/80" />
         </button>
 
-        {/* Tabs — grouped in a floating glass pill, fills remaining width */}
+        {/* Tabs — grouped in a floating glass pill */}
         <div className="glass-pill pointer-events-auto flex items-center p-0.75 rounded-full flex-1 min-w-0">
           {tabs.map(({ key, label, icon: Icon }) => {
             const isActive = active === key;
@@ -187,7 +188,7 @@ function GlobalTabBar({
               <button
                 key={key}
                 onClick={() => onChange(key)}
-                className={`flex items-center justify-center gap-1 flex-1 min-w-0 py-1.5 rounded-full text-[9px] font-semibold uppercase tracking-normal transition-all duration-200 ${
+                className={`flex items-center justify-center gap-1 flex-1 min-w-0 py-1.5 rounded-full text-[9px] sm:text-[10px] font-semibold uppercase tracking-normal transition-all duration-200 ${
                   isActive
                     ? "glass-pill-active text-foreground"
                     : "text-foreground/50 hover:text-foreground/80"
