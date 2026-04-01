@@ -63,13 +63,15 @@ function NewsSlide({ item }: { item: NewsItem }) {
       </h2>
 
       {/* Explanation */}
-      <FormattedText
-        text={item.explanation_hinglish}
-        modalTitle={item.category}
-        textColorClass="text-white/75"
-        modalBgColor={sentimentBg(item.impact)}
-        limit={180}
-      />
+      <div className="rounded-2xl bg-white/5 px-4 py-4">
+        <FormattedText
+          text={item.explanation_hinglish}
+          modalTitle={item.category}
+          textColorClass="text-white/80"
+          modalBgColor={sentimentBg(item.impact)}
+          limit={260}
+        />
+      </div>
 
       {/* Price impact row */}
       <div className="flex items-center justify-between rounded-2xl px-5 py-4 bg-white/10">
@@ -161,16 +163,39 @@ export function NewsReels({ items, reportDate }: NewsReelsProps) {
     if (!el) return;
     const SWIPE_THRESHOLD = 40;
 
+    let touchInScrollable = false;
+
+    function isInsideScrollable(target: EventTarget | null): boolean {
+      let node = target as HTMLElement | null;
+      while (node && node !== el) {
+        if (
+          node.scrollHeight > node.clientHeight + 2 &&
+          (getComputedStyle(node).overflowY === "auto" ||
+            getComputedStyle(node).overflowY === "scroll")
+        ) {
+          return true;
+        }
+        node = node.parentElement;
+      }
+      return false;
+    }
+
     const onTouchStart = (e: TouchEvent) => {
       touchStartY.current = e.touches[0].clientY;
       touchDelta.current = 0;
+      touchInScrollable = isInsideScrollable(e.target);
     };
     const onTouchMove = (e: TouchEvent) => {
-      e.preventDefault();
       touchDelta.current = touchStartY.current - e.touches[0].clientY;
+      if (touchInScrollable) return;
+      e.preventDefault();
     };
     const onTouchEnd = () => {
       if (isAnimating.current) return;
+      if (touchInScrollable) {
+        touchDelta.current = 0;
+        return;
+      }
       const slideEl = slideRefs.current[currentIndex];
       const slideScrollTop = slideEl?.scrollTop ?? 0;
       const slideScrollMax = (slideEl?.scrollHeight ?? 0) - (slideEl?.clientHeight ?? 0);

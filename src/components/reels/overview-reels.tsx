@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { DailyReport, Prediction } from "@/types/report";
 import { ReelsContainer, SlideColors } from "./reels-container";
 import { FormattedText } from "./formatted-text";
@@ -17,6 +18,8 @@ import {
   Scale,
   Users,
   Store,
+  ChevronDown,
+  ChevronRight,
 } from "lucide-react";
 
 interface OverviewReelsProps {
@@ -280,20 +283,22 @@ function BuyerSlide({ report, colors }: { report: DailyReport; colors: SlideColo
       >
         {buyers.action.replace(/_/g, " ")}
       </div>
-      <FormattedText
-        text={buyers.action_hinglish}
-        modalTitle="Buyer Action"
-        textColorClass="text-white"
-        modalBgColor="#1a1a2e"
-        limit={160}
-      />
-      <FormattedText
-        text={buyers.reason}
-        modalTitle="Why — Buyer Reason"
-        textColorClass="text-white/70"
-        modalBgColor="#1a1a2e"
-        limit={140}
-      />
+      <div className="w-full rounded-2xl bg-white/5 px-4 py-3 space-y-3">
+        <FormattedText
+          text={buyers.action_hinglish}
+          modalTitle="Buyer Action"
+          textColorClass="text-white"
+          modalBgColor="#1a1a2e"
+          limit={160}
+        />
+        <FormattedText
+          text={buyers.reason}
+          modalTitle="Why — Buyer Reason"
+          textColorClass="text-white/70"
+          modalBgColor="#1a1a2e"
+          limit={140}
+        />
+      </div>
       {buyers.target_price > 0 && (
         <div className="flex items-center gap-2">
           <Target className="h-4 w-4" style={{ color: colors.text }} />
@@ -328,29 +333,31 @@ function SellerSlide({ report, colors }: { report: DailyReport; colors: SlideCol
       >
         {sellers.action.replace(/_/g, " ")}
       </div>
-      <FormattedText
-        text={sellers.action_hinglish}
-        modalTitle="Seller Action"
-        textColorClass="text-white"
-        modalBgColor="#1a1a2e"
-        limit={160}
-      />
-      <FormattedText
-        text={sellers.reason}
-        modalTitle="Why — Seller Reason"
-        textColorClass="text-white/70"
-        modalBgColor="#1a1a2e"
-        limit={140}
-      />
-      {sellers.alternative && (
+      <div className="w-full rounded-2xl bg-white/5 px-4 py-3 space-y-3">
         <FormattedText
-          text={`Alternative: ${sellers.alternative}`}
-          modalTitle="Alternative"
-          textColorClass="text-white/60"
+          text={sellers.action_hinglish}
+          modalTitle="Seller Action"
+          textColorClass="text-white"
           modalBgColor="#1a1a2e"
-          limit={120}
+          limit={160}
         />
-      )}
+        <FormattedText
+          text={sellers.reason}
+          modalTitle="Why — Seller Reason"
+          textColorClass="text-white/70"
+          modalBgColor="#1a1a2e"
+          limit={140}
+        />
+        {sellers.alternative && (
+          <FormattedText
+            text={`Alternative: ${sellers.alternative}`}
+            modalTitle="Alternative"
+            textColorClass="text-white/60"
+            modalBgColor="#1a1a2e"
+            limit={120}
+          />
+        )}
+      </div>
     </div>
   );
 }
@@ -360,45 +367,160 @@ function SellerSlide({ report, colors }: { report: DailyReport; colors: SlideCol
 // ──────────────────────────────────────────────
 function FactorsSlide({ report, colors }: { report: DailyReport; colors: SlideColors }) {
   const { bearish, bullish, neutral } = report.factors;
+
+  // openSection: which accordion section is open ("Bullish"|"Bearish"|"Neutral"|null)
+  const [openSection, setOpenSection] = useState<string | null>(null);
+  // openItem: index of expanded factor within the open section
+  const [openItem, setOpenItem] = useState<number | null>(null);
+
   const sections = [
-    { label: "Bullish", items: bullish, icon: ShieldCheck },
-    { label: "Bearish", items: bearish, icon: ShieldAlert },
-    { label: "Neutral", items: neutral, icon: Scale },
+    {
+      label: "Bullish",
+      items: bullish,
+      icon: ShieldCheck,
+      accentColor: "#22c55e",   // green
+      accentBg: "rgba(34,197,94,0.12)",
+    },
+    {
+      label: "Bearish",
+      items: bearish,
+      icon: ShieldAlert,
+      accentColor: "#ef4444",   // red
+      accentBg: "rgba(239,68,68,0.12)",
+    },
+    {
+      label: "Neutral",
+      items: neutral,
+      icon: Scale,
+      accentColor: "#94a3b8",   // slate
+      accentBg: "rgba(148,163,184,0.10)",
+    },
   ];
 
+  function toggleSection(label: string) {
+    if (openSection === label) {
+      setOpenSection(null);
+      setOpenItem(null);
+    } else {
+      setOpenSection(label);
+      setOpenItem(null);
+    }
+  }
+
+  function toggleItem(idx: number) {
+    setOpenItem((prev) => (prev === idx ? null : idx));
+  }
+
   return (
-    <div className="flex flex-col gap-5">
-      <p className="text-sm font-bold uppercase tracking-widest text-center" style={{ color: colors.muted }}>
+    <div className="flex flex-col gap-3">
+      <p
+        className="text-xs font-black uppercase tracking-widest text-center pb-1"
+        style={{ color: colors.muted }}
+      >
         Market Factors
       </p>
-      {sections.map(({ label, items, icon: SectionIcon }) => (
-        items.length > 0 && (
-          <div key={label}>
-            <div className="flex items-center gap-2 mb-2">
-              <SectionIcon className="h-4 w-4" style={{ color: colors.text }} />
-              <p className="text-xs font-bold uppercase tracking-wider" style={{ color: colors.text }}>
-                {label}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {items.slice(0, 4).map((f: string, i: number) => (
+
+      {sections.map(({ label, items, icon: SectionIcon, accentColor, accentBg }) => {
+        if (items.length === 0) return null;
+        const isOpen = openSection === label;
+
+        return (
+          <div
+            key={label}
+            className="rounded-2xl overflow-hidden"
+            style={{ backgroundColor: `${colors.text}08`, border: `1px solid ${colors.text}15` }}
+          >
+            {/* Section header — tap to toggle */}
+            <button
+              className="w-full flex items-center justify-between px-4 py-3 transition-colors"
+              style={{
+                backgroundColor: isOpen ? accentBg : "transparent",
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleSection(label);
+              }}
+            >
+              <div className="flex items-center gap-2">
+                <SectionIcon className="h-4 w-4" style={{ color: accentColor }} />
                 <span
-                  key={i}
-                  className="rounded-full px-3 py-1 text-xs font-semibold"
-                  style={{ backgroundColor: `${colors.text}15`, color: colors.text }}
+                  className="text-xs font-black uppercase tracking-wider"
+                  style={{ color: accentColor }}
                 >
-                  {f}
+                  {label}
                 </span>
-              ))}
-              {items.length > 4 && (
-                <span className="text-xs font-medium self-center" style={{ color: colors.muted }}>
-                  +{items.length - 4} more
+                <span
+                  className="text-[10px] font-bold px-1.5 py-0.5 rounded-full"
+                  style={{ backgroundColor: accentBg, color: accentColor }}
+                >
+                  {items.length}
                 </span>
-              )}
-            </div>
+              </div>
+              <ChevronDown
+                className="h-4 w-4 transition-transform duration-200"
+                style={{
+                  color: accentColor,
+                  transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                }}
+              />
+            </button>
+
+            {/* Factor items — visible when section is open */}
+            {isOpen && (
+              <div className="flex flex-col divide-y" style={{ borderTop: `1px solid ${colors.text}10` }}>
+                {items.map((factor: string, fi: number) => {
+                  const itemOpen = openItem === fi;
+                  return (
+                    <div key={fi}>
+                      {/* Factor title row */}
+                      <button
+                        className="w-full flex items-center justify-between px-4 py-2.5 text-left transition-colors"
+                        style={{
+                          backgroundColor: itemOpen ? `${accentColor}10` : "transparent",
+                        }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleItem(fi);
+                        }}
+                      >
+                        <span
+                          className="text-xs font-semibold leading-snug flex-1 pr-2"
+                          style={{ color: colors.text }}
+                        >
+                          {factor}
+                        </span>
+                        <ChevronRight
+                          className="h-3.5 w-3.5 shrink-0 transition-transform duration-200"
+                          style={{
+                            color: colors.muted,
+                            transform: itemOpen ? "rotate(90deg)" : "rotate(0deg)",
+                          }}
+                        />
+                      </button>
+
+                      {/* Expanded detail — scrollable fixed-height */}
+                      {itemOpen && (
+                        <div
+                          className="px-4 pb-3 pt-1 overflow-y-auto overscroll-contain"
+                          style={{ maxHeight: "9rem" }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <p
+                            className="text-xs leading-relaxed"
+                            style={{ color: `${accentColor}cc` }}
+                          >
+                            {factor}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
-        )
-      ))}
+        );
+      })}
     </div>
   );
 }

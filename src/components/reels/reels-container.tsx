@@ -4,43 +4,23 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 /**
- * Color palette for reel slide backgrounds.
- * Cycles randomly through these on mount.
+ * Fixed semantic dark color palette — one color per slide type.
+ * Index maps to Overview slide order:
+ *   0 Hero, 1 PriceHero, 2 AllPrices, 3 Sentiment,
+ *   4 ForecastSummary, 5 ForecastDetail, 6 Buyers, 7 Sellers, 8 Factors
+ * For extra slides it wraps around.
  */
-const COLORS = [
-  "#264653", // deep teal
-  "#2a9d8f", // persian green
-  "#e9c46a", // maize gold
-  "#f4a261", // sandy brown
-  "#e76f51", // burnt sienna
-  "#1d3557", // prussian blue
-  "#457b9d", // steel blue
-  "#a8dadc", // powder blue
-  "#6d6875", // old lavender
-  "#b5838d", // puce
-  "#3d405b", // space cadet
-  "#81b29a", // cambridge green
-  "#f2cc8f", // sunset
-  "#0b525b", // midnight green
-  "#5f0f40", // tyrian purple
-  "#9a031e", // ruby red
-  "#fb8500", // orange
-  "#023047", // oxford blue
-  "#219ebc", // cerulean
-  "#8ecae6", // sky blue
+const SLIDE_PALETTE: string[] = [
+  "#0d1117", // 0 Hero        — near-black ink
+  "#0a1628", // 1 PriceHero   — deep oxford blue
+  "#0f2232", // 2 AllPrices   — dark navy
+  "#0e1e16", // 3 Sentiment   — dark forest (neutral; sentiment-aware override possible)
+  "#130a24", // 4 ForecastSum — deep indigo/violet
+  "#1a0d2e", // 5 ForecastDet — deep purple
+  "#0a1f1a", // 6 Buyers      — dark teal/green (growth)
+  "#1f0a0f", // 7 Sellers     — dark crimson (risk)
+  "#141020", // 8 Factors     — dark plum
 ];
-
-/**
- * Shuffles array (Fisher–Yates) and returns it.
- */
-function shuffle<T>(arr: T[]): T[] {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
 
 /**
  * Returns white or black text color depending on background luminance.
@@ -86,14 +66,8 @@ export function ReelsContainer({ count, renderSlide }: ReelsContainerProps) {
   const isAnimating = useRef(false);
   const touchStartY = useRef(0);
   const touchDelta = useRef(0);
-  const [palette] = useState(() => {
-    const shuffled = shuffle(COLORS);
-    const result: string[] = [];
-    for (let i = 0; i < count; i++) {
-      result.push(shuffled[i % shuffled.length]);
-    }
-    return result;
-  });
+  // Each slide gets its fixed semantic dark color by index
+  const palette = Array.from({ length: count }, (_, i) => SLIDE_PALETTE[i % SLIDE_PALETTE.length]);
 
   /** Navigate exactly one slide in the given direction */
   const goTo = useCallback(
@@ -119,24 +93,50 @@ export function ReelsContainer({ count, renderSlide }: ReelsContainerProps) {
   );
 
   // ── Touch handling: one swipe = one slide, strictly ──
+  // Allows native scrolling inside overflow-y-auto slide content.
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
-    const SWIPE_THRESHOLD = 40; // px – minimum drag to trigger a slide change
+    const SWIPE_THRESHOLD = 40; // px
+    // Track whether the touch started inside an inner scrollable element
+    let touchInScrollable = false;
+
+    /** Walk up from target to see if it (or a parent) is a scrollable inner element */
+    function isInsideScrollable(target: EventTarget | null): boolean {
+      let node = target as HTMLElement | null;
+      while (node && node !== el) {
+        if (
+          node.scrollHeight > node.clientHeight + 2 &&
+          (getComputedStyle(node).overflowY === "auto" ||
+            getComputedStyle(node).overflowY === "scroll")
+        ) {
+          return true;
+        }
+        node = node.parentElement;
+      }
+      return false;
+    }
 
     const onTouchStart = (e: TouchEvent) => {
       touchStartY.current = e.touches[0].clientY;
       touchDelta.current = 0;
+      touchInScrollable = isInsideScrollable(e.target);
     };
 
     const onTouchMove = (e: TouchEvent) => {
-      e.preventDefault(); // prevent native scroll
       touchDelta.current = touchStartY.current - e.touches[0].clientY;
+      // If touch began inside a scrollable child, let native scroll handle it
+      if (touchInScrollable) return;
+      e.preventDefault(); // prevent native scroll only for slide-level swipes
     };
 
     const onTouchEnd = () => {
       if (isAnimating.current) return;
+      if (touchInScrollable) {
+        touchDelta.current = 0;
+        return;
+      }
       const slideEl = slideRefs.current[currentIndex];
       const slideScrollTop = slideEl?.scrollTop ?? 0;
       const slideScrollMax = (slideEl?.scrollHeight ?? 0) - (slideEl?.clientHeight ?? 0);

@@ -4,27 +4,101 @@ import { useState } from "react";
 
 // ──────────────────────────────────────────────────────────────────
 // Inline markdown-lite renderer
-// Supports: **bold**, *italic*, `code`, - bullet lists, \n\n paragraphs
+// Supports:
+//   **bold**, *italic*, `code`
+//   Auto-bold: ALL-CAPS Hinglish section headers ending with : or —
+//     e.g. "KYA HUA:", "YE KYUN HOTA HAI:", "MATLAB KYA HAI —"
+//   Auto-italic: text inside parentheses (...)
 // ──────────────────────────────────────────────────────────────────
 
+/**
+ * Splits a segment of plain text (no markdown tokens) into further chunks
+ * for auto-bold headers and auto-italic brackets.
+ */
+function parseAutoFormatting(text: string, startKey: number): React.ReactNode[] {
+  const nodes: React.ReactNode[] = [];
+  let remaining = text;
+  let key = startKey;
+
+  while (remaining.length > 0) {
+    // ── Auto-italic: (bracketed text) ──
+    const bracketMatch = remaining.match(/^(.*?)\(([^)]+)\)([\s\S]*)/);
+    if (bracketMatch) {
+      const [, before, inside, after] = bracketMatch;
+      if (before) nodes.push(<span key={key++}>{before}</span>);
+      nodes.push(
+        <em key={key++} className="italic opacity-80">
+          ({inside})
+        </em>
+      );
+      remaining = after;
+      continue;
+    }
+
+    nodes.push(<span key={key++}>{remaining}</span>);
+    break;
+  }
+
+  return nodes;
+}
+
+/**
+ * Tokenises a single line/paragraph into bold/italic/code/auto-format spans.
+ */
 function parseInline(text: string): React.ReactNode[] {
+  // Split on markdown tokens: **bold**, *italic*, `code`
   const parts = text.split(/(\*\*[^*]+\*\*|\*[^*]+\*|`[^`]+`)/g);
-  return parts.map((part, i) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      return <strong key={i} className="font-bold">{part.slice(2, -2)}</strong>;
-    }
-    if (part.startsWith("*") && part.endsWith("*") && part.length > 2) {
-      return <em key={i} className="italic">{part.slice(1, -1)}</em>;
-    }
-    if (part.startsWith("`") && part.endsWith("`") && part.length > 2) {
-      return (
+  const nodes: React.ReactNode[] = [];
+  let keyOffset = 0;
+
+  parts.forEach((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
+      nodes.push(
+        <strong key={i} className="font-bold text-white">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    } else if (part.startsWith("*") && part.endsWith("*") && part.length > 2) {
+      nodes.push(
+        <em key={i} className="italic opacity-85">
+          {part.slice(1, -1)}
+        </em>
+      );
+    } else if (part.startsWith("`") && part.endsWith("`") && part.length > 2) {
+      nodes.push(
         <code key={i} className="font-mono text-[0.85em] bg-white/20 rounded px-1">
           {part.slice(1, -1)}
         </code>
       );
+    } else {
+      // Plain text — apply auto-formatting
+      const autoNodes = parseAutoFormatting(part, i * 100 + keyOffset);
+      keyOffset += autoNodes.length;
+      nodes.push(...autoNodes);
     }
-    return <span key={i}>{part}</span>;
   });
+
+  return nodes;
+}
+
+/**
+ * Detects a Hinglish section header pattern at the start of a paragraph.
+ * Matches patterns like:
+ *   "KYA HUA:" / "KYA HUA —" / "YE KYUN HOTA HAI:" etc.
+ * The header is ALLCAPS (allows spaces, numbers, Hindi chars).
+ * Returns [headerText, restText] or null if not a header.
+ */
+function detectSectionHeader(line: string): [string, string] | null {
+  // Pattern: ALL-CAPS words (possibly with spaces) followed by : or —
+  const m = line.match(/^([A-Z][A-Z0-9 \u0900-\u097F\u0080-\u00FF]{1,60}?)(\s*[:—\-]{1,2}\s*)([\s\S]*)/);
+  if (!m) return null;
+  const header = m[1].trim();
+  const rest = m[3].trim();
+  // Must be at least 3 chars and contain at least 2 uppercase letters
+  if (header.length < 3) return null;
+  const upperCount = (header.match(/[A-Z]/g) || []).length;
+  if (upperCount < 2) return null;
+  return [header + m[2].trimEnd(), rest];
 }
 
 function renderBlock(text: string, textColorClass: string): React.ReactNode[] {
@@ -54,7 +128,25 @@ function renderBlock(text: string, textColorClass: string): React.ReactNode[] {
       );
     } else {
       const combined = lines.join(" ").trim();
-      if (combined) {
+      if (!combined) return;
+
+      // Check for Hinglish section header pattern
+      const headerResult = detectSectionHeader(combined);
+      if (headerResult) {
+        const [header, body] = headerResult;
+        nodes.push(
+          <div key={pi} className="space-y-0.5">
+            <p className="text-xs font-black uppercase tracking-wider text-white/90">
+              {header}
+            </p>
+            {body && (
+              <p className={`text-sm leading-relaxed ${textColorClass}`}>
+                {parseInline(body)}
+              </p>
+            )}
+          </div>
+        );
+      } else {
         nodes.push(
           <p key={pi} className={`text-sm leading-relaxed ${textColorClass}`}>
             {parseInline(combined)}
