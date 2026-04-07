@@ -36,7 +36,7 @@ export default function Home() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<AppTab>("overview");
+  const [activeTab, setActiveTab] = useState<AppTab>("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const fetchReports = useCallback(
@@ -161,10 +161,10 @@ function GlobalTabBar({
   onMenuClick: () => void;
 }) {
   const tabs: { key: AppTab; label: string; icon: typeof BarChart3 }[] = [
+    { key: "dashboard", label: "Dashboard", icon: LayoutDashboard },
     { key: "overview", label: "Overview", icon: BarChart3 },
     { key: "news", label: "News", icon: Newspaper },
     { key: "videos", label: "Videos", icon: Video },
-    { key: "dashboard", label: "Dashboard", icon: LayoutDashboard },
   ];
 
   return (
@@ -240,39 +240,22 @@ function DashboardView({
           <PriceCards prices={report.current_prices} />
         </section>
 
-        {/* Chart + Sentiment */}
-        <section className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-3">
-          <div className="md:col-span-2">
-            <PredictionChart
-              predictions={report.predictions_10_day}
-              currentPrice={report.current_prices.bihar_avg}
-            />
-          </div>
-          <div>
-            <SentimentCard sentiment={report.market_sentiment} />
-          </div>
-        </section>
-
         {/* Tabbed section for detailed data */}
-        <Tabs defaultValue="forecast" className="w-full">
+        <Tabs defaultValue="news" className="w-full">
           <TabsList className="w-full grid grid-cols-4 h-8 sm:h-9">
-            <TabsTrigger value="forecast" className="text-[10px] sm:text-xs">
-              Forecast
-            </TabsTrigger>
             <TabsTrigger value="news" className="text-[10px] sm:text-xs">
               News
             </TabsTrigger>
             <TabsTrigger value="advice" className="text-[10px] sm:text-xs">
               Advice
             </TabsTrigger>
+            <TabsTrigger value="forecast" className="text-[10px] sm:text-xs">
+              Forecast
+            </TabsTrigger>
             <TabsTrigger value="intel" className="text-[10px] sm:text-xs">
               Intel
             </TabsTrigger>
           </TabsList>
-
-          <TabsContent value="forecast" className="mt-3 sm:mt-4 space-y-4">
-            <PredictionTable predictions={report.predictions_10_day} />
-          </TabsContent>
 
           <TabsContent value="news" className="mt-3 sm:mt-4 space-y-4">
             <NewsList items={report.news_items} />
@@ -280,6 +263,22 @@ function DashboardView({
 
           <TabsContent value="advice" className="mt-3 sm:mt-4 space-y-4">
             <RecommendationsCard recommendations={report.recommendations} />
+          </TabsContent>
+
+          <TabsContent value="forecast" className="mt-3 sm:mt-4 space-y-4">
+            {/* Chart + Sentiment inside Forecast tab */}
+            <div className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-3">
+              <div className="md:col-span-2">
+                <PredictionChart
+                  predictions={report.predictions_10_day}
+                  currentPrice={report.current_prices.bihar_avg}
+                />
+              </div>
+              <div>
+                <SentimentCard sentiment={report.market_sentiment} />
+              </div>
+            </div>
+            <PredictionTable predictions={report.predictions_10_day} />
           </TabsContent>
 
           <TabsContent value="intel" className="mt-3 sm:mt-4 space-y-4">

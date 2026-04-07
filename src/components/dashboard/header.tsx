@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UpdateDataPanel } from "@/components/dashboard/update-data-panel";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { MarkdownRenderer } from "@/components/ui/markdown-renderer";
 
 interface HeaderProps {
   report: DailyReport;
@@ -57,7 +58,18 @@ export function Header({ report, onDataUpdated }: HeaderProps) {
             </div>
           </div>
         </div>
+
+        {/* Daily summary — full markdown-rendered text */}
+        {sentiment.summary && (
+          <div className="mt-3 pt-3 border-t border-border/60">
+            <MarkdownRenderer
+              text={sentiment.summary}
+              className="text-muted-foreground"
+            />
+          </div>
+        )}
       </div>
     </header>
   );
 }
+

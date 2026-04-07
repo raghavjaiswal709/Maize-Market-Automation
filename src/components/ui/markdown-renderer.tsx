@@ -86,11 +86,58 @@ function detectSectionHeader(line: string): [string, string] | null {
 }
 
 function renderBlock(text: string, className: string): React.ReactNode[] {
-  const paragraphs = text.split(/\n\n+/);
+  // Pre-process: ensure # headings and --- separators always get their own "paragraph"
+  // by inserting \n\n around them — handles content with single \n line breaks
+  const preprocessed = text
+    // Ensure heading lines (#, ##, ###) are isolated with double newlines
+    .replace(/([^\n])\n(#{1,3}\s)/g, "$1\n\n$2")
+    .replace(/(#{1,3}[^\n]+)\n([^\n#\-])/g, "$1\n\n$2")
+    // Ensure --- separator lines are isolated
+    .replace(/([^\n])\n(---)/g, "$1\n\n$2")
+    .replace(/(---)\n([^\n])/g, "$1\n\n$2");
+
+  const paragraphs = preprocessed.split(/\n\n+/);
   const nodes: React.ReactNode[] = [];
 
   paragraphs.forEach((para, pi) => {
     const lines = para.trim().split("\n");
+    if (!lines.length || !para.trim()) return;
+
+    // Check for markdown headings (# ## ###)
+    const firstLine = lines[0].trim();
+    const headingMatch = firstLine.match(/^(#{1,3})\s+(.*)/);
+    if (headingMatch) {
+      const level = headingMatch[1].length;
+      const headingText = headingMatch[2].trim();
+      const sizeClass = level === 1
+        ? "text-sm font-black uppercase tracking-wide text-foreground pt-2"
+        : level === 2
+        ? "text-xs font-bold uppercase tracking-wider text-foreground pt-1"
+        : "text-[11px] font-bold uppercase tracking-wider text-foreground/80";
+      nodes.push(
+        <p key={pi} className={sizeClass}>
+          {parseInline(headingText)}
+        </p>
+      );
+      // Render any remaining lines in this para block as normal text
+      if (lines.length > 1) {
+        const rest = lines.slice(1).join("\n").trim();
+        if (rest) {
+          nodes.push(
+            <p key={`${pi}-body`} className={`text-xs leading-relaxed ${className}`}>
+              {parseInline(rest)}
+            </p>
+          );
+        }
+      }
+      return;
+    }
+
+    // Check for --- horizontal rule
+    if (firstLine === "---" || firstLine === "***" || firstLine === "___") {
+      nodes.push(<hr key={pi} className="border-border my-2" />);
+      return;
+    }
 
     const allBullets = lines.every(
       (l) => l.trim().startsWith("- ") || l.trim().startsWith("• ")
