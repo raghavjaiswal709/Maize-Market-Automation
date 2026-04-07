@@ -3,6 +3,7 @@
 import { NewsItem } from "@/types/report";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { MarkdownRenderer } from "@/components/ui/markdown-renderer";
 
 interface NewsListProps {
   items: NewsItem[];
@@ -17,9 +18,9 @@ function sentimentBg(impact: string): string {
 
 export function NewsList({ items }: NewsListProps) {
   return (
-    <Card className="border border-border">
+    <Card className="border border-border rounded-none">
       <CardHeader className="pb-3">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
           Market News & Updates
         </CardTitle>
       </CardHeader>
@@ -44,11 +45,11 @@ export function NewsList({ items }: NewsListProps) {
                   {item.title}
                 </h3>
                 <div className="flex items-center gap-1.5 shrink-0">
-                  <span className="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold uppercase bg-white/20 text-white">
+                  <span className="inline-flex items-center rounded-sm px-2 py-0.5 text-[10px] font-bold uppercase bg-white/20 text-white">
                     {item.impact}
                   </span>
                   <span
-                    className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold uppercase ${
+                    className={`inline-flex items-center rounded-sm px-2 py-0.5 text-[10px] font-bold uppercase ${
                       item.impact === "up" || item.impact === "down"
                         ? "bg-white/15 text-white"
                         : item.severity === "high"
@@ -62,14 +63,16 @@ export function NewsList({ items }: NewsListProps) {
                   </span>
                 </div>
               </div>
-              <p
-                className="text-xs leading-relaxed"
+              <div
                 style={{
                   color: item.impact === "up" || item.impact === "down" ? "rgba(255,255,255,0.85)" : undefined,
                 }}
               >
-                {item.explanation_hinglish}
-              </p>
+                <MarkdownRenderer
+                  text={item.explanation_hinglish}
+                  className={item.impact === "up" || item.impact === "down" ? "text-white/85" : "text-muted-foreground"}
+                />
+              </div>
               <div className="flex items-center gap-3 text-[11px]"
                 style={{
                   color: item.impact === "up" || item.impact === "down" ? "rgba(255,255,255,0.7)" : undefined,

@@ -370,8 +370,9 @@ function FactorsSlide({ report, colors }: { report: DailyReport; colors: SlideCo
 
   // openSection: which accordion section is open ("Bullish"|"Bearish"|"Neutral"|null)
   const [openSection, setOpenSection] = useState<string | null>(null);
-  // openItem: index of expanded factor within the open section
-  const [openItem, setOpenItem] = useState<number | null>(null);
+  // openItem: composite key "${sectionLabel}-${index}" — ensures true mutual exclusion
+  // across all sections; only one item can be expanded at any time
+  const [openItem, setOpenItem] = useState<string | null>(null);
 
   const sections = [
     {
@@ -407,8 +408,9 @@ function FactorsSlide({ report, colors }: { report: DailyReport; colors: SlideCo
     }
   }
 
-  function toggleItem(idx: number) {
-    setOpenItem((prev) => (prev === idx ? null : idx));
+  function toggleItem(sectionLabel: string, idx: number) {
+    const key = `${sectionLabel}-${idx}`;
+    setOpenItem((prev) => (prev === key ? null : key));
   }
 
   return (
@@ -469,7 +471,7 @@ function FactorsSlide({ report, colors }: { report: DailyReport; colors: SlideCo
             {isOpen && (
               <div className="flex flex-col divide-y" style={{ borderTop: `1px solid ${colors.text}10` }}>
                 {items.map((factor: string, fi: number) => {
-                  const itemOpen = openItem === fi;
+                  const itemOpen = openItem === `${label}-${fi}`;
                   return (
                     <div key={fi}>
                       {/* Factor title row */}
@@ -480,7 +482,7 @@ function FactorsSlide({ report, colors }: { report: DailyReport; colors: SlideCo
                         }}
                         onClick={(e) => {
                           e.stopPropagation();
-                          toggleItem(fi);
+                          toggleItem(label, fi);
                         }}
                       >
                         <span

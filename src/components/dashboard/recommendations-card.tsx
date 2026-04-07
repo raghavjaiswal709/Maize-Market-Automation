@@ -4,6 +4,7 @@ import { Recommendations } from "@/types/report";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { MarkdownRenderer } from "@/components/ui/markdown-renderer";
 
 interface RecommendationsCardProps {
   recommendations: Recommendations;
@@ -15,25 +16,24 @@ export function RecommendationsCard({ recommendations }: RecommendationsCardProp
   return (
     <div className="grid gap-3 grid-cols-1 sm:grid-cols-2">
       {/* Buyers */}
-      <Card className="border border-border">
+      <Card className="border border-border rounded-none">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+            <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
               For Buyers
             </CardTitle>
-            <Badge variant="outline" className="text-[10px] uppercase">
+            <Badge variant="outline" className="text-[10px] uppercase rounded-sm">
               {buyers.action.replace(/_/g, " ")}
             </Badge>
           </div>
         </CardHeader>
         <CardContent className="space-y-3">
-          <p className="text-base font-semibold text-foreground leading-snug">
-            {buyers.action_hinglish}
-          </p>
+          <MarkdownRenderer
+            text={buyers.action_hinglish}
+            className="text-foreground font-semibold"
+          />
           <Separator />
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            {buyers.reason}
-          </p>
+          <MarkdownRenderer text={buyers.reason} className="text-muted-foreground" />
           <div className="flex items-center gap-4 text-xs">
             {buyers.target_price > 0 && (
               <div>
@@ -54,30 +54,29 @@ export function RecommendationsCard({ recommendations }: RecommendationsCardProp
       </Card>
 
       {/* Sellers */}
-      <Card className="border border-border">
+      <Card className="border border-border rounded-none">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
+            <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
               For Sellers
             </CardTitle>
-            <Badge variant="outline" className="text-[10px] uppercase">
+            <Badge variant="outline" className="text-[10px] uppercase rounded-sm">
               {sellers.action.replace(/_/g, " ")}
             </Badge>
           </div>
         </CardHeader>
         <CardContent className="space-y-3">
-          <p className="text-base font-semibold text-foreground leading-snug">
-            {sellers.action_hinglish}
-          </p>
+          <MarkdownRenderer
+            text={sellers.action_hinglish}
+            className="text-foreground font-semibold"
+          />
           <Separator />
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            {sellers.reason}
-          </p>
+          <MarkdownRenderer text={sellers.reason} className="text-muted-foreground" />
           {sellers.alternative && (
-            <p className="text-xs text-muted-foreground">
-              <span className="font-medium text-foreground">Alternative: </span>
-              {sellers.alternative}
-            </p>
+            <div>
+              <span className="text-xs font-medium text-foreground">Alternative: </span>
+              <MarkdownRenderer text={sellers.alternative} className="text-muted-foreground" />
+            </div>
           )}
         </CardContent>
       </Card>

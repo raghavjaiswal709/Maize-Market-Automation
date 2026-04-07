@@ -31,7 +31,7 @@ export function PredictionChart({ predictions, currentPrice }: PredictionChartPr
   const isDown = overallChange < 0;
 
   return (
-    <Card className="border border-border">
+    <Card className="border border-border rounded-none">
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between">
           <CardTitle className="text-sm font-medium text-muted-foreground">

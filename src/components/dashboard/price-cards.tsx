@@ -22,7 +22,7 @@ export function PriceCards({ prices }: PriceCardsProps) {
       {entries.map(([key, label]) => {
         const value = prices[key as keyof CurrentPrices] as number;
         return (
-          <Card key={key} className="border border-border">
+          <Card key={key} className="border border-border rounded-none">
             <CardHeader className="pb-0.5 pt-3 px-3 sm:pb-1 sm:pt-4 sm:px-4">
               <CardTitle className="text-[10px] sm:text-xs font-medium text-muted-foreground uppercase tracking-wide">
                 {label}

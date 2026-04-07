@@ -3,6 +3,7 @@
 import { MarketSentiment } from "@/types/report";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingDown, TrendingUp, ArrowRight } from "lucide-react";
+import { MarkdownRenderer } from "@/components/ui/markdown-renderer";
 
 interface SentimentCardProps {
   sentiment: MarketSentiment;
@@ -38,9 +39,9 @@ export function SentimentCard({ sentiment }: SentimentCardProps) {
       : "Sideways";
 
   return (
-    <Card className="border border-border">
+    <Card className="border border-border rounded-none">
       <CardHeader className="pb-2">
-        <CardTitle className="text-sm font-medium text-muted-foreground">
+        <CardTitle className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
           Market Sentiment
         </CardTitle>
       </CardHeader>
@@ -58,9 +59,12 @@ export function SentimentCard({ sentiment }: SentimentCardProps) {
             </p>
           )}
           {sentiment.summary && (
-            <p className="text-xs text-muted-foreground leading-relaxed mt-1">
-              {sentiment.summary}
-            </p>
+            <div className="mt-1">
+              <MarkdownRenderer
+                text={sentiment.summary}
+                className="text-muted-foreground"
+              />
+            </div>
           )}
         </div>
 
@@ -69,9 +73,9 @@ export function SentimentCard({ sentiment }: SentimentCardProps) {
             <span>Confidence</span>
             <span className="font-medium tabular-nums">{sentiment.confidence}%</span>
           </div>
-          <div className="h-2 w-full rounded-full bg-muted overflow-hidden">
+          <div className="h-2 w-full rounded-none bg-muted overflow-hidden">
             <div
-              className={`h-full rounded-full transition-all ${barColor}`}
+              className={`h-full transition-all ${barColor}`}
               style={{ width: `${sentiment.confidence}%` }}
             />
           </div>

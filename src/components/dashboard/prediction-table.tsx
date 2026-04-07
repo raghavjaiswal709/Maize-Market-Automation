@@ -31,7 +31,7 @@ function getArrowColor(change: number): string {
 
 export function PredictionTable({ predictions }: PredictionTableProps) {
   return (
-    <Card className="border border-border">
+    <Card className="border border-border rounded-none">
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium text-muted-foreground">
           Forecast Breakdown
