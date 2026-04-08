@@ -9,6 +9,8 @@ import {
   FileText,
   ChevronRight,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { UpdateDataPanel } from "@/components/dashboard/update-data-panel";
 
 interface ReportSidebarProps {
   open: boolean;
@@ -16,6 +18,7 @@ interface ReportSidebarProps {
   reports: DailyReport[];
   selectedId: string;
   onSelect: (id: string) => void;
+  onDataUpdated: () => void;
 }
 
 /** Group reports by date, sorted newest first */
@@ -41,6 +44,7 @@ export function ReportSidebar({
   reports,
   selectedId,
   onSelect,
+  onDataUpdated,
 }: ReportSidebarProps) {
   const { map, sortedDates } = useMemo(() => groupByDate(reports), [reports]);
 
@@ -76,7 +80,7 @@ export function ReportSidebar({
         </div>
 
         {/* Report list */}
-        <div className="overflow-y-auto h-[calc(100%-49px)] pb-8">
+        <div className="overflow-y-auto h-[calc(100%-49px-56px)] pb-2">
           {sortedDates.map((dateStr) => {
             const reportsOnDate = map[dateStr];
             const dateObj = parseISO(dateStr);
@@ -159,6 +163,15 @@ export function ReportSidebar({
               No reports available
             </div>
           )}
+        </div>
+
+        {/* Footer — theme toggle + update data */}
+        <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between gap-2 px-4 py-3 border-t border-border bg-card">
+          <span className="text-[11px] text-muted-foreground font-medium">Appearance</span>
+          <div className="flex items-center gap-2">
+            <UpdateDataPanel onSuccess={onDataUpdated} />
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </>

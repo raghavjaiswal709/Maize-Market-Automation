@@ -119,6 +119,7 @@ export default function Home() {
           setSelectedId(id);
           setSidebarOpen(false);
         }}
+        onDataUpdated={() => fetchReports(false)}
       />
 
       {/* ═══ GLOBAL TAB BAR ═══ */}
@@ -222,7 +223,7 @@ function DashboardView({
   fetchReports: (preserveSelection?: boolean) => Promise<void>;
 }) {
   return (
-    <div className="pt-11">
+    <div className="pt-12">
       <Header report={report} onDataUpdated={() => fetchReports(false)} />
 
       <main className="container mx-auto px-3 py-4 space-y-4 max-w-6xl sm:px-4 sm:py-6 sm:space-y-6">
@@ -240,51 +241,53 @@ function DashboardView({
           <PriceCards prices={report.current_prices} />
         </section>
 
-        {/* Tabbed section for detailed data */}
-        <Tabs defaultValue="news" className="w-full">
-          <TabsList className="w-full grid grid-cols-4 h-8 sm:h-9">
-            <TabsTrigger value="news" className="text-[10px] sm:text-xs">
-              News
-            </TabsTrigger>
-            <TabsTrigger value="advice" className="text-[10px] sm:text-xs">
-              Advice
-            </TabsTrigger>
-            <TabsTrigger value="forecast" className="text-[10px] sm:text-xs">
-              Forecast
-            </TabsTrigger>
-            <TabsTrigger value="intel" className="text-[10px] sm:text-xs">
-              Intel
-            </TabsTrigger>
-          </TabsList>
+        {/* Tabbed section — distinct muted background to stand out from page */}
+        <div className="bg-muted/40 border border-border rounded-none p-3 sm:p-4">
+          <Tabs defaultValue="news" className="w-full">
+            <TabsList className="w-full grid grid-cols-4 h-8 sm:h-9">
+              <TabsTrigger value="news" className="text-[10px] sm:text-xs">
+                News
+              </TabsTrigger>
+              <TabsTrigger value="advice" className="text-[10px] sm:text-xs">
+                Advice
+              </TabsTrigger>
+              <TabsTrigger value="forecast" className="text-[10px] sm:text-xs">
+                Forecast
+              </TabsTrigger>
+              <TabsTrigger value="intel" className="text-[10px] sm:text-xs">
+                Intel
+              </TabsTrigger>
+            </TabsList>
 
-          <TabsContent value="news" className="mt-3 sm:mt-4 space-y-4">
-            <NewsList items={report.news_items} />
-          </TabsContent>
+            <TabsContent value="news" className="mt-3 sm:mt-4 space-y-4">
+              <NewsList items={report.news_items} />
+            </TabsContent>
 
-          <TabsContent value="advice" className="mt-3 sm:mt-4 space-y-4">
-            <RecommendationsCard recommendations={report.recommendations} />
-          </TabsContent>
+            <TabsContent value="advice" className="mt-3 sm:mt-4 space-y-4">
+              <RecommendationsCard recommendations={report.recommendations} />
+            </TabsContent>
 
-          <TabsContent value="forecast" className="mt-3 sm:mt-4 space-y-4">
-            {/* Chart + Sentiment inside Forecast tab */}
-            <div className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-3">
-              <div className="md:col-span-2">
-                <PredictionChart
-                  predictions={report.predictions_10_day}
-                  currentPrice={report.current_prices.bihar_avg}
-                />
+            <TabsContent value="forecast" className="mt-3 sm:mt-4 space-y-4">
+              {/* Chart + Sentiment inside Forecast tab */}
+              <div className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-3">
+                <div className="md:col-span-2">
+                  <PredictionChart
+                    predictions={report.predictions_10_day}
+                    currentPrice={report.current_prices.bihar_avg}
+                  />
+                </div>
+                <div>
+                  <SentimentCard sentiment={report.market_sentiment} />
+                </div>
               </div>
-              <div>
-                <SentimentCard sentiment={report.market_sentiment} />
-              </div>
-            </div>
-            <PredictionTable predictions={report.predictions_10_day} />
-          </TabsContent>
+              <PredictionTable predictions={report.predictions_10_day} />
+            </TabsContent>
 
-          <TabsContent value="intel" className="mt-3 sm:mt-4 space-y-4">
-            <RawNewsCard content={report.live_news_raw} />
-          </TabsContent>
-        </Tabs>
+            <TabsContent value="intel" className="mt-3 sm:mt-4 space-y-4">
+              <RawNewsCard content={report.live_news_raw} />
+            </TabsContent>
+          </Tabs>
+        </div>
 
         {/* Factors + Sources */}
         <section className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-2">
