@@ -340,7 +340,10 @@ function DashboardView({
           key={flashInfo.dateStr + flashInfo.swipeDir}
           style={{
             position: "fixed",
-            inset: 0,
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100dvh",
             zIndex: 9999,
             display: "flex",
             flexDirection: "column",
@@ -349,6 +352,7 @@ function DashboardView({
             pointerEvents: "none",
             background: "#000000",
             backdropFilter: "blur(8px)",
+            overflowY: "hidden",
             animation: `${flashInfo.swipeDir === "left" ? "slideInFromRight" : "slideInFromLeft"} 0.28s cubic-bezier(0.22,1,0.36,1) forwards`,
           }}
         >
