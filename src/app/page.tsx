@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import { DailyReport } from "@/types/report";
 import { format, parseISO } from "date-fns";
 
@@ -223,32 +223,34 @@ function DashboardView({
   fetchReports: (preserveSelection?: boolean) => Promise<void>;
 }) {
   // sortedReports[0] = newest, sortedReports[last] = oldest
-  const sortedReports = [...reports].sort((a, b) => {
-    const dateDiff = b.date.localeCompare(a.date);
-    if (dateDiff !== 0) return dateDiff;
-    return (b.timestamp || "").localeCompare(a.timestamp || "");
-  });
+  // Memoized so it never changes identity on dragX re-renders
+  const sortedReports = useMemo(
+    () =>
+      [...reports].sort((a, b) => {
+        const d = b.date.localeCompare(a.date);
+        return d !== 0 ? d : (b.timestamp || "").localeCompare(a.timestamp || "");
+      }),
+    [reports]
+  );
 
+  // Plain variable for render-time usage (canGoNewer/Older, touchEnd)
   const currentIdx = sortedReports.findIndex((r) => r._id === selectedId);
 
-  // ── Flash / slide overlay ────────────────────────────────
-  // swipeDir: the physical direction the finger moved
-  //   "right" = finger moved right (left-to-right) = going to OLDER
-  //   "left"  = finger moved left  (right-to-left) = going to NEWER
+  // Ref keeps the index fresh inside callbacks/closures without stale capture
+  const currentIdxRef = useRef(currentIdx);
+  useEffect(() => { currentIdxRef.current = currentIdx; }, [currentIdx]);
+
   const [flashInfo, setFlashInfo] = useState<{
-    dateStr: string;
-    dayName: string;
-    swipeDir: "left" | "right"; // physical swipe direction
-    isNewer: boolean;
+    dateStr: string;   // "09 Apr 2026"
+    dayName: string;   // "Thursday"
+    swipeDir: "left" | "right";
   } | null>(null);
 
-  // Live drag offset while finger is moving (for rubber-band feel)
+  // Live drag offset tracked via ref + direct DOM style to avoid re-renders
   const [dragX, setDragX] = useState(0);
-
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
   const swipeLocked = useRef(false);
-  const isDragging = useRef(false);
 
   const navigateTo = useCallback(
     (targetIdx: number, swipeDir: "left" | "right") => {
@@ -257,45 +259,39 @@ function DashboardView({
 
       swipeLocked.current = true;
       setDragX(0);
-      const target = sortedReports[targetIdx];
-      const isNewer = targetIdx < currentIdx; // lower index = newer
 
+      // Read target from the stable memoized array — always correct date
+      const target = sortedReports[targetIdx];
       const dateObj = parseISO(target.date);
+
       setFlashInfo({
         dateStr: format(dateObj, "dd MMM yyyy"),
         dayName: format(dateObj, "EEEE"),
         swipeDir,
-        isNewer,
       });
 
+      // Switch report after overlay has been visible for 520ms
       setTimeout(() => {
         setSelectedId(target._id);
         setFlashInfo(null);
         swipeLocked.current = false;
       }, 520);
     },
-    [currentIdx, sortedReports, setSelectedId]
+    [sortedReports, setSelectedId]
   );
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     if (swipeLocked.current) return;
-    const t = e.touches[0];
-    touchStartX.current = t.clientX;
-    touchStartY.current = t.clientY;
-    isDragging.current = false;
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
   }, []);
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
     if (swipeLocked.current || touchStartX.current === null || touchStartY.current === null) return;
     const dx = e.touches[0].clientX - touchStartX.current;
     const dy = e.touches[0].clientY - touchStartY.current;
-
-    // Only track horizontal drag if clearly more horizontal than vertical
     if (Math.abs(dx) > Math.abs(dy) * 1.5) {
-      isDragging.current = true;
-      // Rubber-band: full movement near center, dampen at edges
-      const damped = dx * 0.35;
-      setDragX(damped);
+      setDragX(dx * 0.35); // dampened rubber-band
     }
   }, []);
 
@@ -308,27 +304,21 @@ function DashboardView({
       touchStartY.current = null;
       setDragX(0);
 
-      const absDx = Math.abs(dx);
-      const absDy = Math.abs(dy);
+      if (Math.abs(dx) < 52 || Math.abs(dy) > Math.abs(dx) * 0.65) return;
 
-      // Must be clearly horizontal and at least 52px
-      if (absDx < 52 || absDy > absDx * 0.65) return;
-
+      // Use the ref for current index — always fresh, never stale
+      const idx = currentIdxRef.current;
       if (dx > 0) {
-        // ← Finger moved RIGHT (left-to-right) → OLDER report
-        navigateTo(currentIdx + 1, "right");
+        navigateTo(idx + 1, "right"); // finger right → OLDER
       } else {
-        // → Finger moved LEFT (right-to-left) → NEWER report
-        navigateTo(currentIdx - 1, "left");
+        navigateTo(idx - 1, "left");  // finger left  → NEWER
       }
     },
-    [currentIdx, navigateTo]
+    [navigateTo]
   );
 
   const sameDate = sortedReports.filter((r) => r.date === report.date);
   const hasVariants = sameDate.length > 1;
-
-  // Can we go newer / older?
   const canGoNewer = currentIdx > 0;
   const canGoOlder = currentIdx < sortedReports.length - 1;
 
@@ -344,7 +334,7 @@ function DashboardView({
         willChange: "transform",
       }}
     >
-      {/* ── Swipe direction flash overlay ────────────────── */}
+      {/* ── Swipe transition overlay — pure black, slides in from swipe edge ── */}
       {flashInfo && (
         <div
           key={flashInfo.dateStr + flashInfo.swipeDir}
@@ -352,54 +342,41 @@ function DashboardView({
             ${flashInfo.swipeDir === "left"
               ? "animate-in slide-in-from-right-full"
               : "animate-in slide-in-from-left-full"
-            } duration-300`}
-          style={{
-            background: flashInfo.isNewer
-              ? "linear-gradient(135deg, rgba(11,153,129,0.92) 0%, rgba(6,95,70,0.96) 100%)"
-              : "linear-gradient(135deg, rgba(100,116,139,0.92) 0%, rgba(51,65,85,0.96) 100%)",
-            backdropFilter: "blur(12px)",
-          }}
+            } duration-250`}
+          style={{ background: "rgba(0,0,0,0.97)", backdropFilter: "blur(8px)" }}
         >
-          {/* Direction arrow */}
-          <div className={`flex items-center gap-2 mb-4 ${flashInfo.swipeDir === "left" ? "flex-row" : "flex-row-reverse"}`}>
-            <span className="text-2xl text-white/60">
-              {flashInfo.swipeDir === "left" ? "→" : "←"}
-            </span>
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/70">
-              {flashInfo.isNewer ? "Newer" : "Older"}
-            </span>
-          </div>
-
-          {/* Date — big */}
-          <p className="text-5xl sm:text-6xl font-black text-white tabular-nums leading-none drop-shadow-lg">
+          {/* Day number — huge anchor */}
+          <p className="text-[80px] sm:text-[100px] font-black text-white leading-none tabular-nums">
             {flashInfo.dateStr.split(" ")[0]}
           </p>
-          <p className="text-xl sm:text-2xl font-semibold text-white/80 mt-1 tracking-wide">
+          {/* Month + Year */}
+          <p className="text-2xl sm:text-3xl font-semibold text-white/70 mt-1 tracking-wide">
             {flashInfo.dateStr.split(" ").slice(1).join(" ")}
           </p>
-          <p className="text-sm sm:text-base font-medium text-white/60 mt-2 uppercase tracking-widest">
+          {/* Day name */}
+          <p className="text-xs sm:text-sm font-medium text-white/40 mt-3 uppercase tracking-[0.25em]">
             {flashInfo.dayName}
           </p>
 
-          {/* Thin progress bar at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
+          {/* Progress bar sweeping across bottom */}
+          <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10">
             <div
-              className="h-full bg-white/70"
+              className="h-full bg-white/50"
               style={{ animation: "swipe-progress 0.52s linear forwards" }}
             />
           </div>
         </div>
       )}
 
-      {/* ── Edge hint indicators (subtle arrows at viewport edges) ── */}
+      {/* ── Edge hint indicators ── */}
       {canGoOlder && !flashInfo && (
-        <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 pointer-events-none flex items-center justify-center w-6 h-14 rounded-l-full bg-foreground/8 opacity-40">
-          <span className="text-[10px] text-foreground/60">›</span>
+        <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 pointer-events-none flex items-center justify-center w-5 h-12 rounded-l-full bg-foreground/8 opacity-30">
+          <span className="text-[9px] text-foreground/60">›</span>
         </div>
       )}
       {canGoNewer && !flashInfo && (
-        <div className="fixed left-0 top-1/2 -translate-y-1/2 z-40 pointer-events-none flex items-center justify-center w-6 h-14 rounded-r-full bg-foreground/8 opacity-40">
-          <span className="text-[10px] text-foreground/60">‹</span>
+        <div className="fixed left-0 top-1/2 -translate-y-1/2 z-40 pointer-events-none flex items-center justify-center w-5 h-12 rounded-r-full bg-foreground/8 opacity-30">
+          <span className="text-[9px] text-foreground/60">‹</span>
         </div>
       )}
 
