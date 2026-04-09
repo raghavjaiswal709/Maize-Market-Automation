@@ -338,32 +338,43 @@ function DashboardView({
       {flashInfo && (
         <div
           key={flashInfo.dateStr + flashInfo.swipeDir}
-          className={`fixed inset-0 z-200 flex flex-col items-center justify-center pointer-events-none
-            ${flashInfo.swipeDir === "left"
-              ? "animate-in slide-in-from-right-full"
-              : "animate-in slide-in-from-left-full"
-            } duration-250`}
-          style={{ background: "rgba(0,0,0,0.97)", backdropFilter: "blur(8px)" }}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            pointerEvents: "none",
+            background: "#000000",
+            backdropFilter: "blur(8px)",
+            animation: `${flashInfo.swipeDir === "left" ? "slideInFromRight" : "slideInFromLeft"} 0.28s cubic-bezier(0.22,1,0.36,1) forwards`,
+          }}
         >
-          {/* Day number — huge anchor */}
-          <p className="text-[80px] sm:text-[100px] font-black text-white leading-none tabular-nums">
+          {/* Direction label */}
+          <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "11px", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: "16px" }}>
+            {flashInfo.swipeDir === "left" ? "← Newer" : "Older →"}
+          </p>
+
+          {/* Day number — massive */}
+          <p style={{ color: "#ffffff", fontSize: "clamp(88px, 22vw, 130px)", fontWeight: 900, lineHeight: 1, letterSpacing: "-0.02em", fontVariantNumeric: "tabular-nums" }}>
             {flashInfo.dateStr.split(" ")[0]}
           </p>
+
           {/* Month + Year */}
-          <p className="text-2xl sm:text-3xl font-semibold text-white/70 mt-1 tracking-wide">
+          <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "clamp(22px, 5vw, 34px)", fontWeight: 600, marginTop: "6px", letterSpacing: "0.04em" }}>
             {flashInfo.dateStr.split(" ").slice(1).join(" ")}
           </p>
+
           {/* Day name */}
-          <p className="text-xs sm:text-sm font-medium text-white/40 mt-3 uppercase tracking-[0.25em]">
+          <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "13px", fontWeight: 500, marginTop: "10px", letterSpacing: "0.28em", textTransform: "uppercase" }}>
             {flashInfo.dayName}
           </p>
 
-          {/* Progress bar sweeping across bottom */}
-          <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10">
-            <div
-              className="h-full bg-white/50"
-              style={{ animation: "swipe-progress 0.52s linear forwards" }}
-            />
+          {/* Progress bar */}
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "2px", background: "rgba(255,255,255,0.12)" }}>
+            <div style={{ height: "100%", background: "rgba(255,255,255,0.55)", animation: "swipe-progress 0.52s linear forwards" }} />
           </div>
         </div>
       )}

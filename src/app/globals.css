@@ -165,3 +165,14 @@
   from { width: 0%; }
   to   { width: 100%; }
 }
+
+/* ── Swipe overlay slide-in animations ─────────────── */
+@keyframes slideInFromRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
