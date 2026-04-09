@@ -222,9 +222,7 @@ function DashboardView({
   setSelectedId: (id: string) => void;
   fetchReports: (preserveSelection?: boolean) => Promise<void>;
 }) {
-  // ── Swipe state ──────────────────────────────────────────
-  // Build date-sorted list: index 0 = newest, last = oldest
-  // Reports sorted newest→oldest by date then timestamp
+  // sortedReports[0] = newest, sortedReports[last] = oldest
   const sortedReports = [...reports].sort((a, b) => {
     const dateDiff = b.date.localeCompare(a.date);
     if (dateDiff !== 0) return dateDiff;
@@ -233,51 +231,72 @@ function DashboardView({
 
   const currentIdx = sortedReports.findIndex((r) => r._id === selectedId);
 
-  // Flash overlay state: null = hidden, otherwise show date info
+  // ── Flash / slide overlay ────────────────────────────────
+  // swipeDir: the physical direction the finger moved
+  //   "right" = finger moved right (left-to-right) = going to OLDER
+  //   "left"  = finger moved left  (right-to-left) = going to NEWER
   const [flashInfo, setFlashInfo] = useState<{
     dateStr: string;
     dayName: string;
-    direction: "prev" | "next";
+    swipeDir: "left" | "right"; // physical swipe direction
+    isNewer: boolean;
   } | null>(null);
+
+  // Live drag offset while finger is moving (for rubber-band feel)
+  const [dragX, setDragX] = useState(0);
 
   const touchStartX = useRef<number | null>(null);
   const touchStartY = useRef<number | null>(null);
   const swipeLocked = useRef(false);
+  const isDragging = useRef(false);
 
-  // Navigate to a report with 500ms date flash first
   const navigateTo = useCallback(
-    (targetIdx: number) => {
+    (targetIdx: number, swipeDir: "left" | "right") => {
       if (swipeLocked.current) return;
       if (targetIdx < 0 || targetIdx >= sortedReports.length) return;
 
       swipeLocked.current = true;
+      setDragX(0);
       const target = sortedReports[targetIdx];
-      const direction = targetIdx < currentIdx ? "next" : "prev";
+      const isNewer = targetIdx < currentIdx; // lower index = newer
 
-      // Show flash overlay
       const dateObj = parseISO(target.date);
       setFlashInfo({
         dateStr: format(dateObj, "dd MMM yyyy"),
         dayName: format(dateObj, "EEEE"),
-        direction,
+        swipeDir,
+        isNewer,
       });
 
-      // After 500ms, switch report and hide flash
       setTimeout(() => {
         setSelectedId(target._id);
         setFlashInfo(null);
         swipeLocked.current = false;
-      }, 500);
+      }, 520);
     },
     [currentIdx, sortedReports, setSelectedId]
   );
 
-  // Touch handlers — passive-safe: we do NOT call preventDefault here
-  // so scroll is never blocked. We only trigger swipe if horizontal > vertical.
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (swipeLocked.current) return;
     const t = e.touches[0];
     touchStartX.current = t.clientX;
     touchStartY.current = t.clientY;
+    isDragging.current = false;
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (swipeLocked.current || touchStartX.current === null || touchStartY.current === null) return;
+    const dx = e.touches[0].clientX - touchStartX.current;
+    const dy = e.touches[0].clientY - touchStartY.current;
+
+    // Only track horizontal drag if clearly more horizontal than vertical
+    if (Math.abs(dx) > Math.abs(dy) * 1.5) {
+      isDragging.current = true;
+      // Rubber-band: full movement near center, dampen at edges
+      const damped = dx * 0.35;
+      setDragX(damped);
+    }
   }, []);
 
   const handleTouchEnd = useCallback(
@@ -287,46 +306,100 @@ function DashboardView({
       const dy = e.changedTouches[0].clientY - touchStartY.current;
       touchStartX.current = null;
       touchStartY.current = null;
+      setDragX(0);
 
       const absDx = Math.abs(dx);
       const absDy = Math.abs(dy);
 
-      // Must be clearly horizontal (2:1 ratio) and at least 50px
-      if (absDx < 50 || absDy > absDx * 0.6) return;
+      // Must be clearly horizontal and at least 52px
+      if (absDx < 52 || absDy > absDx * 0.65) return;
 
-      if (dx < 0) {
-        // Swipe LEFT → go to OLDER report (higher index in sortedReports)
-        navigateTo(currentIdx + 1);
+      if (dx > 0) {
+        // ← Finger moved RIGHT (left-to-right) → OLDER report
+        navigateTo(currentIdx + 1, "right");
       } else {
-        // Swipe RIGHT → go to NEWER report (lower index)
-        navigateTo(currentIdx - 1);
+        // → Finger moved LEFT (right-to-left) → NEWER report
+        navigateTo(currentIdx - 1, "left");
       }
     },
     [currentIdx, navigateTo]
   );
 
-  // Multiple variants on same date?
   const sameDate = sortedReports.filter((r) => r.date === report.date);
   const hasVariants = sameDate.length > 1;
 
+  // Can we go newer / older?
+  const canGoNewer = currentIdx > 0;
+  const canGoOlder = currentIdx < sortedReports.length - 1;
+
   return (
     <div
-      className="pt-12"
+      className="pt-12 select-none"
       onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
+      style={{
+        transform: dragX !== 0 ? `translateX(${dragX}px)` : undefined,
+        transition: dragX === 0 ? "transform 0.25s cubic-bezier(0.25,0.46,0.45,0.94)" : "none",
+        willChange: "transform",
+      }}
     >
-      {/* ── Date flash overlay ───────────────────────────── */}
+      {/* ── Swipe direction flash overlay ────────────────── */}
       {flashInfo && (
-        <div className="fixed inset-0 z-200 flex flex-col items-center justify-center bg-background/95 backdrop-blur-md pointer-events-none animate-in fade-in duration-150">
-          <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-            {flashInfo.direction === "next" ? "← Newer" : "Older →"}
+        <div
+          key={flashInfo.dateStr + flashInfo.swipeDir}
+          className={`fixed inset-0 z-200 flex flex-col items-center justify-center pointer-events-none
+            ${flashInfo.swipeDir === "left"
+              ? "animate-in slide-in-from-right-full"
+              : "animate-in slide-in-from-left-full"
+            } duration-300`}
+          style={{
+            background: flashInfo.isNewer
+              ? "linear-gradient(135deg, rgba(11,153,129,0.92) 0%, rgba(6,95,70,0.96) 100%)"
+              : "linear-gradient(135deg, rgba(100,116,139,0.92) 0%, rgba(51,65,85,0.96) 100%)",
+            backdropFilter: "blur(12px)",
+          }}
+        >
+          {/* Direction arrow */}
+          <div className={`flex items-center gap-2 mb-4 ${flashInfo.swipeDir === "left" ? "flex-row" : "flex-row-reverse"}`}>
+            <span className="text-2xl text-white/60">
+              {flashInfo.swipeDir === "left" ? "→" : "←"}
+            </span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/70">
+              {flashInfo.isNewer ? "Newer" : "Older"}
+            </span>
+          </div>
+
+          {/* Date — big */}
+          <p className="text-5xl sm:text-6xl font-black text-white tabular-nums leading-none drop-shadow-lg">
+            {flashInfo.dateStr.split(" ")[0]}
           </p>
-          <p className="text-4xl sm:text-5xl font-bold text-foreground tabular-nums">
-            {flashInfo.dateStr}
+          <p className="text-xl sm:text-2xl font-semibold text-white/80 mt-1 tracking-wide">
+            {flashInfo.dateStr.split(" ").slice(1).join(" ")}
           </p>
-          <p className="text-base sm:text-lg font-medium text-muted-foreground mt-1">
+          <p className="text-sm sm:text-base font-medium text-white/60 mt-2 uppercase tracking-widest">
             {flashInfo.dayName}
           </p>
+
+          {/* Thin progress bar at bottom */}
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20">
+            <div
+              className="h-full bg-white/70"
+              style={{ animation: "swipe-progress 0.52s linear forwards" }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* ── Edge hint indicators (subtle arrows at viewport edges) ── */}
+      {canGoOlder && !flashInfo && (
+        <div className="fixed right-0 top-1/2 -translate-y-1/2 z-40 pointer-events-none flex items-center justify-center w-6 h-14 rounded-l-full bg-foreground/8 opacity-40">
+          <span className="text-[10px] text-foreground/60">›</span>
+        </div>
+      )}
+      {canGoNewer && !flashInfo && (
+        <div className="fixed left-0 top-1/2 -translate-y-1/2 z-40 pointer-events-none flex items-center justify-center w-6 h-14 rounded-r-full bg-foreground/8 opacity-40">
+          <span className="text-[10px] text-foreground/60">‹</span>
         </div>
       )}
 
@@ -334,7 +407,7 @@ function DashboardView({
 
       <main className="container mx-auto px-3 py-4 space-y-4 max-w-6xl sm:px-4 sm:py-6 sm:space-y-6">
 
-        {/* ── Model variant picker (only when multiple reports on same date) ── */}
+        {/* ── Model variant picker ── */}
         {hasVariants && (
           <div className="flex gap-1.5 overflow-x-auto pb-1 -mx-1 px-1 sm:flex-wrap sm:overflow-visible">
             {sameDate.map((r, idx) => {
@@ -360,7 +433,7 @@ function DashboardView({
           </div>
         )}
 
-        {/* ── Tabbed section (News / Advice / Forecast / Intel) ── */}
+        {/* ── Tabbed section ── */}
         <div className="bg-muted/40 border border-border rounded-none p-3 sm:p-4">
           <Tabs defaultValue="news" className="w-full">
             <TabsList className="w-full grid grid-cols-4 h-8 sm:h-9">
@@ -369,15 +442,12 @@ function DashboardView({
               <TabsTrigger value="forecast" className="text-[10px] sm:text-xs">Forecast</TabsTrigger>
               <TabsTrigger value="intel" className="text-[10px] sm:text-xs">Intel</TabsTrigger>
             </TabsList>
-
             <TabsContent value="news" className="mt-3 sm:mt-4 space-y-4">
               <NewsList items={report.news_items} />
             </TabsContent>
-
             <TabsContent value="advice" className="mt-3 sm:mt-4 space-y-4">
               <RecommendationsCard recommendations={report.recommendations} />
             </TabsContent>
-
             <TabsContent value="forecast" className="mt-3 sm:mt-4 space-y-4">
               <div className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-3">
                 <div className="md:col-span-2">
@@ -392,14 +462,13 @@ function DashboardView({
               </div>
               <PredictionTable predictions={report.predictions_10_day} />
             </TabsContent>
-
             <TabsContent value="intel" className="mt-3 sm:mt-4 space-y-4">
               <RawNewsCard content={report.live_news_raw} />
             </TabsContent>
           </Tabs>
         </div>
 
-        {/* ── Price overview (Bihar Avg, Purnea, Indore, All India Avg) ── */}
+        {/* ── Price overview ── */}
         <section>
           <PriceCards prices={report.current_prices} />
         </section>

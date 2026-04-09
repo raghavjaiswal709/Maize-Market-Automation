@@ -159,3 +159,9 @@
     0 2px 12px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
+
+/* ── Swipe progress bar animation ──────────────────── */
+@keyframes swipe-progress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
