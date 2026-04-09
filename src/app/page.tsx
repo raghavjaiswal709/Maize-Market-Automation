@@ -1,14 +1,15 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { DailyReport } from "@/types/report";
+import { format, parseISO } from "date-fns";
 
 // Reels components
 import { OverviewReels } from "@/components/reels/overview-reels";
 import { NewsReels } from "@/components/reels/news-reels";
 import { VideoReels } from "@/components/reels/video-reels";
 
-// Dashboard components (kept as-is for Tab 3)
+// Dashboard components
 import { Header } from "@/components/dashboard/header";
 import { PriceCards } from "@/components/dashboard/price-cards";
 import { SentimentCard } from "@/components/dashboard/sentiment-card";
@@ -20,7 +21,6 @@ import { FactorsCard } from "@/components/dashboard/factors-card";
 import { DataSourcesCard } from "@/components/dashboard/data-sources-card";
 import { RawNewsCard } from "@/components/dashboard/raw-news-card";
 import { DashboardSkeleton } from "@/components/dashboard/dashboard-skeleton";
-import { ReportSelector } from "@/components/dashboard/report-selector";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { BarChart3, Newspaper, LayoutDashboard, Video, Menu } from "lucide-react";
@@ -207,7 +207,7 @@ function GlobalTabBar({
 }
 
 // ═══════════════════════════════════════════════
-// Dashboard View — EXACT COPY of existing layout
+// Dashboard View
 // ═══════════════════════════════════════════════
 function DashboardView({
   reports,
@@ -222,41 +222,152 @@ function DashboardView({
   setSelectedId: (id: string) => void;
   fetchReports: (preserveSelection?: boolean) => Promise<void>;
 }) {
+  // ── Swipe state ──────────────────────────────────────────
+  // Build date-sorted list: index 0 = newest, last = oldest
+  // Reports sorted newest→oldest by date then timestamp
+  const sortedReports = [...reports].sort((a, b) => {
+    const dateDiff = b.date.localeCompare(a.date);
+    if (dateDiff !== 0) return dateDiff;
+    return (b.timestamp || "").localeCompare(a.timestamp || "");
+  });
+
+  const currentIdx = sortedReports.findIndex((r) => r._id === selectedId);
+
+  // Flash overlay state: null = hidden, otherwise show date info
+  const [flashInfo, setFlashInfo] = useState<{
+    dateStr: string;
+    dayName: string;
+    direction: "prev" | "next";
+  } | null>(null);
+
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const swipeLocked = useRef(false);
+
+  // Navigate to a report with 500ms date flash first
+  const navigateTo = useCallback(
+    (targetIdx: number) => {
+      if (swipeLocked.current) return;
+      if (targetIdx < 0 || targetIdx >= sortedReports.length) return;
+
+      swipeLocked.current = true;
+      const target = sortedReports[targetIdx];
+      const direction = targetIdx < currentIdx ? "next" : "prev";
+
+      // Show flash overlay
+      const dateObj = parseISO(target.date);
+      setFlashInfo({
+        dateStr: format(dateObj, "dd MMM yyyy"),
+        dayName: format(dateObj, "EEEE"),
+        direction,
+      });
+
+      // After 500ms, switch report and hide flash
+      setTimeout(() => {
+        setSelectedId(target._id);
+        setFlashInfo(null);
+        swipeLocked.current = false;
+      }, 500);
+    },
+    [currentIdx, sortedReports, setSelectedId]
+  );
+
+  // Touch handlers — passive-safe: we do NOT call preventDefault here
+  // so scroll is never blocked. We only trigger swipe if horizontal > vertical.
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    const t = e.touches[0];
+    touchStartX.current = t.clientX;
+    touchStartY.current = t.clientY;
+  }, []);
+
+  const handleTouchEnd = useCallback(
+    (e: React.TouchEvent) => {
+      if (touchStartX.current === null || touchStartY.current === null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX.current;
+      const dy = e.changedTouches[0].clientY - touchStartY.current;
+      touchStartX.current = null;
+      touchStartY.current = null;
+
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(dy);
+
+      // Must be clearly horizontal (2:1 ratio) and at least 50px
+      if (absDx < 50 || absDy > absDx * 0.6) return;
+
+      if (dx < 0) {
+        // Swipe LEFT → go to OLDER report (higher index in sortedReports)
+        navigateTo(currentIdx + 1);
+      } else {
+        // Swipe RIGHT → go to NEWER report (lower index)
+        navigateTo(currentIdx - 1);
+      }
+    },
+    [currentIdx, navigateTo]
+  );
+
+  // Multiple variants on same date?
+  const sameDate = sortedReports.filter((r) => r.date === report.date);
+  const hasVariants = sameDate.length > 1;
+
   return (
-    <div className="pt-12">
+    <div
+      className="pt-12"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* ── Date flash overlay ───────────────────────────── */}
+      {flashInfo && (
+        <div className="fixed inset-0 z-200 flex flex-col items-center justify-center bg-background/95 backdrop-blur-md pointer-events-none animate-in fade-in duration-150">
+          <p className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">
+            {flashInfo.direction === "next" ? "← Newer" : "Older →"}
+          </p>
+          <p className="text-4xl sm:text-5xl font-bold text-foreground tabular-nums">
+            {flashInfo.dateStr}
+          </p>
+          <p className="text-base sm:text-lg font-medium text-muted-foreground mt-1">
+            {flashInfo.dayName}
+          </p>
+        </div>
+      )}
+
       <Header report={report} onDataUpdated={() => fetchReports(false)} />
 
       <main className="container mx-auto px-3 py-4 space-y-4 max-w-6xl sm:px-4 sm:py-6 sm:space-y-6">
-        {/* Report selector — calendar + model variant tabs */}
-        <section>
-          <ReportSelector
-            reports={reports}
-            selectedId={selectedId}
-            onSelect={(id) => setSelectedId(id)}
-          />
-        </section>
 
-        {/* Price overview */}
-        <section>
-          <PriceCards prices={report.current_prices} />
-        </section>
+        {/* ── Model variant picker (only when multiple reports on same date) ── */}
+        {hasVariants && (
+          <div className="flex gap-1.5 overflow-x-auto pb-1 -mx-1 px-1 sm:flex-wrap sm:overflow-visible">
+            {sameDate.map((r, idx) => {
+              const isActive = r._id === selectedId;
+              const model = r.model_label || `Report ${idx + 1}`;
+              return (
+                <button
+                  key={r._id}
+                  onClick={() => setSelectedId(r._id)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium border transition-colors shrink-0 ${
+                    isActive
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "bg-card text-muted-foreground border-border hover:bg-accent hover:text-accent-foreground"
+                  }`}
+                >
+                  <span>{model}</span>
+                  <span className={`text-[10px] ${isActive ? "text-primary-foreground/70" : "text-muted-foreground/60"}`}>
+                    {r.time}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        )}
 
-        {/* Tabbed section — distinct muted background to stand out from page */}
+        {/* ── Tabbed section (News / Advice / Forecast / Intel) ── */}
         <div className="bg-muted/40 border border-border rounded-none p-3 sm:p-4">
           <Tabs defaultValue="news" className="w-full">
             <TabsList className="w-full grid grid-cols-4 h-8 sm:h-9">
-              <TabsTrigger value="news" className="text-[10px] sm:text-xs">
-                News
-              </TabsTrigger>
-              <TabsTrigger value="advice" className="text-[10px] sm:text-xs">
-                Advice
-              </TabsTrigger>
-              <TabsTrigger value="forecast" className="text-[10px] sm:text-xs">
-                Forecast
-              </TabsTrigger>
-              <TabsTrigger value="intel" className="text-[10px] sm:text-xs">
-                Intel
-              </TabsTrigger>
+              <TabsTrigger value="news" className="text-[10px] sm:text-xs">News</TabsTrigger>
+              <TabsTrigger value="advice" className="text-[10px] sm:text-xs">Advice</TabsTrigger>
+              <TabsTrigger value="forecast" className="text-[10px] sm:text-xs">Forecast</TabsTrigger>
+              <TabsTrigger value="intel" className="text-[10px] sm:text-xs">Intel</TabsTrigger>
             </TabsList>
 
             <TabsContent value="news" className="mt-3 sm:mt-4 space-y-4">
@@ -268,7 +379,6 @@ function DashboardView({
             </TabsContent>
 
             <TabsContent value="forecast" className="mt-3 sm:mt-4 space-y-4">
-              {/* Chart + Sentiment inside Forecast tab */}
               <div className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-3">
                 <div className="md:col-span-2">
                   <PredictionChart
@@ -289,7 +399,12 @@ function DashboardView({
           </Tabs>
         </div>
 
-        {/* Factors + Sources */}
+        {/* ── Price overview (Bihar Avg, Purnea, Indore, All India Avg) ── */}
+        <section>
+          <PriceCards prices={report.current_prices} />
+        </section>
+
+        {/* ── Factors + Sources ── */}
         <section className="grid gap-3 sm:gap-4 grid-cols-1 md:grid-cols-2">
           <FactorsCard factors={report.factors} />
           <DataSourcesCard
@@ -298,7 +413,7 @@ function DashboardView({
           />
         </section>
 
-        {/* Footer */}
+        {/* ── Footer ── */}
         <footer className="border-t border-border pt-3 pb-6 sm:pt-4 sm:pb-8">
           <p className="text-[10px] sm:text-[11px] text-muted-foreground text-center leading-relaxed">
             {report._id} &middot; {report.model_label}
