@@ -37,6 +37,11 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<AppTab>("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  // true once we've checked today → lets us distinguish "no data today" from "still loading"
+  const [todayChecked, setTodayChecked] = useState(false);
+  const [todayHasData, setTodayHasData] = useState(false);
+  // user asked to browse historical reports even though today has no data
+  const [browseMode, setBrowseMode] = useState(false);
 
   // Today's date — computed once, stable across re-renders
   const todayDate    = useMemo(() => format(new Date(), "yyyy-MM-dd"), []);   // "2026-05-27"
@@ -45,12 +50,27 @@ export default function Home() {
   const todayOrdinal = useMemo(() => format(new Date(), "do"), []);           // "27th"
   const todayMonth   = useMemo(() => format(new Date(), "MMMM"), []);         // "May"
 
+  // Phase 2 — silently loads all reports into state without showing loading screen
+  const expandToAllReports = useCallback(async (autoSelect = false) => {
+    try {
+      const res = await fetch(`/api/reports?limit=50&lang=hinglish`);
+      if (!res.ok) return;
+      const data = await res.json();
+      if (data.reports.length > 0) {
+        setReports(data.reports);
+        if (autoSelect) setSelectedId(data.reports[0]._id);
+      }
+    } catch {
+      // silent — main content still works
+    }
+  }, []);
+
+  // Full refresh — used by sidebar's onDataUpdated and the "Retry" error button
   const fetchReports = useCallback(
     async (preserveSelection = false) => {
       try {
         setLoading(true);
-        // Fetch only today's reports — much faster than loading all 50
-        const res = await fetch(`/api/reports?limit=10&date=${todayDate}&lang=hinglish`);
+        const res = await fetch(`/api/reports?limit=50&lang=hinglish`);
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setReports(data.reports);
@@ -62,6 +82,8 @@ export default function Home() {
             setSelectedId(data.reports[0]._id);
           }
         }
+        setTodayHasData(data.reports.some((r: DailyReport) => r.date === todayDate));
+        setTodayChecked(true);
         setError(null);
       } catch (err) {
         console.error("[Frontend] Error fetching reports:", err);
@@ -73,8 +95,49 @@ export default function Home() {
     [selectedId, todayDate]
   );
 
+  // Called when user taps "Browse recent reports" on the no-data screen
+  const handleBrowseOlder = useCallback(async () => {
+    setBrowseMode(true);
+    setLoading(true);
+    try {
+      const res = await fetch(`/api/reports?limit=50&lang=hinglish`);
+      if (!res.ok) throw new Error();
+      const data = await res.json();
+      setReports(data.reports);
+      if (data.reports.length > 0) setSelectedId(data.reports[0]._id);
+      setError(null);
+    } catch {
+      setBrowseMode(false);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
-    fetchReports(false);
+    const init = async () => {
+      try {
+        setLoading(true);
+        // Phase 1 — fast: fetch only today's reports
+        const res = await fetch(`/api/reports?limit=5&date=${todayDate}&lang=hinglish`);
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data = await res.json();
+        setReports(data.reports);
+        const hasToday = data.reports.length > 0;
+        setTodayHasData(hasToday);
+        setTodayChecked(true);
+        if (hasToday) setSelectedId(data.reports[0]._id);
+        setError(null);
+        setLoading(false);
+        // Phase 2 — background: silently load all reports for sidebar + swipe
+        // autoSelect=false so today's selected report stays active
+        expandToAllReports(false);
+      } catch (err) {
+        console.error("[Frontend] Error fetching reports:", err);
+        setError("Unable to load market data. Please try again.");
+        setLoading(false);
+      }
+    };
+    init();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -147,7 +210,8 @@ export default function Home() {
   }
 
   // ─────────────────────── No data for today ───────────────────────
-  if (reports.length === 0) {
+  // Show only when we've confirmed today has no data AND user hasn't chosen to browse
+  if (todayChecked && !todayHasData && !browseMode) {
     return (
       <div className="min-h-dvh bg-background">
         <GlobalTabBar active={activeTab} onChange={setActiveTab} onMenuClick={() => setSidebarOpen(true)} />
@@ -175,15 +239,38 @@ export default function Home() {
             is not available yet. Check back soon.
           </p>
 
-          {/* Retry button */}
-          <button
-            onClick={() => fetchReports(false)}
-            className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card text-sm font-semibold transition-all duration-200 hover:bg-accent active:scale-95"
-          >
-            Check Again
-          </button>
+          {/* Actions */}
+          <div className="flex flex-col items-center gap-3 mt-8">
+            <button
+              onClick={() => {
+                setTodayChecked(false);
+                setLoading(true);
+                fetch(`/api/reports?limit=5&date=${todayDate}&lang=hinglish`)
+                  .then((r) => r.json())
+                  .then((d) => {
+                    setReports(d.reports);
+                    const has = d.reports.length > 0;
+                    setTodayHasData(has);
+                    if (has) setSelectedId(d.reports[0]._id);
+                    setLoading(false);
+                    setTodayChecked(true);
+                  })
+                  .catch(() => { setLoading(false); setTodayChecked(true); });
+              }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card text-sm font-semibold transition-all duration-200 hover:bg-accent active:scale-95"
+            >
+              Check Again
+            </button>
 
-          <p className="text-muted-foreground/50 mt-4" style={{ fontSize: "11px" }}>
+            <button
+              onClick={handleBrowseOlder}
+              className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"
+            >
+              Browse recent reports →
+            </button>
+          </div>
+
+          <p className="text-muted-foreground/50 mt-5" style={{ fontSize: "11px" }}>
             Reports are usually generated in the morning
           </p>
         </div>
