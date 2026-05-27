@@ -12,18 +12,24 @@ export async function GET(request: Request) {
     const lang = (searchParams.get("lang") || "hinglish") as "hindi" | "hinglish";
     console.log(`[API /reports] Fetching reports with limit=${limit}, offset=${offset}, lang=${lang}`);
 
+    const dateFilter = searchParams.get("date"); // e.g. "2026-05-27"
+
     const { db } = await connectToDatabase();
     const collection = db.collection("daily_reports");
     console.log("[API /reports] Connected to database, accessing collection: daily_reports");
 
+    const query = dateFilter ? { date: dateFilter } : {};
+
     const rawReports = await collection
-      .find({})
+      .find(query)
       .sort({ timestamp: -1 })
       .skip(offset)
       .limit(limit)
       .toArray();
 
-    const total = await collection.countDocuments();
+    const total = dateFilter
+      ? await collection.countDocuments({ date: dateFilter })
+      : await collection.countDocuments();
     console.log(`[API /reports] Found ${rawReports.length} reports out of ${total} total`);
 
     const reports = rawReports.map((r) => normalizeReport(r, lang));

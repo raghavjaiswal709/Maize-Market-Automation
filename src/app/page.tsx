@@ -20,7 +20,6 @@ import { RecommendationsCard } from "@/components/dashboard/recommendations-card
 import { FactorsCard } from "@/components/dashboard/factors-card";
 import { DataSourcesCard } from "@/components/dashboard/data-sources-card";
 import { RawNewsCard } from "@/components/dashboard/raw-news-card";
-import { DashboardSkeleton } from "@/components/dashboard/dashboard-skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { BarChart3, Newspaper, LayoutDashboard, Video, Menu } from "lucide-react";
@@ -39,11 +38,19 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<AppTab>("dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  // Today's date — computed once, stable across re-renders
+  const todayDate    = useMemo(() => format(new Date(), "yyyy-MM-dd"), []);   // "2026-05-27"
+  const todayDisplay = useMemo(() => format(new Date(), "d MMMM yyyy"), []);  // "27 May 2026"
+  const todayDayName = useMemo(() => format(new Date(), "EEEE"), []);         // "Tuesday"
+  const todayOrdinal = useMemo(() => format(new Date(), "do"), []);           // "27th"
+  const todayMonth   = useMemo(() => format(new Date(), "MMMM"), []);         // "May"
+
   const fetchReports = useCallback(
     async (preserveSelection = false) => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/reports?limit=50&lang=hinglish`);
+        // Fetch only today's reports — much faster than loading all 50
+        const res = await fetch(`/api/reports?limit=10&date=${todayDate}&lang=hinglish`);
         if (!res.ok) throw new Error("Failed to fetch");
         const data = await res.json();
         setReports(data.reports);
@@ -63,7 +70,7 @@ export default function Home() {
         setLoading(false);
       }
     },
-    [selectedId]
+    [selectedId, todayDate]
   );
 
   useEffect(() => {
@@ -76,23 +83,57 @@ export default function Home() {
     return (
       <div className="min-h-dvh bg-background">
         <GlobalTabBar active={activeTab} onChange={setActiveTab} onMenuClick={() => setSidebarOpen(true)} />
-        <div className="pt-11">
-          <DashboardSkeleton />
+        <div className="flex flex-col items-center justify-center min-h-[88dvh] px-6 select-none">
+          {/* Grain icon pulsing */}
+          <div style={{ fontSize: "52px", marginBottom: "28px", animation: "dotBounce 2s ease-in-out infinite" }}>
+            🌽
+          </div>
+
+          {/* "Loading for" label */}
+          <p className="text-muted-foreground font-bold tracking-widest uppercase"
+            style={{ fontSize: "11px", letterSpacing: "0.22em", marginBottom: "10px" }}>
+            Loading for
+          </p>
+
+          {/* Day name — large */}
+          <p className="font-black text-foreground"
+            style={{ fontSize: "clamp(38px, 11vw, 60px)", lineHeight: 1, letterSpacing: "-0.02em" }}>
+            {todayDayName.toUpperCase()}
+          </p>
+
+          {/* Date — e.g. "27th May 2026" */}
+          <p className="text-foreground/60 font-semibold mt-2"
+            style={{ fontSize: "clamp(15px, 4vw, 20px)", letterSpacing: "0.04em" }}>
+            {todayOrdinal} {todayMonth}
+          </p>
+
+          {/* Animated dots */}
+          <div className="flex gap-2 mt-9">
+            {[0, 1, 2].map((i) => (
+              <div
+                key={i}
+                className="rounded-full bg-foreground"
+                style={{
+                  width: "7px",
+                  height: "7px",
+                  animation: `dotBounce 1.3s ease-in-out ${i * 0.18}s infinite`,
+                }}
+              />
+            ))}
+          </div>
         </div>
       </div>
     );
   }
 
-  // ─────────────────────── Error / Empty ───────────────────────
-  if (error || reports.length === 0) {
+  // ─────────────────────── Error ───────────────────────
+  if (error) {
     return (
       <div className="min-h-dvh bg-background">
         <GlobalTabBar active={activeTab} onChange={setActiveTab} onMenuClick={() => setSidebarOpen(true)} />
         <div className="flex items-center justify-center min-h-[80dvh]">
           <div className="text-center space-y-3 px-4">
-            <p className="text-sm text-destructive font-medium">
-              {error || "No reports available"}
-            </p>
+            <p className="text-sm text-destructive font-medium">{error}</p>
             <button
               onClick={() => fetchReports(false)}
               className="text-xs text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors"
@@ -105,10 +146,58 @@ export default function Home() {
     );
   }
 
+  // ─────────────────────── No data for today ───────────────────────
+  if (reports.length === 0) {
+    return (
+      <div className="min-h-dvh bg-background">
+        <GlobalTabBar active={activeTab} onChange={setActiveTab} onMenuClick={() => setSidebarOpen(true)} />
+        <div className="flex flex-col items-center justify-center min-h-[88dvh] px-6 text-center select-none">
+          {/* Waiting icon */}
+          <div style={{ fontSize: "52px", marginBottom: "24px", opacity: 0.6 }}>⏳</div>
+
+          {/* Date context */}
+          <p className="text-muted-foreground font-bold tracking-widest uppercase mb-2"
+            style={{ fontSize: "11px", letterSpacing: "0.22em" }}>
+            {todayDayName}, {todayDisplay}
+          </p>
+
+          {/* Main message */}
+          <p className="font-black text-foreground"
+            style={{ fontSize: "clamp(22px, 7vw, 32px)", lineHeight: 1.2, letterSpacing: "-0.01em", marginBottom: "12px" }}>
+            Data not generated yet
+          </p>
+
+          {/* Sub-message */}
+          <p className="text-muted-foreground leading-relaxed max-w-xs"
+            style={{ fontSize: "14px" }}>
+            Have patience — the market report for{" "}
+            <span className="text-foreground font-semibold">{todayOrdinal} {todayMonth}</span>{" "}
+            is not available yet. Check back soon.
+          </p>
+
+          {/* Retry button */}
+          <button
+            onClick={() => fetchReports(false)}
+            className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border bg-card text-sm font-semibold transition-all duration-200 hover:bg-accent active:scale-95"
+          >
+            Check Again
+          </button>
+
+          <p className="text-muted-foreground/50 mt-4" style={{ fontSize: "11px" }}>
+            Reports are usually generated in the morning
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   const report = reports.find((r) => r._id === selectedId) || reports[0];
 
   return (
-    <div className="min-h-dvh bg-background">
+    <div
+      className="min-h-dvh bg-background"
+      style={{ animation: "fadeSlideUp 0.42s cubic-bezier(0.22,1,0.36,1) forwards" }}
+    >
       {/* ═══ SIDEBAR ═══ */}
       <ReportSidebar
         open={sidebarOpen}
