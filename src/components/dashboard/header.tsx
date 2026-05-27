@@ -27,15 +27,20 @@ export function Header({ report }: HeaderProps) {
       <div className="container mx-auto px-3 py-3 max-w-6xl sm:px-4 sm:py-4">
         <div className="flex flex-col gap-2 sm:gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0">
-            <h1 className="text-lg font-semibold tracking-tight text-foreground sm:text-2xl">
+            {/* App label — small */}
+            <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.18em] mb-1">
               Maize Market
+            </p>
+            {/* Date — large, prominent, highlighted */}
+            <h1 className="text-3xl font-black tracking-tight text-foreground sm:text-4xl leading-none">
+              {formattedDate}
             </h1>
-            <p className="text-xs text-muted-foreground sm:text-sm">
-              {formattedDate} · {report.day_of_week} · {report.time}
+            {/* Day + time — secondary */}
+            <p className="text-sm text-muted-foreground mt-1 font-medium">
+              {report.day_of_week}
+              {report.time && <span className="opacity-60"> · {report.time}</span>}
               {report.model_label && (
-                <span className="ml-1 text-[11px] sm:text-xs">
-                  · {report.model_label}
-                </span>
+                <span className="ml-1 text-[11px] opacity-50">· {report.model_label}</span>
               )}
             </p>
           </div>
