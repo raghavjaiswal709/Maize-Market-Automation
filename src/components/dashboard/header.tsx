@@ -29,7 +29,7 @@ export function Header({ report }: HeaderProps) {
           <div className="min-w-0">
             {/* App label — small */}
             <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.18em] mb-1">
-              Maize Market
+              Raghav Traders
             </p>
             {/* Date — large, prominent, highlighted */}
             <h1 className="text-3xl font-black tracking-tight text-foreground sm:text-4xl leading-none">
@@ -58,15 +58,6 @@ export function Header({ report }: HeaderProps) {
           </div>
         </div>
 
-        {/* Daily summary — full markdown-rendered text */}
-        {sentiment.summary && (
-          <div className="mt-3 pt-3 border-t border-border/60">
-            <MarkdownRenderer
-              text={sentiment.summary}
-              className="text-muted-foreground"
-            />
-          </div>
-        )}
       </div>
     </header>
   );

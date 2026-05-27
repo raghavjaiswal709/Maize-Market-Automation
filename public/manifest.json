@@ -1,6 +1,6 @@
 {
-  "name": "Maize Market Analysis",
-  "short_name": "Maize Market",
+  "name": "Raghav Traders Analysis",
+  "short_name": "Raghav Traders",
   "description": "Real-time maize market intelligence, price forecasts, and trading recommendations.",
   "start_url": "/",
   "display": "standalone",

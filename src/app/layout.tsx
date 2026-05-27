@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Maize Market Analysis",
+  title: "Raghav Traders Analysis",
   description: "Real-time maize market intelligence, price forecasts, and trading recommendations for Bihar, Purnea, and All India markets.",
   manifest: "/manifest.json",
   icons: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Maize Market",
+    title: "Raghav Traders",
   },
 };
 
