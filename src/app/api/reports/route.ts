@@ -1,48 +1,114 @@
 import { connectToDatabase } from "@/lib/mongodb";
 import { normalizeReport } from "@/lib/normalize-report";
 import { NextResponse } from "next/server";
+import fs from "fs";
+import path from "path";
 
 export const dynamic = "force-dynamic";
+
+// ─── File-system helpers for public/reports/ ──────────────────────────────────
+
+const REPORTS_DIR = path.join(process.cwd(), "public", "reports");
+const FILE_PREFIX = "maize_warehouse_report_";
+
+function listFileReports(): { date: string; filePath: string }[] {
+  try {
+    if (!fs.existsSync(REPORTS_DIR)) return [];
+    return fs
+      .readdirSync(REPORTS_DIR)
+      .filter((f) => f.startsWith(FILE_PREFIX) && f.endsWith(".json"))
+      .map((f) => ({
+        date: f.replace(FILE_PREFIX, "").replace(".json", ""),
+        filePath: path.join(REPORTS_DIR, f),
+      }))
+      .sort((a, b) => b.date.localeCompare(a.date));
+  } catch {
+    return [];
+  }
+}
+
+function readFileReport(date: string): Record<string, unknown> | null {
+  try {
+    const filePath = path.join(REPORTS_DIR, `${FILE_PREFIX}${date}.json`);
+    if (!fs.existsSync(filePath)) return null;
+    return JSON.parse(fs.readFileSync(filePath, "utf-8")) as Record<string, unknown>;
+  } catch {
+    return null;
+  }
+}
+
+// ─── GET ───────────────────────────────────────────────────────────────────────
 
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const limit = parseInt(searchParams.get("limit") || "1");
+    const limit  = parseInt(searchParams.get("limit")  || "1");
     const offset = parseInt(searchParams.get("offset") || "0");
-    const lang = (searchParams.get("lang") || "hinglish") as "hindi" | "hinglish";
-    console.log(`[API /reports] Fetching reports with limit=${limit}, offset=${offset}, lang=${lang}`);
+    const lang   = (searchParams.get("lang") || "hinglish") as "hindi" | "hinglish";
+    const dateFilter = searchParams.get("date");
 
-    const dateFilter = searchParams.get("date"); // e.g. "2026-05-27"
+    console.log(`[API /reports] limit=${limit} offset=${offset} lang=${lang} date=${dateFilter}`);
 
     const { db } = await connectToDatabase();
     const collection = db.collection("daily_reports");
-    console.log("[API /reports] Connected to database, accessing collection: daily_reports");
 
-    const query = dateFilter ? { date: dateFilter } : {};
-
-    const rawReports = await collection
-      .find(query)
-      .sort({ timestamp: -1 })
-      .skip(offset)
-      .limit(limit)
-      .toArray();
-
-    const total = dateFilter
-      ? await collection.countDocuments({ date: dateFilter })
-      : await collection.countDocuments();
-    console.log(`[API /reports] Found ${rawReports.length} reports out of ${total} total`);
-
-    const reports = rawReports.map((r) => normalizeReport(r, lang));
-
-    if (reports.length > 0) {
-      console.log("[API /reports] Sample report ID:", reports[0]._id);
+    // ── Specific-date query ─────────────────────────────────────────────────
+    if (dateFilter) {
+      const dbReport = await collection.findOne({ date: dateFilter });
+      if (dbReport) {
+        return NextResponse.json({
+          reports: [normalizeReport(dbReport, lang)],
+          total: 1,
+          hasMore: false,
+        });
+      }
+      // Fallback: try public/reports/
+      const fileReport = readFileReport(dateFilter);
+      if (fileReport) {
+        console.log(`[API /reports] Serving ${dateFilter} from public/reports/`);
+        return NextResponse.json({
+          reports: [normalizeReport(fileReport, lang)],
+          total: 1,
+          hasMore: false,
+          source: "file",
+        });
+      }
+      return NextResponse.json({ reports: [], total: 0, hasMore: false });
     }
 
-    return NextResponse.json({
-      reports,
-      total,
-      hasMore: offset + limit < total,
+    // ── General query: merge DB + file system ──────────────────────────────
+    const dbReports = await collection
+      .find({})
+      .sort({ timestamp: -1 })
+      .toArray();
+
+    const dbDates = new Set(dbReports.map((r) => String(r.date)));
+
+    // Load file-based reports only for dates not already in MongoDB
+    const fileExtras: Record<string, unknown>[] = listFileReports()
+      .filter(({ date }) => !dbDates.has(date))
+      .map(({ date }) => readFileReport(date))
+      .filter(Boolean) as Record<string, unknown>[];
+
+    const allRaw = [...dbReports, ...fileExtras];
+
+    // Sort newest-first by date then timestamp
+    allRaw.sort((a, b) => {
+      const d = String(b.date).localeCompare(String(a.date));
+      if (d !== 0) return d;
+      return String(b.timestamp || "").localeCompare(String(a.timestamp || ""));
     });
+
+    const total = allRaw.length;
+    const page  = allRaw.slice(offset, offset + limit);
+    const reports = page.map((r) => normalizeReport(r, lang));
+
+    console.log(
+      `[API /reports] ${reports.length} reports returned ` +
+      `(${dbReports.length} DB + ${fileExtras.length} file)`
+    );
+
+    return NextResponse.json({ reports, total, hasMore: offset + limit < total });
   } catch (error) {
     console.error("[API /reports] Failed to fetch reports:", error);
     return NextResponse.json(
@@ -52,57 +118,43 @@ export async function GET(request: Request) {
   }
 }
 
+// ─── POST ──────────────────────────────────────────────────────────────────────
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     console.log("[API /reports POST] Received data update request");
 
-    // Accept either a single report object or an array
     const reports = Array.isArray(body) ? body : [body];
 
-    // Validate each report has required fields
     const requiredFields = ["_id", "date", "current_prices", "news_items", "market_sentiment", "predictions_10_day"];
     for (const report of reports) {
-      // _id is required for upsert
       if (!report._id) {
-        console.error("[API /reports POST] Validation failed: missing _id");
         return NextResponse.json(
           { error: "Invalid report data", details: "Each report must have an _id field" },
           { status: 400 }
         );
       }
-
       const missing = requiredFields.filter((f) => !(f in report));
       if (missing.length > 0) {
-        console.error("[API /reports POST] Validation failed, missing fields:", missing);
         return NextResponse.json(
-          {
-            error: "Invalid report data",
-            details: `Missing required fields: ${missing.join(", ")}`,
-          },
+          { error: "Invalid report data", details: `Missing required fields: ${missing.join(", ")}` },
           { status: 400 }
         );
       }
-
-      // Validate predictions_10_day is an array
       if (!Array.isArray(report.predictions_10_day)) {
         return NextResponse.json(
           { error: "Invalid report data", details: "predictions_10_day must be an array" },
           { status: 400 }
         );
       }
-
-      // Validate news_items is an array
       if (!Array.isArray(report.news_items)) {
         return NextResponse.json(
           { error: "Invalid report data", details: "news_items must be an array" },
           { status: 400 }
         );
       }
-
-      // Validate current_prices has at least one price field
-      const cp = report.current_prices;
-      if (!cp || typeof cp !== "object") {
+      if (!report.current_prices || typeof report.current_prices !== "object") {
         return NextResponse.json(
           { error: "Invalid report data", details: "current_prices must be an object" },
           { status: 400 }
@@ -114,7 +166,7 @@ export async function POST(request: Request) {
     const collection = db.collection("daily_reports");
 
     let inserted = 0;
-    let updated = 0;
+    let updated  = 0;
 
     for (const report of reports) {
       const existing = await collection.findOne({ _id: report._id });
@@ -137,15 +189,12 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     console.error("[API /reports POST] Error:", error);
-
-    // Check if it's a JSON parse error
     if (error instanceof SyntaxError) {
       return NextResponse.json(
         { error: "Invalid JSON", details: "The provided data is not valid JSON" },
         { status: 400 }
       );
     }
-
     return NextResponse.json(
       { error: "Failed to update report data", details: String(error) },
       { status: 500 }
