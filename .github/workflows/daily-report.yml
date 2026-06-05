@@ -1,0 +1,153 @@
+name: Daily Maize Market Report
+
+on:
+  schedule:
+    - cron: '0 1 * * 1-5'   # 6:30 AM IST (01:00 UTC) Mon–Fri
+  workflow_dispatch:          # Also allows manual "Run workflow" from GitHub UI
+
+jobs:
+  generate-report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40       # Kill if Claude hangs
+
+    permissions:
+      contents: write         # Needed to git push the report file
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # ── 2. Node.js for Claude Code CLI ─────────────────────────────────────
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # ── 3. Install Claude Code CLI ─────────────────────────────────────────
+      - name: Install Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code
+
+      # ── 4. Configure git so Claude's Bash tool can push ───────────────────
+      - name: Configure git
+        run: |
+          git config user.email "automation@maize-market.app"
+          git config user.name "Maize Market Automation"
+          git remote set-url origin \
+            https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
+      # ── 5. Generate the report ─────────────────────────────────────────────
+      - name: Generate report
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -e
+
+          TODAY=$(date +%Y-%m-%d)
+          COMPACT=$(date +%Y%m%d)
+          HTIME=$(date +%H%M%S)
+          REPORT_ID="${COMPACT}_${HTIME}_WAREHOUSE"
+          FILE_PATH="public/reports/maize_warehouse_report_${TODAY}.json"
+
+          mkdir -p public/reports
+
+          echo "=== Generating report for ${TODAY} (ID: ${REPORT_ID}) ==="
+
+          # Build the prompt — injects today's date so Claude doesn't guess
+          PROMPT="You are running the daily Maize Market Report automation in a GitHub Actions environment.
+
+Today's date is: ${TODAY}
+Report _id to use: ${REPORT_ID}
+Save the output to: ${FILE_PATH}
+
+$(cat public/instruction.txt)
+
+OVERRIDES FOR THIS RUN:
+- Use '${TODAY}' as the date everywhere in the JSON.
+- Use '${REPORT_ID}' as the _id field.
+- Save the file to '${FILE_PATH}' using the Write tool.
+- After writing, validate JSON with:
+    python3 -c \"import json; json.load(open('${FILE_PATH}')); print('JSON VALID')\"
+- Do NOT run git commands. GitHub Actions handles committing and pushing.
+- Do NOT read from prior recent_chats — prior report check is:
+    ls -t public/reports/maize_warehouse_report_*.json 2>/dev/null | head -1
+  If found, Read it and extract Kadam 1 prior values. If not found, use Kadam 1 defaults."
+
+          claude \
+            --print \
+            --allowedTools "WebSearch,WebFetch,Write,Read,Bash,Glob" \
+            "$PROMPT"
+
+          echo "=== Claude finished. Verifying output... ==="
+
+      # ── 6. Verify the file was written and JSON is valid ──────────────────
+      - name: Verify report
+        run: |
+          TODAY=$(date +%Y-%m-%d)
+          FILE="public/reports/maize_warehouse_report_${TODAY}.json"
+
+          if [ ! -f "$FILE" ]; then
+            echo "ERROR: Report file not found at $FILE"
+            exit 1
+          fi
+
+          python3 - <<'PYEOF'
+import json, sys, os
+today = os.environ.get("TODAY", "")
+filepath = f"public/reports/maize_warehouse_report_{today}.json"
+with open(filepath, encoding="utf-8") as f:
+    d = json.load(f)
+
+errors = []
+if "news_items" not in d:       errors.append("missing news_items")
+if "predictions_10_day" not in d: errors.append("missing predictions_10_day")
+if "market_sentiment" not in d: errors.append("missing market_sentiment")
+if "current_prices" not in d:   errors.append("missing current_prices")
+if len(d.get("news_items", [])) == 0: errors.append("news_items is empty")
+if len(d.get("predictions_10_day", [])) < 10: errors.append("less than 10 predictions")
+
+if errors:
+    print("VALIDATION ERRORS:", errors)
+    sys.exit(1)
+
+print("Report valid!")
+print(f"  _id:          {d.get('_id')}")
+print(f"  date:         {d.get('date')}")
+print(f"  news_items:   {len(d.get('news_items', []))}")
+print(f"  video_news:   {len(d.get('video_news', []))}")
+print(f"  predictions:  {len(d.get('predictions_10_day', []))}")
+print(f"  sentiment:    {d.get('market_sentiment', {}).get('overall')}")
+PYEOF
+        env:
+          TODAY: ${{ env.TODAY }}
+
+      # ── 7. Commit and push ─────────────────────────────────────────────────
+      - name: Commit and push report
+        run: |
+          TODAY=$(date +%Y-%m-%d)
+          FILE="public/reports/maize_warehouse_report_${TODAY}.json"
+
+          git add "$FILE"
+
+          if git diff --staged --quiet; then
+            echo "Nothing to commit — report already present for $TODAY"
+          else
+            git commit -m "chore: daily maize market report ${TODAY} [automated]"
+            git push
+            echo "Pushed: $FILE"
+          fi
+
+      # ── 8. Report success/failure ──────────────────────────────────────────
+      - name: Summary
+        if: always()
+        run: |
+          TODAY=$(date +%Y-%m-%d)
+          FILE="public/reports/maize_warehouse_report_${TODAY}.json"
+          if [ -f "$FILE" ]; then
+            echo "SUCCESS: $FILE was generated and pushed."
+          else
+            echo "FAILED: $FILE was not generated."
+            exit 1
+          fi
