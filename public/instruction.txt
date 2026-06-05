@@ -550,13 +550,17 @@ NIYAM 3 — EXACTLY 10 PREDICTION DAYS carry cost aur net P&L per quintal ke saa
 
 NIYAM 4 — 10 SE 15 VIDEO/WEB NEWS ITEMS. YouTube VIDEO_IDs validate karo (exactly 11 chars).
 
-NIYAM 5 — REQUIRED TOP-LEVEL JSON STRUCTURE (same 16 keys):
-  timestamp, date, time, day_of_week,
+NIYAM 5 — REQUIRED TOP-LEVEL JSON STRUCTURE (exactly 17 keys):
+  _id, timestamp, date, time, day_of_week,
   current_prices, prior_day_reference,
   live_news_raw, news_items, video_news,
   market_sentiment, predictions_10_day,
   recommendations, factors,
   data_sources, metadata
+
+  _id FORMAT: "YYYYMMDD_HHMMSS_WAREHOUSE"
+  Example: "20260605_063000_WAREHOUSE"
+  (YYYYMMDD = aaj ki date, HHMMSS = report generate hone ka time)
 
 NIYAM 6 — current_prices mein ZAROOR ADD KARO:
   "warehouse_economics": {

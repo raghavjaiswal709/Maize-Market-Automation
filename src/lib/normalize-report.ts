@@ -214,7 +214,8 @@ export function normalizeReport(raw: any, lang: Lang) {
   // --- recommendations ---
   const rec = raw.recommendations || {};
   const buyers = rec.buyers || {};
-  const sellers = rec.sellers || {};
+  // Instruction v7 uses "holders" (warehouse operators holding stock); older formats use "sellers"
+  const sellers = rec.sellers || rec.holders || {};
 
   // v3: action_text is {english,hindi,hinglish}, reason is {english,hindi,hinglish}, advice is {english,hindi,hinglish}
   // v2: action_hinglish is string, reason is string
@@ -253,8 +254,13 @@ export function normalizeReport(raw: any, lang: Lang) {
     runtime: meta.runtime || "",
   };
 
+  // Fallback _id so file-based reports are always selectable in the UI
+  const resolvedId =
+    raw._id ||
+    `${raw.date || "unknown"}_${(raw.time || "000000").replace(/:/g, "")}_WAREHOUSE`;
+
   return {
-    _id: raw._id,
+    _id: resolvedId,
     timestamp: raw.timestamp,
     date: raw.date,
     time: raw.time,
