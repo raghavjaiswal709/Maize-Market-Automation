@@ -77,6 +77,8 @@ PROMPT_EOF
 echo "Running Claude Code..."
 claude \
   --print \
+  --bare \
+  --dangerously-skip-permissions \
   --allowedTools "WebSearch,WebFetch,Write,Read,Bash,Glob" \
   "$(cat "$PROMPT_FILE")"
 
