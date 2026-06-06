@@ -559,8 +559,8 @@ NIYAM 5 — REQUIRED TOP-LEVEL JSON STRUCTURE (exactly 17 keys):
   data_sources, metadata
 
   _id FORMAT: "YYYYMMDD_HHMMSS_WAREHOUSE"
-  Example: "20260605_063000_WAREHOUSE"
-  (YYYYMMDD = aaj ki date, HHMMSS = report generate hone ka time)
+  ⚠️ YYYYMMDD = SIRF WO DATE JO Bash `date +%Y%m%d` se aayi — koi example date MAT copy karo.
+  (HHMMSS = report generate hone ka time)
 
 NIYAM 6 — current_prices mein ZAROOR ADD KARO:
   "warehouse_economics": {
@@ -654,29 +654,44 @@ GUARDRAIL 28: POORA REPORT SIRF HINDI MEIN LIKHA JAYEGA.
 BHAAG D — FILE DELIVERY (CLAUDE CODE ROUTINE)
 ═══════════════════════════════════════════════════════════════
 FILE KA NAAM:   maize_warehouse_report_YYYY-MM-DD.json
-                (YYYY-MM-DD = aaj ki tarikh, jaise 2026-06-05)
+                (YYYY-MM-DD = Bash `date +%Y-%m-%d` ki ACTUAL output — koi example mat use karo)
 OUTPUT PATH:    public/reports/maize_warehouse_report_YYYY-MM-DD.json
                 (is repository ki root se relative path)
 
-DELIVERY SEQUENCE:
-  1. Aaj ki tarikh nikalo:
-     Bash: date +%Y-%m-%d
-     Ya STABLE REFERENCE ke neeche se: aaj ki tarikh set karo.
+⚠️ SABSE ZAROORI NIYAM: PURANI FILE KO KABHI MAT CHHUO
+  Har run mein SIRF ek nayi file banti hai jiska naam AJ KI TARIKH se hota hai.
+  Pichhle din ki koi bhi file — chahe kal ki ho ya mahine pehle ki — kabhi bhi overwrite NAHI hogi.
+  Agar galti se purani file ka path bana to RUKO aur date dobara check karo.
 
-  2. JSON ko Write tool se likho:
-     File path: public/reports/maize_warehouse_report_YYYY-MM-DD.json
+DELIVERY SEQUENCE:
+  STEP 0 — AJ KI TARIKH LO (SABSE PEHLE, HAMESHA):
+     Bash: date +%Y-%m-%d
+     Is command ki ACTUAL output ko TODAY_DATE variable ki tarah yaad rakho.
+     ⚠️ Is instruction file mein koi bhi date example (jaise "2026-06-05") ka istemal
+        TODAY_DATE ke liye KABHI MAT KARO. Sirf Bash command ki live output use karo.
+
+  STEP 0b — DUPLICATE CHECK (NAYI FILE BANANE SE PEHLE):
+     Bash: ls public/reports/maize_warehouse_report_$(date +%Y-%m-%d).json 2>/dev/null
+     Agar file already exist karti hai: report already generate ho chuki hai aaj ke liye.
+     Aisi sthiti mein RUKO — file dobara mat likho, existing file ko mat overwrite karo.
+     Agar file nahi mili: aage badho.
+
+  STEP 1 — JSON ko Write tool se likho:
+     File path: public/reports/maize_warehouse_report_[TODAY_DATE].json
+     (TODAY_DATE = STEP 0 mein Bash se mili actual tarikh)
      Content: poora JSON (pehla char { aakhri char })
 
-  3. JSON validate karo:
-     Bash: python3 -c "import json; json.load(open('public/reports/maize_warehouse_report_YYYY-MM-DD.json')); print('JSON valid')"
+  STEP 2 — JSON validate karo:
+     Bash: python3 -c "import json; json.load(open('public/reports/maize_warehouse_report_$(date +%Y-%m-%d).json')); print('JSON valid')"
 
-  4. Git mein commit karo aur GitHub par push karo:
+  STEP 3 — Git mein commit karo aur GitHub par push karo:
      Bash:
-       git add public/reports/maize_warehouse_report_YYYY-MM-DD.json
-       git commit -m "chore: daily maize market report YYYY-MM-DD [automated]"
+       TODAY=$(date +%Y-%m-%d)
+       git add public/reports/maize_warehouse_report_${TODAY}.json
+       git commit -m "chore: daily maize market report ${TODAY} [automated]"
        git push origin main
 
-  5. Push ke baad confirm karo ki sab theek hua.
+  STEP 4 — Push ke baad confirm karo ki sab theek hua.
 
 FORMAT: Sirf pure JSON. Koi markdown fence nahi. Koi preamble nahi. Koi trailing text nahi.
 Pehla character: {   Aakhri character: }
@@ -706,7 +721,8 @@ JSON VALIDATION CHECKLIST:
   ☐ metadata.automation = "claude_code_routine"
   ☐ metadata.fetch_method = "claude_code_websearch"
   ☐ Koi bhi text field mein English/Hinglish NAHI
-  ☐ File path sahi hai: public/reports/maize_warehouse_report_YYYY-MM-DD.json
+  ☐ File path sahi hai: public/reports/maize_warehouse_report_[Bash se mili aaj ki tarikh].json
+  ☐ File ka naam kisi pichli report ke naam se ALAG hai (nayi date wali nayi file)
   ☐ Git push successful hua
 
 ═══════════════════════════════════════════════════════════════
