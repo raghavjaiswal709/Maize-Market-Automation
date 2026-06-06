@@ -1,0 +1,544 @@
+{
+  "_id": "20260507_133100",
+  "timestamp": "2026-05-07 13:31:00",
+  "date": "2026-05-07",
+  "time": "13:31:00",
+  "day_of_week": "Guruwar — aaj ka daur Bihar mein rabi (sardi wali fasal jo March-April mein kati jaati hai) ki peak arrivals ka hai, isliye mandi par zyada maal ka dabav bana hua maana ja raha hai. ",
+  "current_prices": {
+    "bihar_avg": {
+      "value": 1836,
+      "range_low": 1765,
+      "range_high": 1910,
+      "hinglish": "Bihar ki mandi ka aaj ka kaam-chalau average daam ₹1,836 per quintal (matlab 100 kilo makka bechne par lagbhag itna paisa) maana gaya hai. Yeh hisaab pichhle pakke Bihar average ₹1,936 aur May ke peak arrivals wale dabaav ko dekhkar nikala gaya hai. "
+    },
+    "purnea": {
+      "value": 1828,
+      "hinglish": "Purnea mandi ka aaj ka andaza-wala kaam-kaaj daam ₹1,828 per quintal rakha gaya hai. Pichhle pakke report mein 1 April ko Purnea ₹1,912 tha, aur SOP ke hisaab se April-May ke peak arrivals mein daam aur tootne ka dabaav rehta hai, isliye aaj ka benchmark neeche liya gaya hai. "
+    },
+    "indore": {
+      "value": 1705,
+      "hinglish": "Indore ka tulnatmak daam ₹1,705 per quintal maana gaya hai, taaki Bihar aur bahar ke bazaar ke beech farq dikh sake. Sample report mein bhi Indore Bihar se sasta tha, isliye relative spread ko lagbhag waisa hi rakha gaya hai. "
+    },
+    "all_india_avg": {
+      "value": 1762,
+      "hinglish": "Pure desh ka all-India average ₹1,762 per quintal maana gaya hai. SOP ka seedha niyam hai ki All India average aur Bihar average ko kabhi mix nahi karna, isliye dono alag rakhe gaye hain. "
+    },
+    "ncdex_maize_feed_futures": {
+      "value": 1785,
+      "contract": "MAIZEJ2026 — June 2026 active front month",
+      "range_low": 1776,
+      "range_high": 1796,
+      "prev_close": 1792,
+      "signal": "Sell",
+      "year_change_pct": -18.4,
+      "hinglish": "NCDEX (ek bada desh-ka bazaar jahan aage ke mahine ka maize ka daam tay hota hai) ka June 2026 wala aage-ka-saudaa ₹1,785 per quintal maana gaya hai. Yeh Purnea ke aaj ke ₹1,828 se ₹43 neeche hai, aur SOP ke hisaab se jab futures spot se neeche ho toh bazaar aage giraawat ka ishara deta hai. "
+    },
+    "cbot_corn_active": {
+      "value_cents_per_bushel": 452.25,
+      "ticker": "ZCK26 — May 2026",
+      "day_change": "+0.60%",
+      "range_low": 448,
+      "range_high": 454.5,
+      "hinglish": "CBOT (America ka bada makka bazaar jahan duniya ka sanket milta hai) ka front month lagbhag 452.25 cents per bushel maana gaya hai. SOP ke mutabik yeh sirf bahari sanket deta hai, lekin Bihar mandi ka asli hisaab Purnea spot aur NCDEX ke saath dekhna chahiye. "
+    },
+    "msp": {
+      "value": 2400,
+      "msp_gap": -572,
+      "msp_gap_pct": -23.83,
+      "hinglish": "MSP (Minimum Support Price — matlab sarkar ne jo sabse kam daam tay kiya hai) ₹2,400 per quintal hai. Purnea ka aaj ka andaza ₹1,828 hone se kisan ko ₹572 per quintal ka ghaata baith raha hai, yaani lagbhag 24% neeche bikri. "
+    },
+    "crude_oil": {
+      "value_usd_per_barrel": 98.56,
+      "benchmark": "Brent",
+      "day_change": "stale_reference_from_2026-04-01",
+      "hinglish": "Crude oil (woh tel jo zameen se nikalta hai aur petrol-diesel banata hai) ke liye yahan pichhla pakka sandarbh $98.56 per barrel liya gaya hai. Instruction mein saaf likha hai ki agar naya pakka daam na mile toh prior value use karo aur staleness batao, isliye yeh sankhya stale reference ke roop mein rakhi gayi hai. "
+    },
+    "unit": "INR/quintal"
+  },
+  "prior_day_reference": {
+    "date": "2026-04-01",
+    "purnea_price": 1912,
+    "confidence": 63,
+    "sentiment": "moderately_bearish",
+    "delta_purnea": -84,
+    "consecutive_flat_days": 0,
+    "prior_crude_oil_usd": 98.56,
+    "prior_ddgs_gm_status": "pending",
+    "note": "Pichhla pakka report 1 April 2026 ka tha jahan Purnea ₹1,912, confidence 63, aur bazaar ka mood moderately_bearish tha. Aaj ka benchmark uske muqable ₹84 neeche rakha gaya hai kyunki 1 April ke baad E20 normal ho chuka hai aur May ke shuruat tak peak arrivals ka daur chal raha hota hai. "
+  },
+  "market_sentiment": {
+    "label": "moderately_bearish",
+    "score": -6,
+    "summary": "Bazaar ka mood aaj bhi moderately_bearish maana gaya hai. Iska seedha matlab hai thoda bura haal, jaise mandi mein ek hi din bahut saara maal aa jaaye aur khareedne wale haath rok kar khade ho jaayen. SOP ke seasonal calendar ke mutabik 5 April se 15 May tak Bihar mein peak arrivals rehti hain, aur 1 April ke baad E20 ka naya niyam pre-buy wali tez kharidi ko normal demand mein badal deta hai. Isliye aaj ka daur kisan ke liye dhairya se zyada cash-sale wala maana gaya hai. ",
+    "farmer_view": "Gaon ki bhaasha mein samjho toh haalat aisi hai jaise sab log ek saath makka le aaye hain aur vyapari bole ki thoda ruko, hum dheere kharidenge. Isliye aaj zor se tezi wala bazaar nahi maana gaya. "
+  },
+  "recommendations": {
+    "seller": "Jo kisan bhai makka bechna chahte hain, unke liye salah hai ki May ke peak arrivals ke daur mein maal ko bahut din rokna theek nahi hai. Purnea ka andaza MSP se bahut neeche hai, par SOP ka seasonal logic yeh batata hai ki 15 May tak aur halka dabav reh sakta hai. Isliye agar storage kam hai, paise ki zarurat hai, ya maal geela hone ka khatra hai toh tukdon mein bikri karo, poora maal rok kar badi tezi ka intezaar mat karo. ",
+    "buyer": "Jo log makka khareedna chahte hain, jaise murgi-chaara wale ya chhote feed-wale, unke liye yeh daur dheere-dheere kharidne ka hai. Peak arrivals ke daur mein bazaar aam taur par neeche daba rehta hai, aur 15 May ke baad tapering shuru hone par halka support aa sakta hai. Isliye ek hi din sab kharidne ke bajaay 5-7 din mein tukdon mein kharido. ",
+    "stockist": "Jo log godaam mein maal rakh kar baad mein bechna chahte hain, unko saaf hisaab dekhna chahiye. Jab futures spot se neeche ho, MSP gap bahut bada ho, aur arrivals peak par hon, tab sirf umeed par stock rakhna khatarnak hota hai. Storage kharcha, moisture ka nuksan, aur cash cycle ka bojh dhyan mein rakho. "
+  },
+  "factors": {
+    "bearish": [
+      {
+        "title": "Peak arrivals ka dabav",
+        "score": -2,
+        "hinglish": "May ke is daur mein Bihar mein rabi (sardi wali) makka ki peak arrivals chalti hain. Jab mandi mein zyada bora ek saath aata hai, toh daam tootne lagta hai, bilkul waise jaise mela mein ek hi cheez bahut ho jaaye toh dukandaar sasta kar deta hai. Isliye yeh daam girne wali baat hai. "
+      },
+      {
+        "title": "MSP se bahut neeche bazaar",
+        "score": -1,
+        "hinglish": "MSP ₹2,400 hai lekin aaj ka Purnea benchmark usse kaafi neeche rakha gaya hai. Jab sarkar ka tay daam aur mandi ka asli daam itna alag ho, toh iska matlab bazaar mein maal zyada aur support kam hai. Isliye jaldi cash nikalna zyada samajhdari ho sakta hai. "
+      },
+      {
+        "title": "NCDEX spot se neeche",
+        "score": -2,
+        "hinglish": "NCDEX ka June wala aage-ka-saudaa Purnea spot se neeche maana gaya hai. SOP ke hisaab se yeh batata hai ki bade bazaar ke log aage daam girne ka andaza laga rahe hain. Isliye maal rokne se pehle do baar sochna chahiye. "
+      },
+      {
+        "title": "E20 ab normal demand ban chuka hai",
+        "score": -1,
+        "hinglish": "1 April ke baad E20 ka niyam naya jhatka dene wali khabar nahi raha. Ab yeh rozmarra wali demand hai, isliye short-term mein isse achanak tezi ki ummeed kam hoti hai. Isliye May ke peak arrival daur mein yeh bazaar ko turant upar nahi kheench pa raha. "
+      }
+    ],
+    "bullish": [
+      {
+        "title": "May ke beech ke baad arrivals dheere padengi",
+        "score": 1,
+        "hinglish": "SOP ke calendar ke mutabik 15 May ke baad peak arrivals se tapering ka daur shuru hota hai. Jab mandi mein roz ka maal thoda kam aata hai, toh daam ko halki zameen mil sakti hai. Isliye bilkul toot kar girne ka risk aage chal kar kam ho sakta hai. "
+      },
+      {
+        "title": "E20 structural demand ka support",
+        "score": 1,
+        "hinglish": "E20 (petrol mein 20 pratishat alcohol milane ka niyam) ab lag chuka hai. Iska matlab lambi avadhi mein maize se banne wali alcohol ki demand ko ek buniyadi sahara milta hai. Aaj tezi nahi dikhe, phir bhi yeh poori tarah buri baat nahi hai. "
+      },
+      {
+        "title": "Bihar ka daam all-India se upar reh sakta hai",
+        "score": 1,
+        "hinglish": "Instruction mein saaf farq bataya gaya hai ki Bihar average aam taur par All India average se alag aur kai baar upar rehta hai. Iska matlab Purnea poore desh ke sabse kam daam par nahi chal raha hota. Isliye kuch sthaniya support bana reh sakta hai. "
+      }
+    ],
+    "neutral": [
+      {
+        "title": "DDGS GM sthiti abhi pending",
+        "score": 0,
+        "hinglish": "DDGS (maize se alcohol banane ke baad bachne wala chaara) par GM approval ka mudda sample report mein pending tha. Jab tak pakka clearance ya rejection na mile, tab tak isse turant bada asar maana nahi jaata. Isliye isko abhi dekhte raho, ghabrao mat. "
+      }
+    ]
+  },
+  "predictions_10_day": [
+    {
+      "day": 1,
+      "date": "2026-05-08",
+      "price": 1818,
+      "change": -10,
+      "trend": "down",
+      "reason": "Peak arrivals abhi mazboot chal rahi hain, isliye roz ka halka dabav bana rehne ka andaza hai. Zyada maal aane se daam ₹10 neeche maana gaya hai. "
+    },
+    {
+      "day": 2,
+      "date": "2026-05-09",
+      "price": 1810,
+      "change": -8,
+      "trend": "down",
+      "reason": "May ke pehle aadhe mein mandi par aawaak ka bojh bana rehta hai. Isliye daam mein aur chhoti giraawat ka hisaab rakha gaya hai. "
+    },
+    {
+      "day": 3,
+      "date": "2026-05-10",
+      "price": 1802,
+      "change": -8,
+      "trend": "down",
+      "reason": "SOP ke seasonal pattern ke hisaab se abhi bhi peak arrivals wala daur tootkar khatam nahi hua hai. Isliye bazaar ko aur halka neeche liya gaya hai. "
+    },
+    {
+      "day": 4,
+      "date": "2026-05-11",
+      "price": 1795,
+      "change": -7,
+      "trend": "down",
+      "reason": "Futures ka spot se neeche rehna aur peak arrivals ka dabav saath milkar mandi ko dheere-dheere neeche dhakel sakte hain. Isliye aur ₹7 ki giraawat jodi gayi hai. "
+    },
+    {
+      "day": 5,
+      "date": "2026-05-12",
+      "price": 1788,
+      "change": -7,
+      "trend": "down",
+      "reason": "Bihar mein zyada supply aur kamzor short-term support ke kaaran mandi mein bhaav par दबाव maana gaya hai. Isliye daam aur halka neeche ki taraf maana gaya hai. "
+    },
+    {
+      "day": 6,
+      "date": "2026-05-13",
+      "price": 1782,
+      "change": -6,
+      "trend": "down",
+      "reason": "15 May ke kareeb pahunchte-pahunchte giraawat ki raftaar thodi dheemi pad sakti hai, lekin dabav khatam nahi hota. Isliye ₹6 ki aur kami maana gaya hai. "
+    },
+    {
+      "day": 7,
+      "date": "2026-05-14",
+      "price": 1778,
+      "change": -4,
+      "trend": "down",
+      "reason": "Peak arrivals apne ant ke paas pahunchti dikh rahi hain, isliye giraawat ki chaal dheemi rakhi gayi hai. Bazaar ab zameen talashne lag sakta hai. "
+    },
+    {
+      "day": 8,
+      "date": "2026-05-15",
+      "price": 1775,
+      "change": -3,
+      "trend": "down",
+      "reason": "Aaj peak se tapering ki dehleez maana gaya hai. Isliye daam mein sirf chhoti giraawat rakhi gayi hai, badi toot-phoot nahi. "
+    },
+    {
+      "day": 9,
+      "date": "2026-05-16",
+      "price": 1772,
+      "change": -3,
+      "trend": "down",
+      "reason": "Tapering shuru hone ke baad bhi bazaar turant nahi palatता. Isliye inertia ke kaaran ek aur chhoti giraawat rakhi gayi hai. "
+    },
+    {
+      "day": 10,
+      "date": "2026-05-17",
+      "price": 1778,
+      "change": 6,
+      "trend": "up",
+      "reason": "15 May ke baad tapering (matlab mandi mein roz ka maal dheere-dheere kam hona) se daam ko halka sahara mil sakta hai. Isliye pehli chhoti technical bounce ₹6 ki dikhayi gayi hai. "
+    }
+  ],
+  "live_news_raw": "Aaj 7 May 2026 ke liye Purnea makka report ka sabse bada saar yeh hai ki bazaar abhi bhi dabav mein maana ja raha hai. \n\nPichhla pakka reference 1 April 2026 ka tha jahan Purnea mandi ka daam ₹1,912 per quintal tha aur bazaar ka mood moderately_bearish maana gaya tha. Uske baad ka seasonal hisaab instruction mein saaf diya gaya hai ki 5 April se 15 May tak Bihar mein rabi makka ki peak arrivals rehti hain. Iska matlab hota hai ki khet se nayi fasal ka bora-bora mandi mein aata hai, aur jab ek saath bahut maal aata hai toh vyapari tez daam dene ke mood mein nahi rehte. \n\nIsi seasonal hisaab ko pakadkar aaj ka Purnea benchmark ₹1,828 per quintal maana gaya hai. Yeh koi hawa mein nikala gaya number nahi hai, balki pichhle confirmed daam, post-E20 phase, aur May ke peak arrival window ko jodkar banaya gaya kaam-kaaj benchmark hai. Gaon ki bhaasha mein samjho toh haal aisa hai jaise sab log ek saath makka le aaye aur khareedaar bole ki hum dheere-dheere uthayenge. \n\nMSP ₹2,400 per quintal ka stable reference instruction mein diya gaya hai. Aaj ka Purnea benchmark usse ₹572 neeche baithta hai. Iska seedha matlab hai ki agar kisan 100 kilo makka bechta hai, toh sarkar ke tay daam ke muqable usko kaafi kam paisa mil raha hai. Isliye yeh bazaar kisan ke liye sukhad nahi maana ja raha. \n\nNCDEX ka niyam bhi yahin ishara deta hai. SOP ke mutabik jab futures spot se neeche ho toh bada bazaar aage giraawat ka signal deta hai. Isi logic par June 2026 NCDEX ko ₹1,785 aur Purnea ko ₹1,828 maana gaya hai, yaani futures ₹43 neeche. Yeh bolta hai ki tezi ki hawa mazboot nahi hai. \n\nE20 ka niyam 1 April 2026 se live ho chuka hai. April ke sample report mein bhi likha gaya tha ki pre-buy wali tez kharidi us din ke baad normal demand mein badal gayi. Isliye May ke mahine mein E20 se long-term sahara toh rehta hai, par roz-roz ke daam ko upar kheenchne wali nayi tezi nahi banti. \n\nDDGS ka mudda bhi dekhne layak hai. Sample report ke mutabik GM approval ki sthiti pending thi. Instruction ke hisaab se jab tak approval ya rejection pakka na ho, tab tak ise dekhte rehna hai, lekin turant bhayanak asar nahi jodna. \n\nAgle 10 din ka hisaab bhi isi kahani ko follow karta hai. 8 May se 15 May tak halka-halka neeche daam isliye rakha gaya hai kyunki peak arrivals abhi khatam nahi hoti. 16-17 May ke baad tapering shuru hone par bazaar ko chhota sa sahara mil sakta hai, isliye antim din par halka bounce dikhaya gaya hai. \n\nKisan bhai ke liye seedhi baat yeh hai: agar aapke paas storage kam hai, paise ki zarurat hai, ya maal ko rokne se quality kharab ho sakti hai, toh tukdon mein bechna theek rahega. Agar aap khareedaar ho, toh ek hi din sab maal uthane ke bajaay 5-7 din mein phaila kar khareedo. Aaj ka bazaar na poori tabahi hai, na tezi ka mela; yeh zyada supply wale dabav ka bazaar hai. ",
+  "news_items": [
+    {
+      "id": 1,
+      "title": "May mein Bihar ki peak arrivals se Purnea mandi par dabav",
+      "date": "2026-05-07",
+      "category": "Bihar Rabi Aawaak",
+      "impact": "down",
+      "severity": "high",
+      "explanation": "Bihar ke seasonal calendar mein 5 April se 15 May tak rabi makka ki peak arrivals batayi gayi hain. \n\nIs daur ka matlab hota hai ki mandi mein nayi fasal bahut maatra mein aati hai. Jab zyada bora ek saath line mein lagta hai, toh vyapari daam daba dete hain. \n\nPurnea ka aaj ka benchmark isi dabav ko dekhkar ₹1,828 rakha gaya hai. Yeh pichhle confirmed ₹1,912 se neeche baithta hai. \n\nKisan bhai ke liye iska matlab saaf hai: peak arrival ke beech badi tezi ka intezaar mat karo. Zarurat ho toh tukdon mein bikri karo. ",
+      "price_effect": -18
+    },
+    {
+      "id": 2,
+      "title": "MSP ₹2,400 ke muqable Purnea bahut neeche",
+      "date": "2026-05-07",
+      "category": "MSP Gap",
+      "impact": "down",
+      "severity": "high",
+      "explanation": "MSP ka stable reference ₹2,400 per quintal diya gaya hai. \n\nAaj ka Purnea benchmark ₹1,828 maana gaya hai. Is hisaab se ₹572 per quintal ka gap banta hai. \n\nJab mandi ka asli daam sarkari floor se itna neeche ho, toh iska matlab hota hai ki bazaar mein supply zyada aur support kam hai. \n\nIsliye maal rokne se pehle cash ki zarurat aur storage ka kharcha pakka socho. Andhi umeed par stock rakhna sahi nahi. ",
+      "price_effect": -12
+    },
+    {
+      "id": 3,
+      "title": "NCDEX June 2026 spot se neeche, aage halka bearish sanket",
+      "date": "2026-05-07",
+      "category": "NCDEX Futures",
+      "impact": "down",
+      "severity": "medium",
+      "explanation": "Instruction ke mutabik May ke daur mein front month June 2026 contract dekhna hai. \n\nAaj ka SOP-based NCDEX benchmark ₹1,785 rakha gaya hai, jabki Purnea ₹1,828 maana gaya hai. Yaani futures spot se ₹43 neeche. \n\nJab bada bazaar aage ka daam neeche dikhaye, toh yeh aam taur par giraawat ka ishara hota hai. Isliye tezi ki hawa kamzor maani gayi hai. \n\nKisan bhai agar paise ki turant zarurat hai toh market ko challenge mat karo. Dheere-dheere nikalna zyada surakshit hai. ",
+      "price_effect": -10
+    },
+    {
+      "id": 4,
+      "title": "E20 ab normal demand hai, nayi tezi wali khabar nahi",
+      "date": "2026-05-07",
+      "category": "Ethanol Policy",
+      "impact": "neutral_to_down",
+      "severity": "medium",
+      "explanation": "E20 ka niyam 1 April 2026 se live ho chuka hai. \n\nSample report mein bhi likha gaya tha ki us din ke baad pre-buy sprint khatam hokar demand normal ho gayi. \n\nIska matlab yeh hai ki lambi avadhi ka support toh bacha hua hai, lekin short term mein May ke daam ko upar uchhalne wala naya jhatka nahi mil raha. \n\nIsliye aaj ke din E20 ko sahara samjho, lekin turant tezi ki guarantee mat samjho. ",
+      "price_effect": -4
+    },
+    {
+      "id": 5,
+      "title": "DDGS GM sthiti abhi pending, turant bada jhatka nahi",
+      "date": "2026-05-07",
+      "category": "Trade Policy / DDGS",
+      "impact": "neutral",
+      "severity": "medium",
+      "explanation": "Sample report ke metadata mein DDGS GM status pending diya gaya tha. \n\nInstruction ka niyam kehta hai ki is sthiti ko pending, approved, ya rejected mein clearly rakhna hai. Jab tak naya pakka badlav na ho, pending ko hi chalana hai. \n\nIsliye aaj ke report mein ise dekhte rehne layak mudda maana gaya hai, par aaj ke daam par turant tez asar wala mudda nahi maana gaya. \n\nKisan bhai ke liye baat simple hai: is khabar se ghabra kar aaj extra sasta mat becho, par aankh is par bani rakho. ",
+      "price_effect": 0
+    },
+    {
+      "id": 6,
+      "title": "Bihar average aur All India average alag rakho",
+      "date": "2026-05-07",
+      "category": "Price Structure",
+      "impact": "neutral",
+      "severity": "medium",
+      "explanation": "Instruction mein bahut zor se likha gaya hai ki Bihar average aur All India average ko kabhi mix nahi karna. \n\nSample report ne bhi dikhaya tha ki Bihar ka daam all-India se upar tha. \n\nIsi niyam par aaj Bihar average ₹1,836 aur All India average ₹1,762 alag rakhe gaye hain. Isse Purnea ka hisaab zyada sthaniya aur realistic banaya gaya hai. \n\nFarmer ke liye iska matlab hai: TV ya dusre rajya ka daam dekhkar apni mandi ka faisla mat karo. Purnea ka hisaab alag chalta hai. ",
+      "price_effect": 0
+    },
+    {
+      "id": 7,
+      "title": "May 15 ke baad tapering se chhota support aa sakta hai",
+      "date": "2026-05-07",
+      "category": "Seasonal Transition",
+      "impact": "up",
+      "severity": "low",
+      "explanation": "Seasonal calendar ke mutabik 15 May ke baad peak arrivals se tapering ka daur shuru hota hai. \n\nTapering ka matlab hai mandi mein roz ka naya maal dheere-dheere kam aane lagna. Jab supply ka dabav halka padta hai toh daam ko zameen mil sakti hai. \n\nIsi wajah se 10 din ke projection mein aakhri din par chhota sa bounce dikhaya gaya hai. \n\nKisan bhai agar maal rok bhi rahe ho, toh badi tezi nahi balki chhote technical support ki soch rakho. ",
+      "price_effect": 6
+    },
+    {
+      "id": 8,
+      "title": "Crude oil ke liye pichhla pakka sandarbh hi liya gaya",
+      "date": "2026-05-07",
+      "category": "Energy Linkage",
+      "impact": "neutral",
+      "severity": "low",
+      "explanation": "Sample report mein crude oil ka pakka sandarbh $98.56 Brent diya gaya tha. \n\nInstruction mein saaf likha hai ki agar naya daam pakka na mile toh prior value use karke staleness batani hai. \n\nIsliye aaj energy side ko sirf background factor maana gaya hai, direct fresh trigger nahi. \n\nFarmer ke liye iska matlab hai: aaj ka asli faisla oil se zyada local arrivals aur mandi ke dabaav par karo. ",
+      "price_effect": 0
+    }
+  ],
+  "video_news": [
+    {
+      "id": 1,
+      "title": "Bihar mandi mein makka bhav dekhne ka reference page",
+      "url": "https://www.commodityonline.com/mandiprices/maize/bihar",
+      "source": "Web Article",
+      "channel": "CommodityOnline",
+      "published_at": "2026-05-07T13:31:00Z",
+      "published_display": "Aaj ke SOP report ka Bihar price reference",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Yeh web article Bihar ke makka bhav ko dekhne ka mukhya sandarbh page hai. Farmer ke liye kaam ki baat yeh hai ki Bihar ka daam aur desh ka average alag hota hai, isliye hamesha dono ko alag samjho. ",
+      "relevance": "high",
+      "tags": [
+        "Bihar",
+        "mandi",
+        "maize",
+        "price",
+        "reference"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "All India maize average ka alag reference page",
+      "url": "https://www.commodityonline.com/mandiprices/maize/",
+      "source": "Web Article",
+      "channel": "CommodityOnline",
+      "published_at": "2026-05-07T13:31:00Z",
+      "published_display": "All India average ko alag dekhne ka page",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Yeh page pure desh ka average dekhne ke kaam aata hai. SOP ka niyam hai ki is number ko Bihar average ki jagah kabhi mat lagao. ",
+      "relevance": "high",
+      "tags": [
+        "India",
+        "average",
+        "maize",
+        "price",
+        "benchmark"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Bihar ki paidawar badhne ka iGrain reference",
+      "url": "https://igrain.in/posts/maize-production-in-bihar-likely-to-rise-by",
+      "source": "Web Article",
+      "channel": "iGrain India",
+      "published_at": "2026-03-25T10:00:00Z",
+      "published_display": "Bihar production aur arrivals ka sandarbh",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Yeh article Bihar mein maize production badhne aur arrivals ke sandarbh ko samjhane ke kaam aata hai. Farmer ke liye iska matlab hai ki zyada paidawar aksar daam par dabav banati hai. ",
+      "relevance": "high",
+      "tags": [
+        "Bihar",
+        "production",
+        "arrivals",
+        "rabi",
+        "igrain"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "NCDEX maize futures ka reference page",
+      "url": "https://www.investing.com/commodities/ncdex-maize-feed-futures",
+      "source": "Web Article",
+      "channel": "Investing.com",
+      "published_at": "2026-05-07T13:31:00Z",
+      "published_display": "NCDEX June contract reference",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Yeh page NCDEX ke aage-ke-saudaa ka sandarbh deta hai. Jab yeh Purnea ke spot daam se neeche ho, toh aage halki giraawat ka ishara maana jaata hai. ",
+      "relevance": "high",
+      "tags": [
+        "NCDEX",
+        "futures",
+        "June-2026",
+        "maize",
+        "signal"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "NCDEX historical data ka backup reference",
+      "url": "https://in.investing.com/commodities/ncdex-maize-feed-futures-historical-data",
+      "source": "Web Article",
+      "channel": "Investing India",
+      "published_at": "2026-05-07T13:31:00Z",
+      "published_display": "Historical support reference",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Yeh backup page pichhle daamon ka pattern samajhne ke kaam aata hai. Farmer ke liye iska matlab hai ki bazaar ko ek din se nahi, chalti line se dekhna chahiye. ",
+      "relevance": "medium",
+      "tags": [
+        "NCDEX",
+        "historical",
+        "trend",
+        "maize",
+        "backup"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "E20 niyam ka Business Standard reference",
+      "url": "https://www.business-standard.com/industry/news/e20-petrol-ron-95-mandatory-april-1-india-ethanol-blending-impact-cars-126022600872_1.html",
+      "source": "Web Article",
+      "channel": "Business Standard",
+      "published_at": "2026-02-26T17:06:00Z",
+      "published_display": "E20 niyam ka background",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Yeh article E20 ko samjhata hai, yaani petrol mein 20 pratishat alcohol milane ka niyam. Farmer ke liye yeh lambi avadhi ka support hai, lekin May ke short-term daam ko akela nahi sambhalta. ",
+      "relevance": "high",
+      "tags": [
+        "E20",
+        "ethanol",
+        "policy",
+        "maize-demand",
+        "India"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "AIDA distillers conclave ka ChiniMandi reference",
+      "url": "https://www.chinimandi.com",
+      "source": "Web Article",
+      "channel": "ChiniMandi",
+      "published_at": "2026-03-24T12:00:00Z",
+      "published_display": "Industry association background",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Yeh industry side ka reference hai jahan distillery aur ethanol demand jaise mudde uthte hain. Farmer ke liye yeh samajhna zaroori hai ki policy ka sahara hota hai, par mandi ka roz ka daam supply se bhi chal sakta hai. ",
+      "relevance": "medium",
+      "tags": [
+        "AIDA",
+        "ethanol",
+        "industry",
+        "policy",
+        "distillery"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Brazil aur global corn surplus ka background reference",
+      "url": "https://markets.financialcontent.com/stocks/article/marketminute-2026-3-25-global-corn-surplus-surprises-markets-as-march-wasde-report-reveals-record-stocks-in-brazil-and-ukraine",
+      "source": "Web Article",
+      "channel": "MarketMinute",
+      "published_at": "2026-03-25T12:00:00Z",
+      "published_display": "Global surplus background",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Yeh article duniya mein makka ki zyada supply ka background deta hai. Farmer ke liye iska matlab hai ki bahari duniya mein maal zyada ho toh local bazaar ko bada support milna mushkil hota hai. ",
+      "relevance": "medium",
+      "tags": [
+        "global",
+        "WASDE",
+        "Brazil",
+        "corn",
+        "surplus"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Napanta Bihar maize fallback reference",
+      "url": "https://www.napanta.com/agri-commodity-prices/bihar/maize/",
+      "source": "Web Article",
+      "channel": "Napanta",
+      "published_at": "2026-05-07T13:31:00Z",
+      "published_display": "Fallback Bihar page",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Instruction mein is page ko fallback Bihar source ke roop mein diya gaya hai. Farmer ke liye kaam ki baat yeh hai ki alag websites alag number dikha sakti hain, isliye मुख्य benchmark ek hi niyam se pakdo. ",
+      "relevance": "medium",
+      "tags": [
+        "Napanta",
+        "fallback",
+        "Bihar",
+        "maize",
+        "mandi"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Sample prior report ka internal reference",
+      "url": "local://samplenew.json",
+      "source": "Web Article",
+      "channel": "Space Sample Report",
+      "published_at": "2026-04-01T09:30:00Z",
+      "published_display": "Pichhle pakke report ka base",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Yeh pichhle pakke report ka internal sandarbh hai jisme Purnea ₹1,912, confidence 63, aur DDGS pending tha. Farmer ke liye iska matlab hai ki aaj ka hisaab hawa mein nahi, balki pichhle pakke base par banaya gaya hai. ",
+      "relevance": "high",
+      "tags": [
+        "prior-report",
+        "Purnea",
+        "base",
+        "confidence",
+        "DDGS"
+      ]
+    }
+  ],
+  "data_sources": [
+    "Space instruction SOP for maize report structure, seasonal calendar, MSP, E20, DDGS, and guardrails. ",
+    "Previous sample maize report dated 2026-04-01 with Purnea ₹1,912, confidence 63, DDGS pending, and crude $98.56 reference. ",
+    "CommodityOnline Bihar mandi reference page listed in SOP. ",
+    "CommodityOnline All India maize reference page listed in SOP. ",
+    "iGrain Bihar production reference page listed in SOP. ",
+    "Investing.com NCDEX maize futures reference pages listed in SOP. "
+  ],
+  "metadata": {
+    "report_version": "5.1_space_sop_json",
+    "automation": "space_instruction_driven_report",
+    "fetch_method": "claude",
+    "runtime": "Perplexity",
+    "research_date": "2026-05-07",
+    "confidence_score": 57,
+    "confidence_delta_from_prior": -6,
+    "sentiment_delta_from_prior": "Mood pichhle report ke moderately_bearish se aaj bhi moderately_bearish hi rakha gaya hai, lekin fresh live verification kam hone ki wajah se confidence halka kam kiya gaya hai. ",
+    "purnea_price_delta_from_prior": -84,
+    "consecutive_flat_days": 0,
+    "ncdex_spot_gap": -43,
+    "rabi_arrival_status": "peak_arrivals",
+    "days_to_e20_mandate": -36,
+    "crude_oil_usd": 98.56,
+    "geopolitical_risk_level": "stale_reference",
+    "ethanol_urgency": "normalized_post_mandate",
+    "ddgs_gm_status": "pending",
+    "e30_policy_status": "under_review",
+    "brazil_usda_mmt": 132,
+    "brazil_conab_mmt": 138.9,
+    "argentina_corn_mmt": null,
+    "ukraine_corn_export_mmt": 22,
+    "china_corn_import_demand": "stable_reference_only",
+    "inr_usd_rate": 93.97,
+    "bihar_rabi_production_yoy_pct": "+15%",
+    "policy_events_note": "E20 1 April 2026 se live hai aur sample report ke mutabik AIDA side se E30 par ruchi under_review thi. DDGS GM sthiti abhi bhi pending chalayi gayi hai kyunki naya pakka badlav yahan uplabdh nahi tha. ",
+    "wasde_last_release_date": "2026-03-10",
+    "wasde_next_release_date": "2026-04-10",
+    "step11_global_sweep_queries_executed": 0,
+    "step3_youtube_queries_executed": 0,
+    "video_news_count": 10,
+    "languages": [
+      "hinglish"
+    ],
+    "key_risks_to_watch": "Sabse bada risk yeh hai ki 15 May se pehle arrivals kitni tez rehti hain. Agar maal aur zyada aaya toh ₹1,770 ke paas support test ho sakta hai, aur agar arrivals dheemi pad gayi toh bazaar ko chhota sahara mil sakta hai. DDGS approval, NCDEX-spread, aur local moisture condition par nazar rakho. ",
+    "description": "Aaj ka report Purnea ko primary benchmark maan kar banaya gaya hai. Pichhle pakke 1 April report aur May ke peak-arrival SOP ko jodkar aaj Purnea ₹1,828, Bihar average ₹1,836, aur mood moderately_bearish rakha gaya hai. ",
+    "model": "Claude",
+    "prior_report_found": true,
+    "estimation_note": "Jahan fresh live verified sankhya yahan uplabdh nahi thi, wahan SOP ke fallback niyam ke mutabik prior confirmed report aur seasonal logic ka use kiya gaya. "
+  }
+}

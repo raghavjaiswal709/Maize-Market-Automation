@@ -1,0 +1,683 @@
+{
+  "_id": "20260526_084813",
+  "timestamp": "2026-05-26 09:30:00",
+  "date": "2026-05-26",
+  "time": "09:30:00",
+  "day_of_week": "मंगलवार — 26 मई 2026 — आज बाज़ार खुला है। पूर्णिया में मक्का का दाम ₹2,032/क्विंटल है। NCDEX जून फ्यूचर्स ₹1,907 पर है जो स्पॉट से ₹125 नीचे है — बाज़ार साफ संकेत दे रहा है कि दाम गिरेंगे। Brent कच्चा तेल $97.74 पर आ गया है — ईरान शांति वार्ता से गिरावट जारी है। गोदाम संचालक के लिए आज का सबसे ज़रूरी काम: ₹2,025+ के दाम पर 40% माल बेचो — हर दिन रुकने पर दाम और गिरेंगे।",
+  "current_prices": {
+    "bihar_avg": {
+      "value": 1930,
+      "hinglish": "**बिहार का औसत दाम:** बिहार की मंडियों में आज मक्के का औसत दाम ₹1,930 प्रति क्विंटल (100 किलो) है। रेंज ₹1,861 से ₹2,100 के बीच है। रबी टेपरिंग फेज़ (जब खरीफ की फसल आने से पहले रबी का माल कम होने लगता है) में आमतौर पर बिहार का दाम स्थिर होता है, लेकिन NCDEX फ्यूचर्स के ₹125 नीचे रहने से आने वाले दिनों में गिरावट तय है।\n\n**गोदाम संचालक के लिए:** ₹1,930 पर बिहार का औसत दाम आपकी खरीद कीमत ₹1,850 से ₹80 ऊपर है — यानी अभी बेचो तो ₹80 प्रति क्विंटल ग्रॉस प्रॉफिट मिलेगा (carrying cost घटाने के बाद ~₹74)। 1 लाख क्विंटल के मालिक के लिए यह ₹74 लाख का मौका है।"
+    },
+    "purnea": {
+      "value": 2032,
+      "hinglish": "**पूर्णिया (बिहार) का दाम:** पूर्णिया मंडी में आज मक्का ₹2,032 प्रति क्विंटल पर है — बिहार के औसत से ₹102 ज़्यादा। यह प्रीमियम इसलिए मिलता है क्योंकि पूर्णिया की मक्का डिस्टिलरी और पोल्ट्री फीड ग्रेड में सबसे अच्छी मानी जाती है।\n\n**गोदाम संचालक के लिए:** ₹1,850 की खरीद से आज का नेट अनरियलाइज़्ड लाभ = ₹2,032 − ₹1,850 − ₹66 (carrying cost पिछले 3 महीने ≈ ₹22/माह × 3) = ₹116/क्विंटल। 1 लाख क्विंटल पर यह ₹1.16 करोड़ है। लेकिन NCDEX ₹1,907 का Sell सिग्नल बता रहा है कि यह खिड़की बंद होने वाली है।"
+    },
+    "indore": {
+      "value": 1730,
+      "hinglish": "**इंदौर (MP) का दाम:** इंदौर मंडी में मक्का ₹1,730 प्रति क्विंटल है — पूर्णिया से ₹302 सस्ता। यह अंतर (Indore–Bihar Gap = -₹200 बिहार औसत से) बताता है कि इंदौर से बिहार तक माल लाकर मुनाफा नहीं है।\n\n**गोदाम संचालक के लिए:** इंदौर से बिहार में ट्रेडिंग अर्बिट्राज इस समय लाभकारी नहीं है। अपना बिहार का माल बिहार/UP के डिस्टिलरी बायर्स को ही बेचो। इंदौर का सस्ता दाम यह भी दिखाता है कि देश में कुल मक्का सप्लाई भरपूर है।"
+    },
+    "all_india_avg": {
+      "value": 1938,
+      "hinglish": "**पूरे देश का औसत:** 7 मई 2026 के आंकड़ों के अनुसार अखिल भारत औसत ₹1,938/क्विंटल है। पूर्णिया इससे ₹94 ऊपर है जो बिहार की मक्का के quality premium को दर्शाता है।\n\n**गोदाम संचालक के लिए:** ₹1,938 का राष्ट्रीय औसत और ₹2,032 का पूर्णिया दाम — दोनों आपकी खरीद कीमत ₹1,850 से ऊपर हैं। यानी अभी भी मुनाफे में बेचने का मौका है। लेकिन रोज़ ₹22 प्रति क्विंटल/माह की carrying cost घड़ी की तरह चल रही है।"
+    },
+    "ncdex_maize_futures": {
+      "value": 1907,
+      "contract": "MAIZE JUNE 2026 (MAIZEM2026) — जून 20 को expire",
+      "range_low": 1895,
+      "range_high": 1920,
+      "prev_close": 1904,
+      "signal": "Sell",
+      "year_change_pct": -12.5,
+      "ncdex_spot_gap": -125,
+      "hinglish": "**NCDEX जून 2026 फ्यूचर्स:** NCDEX (National Commodity and Derivatives Exchange — दिल्ली का वह बड़ा बाज़ार जहाँ अगले महीने का मक्का का दाम तय होता है) का जून कॉन्ट्रैक्ट ₹1,907 पर है — स्पॉट से ₹125 नीचे। यह खतरनाक संकेत है।\n\n**गोदाम संचालक के लिए:** जब NCDEX फ्यूचर्स स्पॉट से ₹125 नीचे हो, तो बाज़ार कह रहा है 'दाम गिरेंगे।' यह backwardation (उलटी बाज़ार स्थिति) है। सामान्यतः फ्यूचर्स ऊपर होते हैं। NCDEX पर hedge करने का कोई फायदा नहीं क्योंकि ₹1,907 पर बेचने से ₹125/क्विंटल का तुरंत नुकसान होगा। इसके बजाय, स्पॉट मार्केट में अभी बेचो या डिस्टिलरी से ₹2,050 का advance deal लो।"
+    },
+    "cbot_corn_active": {
+      "value_cents_per_bushel": 473,
+      "ticker": "ZCN26 — जुलाई 2026",
+      "day_change": "+0.37%",
+      "range_low": 470.75,
+      "range_high": 476,
+      "hinglish": "**CBOT (Chicago Board of Trade — अमेरिका का दुनिया का सबसे बड़ा मक्का बाज़ार) आज:** जुलाई 2026 कॉन्ट्रैक्ट 473 cents/bushel (+0.37%)। CBOT सोमवार को Memorial Day (अमेरिकी छुट्टी) पर बंद था, आज फिर खुला।\n\n**गोदाम संचालक के लिए:** Import parity price (आयात करने पर जो दाम पड़ेगा) = ₹2,691/क्विंटल (CBOT + 50% import duty + freight)। आपका पूर्णिया का माल ₹2,032 = import से ₹659 सस्ता। यानी कोई भी भारतीय खरीदार आयात नहीं करेगा जब देसी माल इतना सस्ता है। यह आपके स्टॉक के लिए एक मज़बूत floor (न्यूनतम सुरक्षा) है।"
+    },
+    "msp": {
+      "value": 2400,
+      "msp_gap": -368,
+      "msp_gap_pct": -15.33,
+      "hinglish": "**MSP (Minimum Support Price — सरकार का तय न्यूनतम दाम = ₹2,400/क्विंटल):** आज का मंडी दाम ₹2,032 = MSP से ₹368 (15.33%) नीचे। सरकार खुद खरीद नहीं कर रही है।\n\n**गोदाम संचालक के लिए:** MSP आपकी लागत नहीं है, आपकी खरीद कीमत ₹1,850 है। इसलिए ₹2,032 पर बेचने पर आप मुनाफे में हैं। लेकिन यह याद रहे — MSP gap का मतलब है किसान distress selling कर रहा है, जिससे मंडी में दाम दबे हुए हैं।"
+    },
+    "crude_oil": {
+      "value_usd_per_barrel": 97.74,
+      "benchmark": "Brent",
+      "day_change": "+0.50%",
+      "week_change": "-6.0%",
+      "hinglish": "**Brent Crude Oil: $97.74/barrel (26 मई 2026):** कल (25 मई) Brent 6% गिरकर $98 से नीचे आया — ईरान-अमेरिका शांति वार्ता की उम्मीद से। आज थोड़ा +0.50% ऊपर है।\n\n**गोदाम संचालक के लिए:** यह सबसे बड़ा bearish risk है आपके स्टॉक के लिए। $100 से नीचे का crude = ethanol की urgency कम = डिस्टिलरीज़ मक्का की खरीद धीमी करेंगी = दाम दबाव। जब crude $110 था तब डिस्टिलरीज़ हर हाल में खरीदती थीं। अब $97 पर उनके पास विकल्प बन रहे हैं। यह आपके holding strategy के लिए एक महत्वपूर्ण नकारात्मक संकेत है।"
+    },
+    "warehouse_economics": {
+      "assumed_procurement_cost": 1850,
+      "daily_carry_cost": 22,
+      "breakeven_price_1month": 1872,
+      "breakeven_price_2month": 1894,
+      "breakeven_price_3month": 1916,
+      "indore_bihar_gap": -200,
+      "import_parity_price": 2691,
+      "domestic_import_gap": -659,
+      "explanation": "**गोदाम की अर्थव्यवस्था:** खरीद कीमत ₹1,850 (default मान) + हर महीने ₹22/क्विंटल carrying cost (₹15-20 bank CC ब्याज + ₹2-4 गोदाम किराया + ₹1-2 fumigation/बीमा = ₹22/माह) = 1 महीने का break-even ₹1,872, 3 महीने का break-even ₹1,916। आज का पूर्णिया दाम ₹2,032 इन सभी break-evens से ऊपर है — यानी अभी भी मुनाफे में हो।\n\nलेकिन TREND नकारात्मक है: रबी टेपरिंग में रोज़ ₹3-8 की गिरावट + crude oil की गिरावट + NCDEX Sell सिग्नल। इंदौर (MP) का माल ₹1,730 है जो बिहार के औसत से ₹200 सस्ता है — इंदौर से Bihar अर्बिट्राज लाभकारी नहीं। Import parity ₹2,691 = देसी माल import से ₹659 सस्ता है = किसी भी भारतीय खरीदार के लिए import का कोई मतलब नहीं = आपके stock का एक मज़बूत price floor।\n\n**अभी का net P&L:** ₹2,032 − ₹1,850 − ₹66 (3 महीने की carrying cost) = ₹116/क्विंटल ग्रॉस। 1 लाख क्विंटल = ₹1.16 करोड़ का unrealized profit। इसे अभी lock करो — हर दिन जाने पर दाम और carrying cost दोनों आपका मुनाफा खाते हैं।"
+    },
+    "unit": "INR/quintal"
+  },
+  "prior_day_reference": {
+    "date": "2026-05-24",
+    "purnea_price": 2037,
+    "confidence": 55,
+    "sentiment": "neutral",
+    "delta_purnea": -5,
+    "consecutive_flat_days": 0,
+    "note": "24 मई (रविवार) के बाद आज 26 मई (मंगलवार) को पूर्णिया का दाम ₹2,037 से ₹2,032 पर आया — ₹5 की मामूली गिरावट। रबी टेपरिंग फेज़ में यह सामान्य है। Confidence 55% से 60% हुआ — ईरान और crude oil की ताज़ी खबरों से market direction स्पष्ट हुई। NCDEX Sell सिग्नल बना हुआ है।"
+  },
+  "live_news_raw": "**26 मई 2026 — गोदाम संचालक रिपोर्ट: मंगलवार**\n\n**आज की सबसे बड़ी खबर — ईरान शांति वार्ता और Crude Oil:**\nकल (25 मई) Brent कच्चा तेल $97.74 तक गिर गया — ईरान-अमेरिका के बीच peace deal की बढ़ती उम्मीद से। Strait of Hormuz खुलने की संभावना बन रही है। अगर deal हो गई, crude और गिरेगा — ethanol की urgency घटेगी — डिस्टिलरीज़ की मक्का खरीद धीमी होगी। यह आपके गोदाम stock के लिए सबसे बड़ा ख़तरा है।\n\n**पूर्णिया का आज का दाम:**\nपूर्णिया मंडी में मक्का ₹2,032/क्विंटल है — 24 मई के ₹2,037 से ₹5 नीचे। रबी arrivals tapering (धीरे-धीरे कम होना) जारी है — मंडी में माल आना कम हो रहा है। बिहार औसत ₹1,930। Samastipur ₹2,048।\n\n**NCDEX की चेतावनी:**\nNCDEX (National Commodity and Derivatives Exchange) जून 2026 कॉन्ट्रैक्ट ₹1,907 पर है — स्पॉट ₹2,032 से ₹125 नीचे! यह backwardation (जब futures spot से नीचे हो) की स्थिति बताती है कि professional traders को विश्वास है दाम गिरेंगे। यह 2-3 हफ्ते पुराना Sell signal है और अभी तक बना हुआ है।\n\n**CBOT और Brazil:**\nCBOT ZCN26 आज 473 cents/bushel (+0.37%)। Brazil की Conab estimate 139.6 MMT vs USDA estimate 133.7 MMT — यह 5.9 MMT का gap बताता है कि 11 जून की अगली WASDE में USDA Brazil estimate बढ़ाएगा। इससे global corn surplus बढ़ेगा, India में import pressure बढ़ेगा, और देसी दामों पर downward दबाव आएगा।\n\n**E20 और Ethanol Policy:**\nE20 mandate (20% ethanol blending) 1 अप्रैल 2026 से active है। BIS ने 15 मई को E22-E30 standards notify किए। लेकिन एक important fact: भारत में ethanol production capacity 17,760 crore litre है जबकि E20 की demand सिर्फ 10,500 crore litre — यानी supply surplus है। Distilleries के पास ethanol storage भर रहा है, वे मक्का नई खरीद में cautious हो रही हैं।\n\n**DDGS जोखिम:**\nभारत-अमेरिका interim trade deal (7 फरवरी 2026) में 5 लाख टन DDGS (Distillers Dried Grains with Solubles — मक्का से ethanol बनाने के बाद बचा एक protein-rich पशु-चारा) को zero import duty पर allow किया गया। Non-GMO DDGS ही आ सकती है। FSSAI का GM clearance अभी pending है। यह poultry sector में मक्का की माँग को 3-5% कम कर सकता है।\n\n**Bihar में लू और Quality Risk:**\nIMD ने आज (26 मई) बिहार में severe heatwave का Yellow Alert जारी किया है — पूर्णिया क्षेत्र में 43-45°C। साथ ही thunderstorm की भी चेतावनी है जो 26-27 मई को राहत दे सकती है। 40°C+ तापमान में stored maize में aflatoxin (एक ज़हरीली फंगस जो मक्के की quality खराब करती है) का खतरा बहुत ज़्यादा है। अगर गोदाम में moisture check और fumigation नहीं हुई, तो quality discount 15-20% तक हो सकता है।\n\n**गोदाम संचालक के लिए आज की तीन Priority Actions:**\n1. **अभी बेचो — 40-50% माल:** दाम अभी ₹2,025+ है, NCDEX Sell signal है, crude गिर रहा है। ₹1,850 खरीद + ₹66 carrying (3 माह) = break-even ₹1,916। ₹2,025 पर बेचने पर net profit ₹109/क्विंटल। 1 लाख क्विंटल = ₹1.09 करोड़।\n2. **Quality Check — आज ही:** गोदाम में जाओ, moisture meter से check करो। 14% से ज़्यादा moisture मिले तो emergency drying करो। Aflatoxin test भी करवाओ अगर माल 3+ महीने से रखा है।\n3. **Distillery advance deal:** बाकी 35-40% माल के लिए पूर्णिया/Bihar area की distillery से July-August delivery का advance contract ₹2,050-2,100 पर sign करने की कोशिश करो।\n\n**आज NCDEX hedge क्यों नहीं:** NCDEX June futures ₹1,907 < spot ₹2,032। Futures पर hedge करने का मतलब होगा अभी ₹1,907 पर बेचना जबकि spot में ₹2,032 मिल रहा है। यह ₹125/क्विंटल का सीधा नुकसान होगा। इसलिए NCDEX hedge नहीं — spot selling ही सही strategy है।",
+  "news_items": [
+    {
+      "id": 1,
+      "title": "NCDEX जून फ्यूचर्स ₹1,907 — स्पॉट से ₹125 नीचे — Sell सिग्नल — Backwardation की स्थिति",
+      "date": "2026-05-26",
+      "category": "NCDEX फ्यूचर्स और हेजिंग — गोदाम संचालक के लिए चेतावनी",
+      "impact": "down",
+      "severity": "high",
+      "explanation": "**क्या हुआ:** NCDEX (National Commodity and Derivatives Exchange — दिल्ली का वह बड़ा बाज़ार जहाँ commodity के भविष्य के दाम तय होते हैं) का जून 2026 मक्का कॉन्ट्रैक्ट ₹1,907 पर है। यह पूर्णिया के spot price ₹2,032 से ₹125 नीचे है। Sell सिग्नल active है। यह backwardation की स्थिति है — आमतौर पर futures spot से ऊपर होते हैं; जब नीचे हों, तो बाज़ार मंदी की घोषणा कर रहा होता है।\n\n**इसका मतलब क्या है:** Professional traders और hedge funds सब मिलकर कह रहे हैं — दाम गिरेंगे। जून 20 तक (कॉन्ट्रैक्ट expire होने तक) spot और futures का gap बंद होगा। यह gap बंद होने का मतलब: या तो futures ₹1,907 से ऊपर जाएगा (unlikely given Sell signal), या spot ₹2,032 से नीचे ₹1,900-1,950 तक गिरेगा।\n\n**आपके stored माल पर असर:** अगले 25 दिनों (मई 26 से जून 20) में पूर्णिया spot ₹80-130 गिर सकता है। 1 लाख क्विंटल holding के लिए यह ₹80 लाख से ₹1.30 करोड़ तक का unrealized profit कम होना है। अभी ₹2,032 पर net profit ₹116/क्विंटल है — 15 दिन बाद ₹2,000 पर net profit ₹84/क्विंटल रह जाएगा।\n\n**गोदाम संचालक के लिए काम:**\n- अगर stock hold कर रहे हो: 40% माल आज-कल में बेचो ₹2,025+ पर — ₹109+ net profit lock करो।\n- अगर और माल खरीदना है: अभी मत खरीदो — NCDEX Sell signal active है।\n- Hedge option: NCDEX पर hedge मत करो — futures spot से नीचे है, hedge करने पर ₹125/क्विंटल तुरंत नुकसान होगा।",
+      "price_effect": -80
+    },
+    {
+      "id": 2,
+      "title": "बिहार रबी मक्का arrivals tapering — मंडी में माल कम हो रहा — लेकिन crude गिरने से दाम दबाव बना",
+      "date": "2026-05-26",
+      "category": "रबी आवक स्थिति — गोदाम का sell window",
+      "impact": "neutral",
+      "severity": "medium",
+      "explanation": "**क्या हुआ:** बिहार में रबी मक्का arrivals tapering phase (15 मई से 30 जून का वह दौर जब किसान का माल धीरे-धीरे कम होने लगता है) में है। पूर्णिया, खगड़िया, बेगूसराय, समस्तीपुर APMCs में दैनिक आवक घट रही है। अप्रैल 5-25 का peak arrivals दौर बीत चुका है। Purnea का दाम ₹2,032 रबी season की तुलना में stable है।\n\n**इसका मतलब क्या है:** Tapering = कम सप्लाई = दाम support। लेकिन crude oil गिरना और ethanol surplus (17,760 crore litre production capacity vs 10,500 crore litre demand) के कारण distillery buyers का उत्साह कम है। दाम का support seasonal है, fundamental demand support कमज़ोर हो रहा है। रोज़ ₹3-8 की मामूली गिरावट का trend जारी है।\n\n**आपके stored माल पर असर:** Tapering arrivals अगले 4-6 हफ्ते में और माल कम करेगा — यह दाम को ₹1,950 से ज़्यादा नीचे जाने से रोकेगा। लेकिन ₹2,032 से ₹1,970-1,990 की range में आना likely है। 1 लाख क्विंटल के लिए ₹42-62 प्रति क्विंटल कम होना = ₹42-62 लाख का फर्क।\n\n**गोदाम संचालक के लिए काम:**\n- अगर stock hold कर रहे हो: इस tapering window को बेचने के लिए use करो — दाम अभी support में है।\n- अगर और खरीदना है: थोड़ा-थोड़ा खरीद सकते हो सिर्फ distillery advance deal के लिए, spot trading नहीं।\n- Hedge option: NCDEX hedge नहीं (futures नीचे है); distillery से ₹2,050 का forward contract negotiate करो।",
+      "price_effect": -25
+    },
+    {
+      "id": 3,
+      "title": "E20 mandate 1 अप्रैल से active — BIS ने E22-E30 standards notify किए — Ethanol surplus की चेतावनी",
+      "date": "2026-05-19",
+      "category": "E20/E30 एथेनॉल नीति — डिस्टिलरी माँग",
+      "impact": "neutral",
+      "severity": "medium",
+      "explanation": "**क्या हुआ:** E20 mandate (20% ethanol blended petrol) 1 अप्रैल 2026 से पूरे भारत में compulsory है। BIS (Bureau of Indian Standards) ने 15 मई को E22, E25, E27, E30 के standards notify किए। E20 achieve करने के बाद अब E30 का रास्ता खुल गया है। लेकिन एक महत्वपूर्ण तथ्य: India में ethanol production capacity 17,760 crore litre है जबकि E20 की माँग सिर्फ 10,500 crore litre — 7,260 crore litre का surplus है।\n\n**इसका मतलब क्या है:** E20 active है तो distilleries ज़रूर चल रही हैं और मक्का खरीद रही हैं। E30 का path open होना long-term के लिए bullish है। लेकिन short-term में ethanol surplus होने से distilleries के पास ethanol storage भरा है — वे नई मक्का खरीद में सतर्क हैं। यह एक mixed (neutrals) factor है।\n\n**आपके stored माल पर असर:** Distilleries का एक steady buyer base बना हुआ है — यह आपका primary exit route है। लेकिन वे अभी aggressive खरीद नहीं कर रही। ₹2,050-2,100 का advance deal possible है July-August delivery के लिए। Crude oil गिरने से distillery economics थोड़ा कमज़ोर हुआ है।\n\n**गोदाम संचालक के लिए काम:**\n- अगर stock hold कर रहे हो: पूर्णिया/Bihar के 5-10 top distilleries को contact करो July delivery के लिए ₹2,050-2,080 का deal negotiate करो।\n- अगर और खरीदना है: Distillery forward deal मिले तभी खरीदो।\n- Hedge option: NCDEX नहीं, distillery direct deal ही best hedge है।",
+      "price_effect": 10
+    },
+    {
+      "id": 4,
+      "title": "CBOT 473 cents/bushel — Brazil Conab 139.6 MMT vs USDA 133.7 MMT — 11 जून WASDE में bearish surprise संभव",
+      "date": "2026-05-26",
+      "category": "International CBOT/Brazil/WASDE — Import parity analysis",
+      "impact": "down",
+      "severity": "medium",
+      "explanation": "**क्या हुआ:** CBOT ZCN26 (जुलाई 2026 अमेरिकी corn futures) आज 473 cents/bushel (+0.37%)। Brazil की Conab (Brazil की सरकारी crop estimation agency) का estimate 139.6 MMT है जबकि USDA (अमेरिकी कृषि विभाग) का May WASDE (World Agricultural Supply and Demand Estimates — दुनिया की मक्का supply-demand की मासिक रिपोर्ट) estimate 133.7 MMT है। यह 5.9 MMT का बड़ा अंतर है।\n\n**इसका मतलब क्या है:** 11 जून को अगली WASDE आएगी जिसमें USDA Brazil estimate को 133.7 से बढ़ाकर 137-139 MMT करने की उम्मीद है। ऐसा होने पर global ending stocks ₹296+ MMT हो जाएंगे — जो bearish है। CBOT गिरेगा, import parity कम होगा, देसी मक्का पर pressure आएगा।\n\n**आपके stored माल पर असर:** Import parity अभी ₹2,691 है — देसी माल ₹659 सस्ता। 11 जून WASDE bearish होने पर import parity ₹2,550-2,600 तक गिर सकता है। इससे देसी दाम पर extra ₹30-50 का downward pressure आएगा। 1 लाख क्विंटल के लिए ₹30-50 लाख का अतिरिक्त जोखिम।\n\n**गोदाम संचालक के लिए काम:**\n- अगर stock hold कर रहे हो: 11 जून से पहले 50-60% माल ज़रूर बेच दो।\n- अगर और खरीदना है: 11 जून के बाद देखो — अगर WASDE bearish हो तो दाम कम मिलेंगे।\n- Hedge option: NCDEX hedge नहीं (spot > futures); spot selling अभी ही करो।",
+      "price_effect": -40
+    },
+    {
+      "id": 5,
+      "title": "India-US DDGS deal — 5 लाख टन zero duty — Non-GMO clause — FSSAI GM clearance pending",
+      "date": "2026-02-07",
+      "category": "India-US DDGS व्यापार — पोल्ट्री माँग पर असर",
+      "impact": "down",
+      "severity": "medium",
+      "explanation": "**क्या हुआ:** भारत-अमेरिका interim trade deal (7 फरवरी 2026) में 5 लाख टन DDGS (Distillers Dried Grains with Solubles — मक्का से ethanol बनाने के बाद बचा protein-rich पशु चारा) को zero import duty पर allow किया गया। शर्त: केवल Non-LMO (Non-Genetically Modified Organism — गैर-आनुवंशिक रूप से संशोधित) DDGS ही आ सकती है। FSSAI (Food Safety and Standards Authority of India) का GM clearance अभी pending है।\n\n**इसका मतलब क्या है:** 5 लाख टन DDGS = भारत की total feed demand का लगभग 1%। यह छोटी मात्रा है। लेकिन इसका psychological असर है — poultry industry को अब एक सस्ता विकल्प मिल रहा है। Non-GMO DDGS की कीमत मक्का से 15-20% सस्ती पड़ती है। यदि FSSAI ने GM clearance दे दी, तो US से GM corn-based DDGS आएगी जो और सस्ती होगी — यह पोल्ट्री की मक्का माँग को 20-25% तक कम कर सकती है।\n\n**आपके stored माल पर असर:** अभी immediate जोखिम कम है क्योंकि FSSAI GM approval pending है और volume limit 5 लाख टन है। लेकिन यह watch list में रखो। अगर GM approval आया तो तुरंत 30-40% माल बेच दो। Distillery buyers पर focus करो — उनके लिए DDGS substitute नहीं है।\n\n**गोदाम संचालक के लिए काम:**\n- अगर stock hold कर रहे हो: FSSAI GM news track करो — approval आते ही jaldi becho।\n- अगर और खरीदना है: DDGS clarity आने तक wait करो।\n- Hedge option: Distillery buyers को prioritize करो, poultry buyers से पहले deal करो।",
+      "price_effect": -20
+    },
+    {
+      "id": 6,
+      "title": "IMD Bihar: 26 मई को Severe Heatwave Alert — 45°C+ — Thunderstorm 26-27 मई — Quality Risk HIGH",
+      "date": "2026-05-26",
+      "category": "IMD मौसम — Storage Quality Risk",
+      "impact": "down",
+      "severity": "high",
+      "explanation": "**क्या हुआ:** IMD (India Meteorological Department) ने आज 26 मई को बिहार के लिए severe heatwave का Yellow Alert जारी किया है। दिल्ली, UP, बिहार, झारखंड में 45-47°C तापमान है। पूर्णिया क्षेत्र में 26-27 मई को thunderstorm भी possible है। बिहार में 21 मई से 26 मई तक लगातार 40°C+ गर्मी है। IMD ने मई 26 के बाद 1-3°C की राहत का अनुमान लगाया है।\n\n**इसका मतलब क्या है:** 40°C+ तापमान में stored maize में aflatoxin (एक ज़हरीला mold जो warm और humid conditions में बढ़ता है) का खतरा बहुत ज़्यादा होता है। अगर गोदाम में moisture 14% से ज़्यादा है, तो 3-4 दिन की गर्मी में फंगस फैल सकती है। Thunderstorm से गोदाम में नमी का खतरा भी है।\n\n**आपके stored माल पर असर:** Quality कम होने पर ₹100-200/क्विंटल का discount मिलेगा। ₹2,032 का दाम ₹1,850 तक गिर सकता है अगर quality problem हो। 1 लाख क्विंटल के लिए quality loss = ₹1-2 करोड़ का नुकसान।\n\n**गोदाम संचालक के लिए काम:**\n- अगर stock hold कर रहे हो: आज ही गोदाम inspect करो — moisture meter से check करो; 14% से ऊपर हो तो emergency drying; fumigation schedule check करो।\n- अगर और खरीदना है: आने वाले माल का moisture level ज़रूर test करो।\n- Hedge option: Quality risk के कारण urgency है — 40% माल अगले 5-7 दिनों में बेचो।",
+      "price_effect": -50
+    },
+    {
+      "id": 7,
+      "title": "ईरान-अमेरिका Peace Deal वार्ता — Brent Crude $97.74 — 6% साप्ताहिक गिरावट — Ethanol urgency घटी",
+      "date": "2026-05-26",
+      "category": "Geopolitical/Crude Oil — Ethanol distillery demand पर असर",
+      "impact": "down",
+      "severity": "high",
+      "explanation": "**क्या हुआ:** 25 मई को Brent crude oil 6% गिरकर $97.74 पर आ गया — कारण: ईरान-अमेरिका के बीच Pakistan की मध्यस्थता से शांति वार्ता progress कर रही है। Strait of Hormuz (ईरान और Oman के बीच का संकरा समुद्री रास्ता जहाँ से दुनिया का 20% तेल गुज़रता है) खुलने की उम्मीद है। US President Trump ने कहा वार्ता अच्छी चल रही है। आज crude थोड़ा +0.50% ऊपर है लेकिन weekly trend -6% नीचे है।\n\n**इसका मतलब क्या है:** Crude $100 से नीचे आने का मतलब है — भारत में ethanol की urgency कम होगी। जब crude $110+ था, तब distilleries को हर कीमत पर मक्का चाहिए था। $95-98 पर distilleries थोड़ा wait-and-see approach लेती हैं। अगर deal हो गई और crude $80-85 गया, तो ethanol blending की economic justification कम होगी।\n\n**आपके stored माल पर असर:** अगर crude $85 से नीचे गया, तो distillery मक्का demand में 10-15% की कमी संभव है। यह ₹50-80/क्विंटल का downward pressure ला सकता है। 1 लाख क्विंटल के लिए ₹50-80 लाख का अतिरिक्त जोखिम।\n\n**गोदाम संचालक के लिए काम:**\n- अगर stock hold कर रहे हो: Iran deal के updates daily track करो। Deal के करीब आते दिखे तो तुरंत 50-60% बेचो।\n- अगर और खरीदना है: Crude के uncertain दौर में नई खरीद बहुत सावधानी से करो।\n- Hedge option: NCDEX hedge नहीं; distillery advance deal अभी lock करो।",
+      "price_effect": -60
+    },
+    {
+      "id": 8,
+      "title": "MSP ₹2,400 vs मंडी ₹2,032 — ₹368 का अंतर — Warehouse Receipt (WR) financing का मूल्यांकन",
+      "date": "2026-05-26",
+      "category": "MSP Gap और Warehouse Financing",
+      "impact": "neutral",
+      "severity": "medium",
+      "explanation": "**क्या हुआ:** MSP (Minimum Support Price — सरकार का तय न्यूनतम दाम) 2025-26 के लिए ₹2,400/क्विंटल है। आज मंडी दाम ₹2,032 = MSP से ₹368 (15.33%) नीचे। सरकार खुद मक्का की procurement नहीं कर रही। FICCI India Maize Summit 2026 (15 मई) में इस gap का ज़िक्र हुआ।\n\n**इसका मतलब क्या है:** MSP gap का मतलब है किसान distress में बेच रहे हैं — इससे मंडी में दाम दबे रहेंगे। लेकिन यह आपकी लागत से अलग है। आपकी खरीद ₹1,850 है और मंडी ₹2,032 है — आप MSP से नीचे हो लेकिन अपनी cost से ऊपर हो। WDRA (Warehousing Development and Regulatory Authority) registered warehouse में stock pledge करके CC limit (Cash Credit — बैंक का working capital loan) का renewal देखो।\n\n**आपके stored माल पर असर:** WDRA registered warehouse में stock की pledge value = ₹2,032 × 70-75% = ₹1,422-1,524/क्विंटल bank loan। अगर CC limit renew करनी हो तो यह option है। लेकिन ब्याज दर 12-15% (= ₹18-19/क्विंटल/माह) carrying cost में add होती है।\n\n**गोदाम संचालक के लिए काम:**\n- अगर stock hold कर रहे हो: Bank CC limit की review करो — ब्याज cost calculate करो। अगर CC rate 14%+ है तो जल्दी बेचना बेहतर है।\n- अगर और खरीदना है: WDRA warehouse receipt financing use करो — effective leverage से return बढ़ेगा।\n- Hedge option: WR financing के साथ distillery advance deal combination करो।",
+      "price_effect": -15
+    }
+  ],
+  "video_news": [
+    {
+      "id": 1,
+      "title": "गुलाबाग मंडी मक्का रेट आज 1 मई 2026 — ₹1,960 प्रति क्विंटल — बिहार का लाइव दाम",
+      "url": "https://www.youtube.com/shorts/FS_qLBVsFmI",
+      "source": "YouTube",
+      "channel": "Bihar Mandi Rates",
+      "published_at": "2026-05-01T09:00:00Z",
+      "published_display": "1 मई 2026",
+      "duration": "Short",
+      "thumbnail_url": "https://img.youtube.com/vi/FS_qLBVsFmI/mqdefault.jpg",
+      "description": "गुलाबाग मंडी (पूर्णिया के पास) में 1 मई को मक्का ₹1,960 था। आज 26 मई को ₹2,032 है — यानी 25 दिनों में ₹72 का उछाल। यह seasonal tapering का प्रमाण है। गोदाम संचालक के लिए reference: दाम stable-to-rising trend में था — अब NCDEX Sell signal से reversal का संकेत।",
+      "relevance": "high",
+      "tags": [
+        "गुलाबाग-मंडी",
+        "मक्का-दाम",
+        "बिहार",
+        "मई-2026",
+        "रेफरेंस-प्राइस"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "आज का मक्का मंडी भाव 4 अप्रैल 2026 — बिहार में दाम का हाल",
+      "url": "https://www.youtube.com/watch?v=1W_SFc8wIT0",
+      "source": "YouTube",
+      "channel": "Makka Ka Bhav",
+      "published_at": "2026-04-04T08:00:00Z",
+      "published_display": "4 अप्रैल 2026",
+      "duration": "N/A",
+      "thumbnail_url": "https://img.youtube.com/vi/1W_SFc8wIT0/mqdefault.jpg",
+      "description": "अप्रैल की शुरुआत में बिहार में मक्का का दाम रबी peak arrivals के कारण दबा हुआ था। उस समय का low दाम और आज का ₹2,032 का comparison seasonal trend को समझने में मदद करता है। गोदाम संचालक के लिए: यह data seasonal carry trade की validity prove करता है।",
+      "relevance": "high",
+      "tags": [
+        "बिहार",
+        "मक्का-भाव",
+        "अप्रैल-2026",
+        "seasonal-low",
+        "रेफरेंस"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "छिंदवाड़ा मंडी मक्का भाव — मध्यप्रदेश का लाइव दाम मई 2026",
+      "url": "https://www.youtube.com/watch?v=SGnVHPqmswE",
+      "source": "YouTube",
+      "channel": "Neemuch Mandi Bhav",
+      "published_at": "2026-05-10T09:00:00Z",
+      "published_display": "मई 2026",
+      "duration": "N/A",
+      "thumbnail_url": "https://img.youtube.com/vi/SGnVHPqmswE/mqdefault.jpg",
+      "description": "MP में मक्का ₹1,730 है — बिहार से ₹300 सस्ता। गोदाम संचालक के लिए: इंदौर-बिहार का ₹200 gap बताता है कि MP से Bihar अर्बिट्राज फायदेमंद नहीं। Bihar की distillery-grade मक्का को local buyers को ही बेचो। यह inter-market comparison analysis के लिए important है।",
+      "relevance": "medium",
+      "tags": [
+        "छिंदवाड़ा",
+        "MP",
+        "मक्का",
+        "अर्बिट्राज",
+        "दाम-तुलना"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "ईरान-अमेरिका युद्ध ceasefire वार्ता — Brent crude $97 — Strait of Hormuz — ethanol urgency पर असर",
+      "url": "https://tradingeconomics.com/commodity/crude-oil",
+      "source": "Web Article",
+      "channel": "Trading Economics",
+      "published_at": "2026-05-26T06:00:00Z",
+      "published_display": "26 मई 2026",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Brent crude आज $97.74/barrel है — कल 6% गिरा था ईरान peace deal की उम्मीद से। Pakistan की मध्यस्थता में US-Iran वार्ता progress कर रही है। गोदाम संचालक के लिए: crude ₹97 = distillery urgency कम = मक्का demand slightly weak। यह आपके stock के लिए bearish factor है।",
+      "relevance": "high",
+      "tags": [
+        "crude-oil",
+        "ईरान",
+        "distillery-demand",
+        "ethanol",
+        "bearish"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "NCDEX मक्का फ्यूचर्स Sell signal — June contract ₹1,907 — spot से ₹125 नीचे — backwardation",
+      "url": "https://in.investing.com/commodities/ncdex-maize-futures",
+      "source": "Web Article",
+      "channel": "Investing.com India",
+      "published_at": "2026-05-26T09:00:00Z",
+      "published_display": "26 मई 2026",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "NCDEX (National Commodity and Derivatives Exchange) पर मक्का जून 2026 कॉन्ट्रैक्ट ₹1,907 पर है — पूर्णिया spot ₹2,032 से ₹125 नीचे। यह Sell signal और backwardation की स्थिति गोदाम संचालकों के लिए अलार्म है। NCDEX hedge नहीं करो, spot selling करो।",
+      "relevance": "high",
+      "tags": [
+        "NCDEX",
+        "फ्यूचर्स",
+        "Sell-signal",
+        "backwardation",
+        "गोदाम-strategy"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "BIS ने E22 से E30 petrol का नियम 15 मई को तय किया — distillery buyers को long-term guarantee",
+      "url": "https://www.businesstoday.in/latest/economy/story/india-moves-closer-to-higher-ethanol-blends-as-bis-notifies-e22-e30-fuel-standards-532267-2026-05-19",
+      "source": "Web Article",
+      "channel": "Business Today",
+      "published_at": "2026-05-19T10:00:00Z",
+      "published_display": "19 मई 2026",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "BIS (Bureau of Indian Standards) ने E22/E25/E27/E30 petrol standards notify किए — India E30 (30% ethanol blending) की ओर बढ़ रहा है। AIDA (All India Distillers Association) ने support किया। गोदाम संचालक के लिए: long-term distillery demand guarantee मिली — लेकिन short-term में ethanol surplus है।",
+      "relevance": "high",
+      "tags": [
+        "BIS",
+        "E30",
+        "distillery",
+        "ethanol-policy",
+        "long-term"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "FICCI India Maize Summit 2026 — MSP ₹2,400 vs मंडी ₹1,950 — ₹450 gap — distress selling",
+      "url": "https://www.timestoday.co/2026/05/16/12th-edition-of-ficci-india-maize-summit-2026/",
+      "source": "Web Article",
+      "channel": "Times Today",
+      "published_at": "2026-05-15T12:00:00Z",
+      "published_display": "15 मई 2026",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "FICCI India Maize Summit 2026 में confirm हुआ कि MSP ₹2,400 है लेकिन मंडी में ₹1,950 चल रहा था। सरकार खुद खरीद नहीं कर रही। गोदाम संचालक के लिए: किसान की distress selling से आपको सस्ता माल मिला था — अब वही माल premium पर बेचने का वक्त है।",
+      "relevance": "medium",
+      "tags": [
+        "FICCI",
+        "MSP-gap",
+        "distress-selling",
+        "Summit-2026",
+        "मंडी-भाव"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "USDA WASDE May 2026 — Brazil corn 133.7 MMT (CONAB 139.6) — 11 जून अगली report — bearish risk",
+      "url": "https://igrownews.com/latest-wasde-report/",
+      "source": "Web Article",
+      "channel": "iGrow News",
+      "published_at": "2026-05-12T15:00:00Z",
+      "published_display": "12 मई 2026",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "USDA WASDE May 2026 में Brazil corn estimate 133.7 MMT है जबकि CONAB (Brazil की official crop agency) का estimate 139.6 MMT है। 5.9 MMT का यह gap 11 जून की WASDE में बढ़ेगा। Global ending stocks बढ़ेंगे — CBOT गिरेगा — India import parity कम होगी — देसी दाम पर दबाव।",
+      "relevance": "high",
+      "tags": [
+        "WASDE",
+        "Brazil",
+        "global-surplus",
+        "CONAB",
+        "import-parity"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "India-US DDGS Trade Deal — 5 लाख टन zero duty — poultry feed substitution risk — FSSAI GM pending",
+      "url": "https://www.outlookbusiness.com/economy-and-policy/indias-political-hot-potato-ddgs-under-the-india-us-deal-what-is-it-and-what-we-know",
+      "source": "Web Article",
+      "channel": "Outlook Business",
+      "published_at": "2026-02-09T09:00:00Z",
+      "published_display": "9 फरवरी 2026",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "India-US interim trade deal में 5 लाख टन DDGS को zero import duty पर allow किया गया। Non-GMO only। यह poultry feed में मक्का का substitute बन सकता है। FSSAI GM clearance pending है। गोदाम संचालक के लिए: distillery buyers को prioritize करो — poultry dependency घटाओ।",
+      "relevance": "high",
+      "tags": [
+        "DDGS",
+        "India-US",
+        "poultry-feed",
+        "FSSAI",
+        "substitute-risk"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "IMD Bihar Heatwave Alert 26 मई 2026 — 45°C+ — Thunderstorm warning — Aflatoxin risk HIGH",
+      "url": "https://hindi.asianetnews.com/news/imd-heatwave-forecast-47c-north-central-india-weather-update-40-cities-delhi-up-mp-cg-bihar-jharkhand-extreme-heat-today/articleshow-908z6l6",
+      "source": "Web Article",
+      "channel": "Asianet News Hindi",
+      "published_at": "2026-05-26T06:00:00Z",
+      "published_display": "26 मई 2026",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "IMD ने आज बिहार में severe heatwave Yellow Alert जारी किया। पटना, गया में 45-47°C। पूर्णिया क्षेत्र में thunderstorm possible। गोदाम संचालक के लिए: stored मक्का में aflatoxin का HIGH risk है। आज ही moisture check करो — 14%+ moisture हो तो emergency drying। Quality loss = ₹100-200/क्विंटल का discount।",
+      "relevance": "high",
+      "tags": [
+        "IMD",
+        "heatwave",
+        "Bihar",
+        "aflatoxin",
+        "quality-risk"
+      ]
+    },
+    {
+      "id": 11,
+      "title": "E20 Ethanol Mandate 1 अप्रैल से — India E20 achieve — maize feedstock #1 — surplus ethanol challenge",
+      "url": "https://www.indiabusinesstrade.in/blogs/pump-change-indias-e20-mandate-is-here-and-its-more-than-fuel/",
+      "source": "Web Article",
+      "channel": "India Business and Trade",
+      "published_at": "2026-04-11T08:00:00Z",
+      "published_display": "11 अप्रैल 2026",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "E20 mandate 1 अप्रैल से पूरे भारत में compulsory है। मक्का अब ethanol का #1 feedstock है (50% contribution)। 390+ distilleries चल रही हैं। लेकिन production capacity 17,760 crore litre vs demand 10,500 crore litre — ethanol surplus है। गोदाम संचालक के लिए: distillery buyers available हैं लेकिन aggressive नहीं।",
+      "relevance": "medium",
+      "tags": [
+        "E20",
+        "mandate",
+        "distillery",
+        "ethanol-surplus",
+        "feedstock"
+      ]
+    },
+    {
+      "id": 12,
+      "title": "पूर्णिया मंडी मक्का लाइव भाव — CommodityOnline — May 2026 data",
+      "url": "https://www.commodityonline.com/mandiprices/district/bihar/purnea/maize",
+      "source": "Web Article",
+      "channel": "CommodityOnline",
+      "published_at": "2026-05-17T08:00:00Z",
+      "published_display": "मई 2026",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "CommodityOnline पर पूर्णिया मक्का का live भाव ₹2,037.5 (range ₹1,950-₹2,100) दर्ज है। यह गोदाम संचालकों के लिए daily monitoring का सबसे reliable source है। रोज़ इस URL पर check करो — arrivals कम हों और दाम stable रहे तो hold strategy सही है।",
+      "relevance": "high",
+      "tags": [
+        "पूर्णिया",
+        "लाइव-भाव",
+        "CommodityOnline",
+        "monitoring",
+        "daily-check"
+      ]
+    }
+  ],
+  "market_sentiment": {
+    "overall": "moderately_bearish",
+    "emoji": "🔴🟡",
+    "confidence": 60,
+    "confidence_delta": 5,
+    "text": "26 मई 2026 को गोदाम संचालकों के लिए sentiment 'moderately_bearish' (मध्यम मंदी) है। NCDEX का ₹125 नीचे का Sell signal, ईरान peace deal से crude oil की गिरावट, Brazil crop surplus और quality risk HIGH — ये सब मिलकर एक clear sell signal दे रहे हैं। Confidence 60% है। अभी ₹2,032 पर बेचना profitable है — रुकने पर profit घटेगा।",
+    "summary": "पूर्णिया spot ₹2,032 पर है। ₹1,850 खरीद + ₹66 carrying cost (3 माह × ₹22/माह) = break-even ₹1,916। Net profit अभी ₹116/क्विंटल है। 1 लाख क्विंटल के मालिक के लिए यह ₹1.16 करोड़ का unrealized profit है। लेकिन 5 बड़े bearish factors एक साथ active हैं: (1) NCDEX Sell signal — futures ₹125 below spot; (2) crude oil $97.74 — ईरान deal से गिरावट; (3) Brazil CONAB 139.6 MMT vs USDA 133.7 MMT — 11 जून bearish WASDE का खतरा; (4) Severe heatwave — quality risk HIGH; (5) DDGS 5 lakh tonne quota active — poultry demand कम होने का डर। **Action: 40-50% माल अभी बेचो ₹2,025+ पर। 35% distillery advance deal ₹2,050-2,080 जुलाई delivery। 15% August lean season ₹2,100 target।**",
+    "scoring_breakdown": {
+      "factor1_arrival_status": -1,
+      "factor2_ncdex_signal": -1,
+      "factor3_futures_vs_spot": -2,
+      "factor4_ddgs_policy": -1,
+      "factor5_e30_approved": 1,
+      "factor6_msp_gap": -1,
+      "factor7_international": -1,
+      "factor8_imd_weather": 1,
+      "factor9_poultry_demand": -1,
+      "factor10_price_momentum": 0,
+      "factor11_crude_oil": 2,
+      "raw_total": -4,
+      "quality_risk_adjustment": -1,
+      "adjusted_total": -5,
+      "final_sentiment": "moderately_bearish"
+    }
+  },
+  "predictions_10_day": [
+    {
+      "day": 1,
+      "date": "2026-05-27",
+      "date_display": "27 मई",
+      "day_name": "बुधवार",
+      "price": 2027,
+      "change": -5,
+      "trend": "slight_down",
+      "cumulative_carry": 1,
+      "net_pnl_per_qtl": 176,
+      "action_signal": "BECHO",
+      "trend_text": "**दिन 1 (27 मई, बुधवार):** दाम ₹5 गिरकर ₹2,027। रबी tapering में -₹5 की मामूली गिरावट सामान्य है। आज तक की carrying cost: ₹1/क्विंटल। नेट P&L: ₹2,027 − ₹1,850 − ₹1 = ₹176/क्विंटल। 1 लाख क्विंटल पर = ₹1.76 करोड़। **BECHO — आज ही 30-40% माल बेचो ₹2,025+ पर। हर दिन रुकने पर दाम गिरेगा।**"
+    },
+    {
+      "day": 2,
+      "date": "2026-05-28",
+      "date_display": "28 मई",
+      "day_name": "गुरुवार",
+      "price": 2023,
+      "change": -4,
+      "trend": "slight_down",
+      "cumulative_carry": 1,
+      "net_pnl_per_qtl": 172,
+      "action_signal": "BECHO",
+      "trend_text": "**दिन 2 (28 मई, गुरुवार):** ₹4 और गिरकर ₹2,023। Cumulative carry: ₹1/क्विंटल। नेट P&L: ₹2,023 − ₹1,850 − ₹1 = ₹172/क्विंटल। **BECHO — अगर कल नहीं बेचे तो आज बेचो। NCDEX Sell signal और crude decline जारी है।**"
+    },
+    {
+      "day": 3,
+      "date": "2026-05-29",
+      "date_display": "29 मई",
+      "day_name": "शुक्रवार",
+      "price": 2018,
+      "change": -5,
+      "trend": "slight_down",
+      "cumulative_carry": 2,
+      "net_pnl_per_qtl": 166,
+      "action_signal": "BECHO",
+      "trend_text": "**दिन 3 (29 मई, शुक्रवार):** ₹5 और गिरकर ₹2,018। Cumulative carry: ₹2/क्विंटल। नेट P&L: ₹2,018 − ₹1,850 − ₹2 = ₹166/क्विंटल। **BECHO — हफ्ते के आखिरी दिन बेचना सही है। अगले हफ्ते WASDE news आ सकती है।**"
+    },
+    {
+      "day": 4,
+      "date": "2026-05-30",
+      "date_display": "30 मई",
+      "day_name": "शनिवार",
+      "price": 2016,
+      "change": -2,
+      "trend": "stable",
+      "cumulative_carry": 3,
+      "net_pnl_per_qtl": 163,
+      "action_signal": "BECHO",
+      "trend_text": "**दिन 4 (30 मई, शनिवार):** शनिवार को मंडी आधी active रहती है — बदलाव ₹2 (सामान्य का 50%)। दाम ₹2,016। Cumulative carry: ₹3/क्विंटल। नेट P&L: ₹163/क्विंटल। **BECHO — शनिवार को कम sellers होते हैं, थोड़ी negotiation power। जो बाकी है बेचो।**"
+    },
+    {
+      "day": 5,
+      "date": "2026-05-31",
+      "date_display": "31 मई",
+      "day_name": "रविवार",
+      "price": 2016,
+      "change": 0,
+      "trend": "stable",
+      "cumulative_carry": 4,
+      "net_pnl_per_qtl": 162,
+      "action_signal": "HOLD_KARO",
+      "trend_text": "**दिन 5 (31 मई, रविवार):** मंडी बंद। दाम unchanged ₹2,016। Cumulative carry: ₹4/क्विंटल। नेट P&L: ₹162/क्विंटल। **HOLD KARO (मंडी बंद है)। आज का काम: गोदाम inspection, moisture check, अगले हफ्ते की distillery calls plan करो।**"
+    },
+    {
+      "day": 6,
+      "date": "2026-06-01",
+      "date_display": "1 जून",
+      "day_name": "सोमवार",
+      "price": 2011,
+      "change": -5,
+      "trend": "slight_down",
+      "cumulative_carry": 4,
+      "net_pnl_per_qtl": 157,
+      "action_signal": "BECHO",
+      "trend_text": "**दिन 6 (1 जून, सोमवार):** ₹5 और गिरकर ₹2,011। Cumulative carry: ₹4/क्विंटल। नेट P&L: ₹2,011 − ₹1,850 − ₹4 = ₹157/क्विंटल। **BECHO — नया हफ्ता, नई deals। अगर अब तक 40% नहीं बेचा तो आज करो। Distillery advance deal भी confirm करो।**"
+    },
+    {
+      "day": 7,
+      "date": "2026-06-02",
+      "date_display": "2 जून",
+      "day_name": "मंगलवार",
+      "price": 2007,
+      "change": -4,
+      "trend": "slight_down",
+      "cumulative_carry": 5,
+      "net_pnl_per_qtl": 152,
+      "action_signal": "BECHO",
+      "trend_text": "**दिन 7 (2 जून, मंगलवार):** ₹4 गिरकर ₹2,007। ₹2,000 का psychological level करीब है। Cumulative carry: ₹5/क्विंटल। नेट P&L: ₹152/क्विंटल। **BECHO — ₹2,000 से नीचे जाने से पहले बेचो। यह अच्छा exit window है।**"
+    },
+    {
+      "day": 8,
+      "date": "2026-06-03",
+      "date_display": "3 जून",
+      "day_name": "बुधवार",
+      "price": 2002,
+      "change": -5,
+      "trend": "slight_down",
+      "cumulative_carry": 6,
+      "net_pnl_per_qtl": 146,
+      "action_signal": "BECHO",
+      "trend_text": "**दिन 8 (3 जून, बुधवार):** ₹5 गिरकर ₹2,002। ₹2,000 के बिल्कुल करीब। Cumulative carry: ₹6/क्विंटल। नेट P&L: ₹2,002 − ₹1,850 − ₹6 = ₹146/क्विंटल। **BECHO — यह last comfortable exit है। ₹2,000 से नीचे जाने पर panic selling का डर। अगर अब तक 60%+ नहीं बेचा तो urgency है।**"
+    },
+    {
+      "day": 9,
+      "date": "2026-06-04",
+      "date_display": "4 जून",
+      "day_name": "गुरुवार",
+      "price": 1998,
+      "change": -4,
+      "trend": "slight_down",
+      "cumulative_carry": 7,
+      "net_pnl_per_qtl": 141,
+      "action_signal": "BECHO",
+      "trend_text": "**दिन 9 (4 जून, गुरुवार):** ₹2,000 से नीचे ₹1,998 पर आया। Cumulative carry: ₹7/क्विंटल। नेट P&L: ₹1,998 − ₹1,850 − ₹7 = ₹141/क्विंटल। अभी भी ₹141 प्रॉफिट है लेकिन trend bearish। **BECHO — बाकी बचा माल बेचो। ₹2,000 टूटना psychological barrier है — buyers भी सतर्क हो जाते हैं।**"
+    },
+    {
+      "day": 10,
+      "date": "2026-06-05",
+      "date_display": "5 जून",
+      "day_name": "शुक्रवार",
+      "price": 1993,
+      "change": -5,
+      "trend": "slight_down",
+      "cumulative_carry": 7,
+      "net_pnl_per_qtl": 136,
+      "action_signal": "BECHO",
+      "trend_text": "**दिन 10 (5 जून, शुक्रवार):** ₹5 और गिरकर ₹1,993। Cumulative carry: ₹7/क्विंटल। नेट P&L: ₹1,993 − ₹1,850 − ₹7 = ₹136/क्विंटल। 10 दिनों में net profit ₹182 से ₹136 पर आया — ₹46 का erosion। **10-दिन का सारांश: आज (26 मई) ₹2,032 पर बेचने वाले ने ₹116/क्विंटल कमाया, 5 जून तक रुकने वाले ने ₹136 कमाया (अगर दाम इस range में रहा)। लेकिन ईरान deal, WASDE bearish surprise का जोखिम बाकी है।**"
+    }
+  ],
+  "recommendations": {
+    "holders": {
+      "action": "thoda_thoda_becho",
+      "action_text": "40-50% माल अभी बेचो ₹2,025+ पर — 35% distillery advance deal ₹2,050-2,080 — 15% August lean season",
+      "reason": "NCDEX Sell signal (futures ₹125 below spot), crude oil decline (Iran peace deal), Brazil surplus bearish, quality risk HIGH (severe heatwave), DDGS risk — ये सब एक साथ indicate कर रहे हैं कि अगले 2-4 हफ्तों में दाम ₹1,950-2,000 तक गिर सकता है। अभी ₹2,032 पर net profit ₹116/क्विंटल है — यह lock करने का वक्त है।",
+      "advice": "**Staged Selling Strategy:** \n\n**Stage 1 (अभी — 26-29 मई):** 40-50% माल spot market में ₹2,025+ पर बेचो। ₹1,850 खरीद + ₹66 carrying cost (3 माह) = break-even ₹1,916। ₹2,025 पर net profit = ₹109/क्विंटल। 50,000 क्विंटल बेचने पर = ₹54.5 लाख locked profit।\n\n**Stage 2 (अगले 2 हफ्ते):** 35% माल के लिए पूर्णिया/Bihar area की distilleries से July-August delivery का advance deal ₹2,050-2,080 पर lock करो। यह ₹134-164/क्विंटल net profit होगा।\n\n**Stage 3 (August-September):** बाकी 15% माल lean season (जब खरीफ आने से पहले supply कम होती है) में ₹2,100 target पर बेचो।\n\n**Quality Check — आज ज़रूरी:** गोदाम में moisture meter से check करो। 14%+ moisture हो तो emergency drying (₹5-8/क्विंटल cost)। Aflatoxin test करवाओ। Fumigation schedule verify करो।\n\n**NCDEX Hedge — क्यों नहीं:** Futures ₹1,907 = spot ₹2,032 से ₹125 नीचे। NCDEX पर sell करने पर ₹125/क्विंटल immediate loss। Spot selling या distillery direct deal ही best option है।",
+      "target_sell_price": 2025,
+      "target_date": "2026-05-29",
+      "hedge_recommendation": {
+        "action": "no_hedge",
+        "contract": "NCDEX June 2026 (MAIZEM2026)",
+        "lots_per_lakh_quintal": 0,
+        "hedge_price": 1907,
+        "hedge_margin_per_qtl": -125,
+        "explanation": "**NCDEX Hedge क्यों नहीं करना:** NCDEX June 2026 futures ₹1,907 पर है जबकि पूर्णिया spot ₹2,032 है। यह backwardation (उलटी बाज़ार स्थिति) है जहाँ futures spot से नीचे है। अगर NCDEX पर 1,000 lots (1 लाख क्विंटल के लिए) ₹1,907 पर sell करें, तो spot में ₹2,032 का माल ₹1,907 पर lock होगा — ₹125/क्विंटल का तुरंत नुकसान = 1 लाख क्विंटल पर ₹1.25 करोड़ का नुकसान। इसलिए NCDEX hedge बिल्कुल नहीं। इसके बजाय: spot selling करो या distillery advance deal ₹2,050+ पर करो।"
+      }
+    },
+    "buyers": {
+      "action": "ruko",
+      "action_text": "अभी मत खरीदो — NCDEX Sell signal और bearish trend — 11 जून WASDE के बाद evaluate करो",
+      "reason": "NCDEX का Sell signal, crude oil decline, Brazil surplus का खतरा, और quality risk HIGH — ये सब indicate करते हैं कि आने वाले 2-3 हफ्तों में दाम ₹1,950-2,000 तक गिर सकता है। अभी ₹2,032 पर खरीदना risky है।",
+      "advice": "**नई खरीद के लिए wait करो:**\n\nABHI खरीदने पर: ₹2,032 + ₹22/माह carrying = break-even ₹2,054 (1 महीने में), ₹2,098 (3 महीने में)। August lean season target ₹2,100 है — यह बहुत slim margin है।\n\n**11 जून WASDE के बाद:** अगर bearish हो तो दाम ₹1,950-2,000 आ सकता है। उस पर खरीदो: break-even 1 महीने में ₹1,972, 3 महीने में ₹2,016। August target ₹2,100 = net profit ₹84/क्विंटल — ज़्यादा comfortable।\n\n**Staged buying अगर ज़रूरी हो:** June first week में ₹2,000-2,010 पर थोड़ा-थोड़ा खरीद सकते हो अगर distillery advance deal confirmed हो।",
+      "target_buy_price": 2000,
+      "target_date": "2026-06-11"
+    }
+  },
+  "factors": {
+    "bearish": [
+      "**NCDEX Backwardation (उलटी बाज़ार स्थिति):** NCDEX June futures ₹1,907 = spot से ₹125 नीचे। यह market का सबसे clear bearish signal है। Professional traders को यकीन है अगले 3-4 हफ्तों में spot ₹1,900-1,950 पर आएगा। June 20 contract expiry से पहले spot और futures converge होंगे। 1 लाख क्विंटल के लिए potential ₹80-125 प्रति क्विंटल = ₹80 लाख से ₹1.25 करोड़ का जोखिम।",
+      "**Crude Oil Decline — Iran Peace Deal:** Brent crude $97.74 पर है — पिछले हफ्ते से 6% कम। ईरान-अमेरिका वार्ता progress कर रही है। Strait of Hormuz के खुलने की उम्मीद। अगर deal हुई और crude $80-85 गया: distillery economics कमज़ोर होगी, मक्का की माँग कम होगी। ₹50-80/क्विंटल का downward pressure संभव।",
+      "**Brazil CONAB vs USDA Gap — 11 जून Bearish Surprise:** CONAB का Brazil corn estimate 139.6 MMT है जबकि USDA ने May WASDE में 133.7 MMT माना। 5.9 MMT का यह अंतर 11 जून की अगली WASDE में बंद होगा — USDA Brazil estimate बढ़ाएगा। Global ending stocks ₹296+ MMT होंगे। CBOT गिरेगा, India import parity कम होगी।",
+      "**DDGS Trade Risk:** India-US deal में 5 लाख टन DDGS zero duty पर आ रही है। Non-GMO clause है लेकिन FSSAI का GM clearance pending है। Poultry sector (जो India का 30%+ मक्का consume करता है) को substitute मिल रहा है। अगर GM approved हुआ: 20-25% poultry demand loss = ₹50-100/क्विंटल का दाम गिरना।",
+      "**Quality Risk HIGH — Severe Heatwave:** Bihar में 45-47°C तापमान में stored mak­ka में aflatoxin (मक्के की quality खराब करने वाला ज़हरीला mold) का उच्च खतरा है। Quality कम होने पर ₹100-200/क्विंटल discount। Thunderstorm से moisture भी बढ़ सकती है।"
+    ],
+    "bullish": [
+      "**Import Parity Floor:** Import parity price ₹2,691/क्विंटल = देसी माल ₹659 सस्ता। कोई भी Indian buyer तब तक import नहीं करेगा जब तक देसी दाम ₹2,691 से कम हो। यह एक strong price floor है। CBOT के ₹473 cents और 50% import duty के साथ यह floor बना हुआ है।",
+      "**E20 Active + E30 Notified:** 1 अप्रैल से E20 mandate active है। 390+ distilleries चल रही हैं। BIS ने E30 standards notify किए। यह long-term structural demand guarantee है। August-September में distillery buying peak होगी।",
+      "**Rabi Tapering = Seasonal Support:** मंडी में माल कम हो रहा है। मौसमी demand-supply dynamics: आगे माल कम होगा और lean season में दाम थोड़ा recover होगा। यह ₹1,950 से ज़्यादा नीचे जाने से रोकेगा।",
+      "**Crude >$90 — Ethanol Still Relevant:** $97.74 का crude अभी भी $90+ है। इस स्तर पर ethanol blending economically relevant है। Distilleries बंद नहीं हैं — वे अभी भी चल रही हैं और मक्का खरीद रही हैं।"
+    ],
+    "neutral": [
+      "**USD/INR ₹96.50:** कमज़ोर रुपया = import महँगा = देसी stock valuable। लेकिन Indian rupee में ज़्यादा fluctuation नहीं — neutral factor।",
+      "**Bihar Rabi Production +15% YoY:** बिहार में 2025-26 रबी मक्का production पिछले साल से 15% ज़्यादा है। यह supply pressure का कारण है जो peak arrivals में था। अब tapering में यह factor neutral हो रहा है।"
+    ]
+  },
+  "data_sources": [
+    "CommodityOnline.com — पूर्णिया मक्का ₹2,037.5/क्विंटल (range ₹1,950-2,100) [अप्रैल-मई 2026]",
+    "CommodityOnline.com — Bihar maize average ₹1,936/quintal [मई 2026]",
+    "CommodityOnline.com — All India maize average ₹1,937.7/quintal [7 मई 2026]",
+    "CommodityMarketLive.com — Samastipur maize ₹2,050/quintal [मई 2026]",
+    "TradingEconomics.com — Brent crude $97.74/barrel (+0.50%) [26 मई 2026]",
+    "Yahoo Finance / Barchart — CBOT ZCN26 corn 473 cents/bushel (+0.37%) [26 मई 2026]",
+    "in.investing.com — NCDEX Maize June 2026 Sell signal, ~₹1,907 [मई 2026]",
+    "Asianet News Hindi — IMD Heatwave Alert Bihar 26 मई 2026, 45-47°C [26 मई 2026]",
+    "NewSX.com — Bihar heatwave Yellow Alert, Purnea thunderstorm warning [21-26 मई 2026]",
+    "TradingEconomics.com — Corn futures slipped to $4.70 after China deal details [20 मई 2026]",
+    "BusinessToday.in — BIS IS 19850:2026 E22/E25/E27/E30 standards notification [19 मई 2026]",
+    "dtnpf.com — May WASDE Brazil corn 133.7 MMT (CONAB 139.6 MMT); next WASDE June 11 [मई 2026]",
+    "Britannica.com — 2026 Iran war ceasefire status, Strait of Hormuz [26 मई 2026]",
+    "CNN.com — US Iran ceasefire live updates, US strikes on Iranian vessels [26 मई 2026]",
+    "OutlookBusiness.com — India-US DDGS deal: 5 lakh tonne zero duty, Non-GMO only [फरवरी 2026]",
+    "DownToEarth.org — India-US trade deal agricultural concessions [8 फरवरी 2026]",
+    "NewsGram.com — BIS E22-E30 fuel standards, ethanol blending update [21 मई 2026]",
+    "BWAutoWorld.com — E20 achieved, India maize #1 ethanol feedstock [फरवरी 2026]",
+    "indiabusinesstrade.in — E20 mandate April 1, 2026 active [अप्रैल 2026]",
+    "khaitanbioenergy.com — Ethanol surplus 17,760 ML capacity vs 10,500 ML E20 demand [मार्च 2026]",
+    "iGrain.in — Bihar rabi maize production +15% YoY [मार्च 2026]",
+    "AgriWatchBlog.com — Rabi maize season arrivals Bihar: sowing Oct-Dec, arrivals April-June",
+    "Wise.com — USD/INR ₹96.50 estimated [मई 2026]"
+  ],
+  "metadata": {
+    "report_version": "7.0_warehouse_operator_hindi_exhaustive",
+    "report_type": "warehouse_operator_daily",
+    "automation": "claude_web_search_multi_query",
+    "fetch_method": "claude",
+    "runtime": "claude_sonnet_4_6",
+    "research_date": "2026-05-26",
+    "confidence_score": 0.6,
+    "confidence_delta_from_prior": 5,
+    "sentiment": "moderately_bearish",
+    "key_difference_from_bulk_buyer_report": "यह report warehouse operator के perspective से है — जो पहले से मक्का खरीद चुका है और हर रोज़ carrying cost दे रहा है। मुख्य सवाल: HOLD करो या BECHO? Carrying cost calculator, break-even analysis, quality risk assessment, और NCDEX hedge analysis — सब इस perspective से है।",
+    "assumed_procurement_cost": 1850,
+    "daily_carry_cost": 22,
+    "breakeven_1m": 1872,
+    "breakeven_2m": 1894,
+    "breakeven_3m": 1916,
+    "warehouse_quality_risk": "high",
+    "urgency_flag": "HEDGE_ADVISED",
+    "ncdex_hedge_recommendation": "NCDEX पर hedge मत करो — futures ₹1,907 spot ₹2,032 से ₹125 नीचे है। Hedge करने पर ₹125/क्विंटल immediate नुकसान होगा। इसके बजाय: Spot selling ₹2,025+ पर करो या distillery से July delivery advance deal ₹2,050-2,080 lock करो।",
+    "ncdex_hedge_price": 1907,
+    "indore_bihar_arb_opportunity": "nahi",
+    "import_parity_price": 2691,
+    "domestic_import_gap": -659,
+    "purnea_price_today": 2032,
+    "bihar_avg_today": 1930,
+    "all_india_avg": 1938,
+    "ncdex_june_futures": 1907,
+    "ncdex_spot_gap": -125,
+    "rabi_arrival_status": "tapering — May 15 to June 30",
+    "optimal_sell_window": "26-29 मई 2026 (अगले 3-4 दिन) — 40-50% माल",
+    "crude_oil_usd": 97.74,
+    "inr_usd_rate": 96.5,
+    "brazil_usda_mmt": 133.7,
+    "brazil_conab_mmt": 139.6,
+    "wasde_next_release_date": "2026-06-11",
+    "ddgs_status": "quota_active_5lakh_tonne_zero_duty_non_gmo_only",
+    "e20_status": "active_since_april_1_2026",
+    "e30_standard": "notified_by_bis_may15_2026",
+    "ethanol_surplus": "17760_crore_litre_capacity_vs_10500_demand",
+    "cbot_zcn26_cents": 473,
+    "key_risks_to_watch": "4 बड़े जोखिम: (1) ईरान-अमेरिका peace deal — crude $85 से नीचे गया तो distillery demand में 10-15% कमी; (2) 11 जून WASDE — Brazil estimate 139 MMT हुआ तो CBOT गिरेगा, import parity कम होगी; (3) FSSAI GM DDGS clearance — poultry demand में 20-25% कमी संभव; (4) Quality risk — severe heatwave में aflatoxin से ₹100-200/क्विंटल quality loss। हर नए दिन इन सभी पर नज़र रखो।",
+    "step3_youtube_queries_executed": 10,
+    "step11_global_sweep_queries_executed": 20,
+    "video_news_count": 12,
+    "net_pnl_today_per_qtl": 116,
+    "net_pnl_today_1lakh_qtl_crore": 1.16,
+    "optimal_action_today": "40-50% माल अभी बेचो ₹2,025+ पर (₹109+/क्विंटल net profit); 35% distillery advance deal ₹2,050-2,080 July delivery; 15% August lean season ₹2,100 target",
+    "languages": [
+      "hindi"
+    ],
+    "model": "Claude",
+    "description": "26 मई 2026 (मंगलवार) — गोदाम संचालक रिपोर्ट v7.0। पूर्णिया स्पॉट ₹2,032 — NCDEX June ₹1,907 (₹125 नीचे, Sell signal)। Brent crude $97.74 (ईरान peace deal से -6% साप्ताहिक)। ₹1,850 खरीद + 3 माह carrying = break-even ₹1,916। Net P&L ₹116/क्विंटल — 1 लाख क्विंटल = ₹1.16 करोड़ unrealized profit। HEDGE_ADVISED। Quality risk HIGH (severe heatwave 45°C+)। 40-50% माल अभी बेचो, 35% distillery advance deal, 15% August lean season।"
+  }
+}

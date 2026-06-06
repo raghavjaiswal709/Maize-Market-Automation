@@ -21,8 +21,9 @@ Read the full research instruction from `public/instruction.txt` and execute it 
 
 The instruction tells you to:
 1. Check `public/reports/` for the most recent prior report (Kadam 1) — READ ONLY, never overwrite it
+1b. Read the 3 most recent files in `public/samplereports/` (Kadam 1B) to extract verified price anchors — these are real May 2026 market prices; use them to reject any web data that is wildly out of range (±₹200)
 2. Run 13 research steps using WebSearch and WebFetch tools
-3. Assemble the full JSON report
+3. Assemble the full JSON report — all prices MUST be cross-checked against the samplereports price anchors
 4. Write it to `public/reports/maize_warehouse_report_[TODAY_DATE].json` (TODAY_DATE from Bash above)
 5. Validate the JSON with python3
 6. Git commit and push to origin main

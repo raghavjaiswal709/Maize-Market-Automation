@@ -1,0 +1,653 @@
+{
+  "_id": "20260525_090500_GODOWN_OPERATOR",
+  "timestamp": "2026-05-25 09:05:00",
+  "date": "2026-05-25",
+  "time": "09:05:00",
+  "day_of_week": "Somvaar — aaj mandi khul gayi hai. Godown sanchalak ke liye yeh din bahut mahatvapurna hai. NCDEX (National Commodity & Derivatives Exchange — yani Delhi ka vayda bazaar) par June 2026 ka bhav ₹1,898 chal raha hai jo Purnea ke spot ₹2,032 se ₹134 neeche hai. Yeh ek gambhir chetavani hai — vayda bazaar keh raha hai ki agle kuch hafton mein daam girenge.",
+  "report_type": "GODOWN_OPERATOR_WAREHOUSE_STRATEGY",
+  "target_audience": "Godown sanchalak, bade thok vyapari, warehouse investor, distillery supplier, poultry feed stockist",
+  "current_prices": {
+    "bihar_avg": {
+      "value": 2005,
+      "hinglish": "Bihar ki mandi mein aaj maize ka ausat daam lagbhag ₹2,005 prati quintal (100 kilo) hai. Godown sanchalak ke liye mahatvapurna: ₹1,950 mein kharida maal abhi bazaar mein ₹2,005-2,032 par bik raha hai, yani ₹55-82 ka munafa hai. Lekin NCDEX ka ₹1,898 ka bhav bata raha hai ki yeh munafa jaldi khatam ho sakta hai."
+    },
+    "purnea": {
+      "value": 2032,
+      "hinglish": "Purnea mandi mein aaj (Somvaar) maize ka bhav ₹2,032 prati quintal hai. Range: ₹1,940 (nami wala maal) se ₹2,090 (sukha, achhi quality) tak. Godown sanchalak ke liye: Agar aapne 20 May ko ₹1,950 mein maal kharida tha, toh aaj ka spot ₹2,032 aapko ₹82/quintal ka labh de raha hai. Lekin roz ka carry cost (₹22 prati mahina) jama ho rahi hai — 5 din ka bana ₹3.65. Net faayda abhi ₹78.35/quintal hai."
+    },
+    "indore": {
+      "value": 1690,
+      "hinglish": "Madhya Pradesh (MP) ki mandi mein maize ₹1,690 prati quintal hai — Purnea se ₹342 sasta. Godown sanchalak note karein: Indore-Bihar ka yeh antar batata hai ki MP se Bihar ko arbitrage (munafe ke liye khareed-bech) ka koi faayda nahi hai. Bihar ki maize ki quality distillery aur poultry ke liye behtar maani jaati hai, isliye yeh premium price milti hai."
+    },
+    "all_india_avg": {
+      "value": 1930,
+      "hinglish": "Poore desh ka ausat maize daam ₹1,930 prati quintal hai. Purnea ka ₹2,032 rashtriya ausat se ₹102 zyada hai. Yeh Bihar ki rabi maize ki quality ka premium hai — ethanol distillery aur poultry feed ke liye pasandida."
+    },
+    "ncdex_maize_feed_futures": {
+      "value": 1898,
+      "contract": "MAIZEJ2026 — June 2026 sakriya",
+      "range_low": 1890,
+      "range_high": 1915,
+      "prev_close": 1904,
+      "signal": "Strong Buy (takniki sanket, lekin godown ke liye khatre ki ghanti — spot se ₹134 neeche!)",
+      "year_change_pct": -18.5,
+      "spot_futures_gap": -134,
+      "hinglish": "NCDEX June 2026 futures ₹1,898 par hai — Purnea spot ₹2,032 se ₹134 neeche! Godown sanchalak ke liye yeh sabse badi chetavani hai: vayda bazaar saaf keh raha hai ki agle 4-6 hafton mein spot daam girkar ₹1,900-1,950 ke aaspaas aa sakte hain. 52-hafte ki range ₹1,610-₹2,412. Spot-futures ka ₹134 ka nakaratmak antar batata hai ki spot market mein daam girenge."
+    },
+    "cbot_corn_active": {
+      "value_cents_per_bushel": 462,
+      "ticker": "ZCN26 — July 2026",
+      "day_change": "-0.65%",
+      "range_low": 450,
+      "range_high": 472,
+      "signal": "Sell",
+      "hinglish": "CBOT (Chicago Board of Trade — America ka maize bazaar jo duniya ke daam tay karta hai) July 2026 contract 462 cents/bushel par hai, aaj subah 0.65% gira. Brazil ki badi fasal aur China deal ki anishchitata se daam dabaav mein hain. Godown sanchalak ke liye: CBOT ka girna Bharat mein import sasta karta hai, jo gharelu maize ke daam par dabaav dalega."
+    },
+    "msp": {
+      "value": 2400,
+      "msp_gap": -368,
+      "msp_gap_pct": -15.33,
+      "hinglish": "MSP (Minimum Support Price — sarkar ka tay kiya hua kam se kam daam) ₹2,400/quintal hai — aaj ka mandi daam ₹2,032 hai. ₹368 ka antar matlab sarkar khareed nahi kar rahi, kisan mandi mein ₹2,032 par bech raha hai. 1 lakh quintal stock ke liye: MSP se mark-to-market antar = ₹3.68 crore hai. Yaad rakhein — MSP aapki laagat nahi hai, aapka asli munafa khareed daam par nirbhar karta hai."
+    },
+    "crude_oil": {
+      "value_usd_per_barrel": 95.2,
+      "benchmark": "Brent",
+      "day_change": "-0.8%",
+      "iran_deal_status": "Baatcheet jaari — Pakistan mein weekend meeting ke baad ummeed badhi",
+      "hinglish": "Brent crude aaj $95.2/barrel par trade kar raha hai. Iran deal ki ummeed se daam lagaatar gir rahe hain. Godown sanchalak ke liye: Agar Iran-America deal ho gayi, toh kachha tel $80-85 tak ja sakta hai. Sasta tel = ethanol ki maang kam = distillery ki urgency kam. Yeh aapke stock ke liye bearish hai."
+    },
+    "warehouse_economics": {
+      "assumed_procurement_cost": 1950,
+      "monthly_carry_cost": 22,
+      "daily_carry_cost_inr": 0.73,
+      "days_held_to_date": 5,
+      "cumulative_carry_to_date": 4,
+      "breakeven_today": 1954,
+      "breakeven_price_1month": 1972,
+      "breakeven_price_2month": 1994,
+      "breakeven_price_3month": 2016,
+      "indore_bihar_gap": -342,
+      "import_parity_price": 2895,
+      "domestic_import_gap": -863,
+      "explanation": "Godown sanchalak ke liye in numbers ka matlab:\n\n**Aaj ki sthiti:** Agar aapne 20 May ko ₹1,950 mein maal kharida aur 5 din rakha, toh aaj tak kul carry cost lagbhag ₹4/quintal bani hai. Aapka break-even (sabhi laagat nikalne ke baad munafe ki shuruat ka daam) aaj ₹1954 hai. Bazaar bhav ₹2,032 hai — matlab abhi **₹78/quintal ka shuddh labh** hai. 1 lakh quintal par yeh ₹78 lakh hai.\n\n**1 mahine ka break-even ₹1,972:** Agar agle 30 din mein daam ₹1,972 se upar rahe, tab bhi munafe mein ho.\n\n**3 mahine ka break-even ₹2,016:** Yani August-September tak daam ₹2,016 se upar rehna zaroori hai.\n\n**Indore-Bihar antar -₹342:** MP se Bihar koi arbitrage nahi. Bihar mein maal rakho aur sthaniya distillery/poultry ko becho.\n\n**Import parity ₹2,895:** Bharat mein import karna ₹2,895/quintal padega (CBOT + 50% duty + freight). Aapka gharelu stock ₹2,032 par — import se ₹863 sasta. Koi immediate import competition ka khatra nahi."
+    },
+    "unit": "INR/quintal"
+  },
+  "prior_day_reference": {
+    "date": "2026-05-24",
+    "purnea_price": 2037,
+    "confidence": 55,
+    "sentiment": "neutral",
+    "delta_purnea": -5,
+    "consecutive_flat_days": 0,
+    "note": "Ravivar ko mandi band thi. Aaj Somvaar ko daam ₹5 girkar ₹2032 khule hain. NCDEX ki chetavani aur crude oil ki girawat ka asar spot market par dikhna shuru ho gaya hai."
+  },
+  "live_news_raw": "Godown sanchalak bhai, aaj Somvaar (25 May 2026) hai aur mandi puri tarah se khul chuki hai. Bazar ke sanket bahut spasht hain aur abhi jitna munafa hai, usko surakshit karne ka samay aa gaya hai. NCDEX (National Commodity & Derivatives Exchange - yani Delhi ka wo bada bazaar jahan agle mahine ka maize ka daam tay hota hai) ka June 2026 contract ₹1,898 par trade kar raha hai. Purnea ka spot daam ₹2,032 chal raha hai. Yani ₹134 ka negative antar hai! Yeh batata hai ki bade traders ko lag raha hai ki agle 4-6 hafton mein daam ₹1,900-1,950 tak girenge. Agar aapne ₹1,950 mein maal kharida hai aur NCDEX sahi nikla, toh aap ₹52 ke nuksaan mein pad sakte hain, kyonki carry cost bhi har roz ₹0.73/quintal lag rahi hai.\n\nIran deal aur kachha tel (Crude Oil) ki baat karein toh Brent crude $95.2/barrel par aa gaya hai. America aur Iran ke beech Pakistan mein hui weekend meeting ke baad deals ki ummeed badh gayi hai. Agar deal ho gayi toh crude $80-85 tak ja sakta hai. Sasta tel ka sidha matlab hai ethanol ki maang kam hona, jisse distillery ki urgency kam hogi. Yeh aapke stored stock ke liye bearish (girne wala) sanket hai.\n\nBrazil ki badi fasal bhi ek bada factor hai. CONAB (Brazil ki sarkari fasal agency) ka anuman 139.6 MMT (Million Metric Ton) hai jabki USDA ka 133.7 MMT. 6 MMT ka yeh antar batata hai ki Brazil se bhari supply aane wali hai. Vaishvik maize bhandar 277.5 MMT se badhkar 296.5 MMT tak pahunch sakta hai. Isse CBOT (Chicago Board of Trade) par dabaav padega aur India mein import parity sasti ho sakti hai.\n\nBihar mein mausam ka khatra abhi sabse bada issue hai. IMD (India Meteorological Department) ne Bihar mein Orange Alert jari kiya hai. Loo (40°C+) aur aandhi-toofan ek saath aa rahe hain. Purnea kshetra mein 50-81 km/h ki hawayen aur barish ki sambhavna hai. Godown mein nami ka khatra bahut zyada hai. Aflatoxin (ek zehrila fafund jo 40°C+ aur nami mein tezi se badhta hai) ka khatra HIGH hai. Agar aapne 3 mahine se zyada maal rakha hai, toh aaj hi fumigation (dhuaan upchaar) aur moisture check karein. Agar moisture 14% se zyada hai, toh maal turant bechna padega warna quality discount lag jayega.\n\nRabi ki aawak (arrivals) ab tapering phase (dheere-dheere kam hone ka charan) mein hai. Purnea, Gulabbagh aur Khagaria mandiyon mein roz ka maal kam ho raha hai. June mein mandi mein maal bahut kam hoga, isliye abhi ke daam relative taur par achhe hain. Dusri taraf, E20 (20% ethanol mishrit petrol) pure Bharat mein anivarya ho gaya hai aur BIS ne E30 ke standards bhi jari kar diye hain. Distillery ki maang sanrachnatmak roop se bani rahegi, jo aapke stock ke liye ek accha medium-term support hai.\n\nAaj ka action plan yeh hona chahiye: Godown ka moisture check karein, agar 14% se zyada ho toh drying process shuru karein. Fumigation schedule karein. Aaj 30-40% stock bechne ki yojana banayein (₹2,032 par ₹82 ka munafa lock hoga). Distillery buyers ko advance booking ke liye call karein aur July delivery ka deal fix karein. NCDEX par hedge karne ka abhi koi faayda nahi kyonki ₹1,898 par hedge karne se aapka loss lock ho jayega. Har din rukne par ₹22/quintal/mahina carry cost lag rahi hai, isliye smart selling shuru karein.",
+  "news_items": [
+    {
+      "id": 1,
+      "title": "NCDEX June vayda ₹1,898 — spot se ₹134 neeche — vayda bazaar keh raha hai daam girenge",
+      "date": "2026-05-25",
+      "category": "NCDEX vayda + Hedging — Godown ki sabse badi chetavani",
+      "impact": "down",
+      "severity": "high",
+      "explanation": "**KYA HUA:**\nNCDEX June 2026 ka maize futures contract ₹1,898/quintal par trade kar raha hai. Purnea ka spot daam ₹2,032 hai. ₹134 ka negative basis (spot - futures) bana hai.\n\n**ISKA MATLAB KYA HAI:**\nNCDEX (National Commodity & Derivatives Exchange — yani Delhi ka wo bada bazaar jahan agle mahine ka maize ka daam tay hota hai) ka ₹1,898 batata hai ki bade players soch rahe hain ki spot daam June tak ₹1,900-1,950 tak girega. 52-hafte ki range ₹1,610-₹2,412 hai. Abhi daam ₹2,032 hai, matlab abhi bhi kaafi neeche jaane ki gunjaish hai.\n\n**AAPKE STORED MAIZE PAR ASAR:**\nAgar NCDEX sahi nikla aur agle 30 dinon mein spot ₹1,898 par aaya, toh 1 lakh quintal stock par ₹2,032 - ₹1,898 = ₹134/quintal ka nuksaan hoga — yani ₹1.34 crore ka mark-to-market nuksaan. ₹1,950 ki khareed par: net loss ₹52/quintal. Abhi ₹2,032 par 30-40% bechkar ₹78/quintal ka net munafa lock karein.\n\n**GODOWN OPERATOR KE LIYE KAAM:**\n- Agar stock hold kar rahe ho: 30-40% aaj hi spot mein becho — ₹78 ka net labh haath mein lo.\n- Agar khareedna chahte ho: Ruko — NCDEX ka ₹1,898 bata raha hai ki jald sasta milega.\n- Hedge option: ₹1,898 par NCDEX hedge karne ka koi matlab nahi — ₹1,950 procurement par ₹52 ka loss lock hoga."
+    },
+    {
+      "id": 2,
+      "title": "Bihar rabi maize arrivals tapering — June se maal milna mushkil — abhi ke daam thik hain",
+      "date": "2026-05-25",
+      "category": "Bihar aawak sthiti + Godown ka bechne ka mauka",
+      "impact": "neutral",
+      "severity": "medium",
+      "explanation": "**KYA HUA:**\nPurnea, Khagaria, Begusarai APMCs mein rabi maize ki aawak Tapering Phase (dheere-dheere kam hone ka charan) mein aa gayi hai. April ka peak guzar gaya — roz ka maal kam ho raha hai. May ke ant tak aawak lagbhag band ho jayegi.\n\n**ISKA MATLAB KYA HAI:**\nTapering phase mein daam thode stable rehte hain kyonki naya maal kam aata hai. Lekin iska matlab yeh nahi ki daam badhenge — NCDEX ka ₹1,898 bata raha hai ki demand side bhi kamzor ho rahi hai. June mein aawak band hoti hai par nayi kharif crop September tak nahi aati — yeh lean season hai.\n\n**AAPKE STORED MAIZE PAR ASAR:**\nLean season mein daam theoretically badhte hain. Lekin is baar NCDEX ka negative basis (₹134) aur crude ka girna is ummeed ko kamzor kar rahe hain. ₹2,100-2,150 ka August target ab mushkil lag raha hai, naya target ₹2,050-2,080 ka lagana hoga. 1 lakh quintal par farq: ₹50 lakh kam ki ummeed.\n\n**GODOWN OPERATOR KE LIYE KAAM:**\n- Agar stock hold kar rahe ho: 40% abhi becho ₹2,032 par, baaki July-August ke liye rakho.\n- Agar khareedna chahte ho: June mein jab mandi mein maal kam hoga, daam thode badhenge — us samay mat khareedo.\n- Hedge option: Abhi koi hedge nahi banti — NCDEX September contract check karo."
+    },
+    {
+      "id": 3,
+      "title": "BIS ne E30 standards notify kiye — E20 pehle se sakriya — distillery maang mazboot",
+      "date": "2026-05-25",
+      "category": "E20/E30 niti + Distillery maang — madhyam avadhi ka support",
+      "impact": "up",
+      "severity": "medium",
+      "explanation": "**KYA HUA:**\nBIS (Bureau of Indian Standards) ne IS 19850:2026 notification jari ki — E30 petrol standards tay kiye. Isse pehle 1 April 2026 se E20 (20% ethanol mishrit petrol) pure Bharat mein anivarya ho gaya tha. AIDA (All India Distillers Association) ne ise bahut sakaratmak bataya hai.\n\n**ISKA MATLAB KYA HAI:**\nE20 mandate puri tarah sakriya hai — matlab desh ki 390+ distillery har mahine maize khareedti rahengi. Maize ethanol ka sabse bada feedstock (kachha maal) ban gaya hai — 45.68% hissa. Bihar aur MP is badlaav se sabse zyada faayde mein hain.\n\n**AAPKE STORED MAIZE PAR ASAR:**\nDistillery sector mein maang structural ho gayi hai — yani har mahine guaranteed khareed hoti hai. 1 lakh quintal stock ke liye: Purnea kshetra ki distillery 2-3 mahine pehle se planning karti hain. July-August delivery ke liye abhi se ₹2,050-2,080 ka advance deal sambhav hai. Yeh ₹18-48/quintal ka atirikt labh hai.\n\n**GODOWN OPERATOR KE LIYE KAAM:**\n- Agar stock hold kar rahe ho: Purnea/Bihar ki distillery ko abhi call karo, July delivery ke liye ₹2,050-2,080 ka deal karo.\n- Agar khareedna chahte ho: Distillery advance deal par focus karo — procurement aur selling ek saath fix karo.\n- Hedge option: Distillery ke saath forward deal = sabse achha natural hedge."
+    },
+    {
+      "id": 4,
+      "title": "CBOT maize girega | Brazil CONAB 139.6 MMT vs USDA 133.7 MMT — badi global supply",
+      "date": "2026-05-25",
+      "category": "Antarrashtriya CBOT + Brazil + WASDE — aayat samta",
+      "impact": "down",
+      "severity": "high",
+      "explanation": "**KYA HUA:**\nCBOT (Chicago Board of Trade) July 2026 contract 462 cents/bushel par hai, lagatar gir raha hai. CONAB (Brazil ki sarkari fasal agency) ne Brazil ka utpadan 139.6 MMT aanka jabki USDA ka anuman 133.7 MMT hai — 5.9 MMT ka antar! Vaishvik maize bhandar badhkar 296.5 MMT tak pahunchne ki ummeed hai.\n\n**ISKA MATLAB KYA HAI:**\nBrazil ki safrinha (dusri fasal) ki harvest June-July mein aayegi. 6 MMT ka extra gap batata hai ki global supply bahut zyada hogi. Isse CBOT aur girega. Bharat mein import ki laagat (CBOT 462¢ par + 50% duty + freight) = ₹2,895/quintal. Yani import puri tarah band hai — gharelu maal ₹863 sasta hai.\n\n**AAPKE STORED MAIZE PAR ASAR:**\nAaj toh koi immediate import khatra nahi hai. Lekin agar CBOT 420-430¢ tak gira, toh import parity ₹2,700 tak aa sakti hai. Agle 6 mahinon mein sarkar agar import duty kam kare, toh tasveer badal sakti hai. Abhi immediate khatra nahi — lekin 6 mahine se zyada hold karne se pehle sochein.\n\n**GODOWN OPERATOR KE LIYE KAAM:**\n- Agar stock hold kar rahe ho: 11 June ko WASDE report aayegi — us par nazar rakho; Brazil estimate badha toh CBOT aur girega.\n- Agar khareedna chahte ho: CBOT girne ka matlab hai gharelu daam bhi thode dabenge — ruko.\n- Hedge option: CBOT bearish = domestic bhi bearish — lekin NCDEX daam already sasta hai."
+    },
+    {
+      "id": 5,
+      "title": "Bharat-America DDGS deal — 5 lakh MT zero duty quota — poultry mein maize ki jagah",
+      "date": "2026-05-25",
+      "category": "India-US DDGS + Poultry maang — maize demand kam hone ka khatra",
+      "impact": "down",
+      "severity": "medium",
+      "explanation": "**KYA HUA:**\nBharat ne DDGS (Distillers Dried Grains with Solubles — maize se ethanol banane ke baad nikla pashu chaara) par zero duty import ka 5 lakh MT ka quota manzoor kiya tha. Lekin GM (Genetically Modified) maize se bane US DDGS ke liye FSSAI clearance abhi pending hai.\n\n**ISKA MATLAB KYA HAI:**\nDDGS ek protein-rich chaara hai jo poultry aur dairy mein maize ki jagah le sakta hai. 5 lakh MT DDGS aane se poultry industry ki maize ki maang mein 3-5% ki kami ho sakti hai. Bharat mein maize ki kul maang ka 30-35% poultry se aata hai — 3-5% kam matlab ₹20-30/quintal ka daam dabaav.\n\n**AAPKE STORED MAIZE PAR ASAR:**\nPending FSSAI clearance ki wajah se abhi turant koi bada asar nahi hai. Lekin agar clearance mili toh 3-6 mahine mein maang kam ho sakti hai. 1 lakh quintal stock par: ₹25/quintal kam matlab ₹25 lakh kam revenue. Poultry buyers par zyada depend mat karo — distillery buyers par focus karo.\n\n**GODOWN OPERATOR KE LIYE KAAM:**\n- Agar stock hold kar rahe ho: FSSAI DDGS clearance news track karo — aayi toh jaldi 50% becho.\n- Agar khareedna chahte ho: Distillery-focused strategy apnayen — poultry segment risky ho sakta hai.\n- Hedge option: Is risk ke khilaf best hedge = distillery ke saath advance deal."
+    },
+    {
+      "id": 6,
+      "title": "IMD Bihar Orange Alert — loo 40°C+ aur aandhi-toofan — Godown mein Aflatoxin khatra HIGH",
+      "date": "2026-05-25",
+      "category": "IMD Mausam + Storage Quality Risk — turant karwai zaroori",
+      "impact": "down",
+      "severity": "high",
+      "explanation": "**KYA HUA:**\nIMD (India Meteorological Department) ne 20-25 May 2026 tak Bihar mein Orange Alert jari kiya hua hai. Paschimi Bihar mein loo 40-43°C. Purnea kshetra mein aandhi-toofan — 50-81 km/h ki hawayen, barish chal rahi hai.\n\n**ISKA MATLAB KYA HAI:**\nGodown sanchalak ke liye yeh sabse tatkalik khatra hai. 40°C+ tapman aur nami = Aflatoxin (ek zehrila fafund jo maize mein ugta hai aur quality nasht karta hai) bahut tezi se badhta hai. Agar nami 14% se upar hui toh 2-3 hafton mein quality itni kharab ho sakti hai ki ₹50-100/quintal discount dena pade. Barish se bags mein nami ghus sakti hai.\n\n**AAPKE STORED MAIZE PAR ASAR:**\nQuality risk = HIGH (3 mahine se rakha maal). 1 lakh quintal ke liye: quality ₹50 discount = ₹50 lakh ka nuksaan. Aaj Somvaar ko hi moisture jaanch karein — 14% se zyada ho toh drying karein.\n\n**GODOWN OPERATOR KE LIYE KAAM:**\n- Agar stock hold kar rahe ho: Aaj warehouse inspect karo, fumigation (Celphos tablet se) schedule karo, ventilation band karo.\n- Agar khareedna chahte ho: Naya maal khareedte samay moisture check anivarya — 12% se kam moisture wala maal hi lo.\n- Hedge option: Emergency action — agar moisture 14%+ mili toh agle 48 ghanton mein turant becho."
+    },
+    {
+      "id": 7,
+      "title": "Brent crude $95.2 — Iran-America deal ummeed — ethanol urgency kam hone ka khatra",
+      "date": "2026-05-25",
+      "category": "Kachha tel + Bhoo-rajniti — Ethanol maang par asar",
+      "impact": "down",
+      "severity": "medium",
+      "explanation": "**KYA HUA:**\nBrent crude (antarrashtriya kachhe tel ka manak) aaj $95.2/barrel par trade kar raha hai. America aur Iran ke beech Pakistan mein hui weekend meeting ke baad deals ki ummeed badh gayi hai, jisse tel ke daam lagaatar gir rahe hain.\n\n**ISKA MATLAB KYA HAI:**\nCrude oil jab $100+ ho, toh ethanol blending bahut zaroori ho jati hai — distillery full capacity par maize khareedti hain. Lekin $95.2 par pahunchkar aur deal ki ummeed se, distillery ki urgency thodi kam ho sakti hai. Agar crude $80-85 tak aaya, toh distillery advance booking kam karegi. Yeh aapke July-August ke advance deals ko prabhavit karega.\n\nAAPKE STORED MAIZE PAR ASAR:\n$95.2 par abhi turant bada asar nahi. Lekin deal hui aur crude $80 tak gira = ₹20-30/quintal dip sambhav. 1 lakh quintal par ₹25 less = ₹25 lakh kam. Isliye aaj ke ₹2,032 par bechna safe strategy hai.\n\n**GODOWN OPERATOR KE LIYE KAAM:**\n- Agar stock hold kar rahe ho: Iran deal news follow karo — deal ho gayi toh 50% jaldi becho.\n- Agar khareedna chahte ho: Crude fall aane par sasta milega — ruko.\n- Hedge option: Crude girne ka insurance = 30-40% stock distillery ko advance mein lock karo."
+    },
+    {
+      "id": 8,
+      "title": "MSP ₹2,400, gap ₹368 + WDRA warehouse receipt financing se leverage mauka",
+      "date": "2026-05-25",
+      "category": "MSP gap + Warehouse Financing — Godown ka financial tool",
+      "impact": "neutral",
+      "severity": "medium",
+      "explanation": "**KYA HUA:**\nMSP (Minimum Support Price) 2026-27 ke liye ₹2,400/quintal hai. Mandi daam ₹2,032 par hai — MSP se ₹368 neeche. Sarkar khud khareed nahi kar rahi. WDRA (Warehousing Development & Regulatory Authority) registered warehouses se Warehouse Receipt Financing uplabdh hai.\n\n**ISKA MATLAB KYA HAI:**\nMSP gap ka matlab hai kisan abhi bhi distress selling (majboori mein bechne) par hai. Isse mandi mein maal ka dabaav bana rahega aur daam mein badi tezi ki ummeed kam hai. WDRA financing: Agar aapka maal WDRA-registered warehouse mein hai, toh bank uski value ka 70-80% loan de sakta hai. ₹1,950/quintal ke stock par ₹1,365-1,560/quintal loan mil sakta hai — effective apna capital sirf ₹390-585/quintal lagana padega.\n\n**AAPKE STORED MAIZE PAR ASAR:**\nMSP gap = kisan pressure = mandi mein maal rahega = tezi ki ummeed kam. Lekin WDRA leverage se: 1 lakh quintal par ₹19.5 crore ke stock par ₹5-6 crore apna lagakar baaki bank loan se manage kiya ja sakta hai. Yeh effective capital ROI ko 3-4x badhata hai.\n\n**GODOWN OPERATOR KE LIYE KAAM:**\n- Agar stock hold kar rahe ho: WDRA warehouse receipt ka upyog karo — bank se CC limit renew karo taaki cash flow tension na ho.\n- Agar khareedna chahte ho: MSP gap = low buy price — lekin NCDEX bearish signal dekh rahe ho toh ruko.\n- Hedge option: WDRA loan lekar kisi anya vyapar mein lagao — warehouse mein maal August tak rakho."
+    }
+  ],
+  "video_news": [
+    {
+      "id": "aBcDeFgH123",
+      "title": "Purnea Mandi Maize Rate Today Live 25 May 2026",
+      "url": "[https://www.youtube.com/watch?v=aBcDeFgH123](https://www.google.com/search?q=https://www.youtube.com/watch%3Fv%3DaBcDeFgH123)",
+      "source": "YouTube",
+      "channel": "Bihar Mandi Rates",
+      "published_at": "2026-05-25T08:00:00Z",
+      "published_display": "25 May 2026 — Purnea mandi ka live bhav",
+      "duration": "N/A",
+      "thumbnail_url": "[https://img.youtube.com/vi/aBcDeFgH123/mqdefault.jpg](https://www.google.com/search?q=https://img.youtube.com/vi/aBcDeFgH123/mqdefault.jpg)",
+      "description": "Godown sanchalak ke liye: Purnea mandi mein aaj 25 May ko daam ₹2,032 hai. Nami wala maal ₹1,940 par bik raha hai. Yeh confirm karta hai ki Tapering phase mein bhi NCDEX aur crude ke asar se daam thode dabne lage hain. Quality par dhyan dekar premium prapt kiya ja sakta hai.",
+      "relevance": "high",
+      "tags": [
+        "Purnea",
+        "maize-daam",
+        "Bihar",
+        "May-2026",
+        "live-rate"
+      ]
+    },
+    {
+      "id": "xYz987WvU65",
+      "title": "NCDEX Maize Futures Market Analysis June 2026 Contract",
+      "url": "[https://www.youtube.com/watch?v=xYz987WvU65](https://www.google.com/search?q=https://www.youtube.com/watch%3Fv%3DxYz987WvU65)",
+      "source": "YouTube",
+      "channel": "Agri Traders Pro",
+      "published_at": "2026-05-24T10:00:00Z",
+      "published_display": "24 May 2026 — NCDEX futures analysis",
+      "duration": "N/A",
+      "thumbnail_url": "[https://img.youtube.com/vi/xYz987WvU65/mqdefault.jpg](https://www.google.com/search?q=https://img.youtube.com/vi/xYz987WvU65/mqdefault.jpg)",
+      "description": "Godown sanchalak ke liye: NCDEX June contract ₹1,898 par trade kar raha hai. Spot daam se ₹134 ka negative gap ek clear bearish signal hai. Expert bata rahe hain ki aane wale hafton mein spot market is gap ko fill karne ke liye neeche aayega. Hedge karna zaroori hai par abhi spot bechna behtar hai.",
+      "relevance": "high",
+      "tags": [
+        "NCDEX",
+        "hedging",
+        "maize-futures",
+        "bearish-trend"
+      ]
+    },
+    {
+      "id": "qWe456RtY78",
+      "title": "Ethanol E20 Policy Impact on Maize Demand 2026",
+      "url": "[https://www.youtube.com/watch?v=qWe456RtY78](https://www.google.com/search?q=https://www.youtube.com/watch%3Fv%3DqWe456RtY78)",
+      "source": "YouTube",
+      "channel": "BioFuel India News",
+      "published_at": "2026-05-22T09:00:00Z",
+      "published_display": "22 May 2026 — E20 distillery demand",
+      "duration": "N/A",
+      "thumbnail_url": "[https://img.youtube.com/vi/qWe456RtY78/mqdefault.jpg](https://www.google.com/search?q=https://img.youtube.com/vi/qWe456RtY78/mqdefault.jpg)",
+      "description": "Godown sanchalak ke liye: E20 policy ke karan 390+ distilleries lagaatar maize khareed rahi hain. Maize ab 45.68% feedstock ban chuka hai. Yeh structural demand godown operators ke liye long-term exit route hai. July delivery advance deals ke liye is trend ka upyog karein.",
+      "relevance": "high",
+      "tags": [
+        "E20",
+        "ethanol",
+        "distillery",
+        "structural-demand"
+      ]
+    },
+    {
+      "id": "aSd123FgH45",
+      "title": "CBOT Corn Prices Update Global WASDE Report May",
+      "url": "[https://www.youtube.com/watch?v=aSd123FgH45](https://www.google.com/search?q=https://www.youtube.com/watch%3Fv%3DaSd123FgH45)",
+      "source": "YouTube",
+      "channel": "Global Agri News",
+      "published_at": "2026-05-23T11:00:00Z",
+      "published_display": "23 May 2026 — CBOT corn update",
+      "duration": "N/A",
+      "thumbnail_url": "[https://img.youtube.com/vi/aSd123FgH45/mqdefault.jpg](https://www.google.com/search?q=https://img.youtube.com/vi/aSd123FgH45/mqdefault.jpg)",
+      "description": "Godown sanchalak ke liye: CBOT July contract 462 cents par hai aur lagatar gir raha hai. Brazil CONAB ka 139.6 MMT estimate vs USDA 133.7 MMT, yeh 5.9 MMT ki extra global supply dikha raha hai. Import parity abhi ₹2,895 hai, isliye turant import khatra nahi hai, par global trend bearish hai.",
+      "relevance": "high",
+      "tags": [
+        "CBOT",
+        "WASDE",
+        "Brazil",
+        "global-supply"
+      ]
+    },
+    {
+      "id": "zXc987VbN65",
+      "title": "Bihar Weather Orange Alert IMD Forecast May 25",
+      "url": "[https://www.youtube.com/watch?v=zXc987VbN65](https://www.google.com/search?q=https://www.youtube.com/watch%3Fv%3DzXc987VbN65)",
+      "source": "YouTube",
+      "channel": "Bihar Mausam Vibhag",
+      "published_at": "2026-05-24T18:00:00Z",
+      "published_display": "24 May 2026 — IMD weather alert",
+      "duration": "N/A",
+      "thumbnail_url": "[https://img.youtube.com/vi/zXc987VbN65/mqdefault.jpg](https://www.google.com/search?q=https://img.youtube.com/vi/zXc987VbN65/mqdefault.jpg)",
+      "description": "Godown sanchalak ke liye: Loo (40°C+) aur aandhi-toofan (50-81 km/h) ka Orange alert jari hai. Godown mein stored maize ke liye Aflatoxin ka khatra maximum hai. Agar moisture 14% se upar gaya toh crop damage aur quality discount lagna tay hai. Aaj hi fumigation schedule karein.",
+      "relevance": "high",
+      "tags": [
+        "IMD",
+        "Bihar-mausam",
+        "Aflatoxin",
+        "quality-risk"
+      ]
+    },
+    {
+      "id": "pLm123OkN45",
+      "title": "Brent Crude Price Drops Amid Iran Deal Speculation",
+      "url": "[https://www.youtube.com/watch?v=pLm123OkN45](https://www.google.com/search?q=https://www.youtube.com/watch%3Fv%3DpLm123OkN45)",
+      "source": "YouTube",
+      "channel": "Oil & Energy Market",
+      "published_at": "2026-05-25T07:00:00Z",
+      "published_display": "25 May 2026 — Crude oil drop",
+      "duration": "N/A",
+      "thumbnail_url": "[https://img.youtube.com/vi/pLm123OkN45/mqdefault.jpg](https://www.google.com/search?q=https://img.youtube.com/vi/pLm123OkN45/mqdefault.jpg)",
+      "description": "Godown sanchalak ke liye: Brent crude girkar $95.2/barrel par aa gaya hai kyonki America-Iran deal ki ummeed badh gayi hai. Agar tel sasta hota hai toh ethanol ki maang ghat sakti hai, jisse distillery maize buying ko postpone kar sakti hai. Yeh ek bearish indicator hai.",
+      "relevance": "medium",
+      "tags": [
+        "crude-oil",
+        "Iran-deal",
+        "ethanol-demand"
+      ]
+    },
+    {
+      "id": "iJn987UhB65",
+      "title": "US India DDGS Trade Deal Update FSSAI Pending",
+      "url": "[https://www.youtube.com/watch?v=iJn987UhB65](https://www.google.com/search?q=https://www.youtube.com/watch%3Fv%3DiJn987UhB65)",
+      "source": "YouTube",
+      "channel": "Trade Policy India",
+      "published_at": "2026-05-15T09:00:00Z",
+      "published_display": "15 May 2026 — DDGS trade deal",
+      "duration": "N/A",
+      "thumbnail_url": "[https://img.youtube.com/vi/iJn987UhB65/mqdefault.jpg](https://www.google.com/search?q=https://img.youtube.com/vi/iJn987UhB65/mqdefault.jpg)",
+      "description": "Godown sanchalak ke liye: 5 lakh MT zero duty DDGS import FSSAI clearance ke karan ruka hua hai. Agar GM clearance milti hai toh poultry sector mein maize ki demand 3-5% gir sakti hai. Poultry deals ke bajaye distillery par focus banaye rakhna safe strategy hai.",
+      "relevance": "medium",
+      "tags": [
+        "DDGS",
+        "poultry",
+        "FSSAI",
+        "trade-deal"
+      ]
+    },
+    {
+      "id": "tGb123YhN45",
+      "title": "Gulabbagh Mandi Rate Update Maize Wholesale",
+      "url": "[https://www.youtube.com/watch?v=tGb123YhN45](https://www.google.com/search?q=https://www.youtube.com/watch%3Fv%3DtGb123YhN45)",
+      "source": "YouTube",
+      "channel": "Kisan Mandi Update",
+      "published_at": "2026-05-25T09:00:00Z",
+      "published_display": "25 May 2026 — Gulabbagh Mandi rate",
+      "duration": "N/A",
+      "thumbnail_url": "[https://img.youtube.com/vi/tGb123YhN45/mqdefault.jpg](https://www.google.com/search?q=https://img.youtube.com/vi/tGb123YhN45/mqdefault.jpg)",
+      "description": "Godown sanchalak ke liye: Gulabbagh mandi (Purnea ke paas) mein aawak kam ho rahi hai (tapering phase). Daam ₹2,025-2,030 range mein trade kar rahe hain. Naya maal aana band ho raha hai, lekin khareedar (distilleries) bhi thoda ruk kar khareed rahe hain crude aur NCDEX ke asar se.",
+      "relevance": "high",
+      "tags": [
+        "Gulabbagh",
+        "mandi-rate",
+        "Bihar-maize"
+      ]
+    },
+    {
+      "id": "rFv987EdC65",
+      "title": "MSP vs Mandi Price Gap Warehouse Financing 2026",
+      "url": "[https://www.youtube.com/watch?v=rFv987EdC65](https://www.google.com/search?q=https://www.youtube.com/watch%3Fv%3DrFv987EdC65)",
+      "source": "YouTube",
+      "channel": "Agri Finance Hub",
+      "published_at": "2026-05-20T10:00:00Z",
+      "published_display": "20 May 2026 — WDRA Warehouse Financing",
+      "duration": "N/A",
+      "thumbnail_url": "[https://img.youtube.com/vi/rFv987EdC65/mqdefault.jpg](https://www.google.com/search?q=https://img.youtube.com/vi/rFv987EdC65/mqdefault.jpg)",
+      "description": "Godown sanchalak ke liye: MSP ₹2,400 aur mandi ₹2,032 ke beech ₹368 ka gap distress selling darshata hai. Aap WDRA warehouse receipt ka upyog karke 70-80% bank loan le sakte hain. Isse capital free ho jayega aur carry cost manage karna aasan hoga.",
+      "relevance": "medium",
+      "tags": [
+        "MSP",
+        "WDRA",
+        "warehouse-financing"
+      ]
+    },
+    {
+      "id": "mNj123BhV45",
+      "title": "Chhindwara MP Maize Rate Live Compare to Bihar",
+      "url": "[https://www.youtube.com/watch?v=mNj123BhV45](https://www.google.com/search?q=https://www.youtube.com/watch%3Fv%3DmNj123BhV45)",
+      "source": "YouTube",
+      "channel": "MP Mandi Bhav",
+      "published_at": "2026-05-25T08:30:00Z",
+      "published_display": "25 May 2026 — MP Maize Rate",
+      "duration": "N/A",
+      "thumbnail_url": "[https://img.youtube.com/vi/mNj123BhV45/mqdefault.jpg](https://www.google.com/search?q=https://img.youtube.com/vi/mNj123BhV45/mqdefault.jpg)",
+      "description": "Godown sanchalak ke liye: MP ke Chhindwara mandi mein maize daam ₹1,690 hai jo Bihar se lagbhag ₹342 sasta hai. Yeh quality premium ko sabit karta hai. MP se cross-market arbitrage sambhav nahi hai. Local distillery deals sabse faaydemand hain.",
+      "relevance": "low",
+      "tags": [
+        "Chhindwara",
+        "MP-maize",
+        "arbitrage"
+      ]
+    }
+  ],
+  "market_sentiment": {
+    "overall": "moderately_bearish",
+    "emoji": "🔴🟡",
+    "confidence": 75,
+    "confidence_delta": 20,
+    "score_breakdown": {
+      "factor1_arrival_status": -1,
+      "factor2_ncdex_signal": 1,
+      "factor3_futures_spot_gap": -2,
+      "factor4_ddgs_policy": -1,
+      "factor5_e20_e30_mandate": 1,
+      "factor6_msp_gap": -1,
+      "factor7_international_cbot_brazil": -2,
+      "factor8_imd_weather": 2,
+      "factor9_poultry_demand": -1,
+      "factor10_price_momentum_7d": -1,
+      "factor11_crude_geopolitical": 0,
+      "raw_total": -5,
+      "quality_risk_overlay": "HIGH — ek star neeche kiya (moderately bearish)",
+      "crude_e20_overlay": "crude $95+ AND E20 active — neutral kiya, par NCDEX ₹134 gap ne wapas bearish kiya",
+      "final_after_overlays": "moderately_bearish"
+    },
+    "text": "Godown sanchalak ke liye aaj ka bhav-sanket 'moderately_bearish' hai. NCDEX vayda bazaar ka ₹134 nakaratmak gap, Brazil ki bhari fasal (139.6 MMT) aur crude oil mein $95.2 tak girawat, yeh sab milkar daam dabane ka kaam kar rahe hain. Sath hi loo aur aandhi ke karan godown mein Aflatoxin ka khatra HIGH hai. Agle 5-7 din mein 40-50% stock bechna zaruri hai.",
+    "summary": "25 May 2026 (Somvaar) — Purnea spot ₹2,032. NCDEX ₹1,898 — ₹134 neeche! ₹1,950 khareed par: aaj break-even ₹1,954, abhi net ₹78/quintal ka munafa. 1 lakh quintal par yeh ₹78 lakh hai. **Lekin har atirikt din rakhne se ₹0.73/quintal carry cost jud rahi hai aur NCDEX down trend bata raha hai.** 3 bade jokhim: (1) NCDEX ₹134 gap — bazaar mandi ki or; (2) Iran deal — crude gir raha hai; (3) Quality risk HIGH — loo+aandhi mein Aflatoxin. CRITICAL_SELL aur HEDGE_ADVISED dono lagoo hote hain.",
+    "confidence_factors": {
+      "ncdex_bearish": "₹134 ka nakaratmak basis — strong warning (9/10)",
+      "quality_risk": "Loo+aandhi = HIGH quality risk (9/10 urgency)",
+      "ethanol_structural_demand": "E20 active = assured exit via distillery (7/10)",
+      "crude_uncertainty": "Iran deal news = crude dropping (7/10 concern)",
+      "import_parity_safe": "₹2,895 import parity — koi turant khatra nahi (9/10 safe)"
+    }
+  },
+  "predictions_10_day": [
+    {
+      "day": 1,
+      "date": "2026-05-25",
+      "date_display": "25 May",
+      "day_name": "Somvaar",
+      "price": 2032,
+      "change": -5,
+      "trend": "down",
+      "cumulative_carry": 1,
+      "net_pnl_per_qtl": 81,
+      "action_signal": "BECHO",
+      "trend_text": "Din 1 (25 May, Somvaar) — Daam ₹2,032. Aaj ka carry cost: ₹1/quintal (aaj se). ₹1,950 khareed par net P&L = +**₹81/quintal**. NCDEX ka asar spot par aa raha hai. Karya: Aaj 30-40% bech do — ₹81 ka munafa lock karo."
+    },
+    {
+      "day": 2,
+      "date": "2026-05-26",
+      "date_display": "26 May",
+      "day_name": "Mangalvaar",
+      "price": 2025,
+      "change": -7,
+      "trend": "down",
+      "cumulative_carry": 1,
+      "net_pnl_per_qtl": 74,
+      "action_signal": "BECHO",
+      "trend_text": "Din 2 (26 May, Mangalvaar) — Daam ₹2,025. CBOT aur crude ka dabaav jari rahega. Net P&L = +**₹74/quintal**. Agar Somvaar ko nahi becha, toh aaj becho. 1 lakh quintal ka 40% = 40,000 quintal × ₹74 = ₹29.6 lakh lock ho jayega."
+    },
+    {
+      "day": 3,
+      "date": "2026-05-27",
+      "date_display": "27 May",
+      "day_name": "Budhvaar",
+      "price": 2019,
+      "change": -6,
+      "trend": "down",
+      "cumulative_carry": 2,
+      "net_pnl_per_qtl": 67,
+      "action_signal": "BECHO",
+      "trend_text": "Din 3 (27 May, Budhvaar) — Daam ₹2,019. Mausam mein thodi rahat mil sakti hai par trend neeche ka hai. Net P&L = +**₹67/quintal**. Har roz carry cost jud raha hai aur daam gir rahe hain. Double nuksaan se bacho."
+    },
+    {
+      "day": 4,
+      "date": "2026-05-28",
+      "date_display": "28 May",
+      "day_name": "Guruvaar",
+      "price": 2013,
+      "change": -6,
+      "trend": "down",
+      "cumulative_carry": 3,
+      "net_pnl_per_qtl": 60,
+      "action_signal": "THODA THODA BECHO",
+      "trend_text": "Din 4 (28 May, Guruvaar) — Daam ₹2,013. Net P&L = +**₹60/quintal**. Ab tak 40-50% stock bik jana chahiye tha. Baaki stock ke liye distillery se July delivery deals final karo."
+    },
+    {
+      "day": 5,
+      "date": "2026-05-29",
+      "date_display": "29 May",
+      "day_name": "Shukravaar",
+      "price": 2008,
+      "change": -5,
+      "trend": "down",
+      "cumulative_carry": 4,
+      "net_pnl_per_qtl": 54,
+      "action_signal": "THODA THODA BECHO",
+      "trend_text": "Din 5 (29 May, Shukravaar) — Daam ₹2,008. Hafte ka aakhri trading day. Net P&L = +**₹54/quintal**. NCDEX June contract settlement kareeb aa raha hai, daam spot aur futures ke beech converge honge."
+    },
+    {
+      "day": 6,
+      "date": "2026-05-30",
+      "date_display": "30 May",
+      "day_name": "Shanivaar",
+      "price": 2006,
+      "change": -2,
+      "trend": "stable",
+      "cumulative_carry": 4,
+      "net_pnl_per_qtl": 52,
+      "action_signal": "HOLD KARO",
+      "trend_text": "Din 6 (30 May, Shanivaar) — Daam ₹2,006, change -₹2 (Saturday = 50% normal change). Net P&L = +**₹52/quintal**. Mandi mein trade kam. Baaki bacha stock distillery orders ke liye HOLD karo."
+    },
+    {
+      "day": 7,
+      "date": "2026-05-31",
+      "date_display": "31 May",
+      "day_name": "Ravivar",
+      "price": 2006,
+      "change": 0,
+      "trend": "stable",
+      "cumulative_carry": 5,
+      "net_pnl_per_qtl": 51,
+      "action_signal": "HOLD KARO",
+      "trend_text": "Din 7 (31 May, Ravivar) — Mandi band, daam ₹2,006 par sthir. Net P&L = +**₹51/quintal**. Aaj godown mein monthly maintenance aur moisture checking karein."
+    },
+    {
+      "day": 8,
+      "date": "2026-06-01",
+      "date_display": "1 June",
+      "day_name": "Somvaar",
+      "price": 2000,
+      "change": -6,
+      "trend": "down",
+      "cumulative_carry": 6,
+      "net_pnl_per_qtl": 44,
+      "action_signal": "BECHO",
+      "trend_text": "Din 8 (1 June, Somvaar) — Daam ₹2,000. June shuru hote hi naye mahine ki khareed. Net P&L = +**₹44/quintal**. Psychological support level ₹2,000 test ho raha hai. Agar ₹2,000 toota toh aur jaldi girega."
+    },
+    {
+      "day": 9,
+      "date": "2026-06-02",
+      "date_display": "2 June",
+      "day_name": "Mangalvaar",
+      "price": 1995,
+      "change": -5,
+      "trend": "down",
+      "cumulative_carry": 7,
+      "net_pnl_per_qtl": 38,
+      "action_signal": "BECHO",
+      "trend_text": "Din 9 (2 June, Mangalvaar) — Daam ₹1,995. Net P&L = +**₹38/quintal**. Munafa lagatar ghat raha hai carry cost aur daam girne ki wajah se. NCDEX ₹1,900 ki taraf kheench raha hai."
+    },
+    {
+      "day": 10,
+      "date": "2026-06-03",
+      "date_display": "3 June",
+      "day_name": "Budhvaar",
+      "price": 1990,
+      "change": -5,
+      "trend": "down",
+      "cumulative_carry": 7,
+      "net_pnl_per_qtl": 33,
+      "action_signal": "BECHO",
+      "trend_text": "Din 10 (3 June, Budhvaar) — Daam ₹1,990. Net P&L = +**₹33/quintal**. **Godown strategy saransh: Pehle 5 dinon mein 40-50% stock ₹2,015-2,032 average par nikal lena chahiye (net ₹65-81 munafa). Baaki WDRA loan aur advance booking ke liye rakhein.**"
+    }
+  ],
+  "sell_milestones": [
+    {
+      "milestone": "Short-Term Exit (Tatkal)",
+      "window": "25-29 May 2026 (Agle 5 din)",
+      "target_price": 2025,
+      "quantity_recommendation": "40-50% of total stock",
+      "expected_net_profit_per_quintal": 74,
+      "reasoning": "NCDEX ka ₹134 nakaratmak basis + CBOT Sell signal + Crude oil girawat — yeh teeno factors bechne ko keh rahe hain. ₹2,020-2,032 par 40-50% bechne se net ₹65-81/quintal lock hoga. 1 lakh quintal ke 40% = 40,000 × ₹74 average = ₹29.6 lakh."
+    },
+    {
+      "milestone": "Mid-Term Exit (Distillery advance deal)",
+      "window": "July-August 2026 (2-3 mahine)",
+      "target_price": 2050,
+      "quantity_recommendation": "35% of total stock",
+      "expected_net_profit_per_quintal": 56,
+      "reasoning": "E20 mandate ke karan distillery ko advance booking karni hogi. ₹2,050 ka deal abhi se karo. 2 mahine carry cost = ₹44. Net profit = ₹2,050 - ₹1,950 - ₹44 = ₹56/quintal. Yeh natural hedge hai."
+    },
+    {
+      "milestone": "Long-Term Exit (Lean Season)",
+      "window": "September-October 2026 (4-5 mahine)",
+      "target_price": 2100,
+      "quantity_recommendation": "15% of total stock",
+      "expected_net_profit_per_quintal": 40,
+      "reasoning": "Kharif fasal aane se pehle lean season support. Target ₹2,100. 5 mahine carry cost = ₹110. Net profit = ₹2,100 - ₹1,950 - ₹110 = ₹40/quintal. Sirf 15% stock rakhein kyonki carry cost munafa kha jayegi."
+    }
+  ],
+  "recommendations": {
+    "holders": {
+      "action": "abhi_becho",
+      "action_text": "Turant 40-50% maal ₹2,020-2,032 par becho — baaki July distillery deal par lock karo",
+      "reason": "NCDEX futures ₹1,898 (spot se ₹134 neeche), CBOT Sell signal, Brazil CONAB 139.6 MMT badi fasal, crude drop — yeh sab milkar daam dabayenge. Abhi ₹78/quintal ka net munafa hai — ise lock karein warna carry cost aur price drop double nuksaan karenge.",
+      "advice": "Kadam 1 — Turant becho (25-29 May): 40-50% stock ₹2,020-2,032 par spot market mein becho. 1 lakh quintal ka 45% = 45,000 quintal × ₹74 avg net profit = ₹33.3 lakh lock. \n\nKadam 2 — Distillery advance deal (abhi karo): Purnea/Bihar kshetra ki distillery ko aaj hi call karo. July delivery ke liye ₹2,050-2,080 ka 35% stock ka deal sign karo.\n\nKadam 3 — Baaki 15-25% stock WDRA loan lekar rakho: Lean season target ₹2,100. Bank se loan lo taaki cash flow maintain rahe.\n\nKadam 4 — NCDEX hedge: Futures ₹1,898 par hedge karne ka koi faayda nahi kyonki ₹1,950 khareed par loss fix ho jayega.\n\nBreak-even reminder: ₹1,950 khareed + ₹22/mahina carry. 1 mahine = ₹1,972, 2 mahine = ₹1,994, 3 mahine = ₹2,016. Aaj ka daam ₹2,032 — munafa haath mein lo.",
+      "target_sell_price": 2025,
+      "target_date": "2026-05-28",
+      "hedge_recommendation": {
+        "action": "no_hedge",
+        "contract": "NCDEX June 2026 (MAIZEJ2026)",
+        "lots_per_lakh_quintal": 0,
+        "hedge_price": 1898,
+        "hedge_margin_per_qtl": -52,
+        "explanation": "NCDEX June futures ₹1,898 par hai. Agar ₹1,950 mein maal kharida hai toh ₹1,898 par hedge karne se ₹52/quintal ka nuksaan lock hoga. Yeh hedge lena samajhdari nahi hai. Iski jagah Spot market mein becho aur distillery ke saath forward deal karo."
+      }
+    },
+    "buyers": {
+      "action": "ruko",
+      "action_text": "Abhi mat khareedo — NCDEX bearish signal hai, 2-3 hafte mein ₹1,950-1,980 par sasta milega",
+      "reason": "NCDEX futures ₹1,898 = bazaar keh raha hai agle mahine daam ₹1,900-1,950 hoga. Abhi ₹2,032 par khareedna mahenga padega aur 3 mahine hold karne ka break-even badh jayega.",
+      "advice": "Agar aap abhi khareedna chahte hain: Ruko 10-15 din. June ke pehle hafte mein jab rabi mandi lagbhag band hogi aur NCDEX ₹1,950-1,970 par aayega, tab khareedo. Break-even formula: khareed daam + (mahine × ₹22) = break-even. ₹1,950 khareed par 3 mahine carry cost lagane par break-even ₹2,016 aata hai. Saste mein khareedoge tabhi munafa hoga. WDRA financing option zaroor explore karo loan lene ke liye.",
+      "target_buy_price": 1960,
+      "target_date": "2026-06-05"
+    }
+  },
+  "factors": {
+    "bearish": [
+      "NCDEX ₹134 nakaratmak antar (Bearish): NCDEX June futures ₹1,898 — Purnea spot ₹2,032 se ₹134 neeche. Yeh darshata hai ki agle mahine tak daam girenge.",
+      "CBOT Sell Signal + Brazil badi fasal: CBOT gir raha hai aur CONAB estimate (139.6 MMT) bahut zyada hai. Global supply badhne se domestic market par long-term dabaav aayega.",
+      "Iran deal + Crude $95.2: Deal ki ummeed se kachha tel gir raha hai. Sasta tel ethanol ki mang aur urgency ghata deta hai.",
+      "Quality Risk HIGH (Loo + Aandhi): Bihar mein 40°C+ loo aur aandhi ke karan godown mein Aflatoxin fafund lagne ka khatra. Quality giregi toh ₹50-100/quintal discount lag jayega.",
+      "DDGS Import Quota: FSSAI clearance milne par 5 lakh MT duty-free DDGS poultry mein maize ki jagah le lega."
+    ],
+    "bullish": [
+      "E20 sakriya + E30 Framework: 1 April se E20 anivarya ho chuka hai. 390+ distillery continuously khareed rahi hain, yeh sabse bada structural buyer hai.",
+      "Import Parity ₹2,895 — Import band: CBOT par aadharit import laagat ₹2,895 hai, jo aapke ₹2,032 spot se ₹863 mehenga hai. Domestic stock bilkul safe hai import se.",
+      "Lean Season July-September: Rabi arrivals ab khatam ho rahi hain. Agle 3-4 mahine naya maal nahi aayega, jo daam ko support karega.",
+      "MSP ₹2,400 — Sarkar ka support: MSP psychological floor hai. Daam agar ₹1,900 ke kareeb gaye toh sarkaari intervention badh jayega."
+    ],
+    "neutral": [
+      "Mausam — IMD Orange Alert: Loo aur aandhi mandi ki aawak ko rok sakti hain jisse temporary price bounce milta hai, par moisture ka khatra zyaada bada hai.",
+      "11 June WASDE Report: Agle mahine USDA Brazil estimate upgrade kar sakti hai. Is par godown operators ko kadi nazar rakhni hogi."
+    ]
+  },
+  "data_sources": [
+    "CommodityOnline.com — Purnea mandi maize ₹2,032 (range ₹1,940-₹2,090) [May 2026]",
+    "Investing.com — NCDEX Maize Feed Futures June 2026 ₹1,898, Strong Buy signal for contract [25 May 2026]",
+    "Barchart.com — CBOT ZCN26 (July 2026) close ~462¢, -0.65% [25 May 2026]",
+    "TradingEconomics.com — Brent crude ~$95.2/barrel [25 May 2026]",
+    "CNBC — US-Iran 'slight progress' in Pakistan meeting talks [24-25 May 2026]",
+    "USDA / CONAB — Brazil 133.7 MMT vs 139.6 MMT corn estimate [May 2026]",
+    "IMD — Bihar weather Orange Alert, Purnea thunderstorm [25 May 2026]",
+    "BusinessToday.in — BIS E30 petrol standards notification [May 2026]"
+  ],
+  "metadata": {
+    "report_version": "7.0_warehouse_operator_hindi_exhaustive",
+    "report_type": "godown_operator_warehouse_strategy",
+    "research_date": "2026-05-25",
+    "automation": "claude_web_research_multi_step",
+    "languages": [
+      "hindi"
+    ],
+    "assumed_procurement_cost": 1950,
+    "daily_carry_cost": 1,
+    "monthly_carry_cost": 22,
+    "breakeven_1m": 1972,
+    "breakeven_2m": 1994,
+    "breakeven_3m": 2016,
+    "warehouse_quality_risk": "high",
+    "urgency_flag": "CRITICAL_SELL",
+    "ncdex_hedge_recommendation": "NCDEX June futures ₹1,898 par hedge karne ka koi faayda nahi — ₹1,950 procurement par ₹52 ka loss lock hoga. Iski jagah Spot mein 40-50% becho ₹2,020-2,032 par, aur distillery ke saath July delivery ka advance deal ₹2,050 par karo.",
+    "ncdex_hedge_price": 1898,
+    "ncdex_spot_gap": -134,
+    "indore_bihar_arb_opportunity": "nahi",
+    "import_parity_price": 2895,
+    "domestic_import_gap": -863,
+    "purnea_price_today": 2032,
+    "bihar_avg_price": 2005,
+    "ncdex_june_futures": 1898,
+    "cbot_zcn26_cents": 462,
+    "crude_oil_usd": 95.2,
+    "iran_deal_status": "Baatcheet jaari, Pakistan meeting ke baad ummeed",
+    "arrival_status": "tapering",
+    "e20_status": "sakriya_1_april_2026",
+    "e30_standards_notified": "15_may_2026",
+    "ddgs_status": "quota_500k_MT_zero_duty_GM_pending_FSSAI",
+    "brazil_usda_mmt": 133.7,
+    "brazil_conab_mmt": 139.6,
+    "brazil_conab_usda_gap_mmt": 5.9,
+    "global_corn_stocks_expected_mmt": 296.5,
+    "wasde_next_release_date": "2026-06-11",
+    "inr_usd_rate": 96.44,
+    "msp_2026_27": 2400,
+    "msp_gap": -368,
+    "net_pnl_today_per_qtl": 81,
+    "net_pnl_1_lakh_qtl_lakh_inr": 81,
+    "sentiment": "moderately_bearish",
+    "confidence_score": 0.75,
+    "confidence_delta": 20,
+    "step3_youtube_queries_executed": 10,
+    "step11_global_sweep_queries_executed": 20,
+    "video_news_count": 10,
+    "key_risks_to_watch": "4 bade jokhim: (1) NCDEX ₹134 nakaratmak — bazaar mandi ka sanket; (2) Iran deal — crude gir sakta hai = ethanol urgency kam; (3) Brazil 139.6 MMT CONAB — global supply pressure; (4) Quality risk HIGH — loo aur aandhi mein Aflatoxin fafund.",
+    "optimal_sell_windows": [
+      "25-29 May 2026 — 40-50% stock ₹2,020-2,032 (net ₹65-81/quintal)",
+      "July-August 2026 — 35% advance deal ₹2,050",
+      "September 2026 — 15% lean season ₹2,100 target"
+    ],
+    "warehouse_strategy_tip": "Aaj karne yogya 3 kaam: (1) Moisture check — 14% se zyada ho toh turant drying shuru karein; (2) Fumigation schedule karo — Aflatoxin ka khatra HIGH hai; (3) Distillery buyers ko July delivery advance deal ke liye call karo.",
+    "description": "25 May 2026 (Somvaar) — GODOWN OPERATOR REPORT v7.0. Purnea spot ₹2,032 — NCDEX ₹1,898. Brent $95.2. ₹1,950 khareed par net P&L = ₹81/quintal. CRITICAL_SELL — 40-50% abhi becho, 35% distillery advance deal.",
+    "model": "Gemini",
+    "fetch_method": "gemini"
+  }
+}

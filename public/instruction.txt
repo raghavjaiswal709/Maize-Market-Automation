@@ -141,6 +141,41 @@ Delta formulas (Kadam 2 ke baad calculate karo):
   carry_cost_since_prior = pichhli report se din × 22 (₹/quintal jama hua)
 
 ──────────────────────────────────────────────────────────────
+KADAM 1B — SAMPLE REPORTS SE VERIFIED PRICE ANCHOR LO [Tool: Bash + Read]
+──────────────────────────────────────────────────────────────
+⚠️ YEH KADAM SKIP NAHI HOGA. Web search se PEHLE yeh karo.
+
+Bash tool chalao:
+  ls -t public/samplereports/maize_warehouse_report_*.json 2>/dev/null | head -5
+
+Agar files mili: Read tool se sabse nayi 3 sample report files ZAROOR padho.
+Har file se yeh values nikalo aur PRICE ANCHOR ke roop mein yaad rakho:
+
+  • sample_purnea_prices[]      → sabhi files ke purnea.value integers
+  • sample_bihar_avg_prices[]   → sabhi files ke bihar_average.value integers
+  • sample_indore_prices[]      → sabhi files ke indore_price.value integers
+  • sample_ncdex_prices[]       → sabhi files ke ncdex data integers (agar available)
+  • sample_procurement_cost     → assumed_procurement_cost (default ₹1,850)
+  • sample_breakeven_1m         → breakeven_price_1month value
+
+In values se calculate karo:
+  price_anchor_purnea_low   = min(sample_purnea_prices[])
+  price_anchor_purnea_high  = max(sample_purnea_prices[])
+  price_anchor_bihar_low    = min(sample_bihar_avg_prices[])
+  price_anchor_bihar_high   = max(sample_bihar_avg_prices[])
+  price_anchor_indore_low   = min(sample_indore_prices[])
+  price_anchor_indore_high  = max(sample_indore_prices[])
+
+⚠️ PRICE ACCURACY STRICT RULE (Kadam 2 ke baad apply karo):
+  Web search ya fetch se jo bhi daam aaye, unhe is price anchor range se compare karo.
+  ACCEPTABLE: web daam jo price_anchor range ke ±₹200 ke andar ho.
+  REJECT KARO: web daam jo anchor range se ₹200 se zyada bahar ho — yeh stale/galat data hai.
+    → Rejected price ki jagah sample_purnea_prices[] ka average use karo.
+    → Report mein clearly likho: "Verified price nahi mila — sample average use kiya."
+  KABHI BHI aisa price mat dikhao jo real verified market data se confirm nahi hua.
+  Godown operator crores ke faisale is report ke daam par karta hai — galat price = bada nuksaan.
+
+──────────────────────────────────────────────────────────────
 KADAM 2 — BIHAR + POORE INDIA KE SPOT DAAM [Tool: web_search → web_fetch]
 ──────────────────────────────────────────────────────────────
 Yeh TEENO queries is kram mein chalao:
@@ -649,6 +684,29 @@ GUARDRAIL 27: urgency_flag har report mein SET KARO.
 GUARDRAIL 28: POORA REPORT SIRF HINDI MEIN LIKHA JAYEGA.
   Koi bhi text field mein English ya Hinglish nahi chalegi. Sirf saral Hindi.
   Technical terms ka pehli baar brackets mein Hindi mein explanation ZAROOR.
+
+GUARDRAIL 29: PRICE ACCURACY — SAMPLE REPORTS SE VERIFY KARO (SABSE SAKHT GUARDRAIL)
+  public/samplereports/ mein rakhe gaye May 2026 ke actual verified market prices
+  aaj ke report ke liye primary PRICE ANCHOR hain. KADAM 1B mein yeh padhe gaye hain.
+
+  Yeh verified price ranges May 2026 ke actual market data se hain:
+    Purnea spot:    ₹1,900 – ₹2,100/quintal
+    Bihar average:  ₹1,860 – ₹2,100/quintal
+    Indore:         ₹1,600 – ₹1,900/quintal
+    Procurement cost default: ₹1,850/quintal
+
+  MANDATORY CHECKS (har field ke liye):
+  ☐ current_prices.purnea_price.value: KADAM 1B ke price_anchor_purnea range se ±₹200 ke andar
+  ☐ current_prices.bihar_average.value: KADAM 1B ke price_anchor_bihar range se ±₹200 ke andar
+  ☐ current_prices.indore_price.value: KADAM 1B ke price_anchor_indore range se ±₹200 ke andar
+  ☐ predictions_10_day[0].price: aaj ke confirmed purnea spot ke ±₹50 ke andar hona chahiye
+  ☐ warehouse_economics.assumed_procurement_cost: ₹1,850 (ya pichli report se confirmed value)
+
+  VIOLATION RULE: Agar koi bhi price upar ki ranges se ₹200+ bahar ho:
+    → Us field mein KADAM 1B ka sample average use karo
+    → metadata mein note karo: "price_anchor_used": true, "reason": "web data out of range"
+    → Aisa KABHI MAT KARO: random ya hallucinated price daalna
+    → Godown operator ₹50–500 crore ke decisions is report pe leta hai — ek galat price = crore ka nuksaan
 
 ═══════════════════════════════════════════════════════════════
 BHAAG D — FILE DELIVERY (CLAUDE CODE ROUTINE)

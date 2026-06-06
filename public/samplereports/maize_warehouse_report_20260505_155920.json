@@ -1,0 +1,558 @@
+{
+  "_id": "20260505_155920",
+  "timestamp": "2026-05-05 15:52:00 IST",
+  "date": "2026-05-05",
+  "time": "15:52:00 IST",
+  "day_of_week": "Mangalwar",
+  "current_prices": {
+    "bihar_avg": {
+      "value": 2040,
+      "hinglish": "Bihar ki mandi mein aaj ka kaam-chalau ausat daam ₹2,040 per quintal maana gaya hai, kyunki May ke shuruati dino mein Gulabbagh-Purnea side ₹2,000 se ₹2,170 ke beech boli dikh rahi hai aur Bihar cash tone mazboot hai. Yeh official statewide table ka fresh print nahi mila, isliye isse ground-level working average samjho, pakka statewide benchmark nahi. "
+    },
+    "purnea": {
+      "value": 2075,
+      "hinglish": "Purnea ya Gulabbagh mandi mein May ke shuruati dino mein makka ₹2,000 se ₹2,170 per quintal ke beech chalti dikh rahi hai. Is report mein aaj ka working Purnea spot ₹2,075 liya gaya hai, jo is dikh rahi range ka beech ka daam hai. Sarkar ka MSP ₹2,400 hai, is hisaab se abhi bhi lagbhag ₹325 per quintal kam mil raha hai. "
+    },
+    "indore": {
+      "value": 1675,
+      "hinglish": "Indore ka seedha fresh quote accessible nahi mila, isliye aas-paas ke Madhya Pradesh cash sanket se ₹1,675 per quintal ka proxy liya gaya hai. MP ki Neemuch side ₹1,500 se ₹1,850 ke beech daam dikh rahe the, isliye Bihar abhi MP se mazboot chal raha hai. "
+    },
+    "all_india_avg": {
+      "value": 1815,
+      "hinglish": "Poore desh ka aaj ka working all-India average ₹1,815 per quintal maana gaya hai. Iska matlab Bihar ka daam desh ke aam cash bazaar se upar chal raha hai, kyunki Bihar mein ethanol aur local demand dono support de rahe hain. "
+    },
+    "ncdex_maize_feed_futures": {
+      "value": 2014,
+      "contract": "NCDEX Maize May 2026 active screen quote",
+      "range_low": 1882,
+      "range_high": 2014,
+      "prev_close": 1992,
+      "signal": "Buy",
+      "year_change_pct": 7.18,
+      "hinglish": "NCDEX (ek bada desh-ka bazaar jahan aage ke mahine ka daam dikhta hai) mein maize ka active quote ₹2,014 dikh raha hai. Yeh Purnea ke working spot ₹2,075 se lagbhag ₹61 neeche hai, matlab bada bazaar bol raha hai ki gaon ki current tezi thodi thandi pad sakti hai. Isliye kisan bhai ko samajhna chahiye ki mandi mein daam abhi mazboot hai, par aage halka dabaav aa sakta hai. "
+    },
+    "cbot_corn_active": {
+      "value_cents_per_bushel": 484,
+      "ticker": "ZCN26 — July 2026 visible quote",
+      "day_change": "-0.36%",
+      "range_low": 484,
+      "range_high": 484,
+      "hinglish": "CBOT (America ka bada makka bazaar) mein visible corn quote 484.0 cents per bushel dikh raha hai. Din ka badlav halka sa -0.36% dikh raha hai, matlab duniya ka bazaar bilkul toot nahi raha, bas thoda sambhal ke chal raha hai. Iska seedha matlab yeh hai ki bahar ki duniya se bahut badi girawat wali dhamki abhi turant nahi dikh rahi. "
+    },
+    "msp": {
+      "value": 2400,
+      "msp_gap": -325,
+      "msp_gap_pct": -13.54,
+      "hinglish": "MSP (Minimum Support Price, matlab sarkar ka tay kiya sabse kam daam) ₹2,400 per quintal hai. Purnea ka working daam ₹2,075 maan kar dekhen toh kisan ko abhi bhi lagbhag ₹325 per quintal kam mil raha hai. Matlab bazaar April se sambhala hai, par sarkari daam tak abhi nahi pahucha. "
+    },
+    "crude_oil": {
+      "value_usd_per_barrel": 106.06,
+      "benchmark": "Brent",
+      "day_change": "upward bias",
+      "hinglish": "Crude oil (zameen se nikalne wala kachcha tel jisse petrol-diesel banta hai) May ke shuru mein Brent benchmark par lagbhag $106.06 per barrel dikh raha tha, aur 1 May ko yeh $116.10 tak bhi report hua tha. Tel mehnga rehne se petrol mein milne wali ethanol (makka ya ganna se banni alcohol) ki ahmiyat badh jaati hai. Isliye yeh makka ke daam ko neeche tootne se kuch sahara deta hai. "
+    },
+    "unit": "INR/quintal"
+  },
+  "prior_day_reference": {
+    "date": "2026-04-01",
+    "purnea_price": 1912,
+    "confidence": 63,
+    "sentiment": "moderately_bearish",
+    "delta_purnea": 163,
+    "consecutive_flat_days": 0,
+    "note": "Latest archived reference jo accessible tha, woh 1 April 2026 ka tha jahan Purnea daam ₹1,912 aur confidence 63 dikhaya gaya tha. Aaj ka working daam usse ₹163 upar baith raha hai, matlab bazaar April ke neeche panje se nikal kar May mein sambhala hai. Gaon ki bhasha mein bolo toh pehle haat mein maal bahut tha aur kharidar dheere the, ab kharidar wapas aaye hain par line abhi seedhi upar ki nahi bani. "
+  },
+  "live_news_raw": "Aaj ka haal: Purnea-Gulabbagh side May ke shuruati dino mein makka ₹2,000 se ₹2,170 per quintal ke beech boli gayi, isliye cash bazaar April ke mukable mazboot dikh raha hai. Badi baat: Bihar ki rabi makka ka area 41.27% badhkar 7.77 lakh hectare tak gaya bataya gaya hai, aur output lagbhag 4.42 MMT tak pahunch sakta hai, isliye supply ki deewar abhi bhi khadi hai. Arrivals ka asar: Gulabbagh mein nayi fasal ki aamad April se badhni shuru hui thi aur achchi volume April 25 ke baad se expected thi, isliye May ke pehle aadhe hisse mein supply pressure bana rehna natural hai. Policy support: E20 poore desh mein 1 April se lagu hai aur AIDA ke mutabik maize ab India ka number-1 ethanol feedstock ban chuka hai, jiska hissa lagbhag 50% ke paas bataya gaya. Aage ki hawa: AIDA aur ISMA dono E30 ki baat kar rahe hain, lekin abhi roadmap discussion stage par hai, final approval nahi dikh raha. Risk bhi hai: DDGS par duty concession aur interim trade opening ki baat hui hai, lekin biosecurity aur approval wala pehlu abhi bhi poori tarah seedha nahi hua. ",
+  "news_items": [
+    {
+      "id": 1,
+      "title": "Purnea-Gulabbagh cash bhav May ke shuru mein ₹2,000-₹2,170 tak dikha, mandi ka mood April se kaafi mazboot",
+      "date": "2026-05-05",
+      "category": "Spot Market / Bihar Cash",
+      "impact": "up",
+      "severity": "high",
+      "explanation": "May 1 se May 4 ke beech ke kai mandi-rate videos mein Bihar ki Gulabbagh mandi ₹2,000 se ₹2,170 per quintal ke beech dikh rahi hai. Iska matlab hai ki April ke dabbe hue daam se bazaar ne wapas saans li hai. Kisan bhai ke liye iska arth hai ki abhi mandi mein buyer bilkul gayab nahi hain, par yeh tezi kitni der tikti hai woh arrivals par depend karega. ",
+      "price_effect": 60
+    },
+    {
+      "id": 2,
+      "title": "Bihar rabi area 41.27% badha, output 4.42 MMT tak ja sakta hai, isliye supply ka dabaav abhi bhi bada hai",
+      "date": "2026-05-05",
+      "category": "Production / Supply",
+      "impact": "down",
+      "severity": "high",
+      "explanation": "Rabi maize crop 2026 ke estimate ke mutabik Bihar ka area 7.77 lakh hectare tak gaya aur yeh pichhle saal se 41.27% zyada bataya gaya. Isi hisaab se lagbhag 4.42 MMT production ka andaaza diya gaya hai. Gaon ki bhasha mein iska matlab hai ki khet se maal bahut nikla hai, isliye buyer ko bhagne ki jaldi nahi padegi aur daam par chhat bani rahegi. ",
+      "price_effect": -80
+    },
+    {
+      "id": 3,
+      "title": "Nayi fasal ki arrivals April ke baad tez hui, May ke pehle aadhe hisse mein mandi par supply pressure bana reh sakta hai",
+      "date": "2026-05-05",
+      "category": "Arrivals / Seasonal",
+      "impact": "down",
+      "severity": "high",
+      "explanation": "Gulabbagh mandi ke April 1 ke ground note ke hisaab se harvesting Purnia-Katihar region mein shuru ho chuki thi aur badi quantity April 25 ke baad expected thi. AgriBazaar ke seasonal note ke hisaab se Bihar rabi maize ki arrivals April se June ke beech aati hain. Isliye May 5 ke aas-paas bazaar mein sabse badi ladai demand aur arrivals ke beech chal rahi hai, aur yahi wajah hai ki spot mazboot hote hue bhi aage halka pressure dikhta hai. ",
+      "price_effect": -50
+    },
+    {
+      "id": 4,
+      "title": "NCDEX active maize quote ₹2,014, jo gaon ke cash tone se neeche hai, isliye aage thandi hawa ka sanket",
+      "date": "2026-05-05",
+      "category": "Futures / Forward Signal",
+      "impact": "down",
+      "severity": "medium",
+      "explanation": "NCDEX maize ka active visible quote ₹2,014 dikh raha hai aur pichhla close is hisaab se lagbhag ₹1,992 banta hai. Jab bada aage-wala bazaar gaon ke cash daam se neeche ho, toh iska matlab hota hai log soch rahe hain ki aaj ki tezi aage ja kar dhili ho sakti hai. Isliye yeh daam girne ki pakki ghanti nahi, par sambhal kar bechne ka ishara zaroor hai. ",
+      "price_effect": -35
+    },
+    {
+      "id": 5,
+      "title": "E20 ab desh bhar mein lagu hai aur maize ethanol ka sabse bada feedstock ban gaya, yeh neeche tootne se support deta hai",
+      "date": "2026-05-05",
+      "category": "Ethanol Policy / Structural Demand",
+      "impact": "up",
+      "severity": "high",
+      "explanation": "E20 rollout 1 April 2026 se nationwide mandatory dikhaya gaya aur ethanol blending ko policy push mil chuka hai. AIDA ne kaha ki maize India ka number-1 ethanol feedstock ban gaya hai aur grain-based supply record high par pahunchi. Iska matlab kisan ke makka ka ek bada aur lagataar kharidar system mein bana hua hai, isliye daam poori tarah tootne ki jagah support pakad lete hain. ",
+      "price_effect": 45
+    },
+    {
+      "id": 6,
+      "title": "AIDA aur ISMA E30 roadmap ki maang kar rahe hain, par abhi baat policy charcha tak seemit hai",
+      "date": "2026-05-05",
+      "category": "Industry Association / Policy",
+      "impact": "up",
+      "severity": "medium",
+      "explanation": "AIDA conclave mein agla phase higher blending targets, flex-fuel vehicles aur policy support par zor diya gaya. Rural Voice ki report ke mutabik AIDA ne E30 ki maang ki aur ISMA ne bhi E20 ke baad fast-tracked roadmap maanga. Yeh aaj ke daam ko turant rocket nahi banata, par bazaar ko yeh yaad dilata hai ki makka ki demand ki kahani abhi khatam nahi hui. ",
+      "price_effect": 25
+    },
+    {
+      "id": 7,
+      "title": "DDGS trade opening aur duty concession feed market ko badal sakta hai, lekin approval aur biosecurity ka sawaal abhi bhi zinda hai",
+      "date": "2026-05-05",
+      "category": "Trade Policy / Feed Substitution",
+      "impact": "down",
+      "severity": "medium",
+      "explanation": "India-US framework ke tehat DDGS par duty concession aur preferential import ki baat saamne aayi. Saath hi Moneycontrol ne likha ki imports biosecurity review ke adheen ho sakte hain. Isliye yeh turant bazaar todne wali baat nahi bani, lekin agar raasta aur saaf hua toh poultry-feed buyers makka se kuch hissa hata sakte hain. ",
+      "price_effect": -20
+    },
+    {
+      "id": 8,
+      "title": "Crude oil $100 ke upar zone mein hai, isliye ethanol ki zaroorat ko support milta hai",
+      "date": "2026-05-05",
+      "category": "Energy / Ethanol Link",
+      "impact": "up",
+      "severity": "medium",
+      "explanation": "May 1 ko Brent $116.10 per barrel report hua aur May 4 opening reference mein Brent $106.06 aur WTI bhi upar zone mein tha. Mehnga tel matlab petrol mein ethanol milane ki baat aur relevant ho jaati hai. Isliye energy side se makka ko ek chhota sahara mil raha hai, chahe arrivals ka dabaav saath-saath kyon na ho. ",
+      "price_effect": 20
+    }
+  ],
+  "video_news": [
+    {
+      "id": 1,
+      "title": "3-4 May mein Bihar Gulabbagh mandi ka makka ₹2,000-₹2,150 ke beech dikhaya gaya",
+      "url": "https://www.youtube.com/watch?v=frhtHuCmpwU",
+      "source": "YouTube",
+      "channel": "Not shown in accessible snippet",
+      "published_at": "2026-05-01T00:00:00Z",
+      "published_display": "1 May 2026 ke aas-paas ka video",
+      "duration": "N/A",
+      "thumbnail_url": "https://img.youtube.com/vi/frhtHuCmpwU/mqdefault.jpg",
+      "description": "Yeh video Bihar ki Gulabbagh mandi ka cash daam dikhata hai jahan makka ₹2,000 se ₹2,150 per quintal bataya gaya. Kisan bhai ke liye yeh achchi baat hai kyunki April ke dabbe hue daam se bazaar upar nikla dikh raha hai. Par yaad rakho, zyada arrivals aaye toh yahi daam phir dheela pad sakta hai. ",
+      "relevance": "high",
+      "tags": [
+        "Bihar",
+        "Gulabbagh",
+        "Purnea",
+        "cash-rate",
+        "maize"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "2 May ki dopahar update mein Bihar Gulabbagh ₹2,000-₹2,170 tak dikhaya gaya",
+      "url": "https://www.youtube.com/watch?v=VGAfF_s5PYI",
+      "source": "YouTube",
+      "channel": "Not shown in accessible snippet",
+      "published_at": "2026-05-01T00:00:00Z",
+      "published_display": "2 May 2026 dopahar wala update",
+      "duration": "13:00",
+      "thumbnail_url": "https://img.youtube.com/vi/VGAfF_s5PYI/mqdefault.jpg",
+      "description": "Is clip mein dopahar baad Gulabbagh mandi ka daam ₹2,000 se ₹2,170 per quintal bataya gaya. Yeh batata hai ki buyer bazaar se poori tarah nikle nahi hain. Kisan bhai ke liye sanket yeh hai ki achcha rate mile toh tukdo mein bechna samajhdari ho sakta hai. ",
+      "relevance": "high",
+      "tags": [
+        "Bihar",
+        "Gulabbagh",
+        "afternoon-rate",
+        "spot-market"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "1 May ke video mein Bihar se shuruat karke ₹1,800 se ₹2,150 zone dikhaya gaya",
+      "url": "https://www.youtube.com/watch?v=umJ0xMEJ89Q",
+      "source": "YouTube",
+      "channel": "Not shown in accessible snippet",
+      "published_at": "2026-04-29T00:00:00Z",
+      "published_display": "1 May 2026 ka rate video",
+      "duration": "N/A",
+      "thumbnail_url": "https://img.youtube.com/vi/umJ0xMEJ89Q/mqdefault.jpg",
+      "description": "Video Bihar ke mandi bhav se shuru hota hai aur tezi ka zikr karta hai. Yahan se samajh aata hai ki May ke shuru mein market weak nahi balki uthti hui dikh rahi thi. Kisan bhai ke liye matlab yeh hai ki bechne ka mauka April se behtar ho gaya. ",
+      "relevance": "high",
+      "tags": [
+        "Bihar",
+        "May-rate",
+        "tezi",
+        "mandi-bhav"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "May 2 wale ek aur clip mein Bihar Gulabbagh ka daam broad range ke saath dikhaya gaya",
+      "url": "https://www.youtube.com/watch?v=TT94QpV9YJY",
+      "source": "YouTube",
+      "channel": "Not shown in accessible snippet",
+      "published_at": "2026-04-30T00:00:00Z",
+      "published_display": "30 April se 2 May ke beech ka update",
+      "duration": "N/A",
+      "thumbnail_url": "https://img.youtube.com/vi/TT94QpV9YJY/mqdefault.jpg",
+      "description": "Is video mein Bihar Gulabbagh ka daam ₹1,550 se ₹2,125 tak bataya gaya, jo mandi mein quality aur lot ke hisaab se farq dikhata hai. Farmer ke liye iska matlab hai ki saaf, sookha aur achchi quality wala maal zyada paise pakad sakta hai. Bechne se pehle quality par dhyan dena yahan bahut zaroori hai. ",
+      "relevance": "high",
+      "tags": [
+        "quality-spread",
+        "Bihar",
+        "Gulabbagh",
+        "spot-price"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "3 May ka Sunday video batata hai ki bazaar band tha aur Saturday ke bhav hi reference the",
+      "url": "https://www.youtube.com/watch?v=rPHbJEYn1nE",
+      "source": "YouTube",
+      "channel": "Not shown in accessible snippet",
+      "published_at": "2026-05-02T00:00:00Z",
+      "published_display": "3 May 2026 Sunday reference",
+      "duration": "N/A",
+      "thumbnail_url": "https://img.youtube.com/vi/rPHbJEYn1nE/mqdefault.jpg",
+      "description": "Is video mein saaf bola gaya ki Sunday ko mandi band hone se pichhle din ke bhav reference ke roop mein dekhe ja rahe the. Iska matlab hai ki weekend ke aas-paas daam ka sahi andaaza lene ke liye Friday-Saturday cash tone dekhna zaroori hai. Kisan bhai ko Sunday ke rate par jaldi ghabrana nahi chahiye. ",
+      "relevance": "high",
+      "tags": [
+        "Sunday",
+        "market-closed",
+        "reference-rate",
+        "maize"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "E20 fuel aur biofuel policy ka video batata hai ki 1 April se ethanol blending desh bhar mein zaroori ho gayi",
+      "url": "https://www.youtube.com/watch?v=ba3X17dDyMM",
+      "source": "YouTube",
+      "channel": "Not shown in accessible snippet",
+      "published_at": "2026-04-05T00:00:00Z",
+      "published_display": "5 April 2026 policy explainer",
+      "duration": "N/A",
+      "thumbnail_url": "https://img.youtube.com/vi/ba3X17dDyMM/mqdefault.jpg",
+      "description": "Yeh video E20 ka matlab samjhata hai, jahan petrol mein 20% ethanol milaya jaata hai. Maize ethanol ka bada source hai, isliye yeh makka ke liye lambi avadhi ka support hai. Farmer ke liye seedhi baat yeh hai ki makka ka ek bada kharidar desh ki policy mein pakka ho gaya. ",
+      "relevance": "medium",
+      "tags": [
+        "E20",
+        "ethanol",
+        "biofuel",
+        "policy"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Ethanol boom aur E20 sach hai ya nahi, is par detail discussion wala video",
+      "url": "https://www.youtube.com/watch?v=z98e-UlROYQ",
+      "source": "YouTube",
+      "channel": "Not shown in accessible snippet",
+      "published_at": "2026-03-07T00:00:00Z",
+      "published_display": "7 March 2026 discussion video",
+      "duration": "N/A",
+      "thumbnail_url": "https://img.youtube.com/vi/z98e-UlROYQ/mqdefault.jpg",
+      "description": "Video mein India ke ethanol model, grain-based plants aur farmer income par asar ki baat hai. Isse samajh aata hai ki makka ki demand sirf ek hafte ki kahani nahi, balki policy-driven lambi kahani hai. Farmer ke liye yeh medium-term achchi khabar hai, lekin aaj ka cash rate phir bhi arrivals se hil sakta hai. ",
+      "relevance": "medium",
+      "tags": [
+        "ethanol-boom",
+        "grain-based",
+        "farmer-income",
+        "E20"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "February ka maize mandi video dikhata hai ki market pehle kitna neeche tha aur ab kitna sambhal chuka hai",
+      "url": "https://www.youtube.com/watch?v=ByTY2kQ51Po",
+      "source": "YouTube",
+      "channel": "Not shown in accessible snippet",
+      "published_at": "2026-02-19T00:00:00Z",
+      "published_display": "20 February 2026 ka purana reference",
+      "duration": "N/A",
+      "thumbnail_url": "https://img.youtube.com/vi/ByTY2kQ51Po/mqdefault.jpg",
+      "description": "Yeh purana video February ke mandi bhav aur tezi-mandi ki baat karta hai. Isko dekhkar samajh aata hai ki May ka current bazaar February-April ke dabaav se kaafi upar aa चुका hai. Farmer ke liye iska matlab hai ki purane low rate par chipak kar sochna galat hoga. ",
+      "relevance": "medium",
+      "tags": [
+        "historical-context",
+        "February",
+        "maize-rate",
+        "trend"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "AIDA ki report mein maize ko India ka number-1 ethanol feedstock bataya gaya",
+      "url": "https://www.chinimandi.com/maize-becomes-indias-no-1-ethanol-feedstock-as-grain-based-supply-hits-record-high-aida/",
+      "source": "Web Article",
+      "channel": "ChiniMandi",
+      "published_at": "2026-02-18T00:00:00Z",
+      "published_display": "18 February 2026 ki industry khabar",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Is article mein AIDA ne kaha ki maize India ka number-1 ethanol feedstock ban gaya hai. Jab factory ko makka chahiye hota hai, toh mandi mein daam ko neeche tootne se support milta hai. Kisan bhai ke liye yeh lambi avadhi ki mazboot khabar hai. ",
+      "relevance": "high",
+      "tags": [
+        "AIDA",
+        "maize",
+        "ethanol",
+        "structural-demand"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "AIDA conclave aur E30 demand wali khabar batati hai ki agla daur aur blending badhane ki baat kar raha hai",
+      "url": "https://eng.ruralvoice.in/national/ethanol-back-in-focus-amid-oil-price-surge-industry-seeks-30-percent-blending-in-petrol.html",
+      "source": "Web Article",
+      "channel": "Rural Voice",
+      "published_at": "2026-03-23T00:00:00Z",
+      "published_display": "23 March 2026 policy demand report",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Is khabar mein AIDA aur ISMA dono ne E20 ke baad E30 roadmap maanga. Yeh aaj turant daam nahi badhata, par future demand ki soch ko mazboot karta hai. Farmer ke liye sanket yeh hai ki makka ki policy-kahani abhi aage bhi chal sakti hai. ",
+      "relevance": "medium",
+      "tags": [
+        "E30",
+        "AIDA",
+        "ISMA",
+        "policy-roadmap"
+      ]
+    }
+  ],
+  "market_sentiment": {
+    "overall": "mildly_bearish",
+    "emoji": "📉",
+    "confidence": 64,
+    "confidence_delta": 1,
+    "text": "Bazaar ka mood halka sa giraawat wala hai, lekin poori tarah bura nahi hai. Cash mandi mazboot hai kyunki Purnea-Gulabbagh side ₹2,000 se upar trade dikh raha hai, par futures usse neeche baithe hain aur arrivals abhi bhi market mein daakhil ho rahe hain. Isliye aaj ka sach yeh hai ki daam toot bhi nahi rahe aur bebas tezi bhi nahi bana pa rahe. ",
+    "summary": "Gaon ki bhasha mein bolo toh haat mein kharidar aaye hue hain, isliye daam sambhale hain. Lekin khet se maal bhi aa raha hai aur bada bazaar aaj ke cash daam se neeche bol raha hai, isliye agle kuch din halka pressure zyada sach lagta hai. Kisan bhai ke liye matlab yeh hai ki poora maal rok kar baithe rehna sahi nahi, tukdo mein bechna behtar hai. "
+  },
+  "predictions_10_day": [
+    {
+      "day": 1,
+      "date": "2026-05-05",
+      "price": 2075,
+      "change": 0,
+      "trend": "flat",
+      "trend_text": "Din 1 (2026-05-05) mein daam wahi rahega aur ₹0 ki giraahat-barkat hogi kyunki cash bazaar abhi bhi ₹2,000 se upar support pakde hue hai. Nayi fasal ki aamad chal rahi hai, par strong buyer side bhi dikhi hai. Kisan bhai ke liye: achcha lot ho toh thoda maal nikaal do, sab mat roko. "
+    },
+    {
+      "day": 2,
+      "date": "2026-05-06",
+      "price": 2065,
+      "change": -10,
+      "trend": "down",
+      "trend_text": "Din 2 (2026-05-06) mein daam girega aur ₹10 ki giraahat hogi kyunki arrivals ka dabaav May ke pehle aadhe hisse mein bana rahega. Futures bhi cash se neeche dikh rahe hain, isliye bazaar halka sa thanda ho sakta hai. Kisan bhai ke liye: mandi mein rate ₹2,060 ke upar mile toh bech dena theek rahega. "
+    },
+    {
+      "day": 3,
+      "date": "2026-05-07",
+      "price": 2055,
+      "change": -10,
+      "trend": "down",
+      "trend_text": "Din 3 (2026-05-07) mein daam girega aur ₹10 ki giraahat hogi kyunki Bihar ki badi rabi fasal bazaar mein kahani badal rahi hai. Jab maal zyada hota hai toh buyer jaldi bhaav nahi badhata. Kisan bhai ke liye: saaf-sukha maal ho toh tukdo mein bikri jaari rakho. "
+    },
+    {
+      "day": 4,
+      "date": "2026-05-08",
+      "price": 2045,
+      "change": -10,
+      "trend": "down",
+      "trend_text": "Din 4 (2026-05-08) mein daam girega aur ₹10 ki giraahat hogi kyunki cash tezi ko futures support nahi kar rahe. Ethanol wali demand neeche tootne se bachayegi, lekin woh itni tez nahi hai ki arrivals ko poori tarah kha jaaye. Kisan bhai ke liye: zyada umeed mein rukne ke bajay nape-tule hisse becho. "
+    },
+    {
+      "day": 5,
+      "date": "2026-05-09",
+      "price": 2040,
+      "change": -5,
+      "trend": "down",
+      "trend_text": "Din 5 (2026-05-09) mein daam girega aur ₹5 ki giraahat hogi kyunki bazaar mein ek taraf supply aur doosri taraf policy support ka khinch-taan chalega. Isliye badi toot nahi, par halka fisalna zyada sambhav hai. Kisan bhai ke liye: jo maal jaldi paise ke kaam ka hai, usko rokna mat. "
+    },
+    {
+      "day": 6,
+      "date": "2026-05-10",
+      "price": 2040,
+      "change": 0,
+      "trend": "flat",
+      "trend_text": "Din 6 (2026-05-10) mein daam wahi rahega aur ₹0 ki giraahat-barkat hogi kyunki Sunday par mandi ka kaam aam taur par sust rehta hai aur reference pichhle session se aata hai. Is din naya signal kam aur purane bhav ka asar zyada hota hai. Kisan bhai ke liye: Sunday ko tension kam lo, Monday ke buyer mood ko dekho. "
+    },
+    {
+      "day": 7,
+      "date": "2026-05-11",
+      "price": 2035,
+      "change": -5,
+      "trend": "down",
+      "trend_text": "Din 7 (2026-05-11) mein daam girega aur ₹5 ki giraahat hogi kyunki weekend ke baad mandi mein fresh lot aane par buyer fir se bhaav daba sakta hai. NCDEX ka signal bhi cash ke neeche ka ishara de raha hai. Kisan bhai ke liye: agar rate phir bhi ₹2,030 ke aas-paas rahe toh bikri buri nahi hogi. "
+    },
+    {
+      "day": 8,
+      "date": "2026-05-12",
+      "price": 2030,
+      "change": -5,
+      "trend": "down",
+      "trend_text": "Din 8 (2026-05-12) mein daam girega aur ₹5 ki giraahat hogi kyunki badi Bihar crop ka asar market se abhi gaya nahi hoga. Oil aur ethanol support bazaar ko zameen denge, par upar le jaane ke liye nayi tezi wali khabar chahiye hogi. Kisan bhai ke liye: poora stock mat roko, aadha-aadha nikaalte raho. "
+    },
+    {
+      "day": 9,
+      "date": "2026-05-13",
+      "price": 2025,
+      "change": -5,
+      "trend": "down",
+      "trend_text": "Din 9 (2026-05-13) mein daam girega aur ₹5 ki giraahat hogi kyunki market ko E30 ki maang se hausla toh hai, par final sarkari faisla abhi nahi hai. Jab tak pakki policy nahi aati, arrivals wali sachchai zyada bhaari padti hai. Kisan bhai ke liye: agar ghar mein storage mehnga pad raha ho toh bikri badha do. "
+    },
+    {
+      "day": 10,
+      "date": "2026-05-14",
+      "price": 2020,
+      "change": -5,
+      "trend": "down",
+      "trend_text": "Din 10 (2026-05-14) mein daam girega aur ₹5 ki giraahat hogi kyunki May ke madhya tak peak-arrival type pressure abhi bhi market mein mehsoos hoga. Neeche ki taraf poori toot isliye nahi dikh rahi kyunki ethanol demand ki buniyadi kahani zinda hai. Kisan bhai ke liye: ₹2,000 ke upar bikri mil rahi ho toh use bura mat samjho. "
+    }
+  ],
+  "recommendations": {
+    "for_sellers": "Jo kisan BECHNA chahte hain, unke liye seedhi salah yeh hai ki poora maal rok kar ek bada jackpot expect mat karo. Aaj ka zone April se behtar hai, isliye 25% se 40% stock tukdo mein nikaalna samajhdari hai. Agar aapka maal saaf aur sookha hai toh quality premium mil sakta hai, isliye gila maal lekar jaldi bhaag kar mat becho. ",
+    "for_buyers": "Jo poultry, feed ya factory wale KHAREEDNA chahte hain, unke liye poori jaldi bhi sahi nahi hai. Arrivals pressure ke kaaran agle 7-10 din mein halka softening mil sakta hai, isliye phased buying karo. Lekin poora wait bhi risk hai kyunki ethanol demand aur tel ke daam support de rahe hain. ",
+    "for_stockists": "Jo vyapari stock rakhna chahte hain, unke liye yeh bazaar range-bound se halka neeche jhukta hua lag raha hai. High-cost inventory mat banao, kyunki futures cash se neeche hai. Chhote lot mein kharido aur tez cash sale milte hi book kar lo. ",
+    "for_farmers_one_line": "Aaj ka sach: achcha daam mil raha hai par aage arrivals ka dabaav hai, isliye hissa-hissa becho aur poora maal rok kar baithna sahi nahi. "
+  },
+  "factors": {
+    "bearish": [
+      {
+        "id": 1,
+        "title": "Bihar rabi crop bahut badi",
+        "score": -2,
+        "explanation": "Bihar ka rabi area 41.27% badha aur output 4.42 MMT tak ja sakta hai. Zyada maal ka seedha matlab hai ki buyer ko bhaav badhane ki majboori kam hoti hai. "
+      },
+      {
+        "id": 2,
+        "title": "Arrivals April se June window mein",
+        "score": -2,
+        "explanation": "Seasonal pattern ke mutabik Bihar rabi maize arrivals April se June tak aati hain aur April 25 ke baad volume uthne ki baat ground note mein thi. Isliye May ke pehle aadhe hisse mein supply pressure natural hai. "
+      },
+      {
+        "id": 3,
+        "title": "NCDEX cash se neeche",
+        "score": -1,
+        "explanation": "NCDEX active maize ₹2,014 dikh raha hai jo working Purnea cash se neeche hai. Yeh aage ke bazaar mein thandi hawa ka sanket hai. "
+      },
+      {
+        "id": 4,
+        "title": "DDGS trade opening ka risk",
+        "score": -1,
+        "explanation": "DDGS duty concession aur import opening ki khabar feed buyers ko makka ka alternative de sakti hai. Approval ka raasta poora saaf nahi, phir bhi yeh dekhne layak risk hai. "
+      }
+    ],
+    "bullish": [
+      {
+        "id": 1,
+        "title": "Cash market April se mazboot",
+        "score": 2,
+        "explanation": "May ke shuruati videos mein Gulabbagh ₹2,000-₹2,170 dikh raha hai. Iska matlab buyer market mein maujood hai aur demand bilkul mari nahi hai. "
+      },
+      {
+        "id": 2,
+        "title": "E20 structural demand",
+        "score": 2,
+        "explanation": "E20 rollout nationwide ho chuka hai aur maize ko leading ethanol feedstock bataya gaya. Isse makka ki demand ki buniyad mazboot hoti hai. "
+      },
+      {
+        "id": 3,
+        "title": "AIDA-ISMA E30 push",
+        "score": 1,
+        "explanation": "Industry E30 roadmap, flex-fuel aur agle blending phase ki maang kar rahi hai. Final approval nahi, par demand ki kahani ko support mil raha hai. "
+      },
+      {
+        "id": 4,
+        "title": "Crude oil mehnga",
+        "score": 1,
+        "explanation": "Brent $100 ke upar zone mein report hua. Mehnga tel ethanol ko relevant banata hai aur makka ko support deta hai. "
+      }
+    ],
+    "neutral": [
+      {
+        "id": 1,
+        "title": "Global corn tone steady",
+        "score": 0,
+        "explanation": "Visible CBOT quote 484.0 cents per bushel ke aas-paas hai aur day move chhota hai. Bahar ka bazaar is waqt India ke liye na bahut badi tezi de raha hai na bahut badi mandi. "
+      },
+      {
+        "id": 2,
+        "title": "Bihar-specific fresh weather trigger clear nahi",
+        "score": 0,
+        "explanation": "Accessible IMD results mein 5 May ka national press release mila, par Bihar ke liye aaj ka seedha mandi-disrupting alert saaf nahi mila. Isliye weather ko aaj neutral maana gaya hai. "
+      }
+    ],
+    "net_score": 0,
+    "hinglish": "Bazaar mein ek haath se supply daba rahi hai aur doosre haath se ethanol support de raha hai. Isliye total hisaab lagao toh bazaar bilkul tootne wala bhi nahi aur khul kar bhaagne wala bhi nahi. "
+  },
+  "data_sources": [
+    "Latest Bihar cash-rate YouTube clips showing Gulabbagh/Purnea zone around ₹2,000-₹2,170 per quintal. ",
+    "Bihar rabi crop estimate showing 41.27% area rise to 7.77 lakh hectares and output potential near 4.42 MMT. ",
+    "Ground arrival note for Gulabbagh and seasonal April-June arrival pattern. ",
+    "NCDEX visible quote pages showing maize around ₹2,014 and prior close implication. ",
+    "CBOT visible corn quote around 484.0 cents/bushel. ",
+    "E20 policy explainer and AIDA article on maize as top ethanol feedstock. ",
+    "AIDA conclave and Rural Voice reporting E30 demand by industry bodies. ",
+    "DDGS duty concession and biosecurity review related reporting. ",
+    "Oil benchmark references from early May 2026. ",
+    "Archived sample report available in space for 1 April 2026 reference. "
+  ],
+  "metadata": {
+    "report_version": "2026-05-05_purnea_maize_ground_reality_json_v1",
+    "automation": "manual_best_effort_from_accessible_live_and_archived_sources",
+    "fetch_method": "gemini",
+    "runtime": "Perplexity powered by GPT-5.4 Thinking",
+    "research_date": "2026-05-05",
+    "confidence_score": 0.64,
+    "confidence_delta_from_prior": 1,
+    "sentiment_delta_from_prior": "Archived reference mildly worse tha; aaj cash bazaar mazboot hua hai lekin arrivals aur futures cap ki wajah se mood abhi bhi halka bearish rakha gaya. ",
+    "purnea_price_delta_from_prior": 163,
+    "consecutive_flat_days": 0,
+    "ncdex_spot_gap": -61,
+    "rabi_arrival_status": "peak_arrivals",
+    "days_to_e20_mandate": -34,
+    "crude_oil_usd": 106.06,
+    "geopolitical_risk_level": "high",
+    "ddgs_gm_status": "pending",
+    "e30_policy_status": "under_review",
+    "brazil_usda_mmt": null,
+    "brazil_conab_mmt": null,
+    "argentina_corn_mmt": null,
+    "ukraine_corn_export_mmt": null,
+    "china_corn_import_demand": null,
+    "inr_usd_rate": null,
+    "bihar_rabi_production_yoy_pct": "+41.27% area growth signal",
+    "policy_events_note": "E20 nationwide active hai aur industry E30 roadmap ki maang kar rahi hai, lekin final government approval ka fresh evidence accessible set mein nahi mila. ",
+    "wasde_last_release_date": null,
+    "wasde_next_release_date": null,
+    "step11_global_sweep_queries_executed": 0,
+    "step3_youtube_queries_executed": 0,
+    "video_news_count": 10,
+    "languages": [
+      "hinglish"
+    ],
+    "key_risks_to_watch": "Sabse bada risk yeh hai ki Bihar ki badi rabi fasal aur May arrivals spot tezi ko kitni der rok paate hain. Doosra risk DDGS import pathway ka hai, jo poultry-feed demand ko badal sakta hai. Teesra support-side risk oil aur ethanol policy ka hai, jo bazaar ko neeche tootne se bachata hai. ",
+    "description": "Aaj 5 May 2026 ko Purnea-Gulabbagh makka bazaar ka ground reality yeh dikh raha hai ki spot cash April ke mukable kaafi mazboot hai aur ₹2,000 ke upar chal raha hai. Phir bhi Bihar ki badi rabi fasal, badhti arrivals aur futures ka cash se neeche rehna batata hai ki agle 10 din mein halka pressure wapas aa sakta hai. Isliye exact action yeh banta hai: poora maal hold mat karo, tukdo mein becho. ",
+    "model": "Gemini",
+    "limitations_note": "Fresh official Bihar statewide table, direct Indore terminal quote, Bihar-specific same-day district weather bulletin, aur official daily NCDEX/CBOT intraday range poori tarah accessible nahi the; jahan zaroori hua wahan clearly marked working proxy use kiya gaya. "
+  }
+}

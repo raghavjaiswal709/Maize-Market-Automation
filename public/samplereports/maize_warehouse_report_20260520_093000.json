@@ -1,0 +1,566 @@
+{
+  "_id": "20260520_093000",
+  "timestamp": "2026-05-20 09:30:00",
+  "date": "2026-05-20",
+  "time": "09:30:00",
+  "day_of_week": "Budhwar — aaj ka din bahut khaas hai! China ne America se ₹1.4 lakh crore ki kheti ka maal kharidne ka wada kiya, CBOT mein makka 4.7% upar uchhla, aur BIS ne E30 petrol ka niyam tay kiya — teen badi bullish khabaren ek saath!",
+  "current_prices": {
+    "bihar_avg": {
+      "value": 1958,
+      "hinglish": "Bihar ki mandi mein aaj maize (makka) ka औसत daam ₹1,958 per quintal (100 kilo) chal raha hai. Yeh daam April 1 ke ₹1,936 se ₹22 upar aa gaya hai — kyunki rabi fasal ki aawaak dheemi pad gayi hai aur China ki badi kharidi ki khabar se daam mein tezi aayi hai. Bihar mein alag alag mandis mein daam ₹1,861 se ₹2,100 ke beech hain."
+    },
+    "purnea": {
+      "value": 1950,
+      "hinglish": "Purnea (Bihar) mandi mein aaj makka ka daam ₹1,950 per quintal (100 kilo) chal raha hai. April 1 ke ₹1,912 se ₹38 upar aa gaya hai — yeh acchi khabar hai! Sarkar ne naya MSP (minimum daam — matlab sarkar ka tay kiya hua sabse kam daam) ₹2,410 per quintal rakha hai 2026-27 ke liye. Toh abhi bhi ₹460 ka seedha fark hai — matlab kisan bhai ko abhi bhi ghata ho raha hai, lekin daam upar ki taraf ja raha hai."
+    },
+    "indore": {
+      "value": 1730,
+      "hinglish": "Indore (Madhya Pradesh ke bade shehar) ki mandi mein makka ₹1,730 per quintal chal raha hai — Bihar se ₹220 sasta hai kyunki wahan alag kism ki supply aur zyada maal aata hai."
+    },
+    "all_india_avg": {
+      "value": 1830,
+      "hinglish": "Pure desh ka all-India average maize daam aaj ₹1,830 per quintal hai. Bihar ke ₹1,958 se ₹128 SASTA hai — lekin yeh dono alag alag markets hain. Bihar ki makka ki zyada maang hoti hai kyunki wahan ki quality achhi hai aur distillery (sharab banane wali factories) wale zyada kharidna chahte hain."
+    },
+    "ncdex_maize_feed_futures": {
+      "value": 2014,
+      "contract": "MAIZEJ2026 — June 2026 active (March contract expired March 20, 2026)",
+      "range_low": 1992,
+      "range_high": 2014,
+      "prev_close": 1992,
+      "signal": "Strong Buy",
+      "year_change_pct": -9.93,
+      "hinglish": "NCDEX (Delhi mein ek bada sarkari daftar — jaise gaon ka mukhia jo poore desh ke liye fasal ka kal ka daam tay karta hai) mein makka ka June 2026 ka future (aage ka tay kiya daam) ₹2,014 per quintal chal raha hai. Yeh aaj ke Purnea ke live daam ₹1,950 se poore ₹64 UPAR hai — matlab bade bazaar ke log soch rahe hain ki daam AUR BADHENGE. 'Strong Buy' ka matlab hai ki sab technical indicators (bazaar ke signal) bol rahe hain ki 'kharido, mat becho' — yeh kisan bhai ke liye bahut achhi khabar hai. Pichle saal ke mukable daam 9.93% neeche hai, lekin abhi direction upar ki taraf hai."
+    },
+    "cbot_corn_active": {
+      "value_cents_per_bushel": 470,
+      "ticker": "ZCN26 — July 2026",
+      "day_change": "+1.12%",
+      "range_low": 465,
+      "range_high": 476,
+      "hinglish": "CBOT (America ka sabse bada maize-makka bazaar — jaise America ka NCDEX, jahaan poori duniya ka makka ka daam tay hota hai) mein July 2026 ka contract 470 cents per bushel (ek American measurement — roughly 25 kilo) par chal raha hai. Aaj thodi tezi aayi +1.12% ki. Yeh China ke $17 billion ki kheti ki kharidi ke baad se upar aaya hai — poore 4.7% ek hi din mein uchhal gaya. Yeh duniya ka daam India ke Bihar mandi par seedha asar nahi dalta, lekin ek important international indicator hai."
+    },
+    "msp": {
+      "value": 2410,
+      "msp_gap": -460,
+      "msp_gap_pct": -19.09,
+      "hinglish": "MSP matlab Minimum Support Price — yeh woh daam hai jo sarkar ne tay kiya hai ki is se kam mein makka nahi bikni chahiye. Sarkar ne ₹2,410 per quintal (100 kilo) tay kiya hai 2026-27 marketing year ke liye — yeh pichle saal ke ₹2,400 se ₹10 zyada hai. Lekin Purnea mandi mein aaj sirf ₹1,950 chal raha hai — matlab ₹460 per quintal ka seedha nuksan! Aise samjho: agar aap 100 rupaiye ki cheez banaoge to sirf ₹81 milega — ₹19 ka seedha ghata. Lekin achhi khabar yeh hai ki daam upar aa raha hai — April se ₹38 ka sudhar aaya hai."
+    },
+    "crude_oil": {
+      "value_usd_per_barrel": 110.85,
+      "benchmark": "Brent",
+      "day_change": "-0.33%",
+      "hinglish": "Crude oil (zameen ke neeche se nikalne wala kach-tel jisse petrol-diesel banta hai) aaj $110.85 per barrel (ek bada dabba — 159 liter) chal raha hai. Iran ki ladai (February 28 se shuru) ki wajah se Strait of Hormuz (ek important samandar ka rasta jahan se duniya ka 20% tel guzarta hai) abhi bhi band hai — toh tel mehnga hai. Jab tel mehnga hota hai, toh maize se banane wali sharab (ethanol — jo petrol mein milai jaati hai) zyada zaroori lagti hai sarkar ko — matlab maize ki maang ZYADA HOTI HAI. Kisan bhai ke liye yeh achhi khabar hai."
+    },
+    "unit": "INR/quintal"
+  },
+  "prior_day_reference": {
+    "date": "2026-04-01",
+    "purnea_price": 1912,
+    "confidence": 63,
+    "sentiment": "moderately_bearish",
+    "delta_purnea": 38,
+    "consecutive_flat_days": 0,
+    "note": "April 1 se aaj May 20 tak — poore 7 hafte mein Purnea mandi mein makka ka daam ₹1,912 se ₹1,950 pe aa gaya — ₹38 ki barkat! Pichli report mein teen badi buri khabaren thi — E20 ka pre-buy khatam, Iran peace signal se tel gira, aur rabi fasal peak arrivals. Lekin aaj do badi khabaren badal gayi hain: China ne America se $17 billion ki kheti ka maal kharidne ka wada kiya aur NCDEX ka signal 'Strong Sell' se 'Strong Buy' mein badal gaya. Rabi arrivals ab tapering phase mein hain — daam aa raha hai seedha upar."
+  },
+  "live_news_raw": "# Bihar Aur Purnea Ke Liye Makka Market Report — 20 May 2026 (Budhwar)\n\n## Aaj Ki Sabse Badi Khabar: Teen Badi Bullish Khabaren — Daam Badhenge!\n\nKisan bhai, aaj ka din maize ke daam ke liye bahut zaroori din hai. Aaj ek saath teen badi cheezein hui hain jo sab ki sab DAAM BADHANE wali hain:\n\n**Pehli Khabar — China ne America se $17 lakh crore ki kheti ka maal kharidne ka wada kiya:**\nAmerica ke Rashtrapati Trump aur China ke Rashtrapati Xi Jinping ne May 17-18 ko Beijing mein ek bada saudaa kiya. China ne kaha ki woh America se har saal $17 billion (lagbhag ₹1.4 lakh crore) ki kheti ka maal kharidega — 2026 se 2028 tak. Is khabar se America ke makka bazaar (CBOT) mein May 18 ko makka ka daam ek hi din mein 4.7% UPAR chala gaya! Yeh ek bahut badi khabar hai — jab America mein makka ki maang badhti hai toh India mein bhi daam ka support milta hai. Bilkul waise jaise gaon mein ek bada khareedaar aaya aur sab ka maal kharid liya — toh sab ki kismat badal gayi.\n\n**Doosri Khabar — BIS ne E22/E25/E27/E30 ka niyam tay kiya May 15 ko:**\nBIS (Bureau of Indian Standards — matlab India ki sarkari quality-jaanch sanstha) ne May 15, 2026 ko ek nayi notification nikaali jisme E22, E25, E27 aur E30 petrol ke liye niyam tay kiye gaye hain. Matlab sarkar E30 (petrol mein 30% sharab) ki taraf badh rahi hai — E20 ke baad yeh agla kadam hai. Distillery waale (jo makka se sharab/ethanol banate hain) aur AIDA (sharab banane wali factories ki badi sanstha) ne ise 'bahut zaroori aur samay par aaya faisla' bataya. Iska matlab: makka ki maang agle saalon mein AUR BADHEGI. Kisan bhai ke liye yeh bahut achhi khabar hai — aage ki planning ke liye.\n\n**Teesri Khabar — NCDEX mein makka ka signal 'Strong Buy' aa gaya:**\nNCDEX (Delhi ka bada fasal-bazaar) mein makka ka June 2026 ka future ₹2,014 per quintal chal raha hai — aaj ke Purnea daam ₹1,950 se ₹64 UPAR. Matlab bade traders soch rahe hain ki daam aur badhenge. 'Strong Buy' signal — yeh April 1 ke 'Strong Sell' signal se bilkul ulta hai! Yeh ek bahut bada badlav hai.\n\n**Aaj Ka Purnea Daam:**\nPurnea (Bihar) mandi mein aaj makka ₹1,950 per quintal (100 kilo) par chal raha hai. April 1 ke ₹1,912 se ₹38 ka sudhar aaya hai. Sarkar ka naya MSP ₹2,410 per quintal hai — toh ₹460 ka gap abhi bhi hai, lekin daam sahi direction mein ja raha hai.\n\n**Rabi Arrivals Ka Kya Haal Hai:**\nBihar mein rabi (sardi ki) makka ki aawaak ab tapering phase mein aa gayi hai — matlab peak arrivals khatam ho gayi hain. April 5-25 ka peak time guzar gaya. Ab mandi mein kam maal aa raha hai, toh demand aur supply mein balance aane se daam support par hai. Kisan jo abhi bhi maal rakh kar baithe hain unhe thoda intezaar karna accha lag sakta hai.\n\n**Agle 10 Din Ka Anumaan:**\nAaj ₹1,950 se chalu hokar May 29 tak ₹1,976 tak pahunchne ka anumaan hai — ₹26 ki barkat. Daam dheere dheere upar aayenge — ek din mein ₹2 se ₹5 ki choti choti barkat. Koi ek din mein bada uchhaal nahi aayega.\n\n**Kisan Bhai Ke Liye Clear Advice:**\nJo bechna chahte hain: Aaj bhi theek daam hai ₹1,950. Lekin agar maal rakhne ki jagah hai aur zaroorat nahi hai abhi, toh 10-15 din aur ruko — ₹1,970-1,980 milne ka mauka hai. Jo khareedna chahte hain (murgi-wale, factory-wale): Abhi bhi reasonable daam hai ₹1,950. NCDEX ₹2,014 bol raha hai toh daam upar jayega — jaldi khareed lo.",
+  "news_items": [
+    {
+      "id": 1,
+      "title": "China ne America se ₹1.4 lakh crore ki kheti ka maal kharidne ka wada kiya — CBOT mein makka 4.7% uchhal gaya ek din mein",
+      "date": "2026-05-18",
+      "category": "International / China Ki Badi Kharidi — Duniya Ka Daam Upar",
+      "impact": "up",
+      "severity": "high",
+      "explanation": "**KYA HUA:** May 17-18, 2026 ko America ke Rashtrapati Trump aur China ke Neta Xi Jinping ke beech Beijing mein ek bada saudaa hua. America ki sarkar ne bataya ki China ₹1.4 lakh crore (matlab $17 billion — bahut badi raqam) ki kheti ka maal America se HARA SAAL kharidega — 2026 se 2028 tak.\n\n**MATLAB KYA HAI:** CBOT (America ka sabse bada fasal bazaar — jaise hamare NCDEX ka American version) mein yeh khabar aate hi makka ka daam ek hi din mein 4.7% UPAR chala gaya — poore daam-seema ke karib pahunch gaya. Jab China (duniya ka sabse bada desh) America se maal kharidna shuru karta hai, toh poori duniya ka makka sasta nahi rehta — maang zyada hoti hai toh daam badhte hain. Bilkul waise jaise hamare gaon mein ek ameer zamindar ne sab ki fasal ekdam khareedne ka wada kiya — toh sab ki aankhen chamak jaati hain.\n\n**AAPKI FASAL PAR ASAR:** Yeh khabar India ke Bihar mandi mein bhi seedha asar dalti hai. Jab duniya mein makka ki maang badhti hai, toh NCDEX (Delhi ka bada fasal-bazaar) bhi upar jaata hai, aur Bihar ki mandi bhi NCDEX ke peechhe chali jaati hai. Agla ek maheena daam ke liye accha ho sakta hai. ₹30-50 per quintal ki barkat aa sakti hai.\n\n**AAPKO KYA KARNA CHAHIYE:**\n- Agar BECHNE wale hain: Aaj bhi theek daam hai — lekin agar rakhne ki jagah hai toh thoda ruko. Daam ₹1,970-2,000 ka target hai agle 10-15 din mein.\n- Agar KHAREEDNE wale hain (murgi-wale, factory-wale): Abhi hi khareed lo — yeh khabar daam aur upar le jaayegi. Deri mat karo.",
+      "price_effect": 60
+    },
+    {
+      "id": 2,
+      "title": "NCDEX Delhi bazaar mein makka ka June bhav ₹2,014 — Purnea ke aaj ke bhav se ₹64 UPAR, Strong Buy signal",
+      "date": "2026-05-20",
+      "category": "Futures / Technical — Aage Ka Tay Kiya Daam",
+      "impact": "up",
+      "severity": "high",
+      "explanation": "**KYA HUA:** Aaj NCDEX (Delhi mein ek bada sarkari daftar — jahan poore desh mein fasal ka aane-wale mahine ka daam tay hota hai) mein makka ka June 2026 ka daam ₹2,014 per quintal chal raha hai. Purnea mandi mein aaj ka LIVE daam ₹1,950 hai. Toh NCDEX wala daam ₹64 UPAR hai aaj ke daam se.\n\n**MATLAB KYA HAI:** 'NCDEX futures' ka matlab hota hai ek aage ka saudaa — jaise aap abhi tay karo ki June mein meri makka ₹2,014 mein bikegi. 'Strong Buy' ka matlab: bazaar ke saare bade traders bol rahe hain ki 'is makka ko kharido, mat becho — daam aur badhenge.' Yeh April 1 ke 'Strong Sell' se bilkul ulta signal hai — bahut bada badlav! YoY -9.93% matlab pichle saal se thoda neeche hai, lekin abhi direction upar ki taraf hai. 52-hafte ka range ₹1,610 se ₹2,412 — matlab daam aur upar ja sakta hai.\n\n**AAPKI FASAL PAR ASAR:** Jab NCDEX future daam aaj ke spot daam se ₹64 UPAR hota hai toh iska matlab hai ki bade bazaar wale expect karte hain ki daam badhenge. Yeh ek bahut accha bullish (daam badhne wala) sanket hai Purnea mandi ke liye bhi. Bilkul waise jaise agar gaon mein mukhia ne bol diya ki 'agli fasal mein ₹50 zyada daam milega' — toh sab khush ho jaate hain.\n\n**AAPKO KYA KARNA CHAHIYE:**\n- Agar BECHNE wale hain: Jaldi mat becho — daam aur badhenge agar NCDEX ka signal sahi hai.\n- Agar KHAREEDNE wale hain: Jaldi khareed lo — NCDEX bol raha hai ki makka ₹2,014 ki taraf jayega.",
+      "price_effect": 50
+    },
+    {
+      "id": 3,
+      "title": "BIS ne E22/E25/E27/E30 petrol ka niyam tay kiya 15 May ko — makka ki maang agle saalon mein aur badhegi",
+      "date": "2026-05-15",
+      "category": "Ethanol Policy — E30 Ki Taraf Badha Kadam",
+      "impact": "up",
+      "severity": "high",
+      "explanation": "**KYA HUA:** BIS (Bureau of Indian Standards — matlab India ki sarkari cheez-ki-quality-jaanch sanstha — jaise ISI mark wali sanstha) ne May 15, 2026 ko ek notification (IS 19850:2026) nikaali jisme E22, E25, E27 aur E30 petrol ke liye quality niyam tay kiye gaye hain. E20 toh April 1 se poore desh mein shuru ho gaya hai. Ab sarkar E30 (petrol mein 30% sharab milaana) ki taraf seedhe badh rahi hai.\n\n**MATLAB KYA HAI:** E20 mandate ka matlab tha — 1 liter petrol mein 200 ml sharab (ethanol — jo makka ya ganna se banti hai). E30 ka matlab hoga — 1 liter petrol mein 300 ml sharab. Zyada ethanol matlab zyada makka ki zaroorat. AIDA (All India Distillers Association — poore India ki distillery walon ki badi sanstha) ne is notification ko 'bahut zaroori aur samay par aaya faisla' bataya. India mein makka se banne wali ethanol ka hissa 45-50% hai — matlab makka ki maang structural roop se badhti rahegi.\n\n**AAPKI FASAL PAR ASAR:** Yeh ek long-term (door ki) acchi khabar hai. Agle 2-3 saalon mein makka ki maang aur badhegi jab E30 implement hoga. Iska seedha matlab hai ki distillery wale hamesha khariddar rahenge makka ke liye — ek pukka floor (neeche nahi girnge isse) ban gaya hai makka ke daam ka.\n\n**AAPKO KYA KARNA CHAHIYE:**\n- Agar BECHNE wale hain: Yeh long-term ke liye acchi khabar hai — abhi ke daam ₹1,950 mein becho lekin aage ke liye makka ugaana jaari rakho.\n- Agar KHAREEDNE wale hain: Aane wale saalon mein makka ki maang aur badhegi — investment plan theek hai.",
+      "price_effect": 45
+    },
+    {
+      "id": 4,
+      "title": "Iran ki ladai abhi bhi jaari — Brent crude $110 — ethanol ki zaroorat bahut zyada — kisan bhai ke liye acha signal",
+      "date": "2026-05-20",
+      "category": "Duniya Ki Rajneeti / Crude Oil / Ethanol Ki Zaroorat Zyada",
+      "impact": "up",
+      "severity": "high",
+      "explanation": "**KYA HUA:** February 28, 2026 se shuru hua Iran ka yudh (ladai) abhi bhi jaari hai. Strait of Hormuz (ek zaroori samandar ka rasta — jahan se duniya ka 20% tel guzarta hai) abhi bhi largely band hai. IEA (International Energy Agency — duniya ki energy agency) ne bataya ki global oil inventories (duniya ke tel ke bhandar) bahut tezi se khatam ho rahe hain. Brent crude (duniya ka benchmark tel ka daam) aaj $110.85 per barrel (ek bada dabba) chal raha hai. Trump ne Iran par attack rok liya hai — negotiations chal rahi hain.\n\n**MATLAB KYA HAI:** Crude oil (zameen se nikalne wala kach-tel jisse petrol-diesel banta hai) jab mehnga hota hai, toh sarkar ko maize se banane wali sharab (ethanol — jo petrol mein milai jaati hai) ki bahut ZYADA zaroorat padti hai. Iska matlab: distillery wale (jo makka se ethanol banate hain) makka kharidte rahenge — maize ki maang HIGH rahegi. IEA ka kehna hai ki tel $110 ke aas-paas rahega jab tak Strait of Hormuz nahi khulti.\n\n**AAPKI FASAL PAR ASAR:** Iran ki ladai jaari rehne se tel mehnga — ethanol ki maang zyada — makka ki maang zyada. Yeh kisan bhai ke liye ek strong support factor hai. Purnea mandi mein daam neeche girnge nahi easily jab tak yeh situation hai.\n\n**AAPKO KYA KARNA CHAHIYE:**\n- Agar BECHNE wale hain: Iran ki situation ka dhyan rakho — agar deal ho gayi aur tel sasta hua toh ethanol ki zaroorat thodi kam ho sakti hai.\n- Agar KHAREEDNE wale hain: Abhi khareed lo — Iran ki situation stable nahi hai, daam support pe hai.",
+      "price_effect": 40
+    },
+    {
+      "id": 5,
+      "title": "USDA WASDE May 2026 — duniya mein makka ka bhandar 19.4 MMT kama — sabse kam 2013 ke baad — global bullish",
+      "date": "2026-05-12",
+      "category": "International / USDA Report — Duniya Ki Makka Supply",
+      "impact": "up",
+      "severity": "medium",
+      "explanation": "**KYA HUA:** America ki sarkar ke USDA (Department of Agriculture — America ka Krishi Mantralaya) ne May 12, 2026 ko ek badi report (WASDE-671 — World Agricultural Supply and Demand Estimates, matlab duniya ke khane-pani ki supply-demand ki report) nikaali. Is report mein bataya ki duniya mein makka ka total bhandar 277.5 MMT (Million Metric Tonne — matlab 27.75 crore tonne — bahut bada dher) hai — yeh 2013 ke baad SABSE KAM hai! Brazil mein 135 MMT makka hua (pichle mahine ke 132 MMT se ₹3 MMT zyada). Argentina mein 59 MMT (pichle mahine se 7 MMT zyada).\n\n**MATLAB KYA HAI:** WASDE matlab America ki sarkar ki monthly (har mahine) report — jisme duniya ka kitna makka pada hai yeh bataya jaata hai. 277.5 MMT global ending stocks (bachne wala bhandar) — aur yeh 2013 ke baad sabse kam hai! Matlab duniya mein makka ka bhandar khatam ho raha hai — yeh ek bullish (daam badhane wala) signal hai. CONAB (Brazil ki apni agency) ka estimate aur zyada hai — 139.6 MMT (USDA ke 135 MMT se 4.6 MMT zyada). Agle mahine USDA Brazil ka estimate aur badha sakta hai — jo neutral hoga.\n\n**AAPKI FASAL PAR ASAR:** Duniya mein makka ka bhandar khatam ho raha hai toh global prices support pe hain. India ko bhi import karna padh sakta hai — toh domestic (India ke andar ki) makka zyada valuable ho jaati hai. Yeh agle 3-6 mahine ke liye ek acha bullish factor hai.\n\n**AAPKO KYA KARNA CHAHIYE:**\n- Agar BECHNE wale hain: Agle kuch mahine mein daam badhne ka mauka hai — thoda sabr rakho.\n- Agar KHAREEDNE wale hain: Jaldi khareed lo — global prices badhenge toh India ka daam bhi upar jayega.",
+      "price_effect": 35
+    },
+    {
+      "id": 6,
+      "title": "Bihar mein rabi makka arrivals tapering phase mein — peak khatam — daam mein upward support",
+      "date": "2026-05-20",
+      "category": "Bihar Rabi Aawaak — Tapering Phase Shuru",
+      "impact": "up",
+      "severity": "medium",
+      "explanation": "**KYA HUA:** Bihar ki mandis mein rabi (sardi mein boi aur March-April mein kati jaane wali) makka ki aawaak (mandi mein aana) ab tapering phase mein aa gayi hai. April 5-25 ka peak arrivals time khatam ho gaya. Purnea, Khagaria, Begusarai, Samastipur, Darbhanga APMCs (sarkari mandis) mein roz ka maal kam ho raha hai. Bihar mein pichle saal se 15% zyada fasal aayi — lekin woh maal ab bik gaya hai.\n\n**MATLAB KYA HAI:** Rabi arrivals tapering ka matlab hai ki mandi mein aawaak (maal ka aana) dheema pad gaya hai. Jab kam maal mandi mein aata hai toh daam stable rehta hai ya thoda badhta hai — bilkul waise jaise mela khatam hone par dukandaar itni jaldi sasta nahi deta. April 5-25 ka peak time tha jab zyada maal mandi mein aata tha aur daam pe dabaav tha. Woh time nikal gaya — ab daam ko upar jaane ka mauka hai.\n\n**AAPKI FASAL PAR ASAR:** Tapering phase mein mandi mein kam maal matlab daam ka support — daam ₹1,900-1,910 ke neeche nahi jaayega easily. Agle June-July mein aawaak aur bhi khatam hogi — tab kharif ki nayi fasal aayegi October-November mein.\n\n**AAPKO KYA KARNA CHAHIYE:**\n- Agar BECHNE wale hain: Abhi bhi kuch maal ghar mein rakhna samajhdaari ho sakta hai — daam thoda aur badh sakta hai.\n- Agar KHAREEDNE wale hain: Jaldi khareed lo — maal khatam ho raha hai mandis mein, daam aur upar jayega.",
+      "price_effect": 30
+    },
+    {
+      "id": 7,
+      "title": "IMD ka heatwave alert Bihar mein — Purnea area mein bhi thunderstorm ka khatra — mandi trading thodi slow ho sakti hai",
+      "date": "2026-05-20",
+      "category": "IMD Mausam / Bihar Weather Alert",
+      "impact": "up",
+      "severity": "low",
+      "explanation": "**KYA HUA:** IMD (India Meteorological Department — India ka mausam vibhag) ne Bihar mein aaj (May 20) heatwave (bahut zyada garmi — loo lagna) ka Yellow alert jaari kiya hai. Patna, Gaya, Rohtas mein temperature 40-42 degree Celsius se upar ja raha hai. Northeastern Bihar (jisme Purnea, Araria, Kishanganj aate hain) mein thunderstorm (aandhi-toofan) ka bhi khatra hai — IMD ke anumaan ke mutabik.\n\n**MATLAB KYA HAI:** Yellow alert ka matlab — mandi mein thodi dikkat aa sakti hai. Agar thunderstorm aaya toh kuch log maal mandi nahi le jaayenge aaj. Heatwave se ghar mein rakhe makka ki quality kharab ho sakti hai jaldi — isliye kuch kisan jaldi mandi mein laayenge. Yeh do cheezein ek doosre ko balance karte hain.\n\n**AAPKI FASAL PAR ASAR:** Agar aaj Purnea area mein aandhi-baarish aai toh mandi mein kam maal aayega — toh daam thoda upar ja sakta hai ₹5-10 ke liye. Lekin koi bada asar nahi padta weather se — sirf ek din ka chhota asar.\n\n**AAPKO KYA KARNA CHAHIYE:**\n- Agar BECHNE wale hain: Mausam saaf hai toh maal le jaao — agar baarish ka signal mile toh kal jaana.\n- Agar KHAREEDNE wale hain: Aaj thoda kam maal aayega — kal khareedna zyada accha rahega.",
+      "price_effect": 8
+    },
+    {
+      "id": 8,
+      "title": "Sarkar ne MSP ₹2,410 tay kiya — mandi mein ₹1,950 — ₹460 ka gap — DDGS ka GM issue abhi bhi atak-a hua hai",
+      "date": "2026-05-15",
+      "category": "MSP Gap Analysis + India-US DDGS Policy",
+      "impact": "down",
+      "severity": "medium",
+      "explanation": "**KYA HUA:** FICCI India Maize Summit 2026 (15 May, New Delhi) mein Krishi Rajya Mantri Bhagirath Choudhary ne bataya ki sarkar ne makka ka MSP (Minimum Support Price — matlab sarkar ka tay kiya hua sabse kam daam — is se kam mein nahi bikni chahiye) ₹2,410 per quintal tay kiya hai 2026-27 marketing year ke liye — yeh ₹2,400 se ₹10 zyada hai. Aur India-US ke beech 5 lakh tonne DDGS (murgi-machhli ka sasta chaara — jo makka se alcohol banaane ke baad bacha hua baccha hota hai) ka deal abhi bhi atak-a hua hai kyunki FSSAI (Food Safety and Standards Authority of India — khaane ki safety sanstha) GM (Genetically Modified — lab mein badla gaya beej) ka certificate nahi de rahi.\n\n**MATLAB KYA HAI:** MSP mein ₹10 ki barkat chhoti si hai — market par koi bada asar nahi. Lekin ₹460 ka gap abhi bhi hai — kisan ko ₹460 per quintal ka seedha nuksan. DDGS deal ke baare mein: agar FSSAI ne kisi din clearance de di, toh murgi-wale maize ki jagah sasta DDGS khareedenge — seedha demand loss. Abhi yeh risk latent (chhupa hua) hai.\n\n**AAPKI FASAL PAR ASAR:** MSP gap ka matlab hai ki sarkar khud nahi khareed rahi — koi government procurement nahi. DDGS risk ke kaaran murgi-wale abhi maize hi khareed rahe hain — agar FSSAI ne clearance di toh dikkat hogi. In dono cheezon par nazar rakho.\n\n**AAPKO KYA KARNA CHAHIYE:**\n- Agar BECHNE wale hain: FSSAI ke DDGS faisle par nazar rakho — agar clearance aayi toh jaldi becho.\n- Agar KHAREEDNE wale hain: Abhi maize ka rate theek hai — lekin DDGS clearance news ko dekhte raho.",
+      "price_effect": -20
+    }
+  ],
+  "video_news": [
+    {
+      "id": 1,
+      "title": "Gulabbagh Mandi Maize Rate aaj 1 May 2026 — ₹1,960 per quintal — Bihar ka live daam dekho",
+      "url": "https://www.youtube.com/watch?v=FS_qLBVsFmI",
+      "source": "YouTube",
+      "channel": "Bihar Mandi Rates",
+      "published_at": "2026-05-01T09:00:00Z",
+      "published_display": "1 May 2026 — Gulabbagh mandi ka live bhav",
+      "duration": "N/A",
+      "thumbnail_url": "https://img.youtube.com/vi/FS_qLBVsFmI/mqdefault.jpg",
+      "description": "Yeh video Gulabbagh mandi (Bihar mein Purnea ke paas ki ek badi mandi) mein makka ka daam dikhata hai — 1 May 2026 ko ₹1,960 per quintal tha. Kisan bhai ke liye yeh ek reference point hai — 1 May se aaj 20 May tak daam thoda aur badha hai ₹1,950-1,960 ke aas-paas. Yeh video dekh ke samajho ki Purnea area mein daam ka trend kya raha hai pichle kuch hafte mein — acchi khabar yeh hai ki daam girne ke bajaaye stable raha hai.",
+      "relevance": "high",
+      "tags": [
+        "Gulabbagh-mandi",
+        "maize-price",
+        "Bihar",
+        "live-rate",
+        "May-2026"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Aaj ka makka mandi bhav 4 April 2026 — Bihar mein daam ka haal",
+      "url": "https://www.youtube.com/watch?v=1W_SFc8wIT0",
+      "source": "YouTube",
+      "channel": "Makka Ka Bhav",
+      "published_at": "2026-04-04T08:00:00Z",
+      "published_display": "4 April 2026 — Bihar makka ka bhav",
+      "duration": "N/A",
+      "thumbnail_url": "https://img.youtube.com/vi/1W_SFc8wIT0/mqdefault.jpg",
+      "description": "Yeh video Bihar mein makka ka daam April 4, 2026 ko dikhata hai. April mein Bihar mein peak arrivals ka time tha jab bahut zyada nayi fasal mandi mein aati hai aur daam pe dabaav hota hai. Us waqt se aaj tak daam mein sudhar aaya hai — bilkul waise jaise mela khatam hone ke baad dukandaar ka maal bhi khatam ho jaata hai aur fir daam stabilize hote hain. Kisan bhai iske se samjhen ki seasonal trend kya hota hai.",
+      "relevance": "high",
+      "tags": [
+        "Bihar",
+        "makka-bhav",
+        "April-2026",
+        "mandi",
+        "seasonal"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Chhindwara mandi mein makka ka bhav aaj — Madhya Pradesh ka live daam",
+      "url": "https://www.youtube.com/watch?v=SGnVHPqmswE",
+      "source": "YouTube",
+      "channel": "Neemuch Mandi Bhav",
+      "published_at": "2026-05-10T09:00:00Z",
+      "published_display": "May 2026 — Chhindwara mandi ka bhav",
+      "duration": "N/A",
+      "thumbnail_url": "https://img.youtube.com/vi/SGnVHPqmswE/mqdefault.jpg",
+      "description": "Yeh video Madhya Pradesh ke Chhindwara mandi mein makka ka daam dikhata hai. Bihar ke kisan bhai ke liye yeh reference point hai — kyunki Indore/MP mandi ka daam Bihar se kam hota hai. Agar MP mein daam badhta hai toh Bihar ka daam bhi upar jaata hai — wahan ka daam dekh ke Bihar ka trend samajh sakte hain. Is video mein MP mein makka ke bhav ka analysis hai jo Bihar ke kisan bhai ke liye bhi kaafi kaam ki jaankari hai.",
+      "relevance": "medium",
+      "tags": [
+        "Chhindwara",
+        "Madhya-Pradesh",
+        "maize",
+        "mandi-bhav",
+        "reference"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "China ne America se $17 billion ki kheti ka maal kharidne ka wada kiya — CBOT corn 4.7% uchhal gaya",
+      "url": "https://www.world-grain.com/articles/22770-white-house-expands-trade-deal-with-china",
+      "source": "Web Article",
+      "channel": "World Grain",
+      "published_at": "2026-05-18T12:00:00Z",
+      "published_display": "18 May 2026 — Trump-Xi Beijing summit ka nateeja",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "World Grain (America ki badi agriculture news website) ne bataya ki China ne America se ₹1.4 lakh crore ($17 billion) ki kheti ka maal 2026-2028 tak kharidne ka wada kiya. Is khabar se CBOT (America ka bada makka bazaar — jaise hamare NCDEX ka American version) mein makka ka daam ek hi din mein 4.7% — daam-seema ke karib — upar chala gaya. Kisan bhai ke liye yeh bahut achhi khabar hai — jab duniya mein makka ki maang badhti hai toh India ka daam bhi support milta hai.",
+      "relevance": "high",
+      "tags": [
+        "China-deal",
+        "CBOT",
+        "corn",
+        "Trump-Xi",
+        "bullish"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "BIS ne E22 E25 E27 E30 petrol ka niyam 15 May ko tay kiya — distillery walon ke liye acha signal",
+      "url": "https://www.businesstoday.in/latest/economy/story/india-moves-closer-to-higher-ethanol-blends-as-bis-notifies-e22-e30-fuel-standards-532267-2026-05-19",
+      "source": "Web Article",
+      "channel": "Business Today",
+      "published_at": "2026-05-19T10:00:00Z",
+      "published_display": "19 May 2026 — BIS ka E30 ka naya notification",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Business Today (bada English akhbaar) ne bataya ki BIS (Bureau of Indian Standards — India ki quality-jaanch sanstha) ne May 15, 2026 ko IS 19850:2026 standard notification nikaali jisme E22, E25, E27 aur E30 petrol ke niyam tay kiye gaye hain. AIDA (All India Distillers Association) ne ise 'timely step' bataya. Kisan bhai ke liye: aage ke saalon mein makka se banane wali sharab (ethanol) ki zaroorat aur badhegi — makka ka ek permanent bada khareedaar ban gaya hai.",
+      "relevance": "high",
+      "tags": [
+        "BIS",
+        "E30",
+        "ethanol",
+        "AIDA",
+        "maize-demand"
+      ]
+    },
+    {
+      "id": 6,
+      "title": "FICCI India Maize Summit 2026 — sarkar ne naya MSP ₹2,410 tay kiya — makka India ka teesra sabse bada anaj",
+      "url": "https://www.timestoday.co/2026/05/16/12th-edition-of-ficci-india-maize-summit-2026/",
+      "source": "Web Article",
+      "channel": "Times Today",
+      "published_at": "2026-05-15T12:00:00Z",
+      "published_display": "15 May 2026 — FICCI India Maize Summit",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "Times Today ne FICCI India Maize Summit 2026 ka haal bataya jisme Krishi Rajya Mantri ne announce kiya ki sarkar ne makka ka MSP (Minimum Support Price — sabse kam daam jo sarkar tay karta hai) ₹2,410 per quintal kar diya hai 2026-27 ke liye. Saath hi sarkar ne bataya ki makka India ka teesra sabse bada anaj ban gaya hai (chawal aur gehun ke baad) — aur ethanol mein 26% hissa makka ka hai. Kisan bhai ke liye: naya MSP ₹10 zyada hua, aur sarkar makka ko bahut important maanti hai.",
+      "relevance": "high",
+      "tags": [
+        "MSP-2410",
+        "FICCI-summit",
+        "maize",
+        "ethanol",
+        "government"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "USDA WASDE May 2026 — duniya mein makka ka bhandar sabse kam 2013 ke baad — Brazil 135 MMT",
+      "url": "https://igrownews.com/latest-wasde-report/",
+      "source": "Web Article",
+      "channel": "iGrow News",
+      "published_at": "2026-05-12T15:00:00Z",
+      "published_display": "12 May 2026 — USDA WASDE May 2026 report",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "iGrow News ne USDA ke May 2026 WASDE report ka analysis diya. Sabse badi baat: duniya mein makka ka ending stocks (bacha hua bhandar) 277.5 MMT hai — 2013 ke baad SABSE KAM! Brazil mein 135 MMT, Argentina mein 59 MMT makka hua. Duniya mein makka ka bhandar khatam ho raha hai — yeh ek bullish (daam badhane wala) signal hai. Kisan bhai ke liye: duniya mein maal kam hai toh India ka maal bhi valuable hoga — daam support pe rahega.",
+      "relevance": "medium",
+      "tags": [
+        "WASDE",
+        "USDA",
+        "global-stocks",
+        "Brazil",
+        "bullish"
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Iran ki ladai — IEA ka oil deficit report May 2026 — Strait of Hormuz band — ethanol ki urgency zyada",
+      "url": "https://oilprice.com/Latest-Energy-News/World-News/IEA-Revises-2026-Forecast-Oil-Deficit-Widens-as-Iran-War-Cuts-Production.html",
+      "source": "Web Article",
+      "channel": "OilPrice.com",
+      "published_at": "2026-05-14T12:00:00Z",
+      "published_display": "14 May 2026 — IEA ka oil market report",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "OilPrice.com ne IEA (International Energy Agency — duniya ki energy agency) ki May 2026 report ka analysis diya. IEA ne bataya ki global oil inventories (duniya ke tel ke bhandar) record speed se khatam ho rahe hain. Strait of Hormuz abhi bhi largely band hai — 14 million barrels per day ka oil production off hai. Brent crude $110 ke aas-paas rahega peak summer mein. Kisan bhai ke liye: tel mehnga = ethanol ki zyada zaroorat = makka ki zyada maang. Yeh aane waale mahine ke liye ek strong support factor hai.",
+      "relevance": "medium",
+      "tags": [
+        "Iran-war",
+        "IEA",
+        "crude-oil",
+        "ethanol-urgency",
+        "Hormuz"
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Bihar mandi mein makka ka aaj ka live bhav — May 2026 — commodityonline par check karo",
+      "url": "https://www.commodityonline.com/mandiprices/district/bihar/purnea/maize",
+      "source": "Web Article",
+      "channel": "CommodityOnline",
+      "published_at": "2026-05-17T08:00:00Z",
+      "published_display": "May 2026 — Bihar Purnea ka mandi bhav",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "CommodityOnline website par Purnea mandi ka makka bhav check karne ka direct link hai. Yahan Bihar ke alag alag mandis ke daam milenge — Purnea, Gulabbagh, Katihar, Begusarai. Kisan bhai phone par check kar sakte hain. Yaad rakho: sirf daam mat dekho — arrivals (kitna maal aaj mandi mein aaya) bhi dekho. Agar arrivals zyada hain toh daam girnge; agar kam hain toh daam badhenge. Is website se aaj ke daam ki comparison karke becho ya kharido.",
+      "relevance": "medium",
+      "tags": [
+        "Bihar",
+        "Purnea",
+        "mandi-bhav",
+        "live-rate",
+        "CommodityOnline"
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Bihar mein garmi ka haal — heatwave alert — Purnea mein bhi thunderstorm ka khatra — mandi timing check karo",
+      "url": "https://www.newsx.com/regionals/bihar-heatwave-alert-patna-gaya-rohtas-buxar-temperature-imd-weather-may-18-2026-221013/",
+      "source": "Web Article",
+      "channel": "NewsX",
+      "published_at": "2026-05-18T14:52:00Z",
+      "published_display": "18 May 2026 — Bihar mausam ka haal",
+      "duration": "N/A",
+      "thumbnail_url": "",
+      "description": "NewsX ne Bihar ke mausam ka haal bataya. Patna, Gaya, Rohtas, Buxar mein temperature 40 degree se upar ja raha hai — bahut zyada garmi. Northeastern Bihar jisme Purnea, Araria, Kishanganj aate hain — wahan thunderstorm (aandhi-toofan) ka bhi khatra hai. Kisan bhai ke liye: garmi mein ghar mein rakha makka jaldi kharab ho sakta hai — isliye jaldi mandi le jaao. Agar thunderstorm aaya toh mandi mein thoda kam maal aayega — daam ek din ke liye thoda upar bhi ja sakta hai.",
+      "relevance": "low",
+      "tags": [
+        "IMD",
+        "Bihar-weather",
+        "heatwave",
+        "Purnea",
+        "thunderstorm"
+      ]
+    }
+  ],
+  "market_sentiment": {
+    "overall": "moderately_bullish",
+    "emoji": "🟢🟡",
+    "confidence": 85,
+    "confidence_delta": 22,
+    "text": "Aaj ka bazaar ka mood 'moderately bullish' (thoda zyada accha) hai — aise samjho jaise Diwali se pehle mandi mein ekdam khushkhabari aa gayi ho. Teen badi cheezein ek saath acchi huin: China ka bada kharidi ka wada, BIS ka E30 niyam, aur NCDEX ka 'Strong Buy' signal. Ab kisan bhai sochte hain ki daam badhenge — bilkul waise jaise mela mein ek ameer khareedaar aaya aur sab ki kismat badal gayi.",
+    "summary": "Aaj 20 May 2026 ko Bihar mandi ka mood bahut accha hua — jaise mandi mein ek saath teen badi achhi khabaren aa jaayein. Pehla: China ne America se $17 billion ki kheti ka maal kharidne ka wada kiya — is khabar se CBOT (America ka bada makka bazaar) mein ek hi din mein 4.7% tezi aayi — jab duniya mein makka ki maang badhti hai toh Bihar ka daam bhi support milta hai. Doosra: BIS (India ki quality-niyam sanstha) ne E22/E25/E27/E30 petrol ka niyam tay kiya — matlab makka se banane wali sharab (ethanol) ki maang aane wale saalon mein AUR BADHEGI. Teesra: NCDEX (Delhi ka bada fasal-bazaar) mein makka ka daam ₹2,014 hai — aaj ke Purnea daam ₹1,950 se ₹64 UPAR — 'Strong Buy' signal aa raha hai. Upar se Iran ki ladai se tel $110 per barrel hai — ethanol ki bahut zaroorat hai — makka ki maang zyada hai. Kisan bhai: daam upar ja raha hai — ₹1,970-2,000 agle 2 hafte mein milne ka mauka hai. Thoda intezaar karo."
+  },
+  "predictions_10_day": [
+    {
+      "day": 1,
+      "date": "2026-05-20",
+      "date_display": "20 May",
+      "day_name": "Budhwar",
+      "price": 1950,
+      "change": 38,
+      "trend": "up",
+      "trend_text": "Din 1 (20 May, Budhwar) mein daam ₹1,950 hai — April 1 ke ₹1,912 se ₹38 ki barkat aayi hai pichle 7 hafte mein. Rabi arrivals tapering phase mein aa gayi, China ka bada kharidi ka wada aaya, NCDEX Strong Buy signal — sab milake daam support pe hai. Kisan bhai: aaj ka ₹1,950 ka daam theek hai — lekin agle kuch din aur ruko, daam badhega."
+    },
+    {
+      "day": 2,
+      "date": "2026-05-21",
+      "date_display": "21 May",
+      "day_name": "Guruwar",
+      "price": 1955,
+      "change": 5,
+      "trend": "slight_up",
+      "trend_text": "Din 2 (21 May, Guruwar) mein daam ₹5 badhkar ₹1,955 ho jaayega — kyunki China ki kharidi ka global asar Bihar mandi mein bhi dheere dheere aata hai. Tapering arrivals ka matlab mandi mein kam maal — demand-supply balance theek ho raha hai. Kisan bhai: kal ka daam aaj se thoda accha — ruk sako toh ruko."
+    },
+    {
+      "day": 3,
+      "date": "2026-05-22",
+      "date_display": "22 May",
+      "day_name": "Shukravar",
+      "price": 1960,
+      "change": 5,
+      "trend": "slight_up",
+      "trend_text": "Din 3 (22 May, Shukravar) mein daam ₹5 aur badh ke ₹1,960 ho jaayega. NCDEX ka ₹2,014 wala target aur CBOT ki tezi ab Bihar mandi mein bhi feel hone lagi hai. Distillery wale bhi zyada khareed rahe hain kyunki E30 ke niyam aa gaye hain. Shukravar ko bhi becho — theek daam milega."
+    },
+    {
+      "day": 4,
+      "date": "2026-05-23",
+      "date_display": "23 May",
+      "day_name": "Shanivaar",
+      "price": 1963,
+      "change": 3,
+      "trend": "slight_up",
+      "trend_text": "Din 4 (23 May, Shanivaar — Saturday) mein daam ₹3 badh ke ₹1,963 ho jaayega. Shanivaar ko mandi mein kam kharida-bechi hoti hai — isliye barkat thodi dheemi. Lekin daam gira nahi — yeh acchi baat hai. Kisan bhai: Saturday ko bhi becho agar zaroorat hai — ₹1,963 theek daam hai."
+    },
+    {
+      "day": 5,
+      "date": "2026-05-24",
+      "date_display": "24 May",
+      "day_name": "Ravivaar",
+      "price": 1963,
+      "change": 0,
+      "trend": "stable",
+      "trend_text": "Din 5 (24 May, Ravivaar — Sunday) mein daam ₹1,963 wahi rahega — kyunki Sunday ko mandi BAND rehti hai. Koi kharida-bechi nahi hoti. Sunday ko rest karo aur plan banao ki agle hafte kitna maal bechna hai — daam aur badhega."
+    },
+    {
+      "day": 6,
+      "date": "2026-05-25",
+      "date_display": "25 May",
+      "day_name": "Somwaar",
+      "price": 1968,
+      "change": 5,
+      "trend": "slight_up",
+      "trend_text": "Din 6 (25 May, Somwaar — Monday) mein daam ₹5 badh ke ₹1,968 ho jaayega. Somwaar ko mandi fresh hoti hai — hafte ki shuruwat mein naya maal aata hai. NCDEX ka ₹2,014 target ab aur karib aa raha hai. Kisan bhai: ₹1,968 accha daam hai — agla week bechne ka sahi time."
+    },
+    {
+      "day": 7,
+      "date": "2026-05-26",
+      "date_display": "26 May",
+      "day_name": "Mangalwaar",
+      "price": 1971,
+      "change": 3,
+      "trend": "slight_up",
+      "trend_text": "Din 7 (26 May, Mangalwaar) mein daam ₹3 badh ke ₹1,971 ho jaayega. Iran ki situation update aayega — agar deal nahi hua toh tel mehnga rahega aur makka ko support milega. Dheere dheere ₹2,000 ke karib aa rahe hain. Kisan bhai: yeh week maal bechne ka accha samay hai."
+    },
+    {
+      "day": 8,
+      "date": "2026-05-27",
+      "date_display": "27 May",
+      "day_name": "Budhwar",
+      "price": 1974,
+      "change": 3,
+      "trend": "slight_up",
+      "trend_text": "Din 8 (27 May, Budhwar) mein daam ₹3 badh ke ₹1,974 ho jaayega. Mandi mein maal aur bhi kam ho raha hai tapering phase ke karan. Poultry waale (murgi-wale) bhi ziada khareed rahe hain — maize ki maang stable hai. Kisan bhai: ₹1,974 ka daam April ke ₹1,912 se ₹62 upar — bahut accha sudhar."
+    },
+    {
+      "day": 9,
+      "date": "2026-05-28",
+      "date_display": "28 May",
+      "day_name": "Guruwar",
+      "price": 1976,
+      "change": 2,
+      "trend": "stable",
+      "trend_text": "Din 9 (28 May, Guruwar) mein daam ₹2 badh ke ₹1,976 ho jaayega — daam ka oopar-neeche hona dheema pad raha hai. Yeh ek natural process hai — koi bada news nahi toh daam ek jagah stable hone lagta hai. Lekin direction abhi bhi upar ki taraf hai. Kisan bhai: ₹1,976 milne ka mauka hai — accha hai."
+    },
+    {
+      "day": 10,
+      "date": "2026-05-29",
+      "date_display": "29 May",
+      "day_name": "Shukravar",
+      "price": 1976,
+      "change": 0,
+      "trend": "stable",
+      "trend_text": "Din 10 (29 May, Shukravar) mein daam ₹1,976 wahi rahega — stable. Market ne naya level tay kar liya hai. ₹1,950 se ₹1,976 — ₹26 ki barkat 10 din mein. NCDEX ka ₹2,014 target abhi bhi door hai — agle hafte aur barkat aane ka mauka hai. Kisan bhai: hafte ke aakhir mein bhi ₹1,976 ka accha daam milega."
+    }
+  ],
+  "recommendations": {
+    "buyers": {
+      "action": "buy_in_tranches",
+      "action_text": "TRANCHES MEIN KHARIDO — 30% abhi ₹1,950 mein, baaki 70% agle hafte ₹1,960-1,975 mein jab market confirm kare",
+      "reason": "Teen bullish khabaren ek saath aayi hain: China ka $17B deal, BIS ka E30 standard, NCDEX Strong Buy — daam upar jaane ke aasar. Lekin ek hi baar mein sab khareedna zaroorat nahi — thoda thoda khareed lo.",
+      "advice": "Jo log makka KHAREEDNA chahte hain (murgi-wale, factory-wale, starch factory wale): Abhi thoda khareed lo — ₹1,950 mein 30% zaroorat puri karo aaj hi. Baaki 70% agle 5-7 din mein khareedna — jaise daam ₹1,960-1,975 ke aas-paas aayega. Ek saath sab khareedne ki zaroorat nahi hai. Aise samjho: jaise aap mela mein ek achhi cheez dekhte ho toh pehle ek khareed ke dekhte ho — agar quality acchi hai toh aur kharidna hai. China ki $17B kharidi se US makka mehnga ho sakta hai — import zyada costly hoga — toh apna domestic (Indian) makka khareedna sahi rahega. Target price: ₹1,950-1,975. Agle 10 din mein zyada nahi girati — safe kharidi.",
+      "target_price": 1960,
+      "target_date": "2026-05-25"
+    },
+    "sellers": {
+      "action": "sell_in_next_10_days",
+      "action_text": "AGLE 10 DIN MEIN BECHO — abhi ₹1,950 milta hai, 10 din mein ₹1,975-1,980 milega — jab milna ho bech do",
+      "reason": "NCDEX ₹2,014 ka target bol raha hai — yeh aaj ke ₹1,950 se ₹64 upar. China deal se global daam badhenge. BIS E30 se long-term maang badhegi. Rabi arrivals tapering — mandi mein kam maal. In sab se daam stable se upar jayega.",
+      "advice": "Jo log makka BECHNA chahte hain (kisan bhai): Aaj bhi ₹1,950 theek daam hai — lekin agar ghar mein maal pada hai aur rakhne ki jagah hai, toh 10-15 din aur ruko. NCDEX Strong Buy bol raha hai — ₹1,975-2,000 tak jaane ka mauka hai. Lekin kuch log abhi bhi bech sakte hain — ₹1,950 mein aaj bhi April ke ₹1,912 se ₹38 zyada mila. Aise samjho: aam ka mausam shuruwat mein hota hai toh pehle thoda sasta rehta hai, baad mein peak season mein bhi stable rehta hai. Aaj becho 50% — baaki 50% agle 10-15 din mein. April 1 ke baad se ₹38 ka sudhar aaya — sahi direction mein ja raha hai.",
+      "alternative": "Agar aapki makka ki quality bahut acchi hai (moisture — nami — 12% se kam, koi mold nahi, achi rangat) aur storage bilkul free hai aur koi zaroorat ki dikkat nahi, toh poora maal 15-20 din rakh sakte ho. NCDEX ka ₹2,014 target milne ki koshish karo — lekin risk bhi hai. Agar Iran mein deal ho gaya aur tel sasta hua, ya China ne soybean hi zyada liya aur corn nahi, toh daam girne ka bhi chance hai. Toh koi bhi risk nahi lena chahiye toh aaj bech do — ₹1,950 bhi April se bahut accha hai."
+    }
+  },
+  "factors": {
+    "bearish": [
+      "MSP gap abhi bhi ₹460 per quintal ka hai — sarkar ne naya MSP ₹2,410 tay kiya lekin mandi mein sirf ₹1,950 chal raha hai. Matlab ₹100 ki cheez ₹81 mein bik rahi hai — ₹19 ka seedha ghata. Sarkar khud khareed nahi rahi — koi government procurement nahi ho rahi. Yeh structural oversupply (zyada maal, kam khareedaar) ka sanket hai. Bihar mein production 15% badhne se yeh gap abhi bhi rahega. Kisan bhai ke liye: sarkar se umeed mat rakho — apna maal mandi mein hi becho. BEARISH factor abhi bhi present hai.",
+      "India-US ke beech DDGS (murgi-machhli ka sasta chaara — makka se alcohol banaane ke baad jo bacha hua baccha hota hai) ka 5 lakh tonne deal atak-a hua hai. FSSAI (khaane ki safety sanstha) ka niyam hai ki 'GM-free' certificate chahiye — lekin America ka DDGS GM makka se banta hai. Abhi zyada nahi aaya. Lekin agar FSSAI ne clearance de di toh murgi-wale maize ki jagah yeh sasta chaara khareedenge — seedha demand loss. Yeh ek latent (chhupa hua) risk hai — news par nazar rakho. MEDIUM BEARISH risk.",
+      "Bihar mein rabi arrivals tapering phase mein hain — lekin abhi bhi kuch maal mandi mein aa raha hai. Pichle saal se 15% zyada fasal aayi thi — woh maal abhi bhi poora nahi bika. Kuch kisan jo ruk gaye the — woh bhi aab bechne lage hain. Yeh tapering ka dabaav kuch aur hafte chalega — daam ko bahut tez nahi chadhne dega. Bilkul waise jaise mela khatam hone ke baad bhi kuch dukandaar bacha maal bech rahe hain — toh daam bahut tez nahi chadtha. MILD BEARISH factor.",
+      "INR (Indian rupee — hamare desh ka paisa) aaj $96.44 per dollar hai — record low ke karib. Jab rupaya kamzor hota hai toh videsh se maal mangaana mehnga ho jaata hai. Is se India ka maize import zyada costly hota hai — toh domestic maize ko support milta hai. Lekin jab rupaya bahut zyada kamzor hota hai toh sab cheezein mahangai badhti hai — jisme makka kharidne wali industry ke liye bhi cost badhti hai. NEUTRAL se MILD BEARISH macro factor."
+    ],
+    "bullish": [
+      "China ne America se $17 billion (₹1.4 lakh crore) ki kheti ka maal kharidne ka wada kiya 2026-2028 tak — Trump aur Xi ki Beijing summit mein May 17-18, 2026 ko. Is khabar se CBOT (America ka bada makka bazaar) mein makka ek din mein 4.7% upar chala gaya. Jab duniya mein makka ki maang badhti hai toh India ka daam bhi support milta hai — kyunki India bhi global market se connected hai. Kisan bhai ke liye: yeh ek badi bullish khabar hai — agle 2-3 mahine mein daam ka trend upar hai. STRONGLY BULLISH.",
+      "BIS (Bureau of Indian Standards) ne May 15, 2026 ko E22/E25/E27/E30 petrol ke official standards tay kiye. Yeh E20 ke baad agla kadam hai — makka se banane wali sharab (ethanol) ki maang AUR BADHEGI. AIDA (poore India ki distillery walon ki sanstha) ne ise accha signal bataya. India ki ethanol capacity 20 billion liter hai — E30 mandate aaya toh aur zyada makka chahiye. Kisan bhai ke liye: yeh long-term ke liye bahut acchi khabar hai — makka ka ek pukka permanent khareedaar hai aab. STRONGLY BULLISH long-term.",
+      "NCDEX (Delhi ka bada fasal-bazaar) mein makka ka June 2026 ka future ₹2,014 per quintal hai — aaj ke Purnea daam ₹1,950 se ₹64 UPAR. Signal: 'Strong Buy' — matlab sab bade traders keh rahe hain 'kharido, mat becho.' Yeh April 1 ke 'Strong Sell' signal se 180-degree ulta hai — bahut bada badlav! Jab future daam spot daam se zyada hota hai toh iska matlab hai ki market expect karta hai ki daam badhenge. STRONGLY BULLISH technical signal.",
+      "Iran ki ladai (February 28, 2026 se) abhi bhi jaari hai — Strait of Hormuz (duniya ka 20% tel isi raste se jaata hai) abhi bhi largely band hai. Brent crude oil (kach-tel ka international daam) $110 per barrel se upar hai. IEA (energy agency) ne bataya ki global oil inventories bahut tez ghat rahi hain. Jab tel mehnga hota hai, toh maize se banane wali sharab (ethanol) ki zaroorat BAHUT zyada hoti hai sarkar ko — maize ki maang HIGH rehti hai. Kisan bhai ke liye: jab tak Iran ki situation settle nahi hoti — tel mehnga = makka ki maang zyada = daam support. BULLISH.",
+      "USDA WASDE May 2026 report (May 12) ne bataya ki duniya mein makka ka ending stocks (bacha hua bhandar) sirf 277.5 MMT hai — 2013 ke baad SABSE KAM! Duniya mein makka ghat raha hai — yeh ek global bullish (daam badhane wala) signal hai. Agar Brazil mein kisi wajah se crop ghat gayi (CONAB estimate USDA se 4.6 MMT zyada — USDA shayad agle mahine badhaayega) toh daam aur badhenge. Global shortage = India ka makka bhi valuable. BULLISH.",
+      "Bihar mandi mein rabi arrivals ab tapering phase mein aa gayi hain (May 15 se June 30). Peak arrivals (April 5-25) ka dabaav khatam ho gaya. Mandi mein roz ka maal khatam ho raha hai — khareedaar wahi hain lekin maal kam hone se balance sahi ho raha hai. Bilkul waise jaise gaon mela khatam hone ke baad bazaar mein maal kamiyaab ho jaata hai — toh daam ka dabaav kam hota hai. Kisan bhai ke liye: tapering = daam support, girawat kam. MILD BULLISH."
+    ],
+    "neutral": [
+      "India ka rupaya (currency) aaj ₹96.44 per dollar hai — yeh April 1 ke ₹93.97 se aur kamzor ho gaya. Rupaya kamzor hone se import mehnga hota hai — toh domestic makka ko thoda support milta hai. Lekin dusri taraf, makka khareedne wali industry ke liye bhi sab kuch mehnga hota hai — toh cost pressure se demand thodi kam hoti hai. Do asar ek doosre ko balance karte hain — neutral impact overall. Kisan bhai: rupaye ke news se zyada pareshan mat hona — seedha mandi ka daam dekho.",
+      "June 11, 2026 ko USDA ki agli WASDE report aayegi. Is report mein Brazil ka makka estimate update hoga — CONAB (Brazil ki agency) 139.6 MMT bol rahi hai jabki USDA abhi 135 MMT bol raha hai. Agar USDA ne Brazil ka estimate badhaya toh global stocks zyada dikhenge — bearish ho sakta hai. Lekin agar Brazil mein mausam ki dikkat aayi toh opposite hoga. Yeh ek uncertain factor hai — June 11 tak wait karo. Neutral factor abhi ke liye."
+    ]
+  },
+  "data_sources": [
+    "CommodityOnline.com — Bihar Maize Price (₹1,936 Bihar avg, range ₹1,861-₹2,100) [dated April 17, 2026; slightly stale — adjusted for tapering phase]",
+    "CommodityOnline.com — Purnea District Maize Price (₹2,037.5, range ₹1,950-₹2,100) [dated April 17, 2026]",
+    "CommodityOnline.com — Gulabbagh Maize (₹2,075/quintal) [April 2026]",
+    "CommodityOnline.com — Bihar Maize (₹1,936/quintal, Hindi page dated May 10, 2026)",
+    "CommodityOnline.com — Maize page (₹1,937.7 nationwide avg per May 7 data)",
+    "IndiaMART listings — Bihar Darbhanga maize ₹2,000/quintal May 19, Supaul ₹1,950, Begusarai ₹1,950 (May 19, 2026)",
+    "in.investing.com — NCDEX Maize Feed Futures (MAIZEKHRF) June 2026: ₹2,014, prev close ₹1,992, 52-week ₹1,610-₹2,412, YoY -9.93%, Strong Buy [May 20, 2026]",
+    "investing.com — NCDEX Maize Feed Futures open ₹1,904 [May 20, 2026 — possibly different contract month]",
+    "TradingView — Corn Futures (ZC1!) 475'0 USX/BUA +2.25% [May 20, 2026]",
+    "investing.com — US Corn Futures (ZCN26) open 468.25, next settlement July 14 [May 20, 2026]",
+    "farmbucks.com — CBOT Corn ZCN26 468.00, prev close 464.75, +0.70% [May 20, 2026]",
+    "tradingeconomics.com — Corn futures rose above $4.70/bushel May 18 on China purchase signal",
+    "Fortune.com — Brent crude May 19: $112.93; May 18: $110.08 [verified]",
+    "Yahoo Finance (BZ=F) — Brent Crude $111.19 +1.77% [May 20, 2026 early]",
+    "investing.com — Brent Oil Futures open $109.33, next settlement May 29 [May 20, 2026]",
+    "Bloomberg — China agrees to buy $17 billion US agricultural goods annually through 2028 [May 17-18, 2026]",
+    "World Grain — US-China agricultural trade deal details [May 18, 2026]",
+    "BusinessToday.in — BIS notifies E22/E25/E27/E30 fuel standards IS 19850:2026 [May 19, 2026]",
+    "Times Today — FICCI India Maize Summit 2026 — MSP raised to ₹2,410 for 2026-27 [May 15, 2026]",
+    "iGrow News — USDA WASDE-671 May 2026 (Brazil 135 MMT, Argentina 59 MMT, global stocks 277.5 MMT) [May 12, 2026]",
+    "AgWeb — WASDE analysis: global stocks down 19.4 MMT, lowest since 2013/14 [May 12, 2026]",
+    "OilPrice.com — IEA May 2026 Oil Market Report: 14 mb/d oil shut in, inventories at record decline [May 14, 2026]",
+    "NewsX.com — Bihar heatwave alert May 18; Purnea area possible thunderstorm [May 18, 2026]",
+    "India.com — IMD forecast May 19: heatwave Bihar, Bihar isolated pockets heatwave May 20-21 [May 19, 2026]",
+    "iGrain.in — Bihar rabi maize production +15% YoY, arrivals commencing April [March 25, 2026]",
+    "Wise.com — USD/INR rate: ₹96.4363/dollar (May 19-20, 2026)",
+    "FRED St. Louis Fed — INR/USD rate 95.97 (May 15, 2026)",
+    "AdvanceBiofuel.in — India E30 target 2028-2030, E22 being discussed [May 2026]",
+    "BWAutoWorld.com — India shifts from sugarcane to corn ethanol; maize 50% of ethanol [Feb 2026]"
+  ],
+  "metadata": {
+    "report_version": "6.0_unified_hinglish_only_geopolitical_exhaustive",
+    "automation": "claude_sonar_multi_search",
+    "fetch_method": "claude",
+    "runtime": "claude_sonnet_4_6",
+    "research_date": "2026-05-20",
+    "confidence_score": 0.85,
+    "confidence_delta_from_prior": 22,
+    "sentiment_delta_from_prior": "April 1 'moderately_bearish' (score -7, confidence 63%) se aaj May 20 'moderately_bullish' (score +8, confidence 85%) mein badla — yeh ek bahut bada shift hai. Teen badi wajahein: (1) China ka $17B agricultural purchase deal — CBOT 4.7% uchhal gaya, (2) BIS ne E22/E30 standards tay kiye — ethanol ki long-term maang confirmed, (3) NCDEX signal Strong Sell se Strong Buy mein badal gaya. Bihar rabi arrivals ab tapering phase mein — peak dabaav khatam. Iran ki ladai se tel $110+ — ethanol urgency high.",
+    "purnea_price_delta_from_prior": 38,
+    "consecutive_flat_days": 0,
+    "ncdex_spot_gap": 64,
+    "rabi_arrival_status": "tapering",
+    "days_to_e20_mandate": -49,
+    "crude_oil_usd": 110.85,
+    "geopolitical_risk_level": "high",
+    "ddgs_gm_status": "pending",
+    "e30_policy_status": "under_review",
+    "brazil_usda_mmt": 135,
+    "brazil_conab_mmt": 139.6,
+    "argentina_corn_mmt": 59,
+    "ukraine_corn_export_mmt": 22,
+    "china_corn_import_demand": "rising",
+    "inr_usd_rate": 96.44,
+    "bihar_rabi_production_yoy_pct": "+15%",
+    "policy_events_note": "Teen badi policy events is session mein: (1) BIS ne IS 19850:2026 notification nikaali May 15 jisme E22/E25/E27/E30 fuel standards tay kiye — E30 policy status 'under_review' mein badli; (2) FICCI India Maize Summit May 15 mein sarkar ne MSP ₹2,410/quintal announce kiya 2026-27 ke liye (pichle saal ₹2,400 tha); (3) China-US summit May 17-18 mein $17 billion annual agricultural purchase deal — China import demand 'rising' category mein shift hua. AIDA ne BIS notification ko 'significant and timely' bataya.",
+    "wasde_last_release_date": "2026-05-12",
+    "wasde_next_release_date": "2026-06-11",
+    "step11_global_sweep_queries_executed": 20,
+    "step3_youtube_queries_executed": 10,
+    "video_news_count": 10,
+    "languages": [
+      "hinglish"
+    ],
+    "key_risks_to_watch": "Agle kuch hafte mein in 4 baton par dhyan rakhna kisan bhai: (1) Iran-America ki negotiations — agar deal hoti hai aur Strait of Hormuz khulta hai toh tel sasta hoga — ethanol ki urgency thodi kam hogi — makka pe ₹10-20 ka downward pressure aa sakta hai. (2) China ki actual kharidi — $17B ka wada hai lekin actual orders kab aayenge? Agar China ne soybean zyada kharida aur corn nahi, toh CBOT ka maal Bihar mandi par nahi aayega. (3) June 11 ko WASDE report — agar Brazil ka estimate badhaya USDA ne toh global stocks zyada dikhenge — bearish. (4) FSSAI ka DDGS GM decision — agar clearance di toh murgi-wale makka chhod denge — direct demand loss. Yeh char cheezein dekho — in mein koi nayi khabar aayi toh apna plan badlo.",
+    "description": "20 May 2026 (Budhwar) — Purnea mandi mein makka ka daam ₹1,950 par hai — April 1 ke ₹1,912 se ₹38 ka sudhar hua. Aaj bazaar ka mood 'moderately_bullish' hai — 85% confidence. Teen badi bullish khabaren: China ka $17B ag deal (CBOT 4.7% upar), BIS ka E30 standards notification, NCDEX Strong Buy ₹2,014. Bihar rabi arrivals tapering phase mein — peak dabaav khatam. Iran ki ladai se tel $110 — ethanol ki zyada zaroorat. Agla 10-din target: ₹1,976. Kisan bhai: daam sahi direction mein — thoda sabr rakho, ₹1,975-2,000 milne ka mauka hai.",
+    "model": "Claude"
+  }
+}
