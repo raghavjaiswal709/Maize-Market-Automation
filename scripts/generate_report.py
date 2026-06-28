@@ -343,7 +343,7 @@ def main():
 
     print("\n=== Phase 2: GPT-4o generating JSON report ===", flush=True)
 
-    response = client.chat.completions.create(
+    api_params = dict(
         model="gpt-5.5-2026-04-23",
         messages=[
             {
@@ -357,10 +357,19 @@ def main():
             },
             {"role": "user", "content": prompt},
         ],
-        max_tokens=16000,
-        temperature=0.2,
+        max_completion_tokens=16000,
         response_format={"type": "json_object"},
     )
+
+    # gpt-5.5 family uses max_completion_tokens; add temperature only if supported
+    try:
+        response = client.chat.completions.create(**api_params, temperature=0.2)
+    except Exception as e:
+        if "temperature" in str(e):
+            print("Note: temperature not supported by this model, retrying without it.", flush=True)
+            response = client.chat.completions.create(**api_params)
+        else:
+            raise
 
     raw = response.choices[0].message.content or ""
     u   = response.usage
