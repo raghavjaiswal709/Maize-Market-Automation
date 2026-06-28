@@ -1,23 +1,17 @@
 #!/usr/bin/env python3
 """
-Daily Maize Market Report Generator — Phase 1: gather real data, Phase 2: GPT-4o generates JSON.
-
-Phase 1: Python fetches live prices (Yahoo Finance) + news (DuckDuckGo) — no extra API key needed.
-Phase 2: All gathered data is passed to GPT-4o (Chat Completions) to produce the warehouse JSON.
+Daily Maize Market Report Generator
+Phase 1 — Python gathers real data (Yahoo Finance + DuckDuckGo)
+Phase 2 — GPT-4o generates the full warehouse JSON report
 """
 
-import glob
-import json
-import os
-import re
-import sys
-import time
+import glob, json, os, re, sys, time
 from datetime import datetime, timezone, timedelta
 
 IST = timezone(timedelta(hours=5, minutes=30))
 
 
-# ── Live price fetch (Yahoo Finance public JSON endpoint) ─────────────────────
+# ── Yahoo Finance price fetch ─────────────────────────────────────────────────
 
 def fetch_yahoo(symbol: str) -> dict:
     import requests
@@ -38,10 +32,13 @@ def fetch_yahoo(symbol: str) -> dict:
         return {"symbol": symbol, "error": str(e)}
 
 
-# ── Web search (DuckDuckGo, no API key) ───────────────────────────────────────
+# ── DuckDuckGo search (renamed package: ddgs) ─────────────────────────────────
 
-def ddg_search(query: str, max_results: int = 5) -> list[dict]:
-    from duckduckgo_search import DDGS
+def ddg_search(query: str, max_results: int = 4) -> list[dict]:
+    try:
+        from ddgs import DDGS
+    except ImportError:
+        from duckduckgo_search import DDGS  # fallback for older installs
     for attempt in range(3):
         try:
             with DDGS() as ddgs:
@@ -49,89 +46,202 @@ def ddg_search(query: str, max_results: int = 5) -> list[dict]:
             if results:
                 return results
         except Exception as e:
-            print(f"  DDG attempt {attempt + 1} failed ({e})", flush=True)
+            print(f"  DDG attempt {attempt+1} failed: {e}", flush=True)
             time.sleep(2 + attempt * 2)
     return []
 
 
-def format_results(results: list[dict]) -> str:
+def fmt(results: list[dict]) -> str:
     if not results:
         return "  (no results)"
-    lines = []
+    out = []
     for i, r in enumerate(results, 1):
-        body = (r.get("body") or "")[:400]
-        lines.append(f"  [{i}] {r.get('title','')}\n      {r.get('href','')}\n      {body}")
-    return "\n".join(lines)
+        body = (r.get("body") or "")[:350]
+        out.append(f"  [{i}] {r.get('title','')}\n      {r.get('href','')}\n      {body}")
+    return "\n".join(out)
 
 
-# ── Gather all research data ──────────────────────────────────────────────────
+# ── Phase 1: gather all research data ────────────────────────────────────────
 
-def gather_data(today: str, month_year: str) -> str:
-    sections = []
+def gather(today: str, my: str) -> str:
+    """Returns a single string with all real-time market data."""
+    parts = []
 
-    # ── Live financial prices ──────────────────────────────────────────────────
-    print("Fetching Yahoo Finance prices ...", flush=True)
-    cbot  = fetch_yahoo("ZC=F")       # CBOT Corn
-    crude = fetch_yahoo("BZ=F")       # Brent Crude
-    inr   = fetch_yahoo("USDINR=X")  # USD/INR
+    print("Fetching Yahoo Finance prices...", flush=True)
+    cbot  = fetch_yahoo("ZC=F")
+    crude = fetch_yahoo("BZ=F")
+    inr   = fetch_yahoo("USDINR=X")
+    parts.append(f"""=== LIVE PRICES ({today}) ===
+CBOT Corn (ZC=F)  : {cbot.get('price','N/A')} {cbot.get('currency','USX/BU')} | chg: {cbot.get('change_pct','N/A')}% | prev: {cbot.get('prev_close','N/A')}
+Brent Crude (BZ=F): {crude.get('price','N/A')} {crude.get('currency','USD')} | chg: {crude.get('change_pct','N/A')}% | prev: {crude.get('prev_close','N/A')}
+USD/INR (USDINR=X): {inr.get('price','N/A')}""")
 
-    sections.append(f"""
-══ LIVE PRICES (Yahoo Finance, {today}) ══
-CBOT Corn    : {cbot.get('price','N/A')} {cbot.get('currency','USX/BU')}  |  change: {cbot.get('change_pct','N/A')}%  |  prev close: {cbot.get('prev_close','N/A')}
-Brent Crude  : {crude.get('price','N/A')} {crude.get('currency','USD')}    |  change: {crude.get('change_pct','N/A')}%  |  prev close: {crude.get('prev_close','N/A')}
-USD/INR Rate : {inr.get('price','N/A')}
-""")
-
-    # ── Web search queries ─────────────────────────────────────────────────────
     queries = [
-        # Kadam 2 — Bihar spot prices
-        ("bihar_price_a",   f"makka bhav aaj Bihar mandi Purnea Katihar maize price today {month_year}"),
-        ("bihar_price_b",   f"maize wholesale price Bihar warehouse trader {month_year}"),
-        ("indore_price",    f"maize corn price Indore MP mandi {month_year}"),
-        # Kadam 3 — YouTube / video news
-        ("youtube_a",       f"maize makka mandi bhav Bihar Purnea aaj YouTube {month_year}"),
-        ("youtube_b",       f"NCDEX maize futures price today hedge YouTube {month_year}"),
-        ("youtube_c",       f"makka rate today Bihar mandi wholesale YouTube {month_year}"),
-        # Kadam 4 — NCDEX
-        ("ncdex",           f"NCDEX maize futures price today June September 2026 {month_year}"),
-        # Kadam 5 — CBOT / global
-        ("cbot_news",       f"CBOT corn futures price today ZC {today}"),
-        # Kadam 6 — E20/E30 / crude / DDGS
-        ("ethanol_e20",     f"India E20 ethanol mandate April 2026 maize distillery demand {month_year}"),
-        ("ddgs_policy",     f"India DDGS GM status FSSAI approval maize import duty 2026"),
-        ("crude_news",      f"crude oil price today Brent WTI Iran OPEC {today}"),
-        # Kadam 7 — Bihar arrivals
-        ("bihar_arrivals",  f"Bihar rabi maize harvest arrivals mandi {month_year}"),
-        # Kadam 8 — IMD weather
-        ("imd_bihar",       f"IMD weather Bihar forecast heatwave flood {today}"),
-        # Kadam 9 — Brazil / WASDE
-        ("brazil_wasde",    f"Brazil corn safrinha harvest 2026 WASDE USDA crop estimate {month_year}"),
-        # Kadam 10 — Industry associations
-        ("aida_isma",       f"AIDA ISMA ethanol industry E30 India {month_year}"),
-        ("poultry_demand",  f"India poultry aquaculture feed maize demand {month_year}"),
-        # Kadam 11 — Global sweep (20 queries collapsed to 6 key ones)
-        ("india_policy",    f"India maize import export duty procurement MSP {month_year}"),
+        ("bihar_spot",      f"makka bhav aaj Bihar mandi Purnea Katihar maize price {my}"),
+        ("bihar_wholesale", f"maize wholesale price Bihar trader warehouse {my}"),
+        ("indore_price",    f"maize corn price Indore Madhya Pradesh mandi {my}"),
+        ("ncdex_futures",   f"NCDEX maize futures price June September 2026 {my}"),
+        ("cbot_news",       f"CBOT corn futures ZC price today {today}"),
+        ("ethanol_e20",     f"India E20 E30 ethanol mandate maize distillery demand {my}"),
+        ("ddgs_policy",     f"India DDGS GM approval FSSAI maize import duty 2026"),
+        ("crude_news",      f"Brent crude oil price today Iran OPEC {today}"),
+        ("bihar_arrivals",  f"Bihar rabi maize harvest arrivals mandi tapering {my}"),
+        ("imd_weather",     f"IMD Bihar weather forecast heatwave flood {today}"),
+        ("brazil_wasde",    f"Brazil corn safrinha harvest USDA WASDE estimate {my}"),
+        ("aida_isma",       f"AIDA ISMA ethanol industry E30 India {my}"),
+        ("poultry_demand",  f"India poultry aquaculture feed maize demand {my}"),
+        ("india_policy",    f"India maize import export duty MSP procurement {my}"),
         ("china_corn",      f"China corn import demand purchase 2026"),
-        ("ukraine_grain",   f"Ukraine corn export Black Sea Russia {month_year}"),
-        ("india_us_trade",  f"India US trade deal agriculture tariff corn DDGS {month_year}"),
-        ("global_supply",   f"USDA corn crop estimate global supply demand {month_year}"),
-        ("india_news",      f"India maize corn news today {month_year}"),
+        ("global_supply",   f"USDA corn crop global supply demand estimate {my}"),
+        ("ukraine_grain",   f"Ukraine corn export Black Sea shipment {my}"),
+        ("india_us_trade",  f"India US trade deal agriculture corn DDGS tariff {my}"),
+        ("india_news",      f"India maize corn market news {my}"),
+        ("rupee_macro",     f"Indian rupee USD rate agriculture import cost {today}"),
     ]
 
-    print(f"Running {len(queries)} web searches ...", flush=True)
-    for key, query in queries:
-        results = ddg_search(query, max_results=4)
-        sections.append(f"\n══ SEARCH [{key}]: {query} ══\n{format_results(results)}")
-        time.sleep(0.8)   # be gentle with DDG
+    print(f"Running {len(queries)} searches...", flush=True)
+    for key, q in queries:
+        results = ddg_search(q)
+        parts.append(f"\n=== {key.upper()}: {q} ===\n{fmt(results)}")
+        time.sleep(0.7)
 
-    return "\n".join(sections)
+    return "\n".join(parts)
 
 
-# ── Build the final prompt ────────────────────────────────────────────────────
+# ── Phase 2: build focused GPT-4o prompt ─────────────────────────────────────
 
-def build_prompt(today: str, report_id: str, research_data: str, prior: dict | None) -> str:
-    with open("public/instruction.txt", encoding="utf-8") as f:
-        instruction = f.read()
+SCHEMA_PROMPT = """
+You are an expert Indian agricultural commodity analyst. Generate a COMPLETE daily Maize Market Report JSON for a WAREHOUSE OPERATOR (godown malik) storing 50,000–500,000 quintals of maize in Bihar.
+
+OUTPUT: ONLY a valid JSON object. No markdown. No explanation. First char: { Last char: }
+
+The JSON must have EXACTLY these 16 top-level keys:
+_id, timestamp, date, time, day_of_week,
+current_prices, prior_day_reference,
+live_news_raw, news_items, video_news,
+market_sentiment, predictions_10_day,
+recommendations, factors, data_sources, metadata
+
+LANGUAGE: ALL text fields must be in HINDI ONLY. No English. No Hinglish.
+Technical terms: explain in Hindi brackets on first use.
+Example: "NCDEX (National Commodity & Derivatives Exchange — yani Delhi ka bada commodity bazaar)"
+
+══ REQUIRED FIELDS AND RULES ══
+
+current_prices must include:
+  bihar_avg        : {value: INT, hinglish: "HINDI explanation"}
+  purnea           : {value: INT, hinglish: "HINDI explanation"}
+  indore           : {value: INT, hinglish: "HINDI explanation"}
+  all_india_avg    : {value: INT, hinglish: "HINDI explanation"}
+  ncdex_maize_feed_futures: {value: INT, contract: STR, range_low: INT, range_high: INT, prev_close: INT, signal: STR, hinglish: STR}
+  cbot_corn_active : {value_cents_per_bushel: FLOAT, ticker: STR, day_change: STR, hinglish: STR}
+  crude_oil        : {value_usd_per_barrel: FLOAT, benchmark: STR, day_change: STR, hinglish: STR}
+  msp              : {value: 2410, msp_gap: INT, msp_gap_pct: FLOAT, hinglish: STR}
+  warehouse_economics: {
+    assumed_procurement_cost: INT (default 1850),
+    daily_carry_cost: 22,
+    breakeven_price_1month: INT (procurement + 660),
+    breakeven_price_2month: INT (procurement + 1320),
+    breakeven_price_3month: INT (procurement + 1980),
+    indore_bihar_gap: INT,
+    import_parity_price: INT,
+    domestic_import_gap: INT,
+    explanation: "HINDI string"
+  }
+
+news_items: EXACTLY 8 items. Each item:
+  {id, title, date, category, impact, severity, explanation}
+  explanation MUST have 4 Hindi sections:
+    **KYA HUA:** [facts]
+    **ISKA MATLAB KYA HAI:** [analysis with numbers]
+    **AAPKE STORED MAIZE PAR ASAR:** [warehouse impact in ₹]
+    **GODOWN OPERATOR KE LIYE KAAM:** [action items]
+
+  Required categories (one each):
+  1. NCDEX futures movement + hedging signal
+  2. Bihar rabi arrival status + sell window
+  3. E20/E30 ethanol mandate + distillery demand
+  4. International (CBOT/Brazil/WASDE) + import parity
+  5. India-US trade / DDGS GM status
+  6. IMD Bihar weather + storage quality risk
+  7. Crude oil / geopolitical update
+  8. MSP gap + warehouse financing / WR pledge value
+
+video_news: 10 to 15 items. Each:
+  {id, title, url, source, channel, published_at, published_display, duration, thumbnail_url, description, relevance, tags}
+  description: minimum 50 Hindi words.
+  Use real YouTube/web URLs from search results. No invented VIDEO_IDs.
+
+live_news_raw: Hindi string, minimum 400 words. Cover all market angles.
+
+market_sentiment:
+  {overall: STR, emoji: STR, confidence: INT, text: "60+ Hindi words", summary: "80+ Hindi words with godown P&L framing"}
+  overall values: strongly_bearish | moderately_bearish | mildly_bearish | neutral | mildly_bullish | moderately_bullish | strongly_bullish
+
+predictions_10_day: EXACTLY 10 items (days 1–10 from today):
+  Each: {day, date, date_display, day_name, price, change, cumulative_carry, net_pnl_per_qtl, action_signal, trend, trend_text}
+  cumulative_carry = day × 22
+  net_pnl_per_qtl = price - 1850 - cumulative_carry
+  action_signal: "BECHO" if net_pnl_per_qtl < 0, "HOLD KARO" if positive+up, "HEDGE KARO" if positive+falling
+  Sunday: change = 0. Saturday: change = half normal.
+  trend_text: minimum 30 Hindi words with net P&L line.
+
+recommendations:
+  holders: {action, action_text, reason, advice (80+ Hindi words with carry cost calc), target_sell_price, target_date,
+            hedge_recommendation: {action, contract, lots_per_lakh_quintal, hedge_price, hedge_margin_per_qtl, explanation}}
+  buyers:  {action, action_text, reason, advice (80+ Hindi words), target_buy_price, target_date}
+
+factors: {bearish: [list of Hindi strings], bullish: [list of Hindi strings], neutral: [list of Hindi strings]}
+  Each factor: minimum 50 Hindi words.
+
+data_sources: list of strings
+
+metadata:
+  report_version: "7.0_warehouse_operator_hindi_exhaustive"
+  assumed_procurement_cost: INT
+  daily_carry_cost: 22
+  breakeven_1m, breakeven_2m, breakeven_3m: INT
+  warehouse_quality_risk: "low" | "medium" | "high"
+  urgency_flag: "CRITICAL_SELL" | "HEDGE_ADVISED" | "MONITOR" | "HOLD_SAFE"
+  ncdex_hedge_recommendation: "HINDI string"
+  ncdex_hedge_price: INT
+  import_parity_price: INT
+  domestic_import_gap: INT
+  languages: ["hindi"]
+
+══ CARRYING COST MODEL ══
+Daily carry cost: ₹22/quintal/day
+Default procurement: ₹1,850/quintal
+Break-even formula: procurement + (days × 22)
+Every explanation must state: "Agar aapne ₹X mein kharida aur Y din se rakha hai, break-even ₹Z hai. Aaj bazaar ₹W hai."
+
+══ SENTIMENT SCORING ══
+Score these 11 factors (see below) and map to sentiment:
+1. Bihar arrival status: off_season=0, pre_arrival=-1, commencing=-2, peak=-3, tapering=-1
+2. NCDEX signal: Strong Buy=+2, Buy=+1, Neutral=0, Sell=-1, Strong Sell=-2
+3. NCDEX vs spot gap: >50 upar=+2, 10-50 upar=+1, flat=0, 10-50 neeche=-1, >50 neeche=-2
+4. DDGS/import: no quota=0, GM pending=-1, GM approved=-2
+5. E20/E30: >30 din bache=0, 15-30 din=+1, <15 din=+2, post-E20 <30 din=+1
+6. MSP gap: spot>MSP-100=0, 100-300 neeche=-1, >300 neeche=-1
+7. International: CBOT up+Brazil problem=+1, flat+Brazil ok=-1, CBOT down+big Brazil=-2
+8. IMD Bihar: no alert=0, yellow=+1, orange=+2, red=+3
+9. Poultry/feed demand: growing=+1, DDGS substitution=-1, GM approved=-2
+10. 7-day price momentum: >30 up=+2, 10-30 up=+1, flat=0, 10-30 down=-1, >30 down=-2
+11. Crude oil: >$90=+1, $75-90=0, $60-75=0, <$60=-1
+
+Total score → sentiment:
+≤-12: strongly_bearish (85-92%)
+-11 to -7: moderately_bearish (70-80%)
+-6 to -3: mildly_bearish (55-65%)
+-2 to +2: neutral (50-55%)
++3 to +6: mildly_bullish (55-65%)
++7 to +10: moderately_bullish (70-80%)
+≥+11: strongly_bullish (85-92%)
+"""
+
+
+def build_prompt(today: str, report_id: str, research: str, prior: dict | None) -> str:
+    day_name = datetime.now(IST).strftime("%A")
 
     prior_block = ""
     if prior:
@@ -139,61 +249,34 @@ def build_prompt(today: str, report_id: str, research_data: str, prior: dict | N
             pp = prior.get("current_prices", {}).get("purnea", {}).get("value", 1850)
             ps = prior.get("market_sentiment", {}).get("overall", "neutral")
             pc = prior.get("market_sentiment", {}).get("confidence", 60)
-            pd = prior.get("date", "unknown")
+            pd = prior.get("date", "")
             prior_block = f"""
-KADAM 1 — PICHLI REPORT SE VALUES (directly use these):
-  prior_purnea_price     : {pp}
-  prior_confidence       : {pc}
-  prior_sentiment        : {ps}
-  prior_report_date      : {pd}
-  prior_breakeven_ref    : {pp + 66}
-  prior_ddgs_gm_status   : pending
+PRIOR REPORT (Kadam 1 values):
+  prior_purnea_price  : {pp}
+  prior_confidence    : {pc}
+  prior_sentiment     : {ps}
+  prior_date          : {pd}
+  purnea_delta        : calculate as (today_purnea - {pp})
 """
         except Exception:
             pass
 
-    return f"""TODAY'S DATE: {today}
-REPORT _id   : {report_id}
+    return f"""{SCHEMA_PROMPT}
 
+══ TODAY'S REAL-TIME MARKET DATA ({today}, {day_name}) ══
+Report _id : {report_id}
+Date       : {today}
 {prior_block}
-══════════════════════════════════════════════════════════
-REAL-TIME MARKET RESEARCH DATA (fetched right now on {today})
-══════════════════════════════════════════════════════════
-{research_data}
-══════════════════════════════════════════════════════════
+{research}
 
-{instruction}
-
-══════════════════════════════════════════════════════════
-MANDATORY OVERRIDES FOR THIS AUTOMATED RUN
-══════════════════════════════════════════════════════════
-
-1. USE the REAL-TIME MARKET RESEARCH DATA above for all prices, news, and analysis.
-   Do NOT use placeholder prices. Extract actual values from the search results above.
-
-2. date field must be exactly "{today}". _id must be "{report_id}".
-
-3. ALL text fields (explanations, summaries, advice, live_news_raw) must be in HINDI ONLY.
-   No English. No Hinglish. Technical terms must be explained in Hindi brackets.
-
-4. OUTPUT FORMAT — return ONLY a valid JSON object:
-   • First character: {{
-   • Last character: }}
-   • NO markdown fences (no ```json)
-   • NO preamble or explanation before {{
-   • NO text after the final }}
-
-5. Schema from BHAAG B is mandatory — include warehouse_economics, hedge_recommendation,
-   urgency_flag, quality_risk, import_parity_price in every run.
-
-6. Kadam 1 prior values are provided above.
-   Kadam 2-11 research data is in the REAL-TIME block above — use it.
-
-Generate the complete JSON report now.
+══ GENERATE THE COMPLETE JSON REPORT NOW ══
+Use ALL the real-time data above for prices, news items, and analysis.
+Generate ALL 8 news_items, ALL 10 predictions, ALL required fields.
+Output ONLY the JSON object. Start with {{ and end with }}
 """
 
 
-# ── Load previous report ──────────────────────────────────────────────────────
+# ── Helpers ───────────────────────────────────────────────────────────────────
 
 def load_prior() -> dict | None:
     files = sorted(glob.glob("public/reports/maize_warehouse_report_*.json"), reverse=True)
@@ -206,32 +289,24 @@ def load_prior() -> dict | None:
         return None
 
 
-# ── Extract JSON from model output ────────────────────────────────────────────
-
 def extract_json(text: str) -> str:
-    text = text.strip()
-    # Strip markdown fences
-    text = re.sub(r"^```(?:json)?\s*\n?", "", text, flags=re.MULTILINE)
-    text = re.sub(r"\n?```\s*$", "", text, flags=re.MULTILINE)
-    text = text.strip()
-    start = text.find("{")
-    end   = text.rfind("}")
-    if start == -1 or end == -1 or end <= start:
-        raise ValueError("No JSON object found in model output")
-    return text[start : end + 1]
+    text = re.sub(r"^```(?:json)?\s*\n?", "", text.strip(), flags=re.MULTILINE)
+    text = re.sub(r"\n?```\s*$", "", text, flags=re.MULTILINE).strip()
+    s, e = text.find("{"), text.rfind("}")
+    if s == -1 or e <= s:
+        raise ValueError("No JSON object found")
+    return text[s:e+1]
 
-
-# ── Basic structural validation ───────────────────────────────────────────────
 
 def validate(data: dict) -> list[str]:
     issues = []
-    if len(data.get("news_items", [])) == 0:
-        issues.append("news_items is empty")
+    if len(data.get("news_items", [])) < 8:
+        issues.append(f"news_items: {len(data.get('news_items',[]))} (need 8)")
     if len(data.get("predictions_10_day", [])) < 10:
-        issues.append(f"only {len(data.get('predictions_10_day', []))} predictions (need 10)")
-    for k in ("market_sentiment", "current_prices", "recommendations", "metadata"):
+        issues.append(f"predictions_10_day: {len(data.get('predictions_10_day',[]))} (need 10)")
+    for k in ("market_sentiment", "current_prices", "recommendations", "metadata", "live_news_raw"):
         if k not in data:
-            issues.append(f"missing key: {k}")
+            issues.append(f"missing: {k}")
     return issues
 
 
@@ -240,22 +315,22 @@ def validate(data: dict) -> list[str]:
 def main():
     api_key = os.environ.get("OPENAI_API_KEY")
     if not api_key:
-        print("ERROR: OPENAI_API_KEY is not set", file=sys.stderr)
+        print("ERROR: OPENAI_API_KEY not set", file=sys.stderr)
         sys.exit(1)
 
-    now_ist    = datetime.now(IST)
-    today      = now_ist.strftime("%Y-%m-%d")
-    month_year = now_ist.strftime("%B %Y")          # e.g. "June 2026"
-    report_id  = now_ist.strftime("%Y%m%d_%H%M%S") + "_WAREHOUSE"
-    file_path  = f"public/reports/maize_warehouse_report_{today}.json"
+    now       = datetime.now(IST)
+    today     = now.strftime("%Y-%m-%d")
+    my        = now.strftime("%B %Y")
+    report_id = now.strftime("%Y%m%d_%H%M%S") + "_WAREHOUSE"
+    out_path  = f"public/reports/maize_warehouse_report_{today}.json"
 
-    # Skip if a valid report already exists for today
-    if os.path.exists(file_path):
+    # Skip if already done today
+    if os.path.exists(out_path):
         try:
-            with open(file_path, encoding="utf-8") as f:
-                existing = json.load(f)
-            if existing.get("date") == today and existing.get("news_items"):
-                print(f"Valid report for {today} already exists — skipping.")
+            with open(out_path, encoding="utf-8") as f:
+                ex = json.load(f)
+            if ex.get("date") == today and len(ex.get("news_items", [])) >= 8:
+                print(f"Complete report for {today} already exists — skipping.")
                 sys.exit(0)
         except Exception:
             pass
@@ -265,19 +340,19 @@ def main():
     prior = load_prior()
     print(f"Prior report : {prior.get('date') if prior else 'None'}", flush=True)
 
-    # ── Phase 1: gather research data ─────────────────────────────────────────
-    print(f"\n=== Phase 1: Gathering market data for {today} ({month_year}) ===", flush=True)
-    research = gather_data(today, month_year)
-    print(f"Research data: {len(research):,} chars", flush=True)
+    # Phase 1
+    print(f"\n=== Phase 1: Gathering data for {today} ({my}) ===", flush=True)
+    research = gather(today, my)
+    print(f"Research : {len(research):,} chars", flush=True)
 
-    # ── Phase 2: build prompt and call GPT-4o ─────────────────────────────────
+    # Phase 2
     prompt = build_prompt(today, report_id, research, prior)
-    print(f"Prompt length: {len(prompt):,} chars (~{len(prompt)//4:,} tokens)", flush=True)
+    print(f"Prompt   : {len(prompt):,} chars (~{len(prompt)//4:,} tokens)", flush=True)
 
     from openai import OpenAI
     client = OpenAI(api_key=api_key)
 
-    print("\n=== Phase 2: Calling GPT-4o to generate JSON report ===", flush=True)
+    print("\n=== Phase 2: GPT-4o generating JSON report ===", flush=True)
 
     response = client.chat.completions.create(
         model="gpt-4o",
@@ -286,51 +361,48 @@ def main():
                 "role": "system",
                 "content": (
                     "You are an expert Indian agricultural commodity analyst. "
-                    "Your output must be ONLY a valid JSON object — no markdown, no explanation, "
-                    "no preamble. First char: { Last char: }"
+                    "Output ONLY a valid JSON object — no markdown, no explanation. "
+                    "Generate ALL required fields completely. Do not stop early. "
+                    "First character must be { and last character must be }"
                 ),
             },
             {"role": "user", "content": prompt},
         ],
         max_tokens=16000,
         temperature=0.2,
+        response_format={"type": "json_object"},
     )
 
     raw = response.choices[0].message.content or ""
-    usage = response.usage
-    print(f"Output: {len(raw):,} chars | Tokens: {usage.prompt_tokens} prompt + {usage.completion_tokens} completion", flush=True)
+    u   = response.usage
+    print(f"Output   : {len(raw):,} chars | {u.prompt_tokens} prompt + {u.completion_tokens} completion tokens", flush=True)
 
     if not raw:
-        print("ERROR: GPT-4o returned empty output", file=sys.stderr)
+        print("ERROR: empty response from GPT-4o", file=sys.stderr)
         sys.exit(1)
 
-    # ── Parse JSON ────────────────────────────────────────────────────────────
     try:
-        json_str = extract_json(raw)
-        data = json.loads(json_str)
-    except Exception as e:
-        print(f"ERROR parsing JSON: {e}", file=sys.stderr)
-        print("Raw output (first 1500 chars):", file=sys.stderr)
-        print(raw[:1500], file=sys.stderr)
-        sys.exit(1)
+        data = json.loads(raw)
+    except json.JSONDecodeError:
+        try:
+            data = json.loads(extract_json(raw))
+        except Exception as e:
+            print(f"ERROR: cannot parse JSON — {e}", file=sys.stderr)
+            print("Preview:", raw[:1000], file=sys.stderr)
+            sys.exit(1)
 
-    # Enforce correct values
     data["date"] = today
     if not data.get("_id"):
         data["_id"] = report_id
 
-    # Validate
     issues = validate(data)
     if issues:
-        print(f"WARNING — validation issues: {issues}", file=sys.stderr)
+        print(f"WARNING: {issues}", file=sys.stderr)
 
-    # ── Write file ────────────────────────────────────────────────────────────
-    with open(file_path, "w", encoding="utf-8") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-    print(f"\n=== Report saved: {file_path} ===", flush=True)
-    print(f"  _id         : {data.get('_id')}", flush=True)
-    print(f"  date        : {data.get('date')}", flush=True)
+    print(f"\n=== Saved: {out_path} ===", flush=True)
     print(f"  news_items  : {len(data.get('news_items', []))}", flush=True)
     print(f"  video_news  : {len(data.get('video_news', []))}", flush=True)
     print(f"  predictions : {len(data.get('predictions_10_day', []))}", flush=True)
