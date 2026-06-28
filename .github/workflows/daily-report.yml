@@ -25,7 +25,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install --quiet "openai>=1.66.0"
+        run: pip install --quiet "openai>=1.0.0" "duckduckgo-search>=6.0.0" requests
 
       - name: Configure git identity
         run: |
