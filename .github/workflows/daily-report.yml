@@ -2,114 +2,58 @@ name: Daily Maize Market Report
 
 on:
   schedule:
-    - cron: '30 23 * * *'   # 5:00 AM IST every day (23:30 UTC = 05:00 IST next day)
-  workflow_dispatch:          # Manual trigger from GitHub Actions UI
+    - cron: '30 23 * * *'
+  workflow_dispatch:
 
 jobs:
   generate-report:
     runs-on: ubuntu-latest
-    timeout-minutes: 60       # OpenAI may take time with many web searches
+    timeout-minutes: 60
 
     permissions:
-      contents: write         # Required to push the report file
+      contents: write
 
     steps:
-      # ── 1. Checkout ──────────────────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 5      # Need a few commits for prior-report lookup
+          fetch-depth: 5
 
-      # ── 2. Python ────────────────────────────────────────────────────────
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # ── 3. Install dependencies ──────────────────────────────────────────
-      - name: Install Python dependencies
+      - name: Install dependencies
         run: pip install --quiet "openai>=1.66.0"
 
-      # ── 4. Configure git ─────────────────────────────────────────────────
       - name: Configure git identity
         run: |
           git config user.email "automation@maize-market.app"
-          git config user.name  "Maize Market Bot"
-          git remote set-url origin \
-            https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git config user.name "Maize Market Bot"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
 
-      # ── 5. Generate report ────────────────────────────────────────────────
       - name: Generate report via OpenAI
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: python scripts/generate_report.py
 
-      # ── 6. Validate JSON ──────────────────────────────────────────────────
       - name: Validate generated JSON
-        run: |
-          TODAY=$(TZ=Asia/Kolkata date +%Y-%m-%d)
-          FILE="public/reports/maize_warehouse_report_${TODAY}.json"
+        run: python scripts/validate_report.py
 
-          if [ ! -f "$FILE" ]; then
-            echo "ERROR: $FILE was not created"
-            exit 1
-          fi
-
-          python3 - <<PYEOF
-import json, sys
-today = "$(TZ=Asia/Kolkata date +%Y-%m-%d)"
-path  = f"public/reports/maize_warehouse_report_{today}.json"
-
-with open(path, encoding="utf-8") as f:
-    d = json.load(f)
-
-errors = []
-if d.get("date") != today:
-    errors.append(f"date mismatch: got {d.get('date')!r}, expected {today!r}")
-if len(d.get("news_items", [])) == 0:
-    errors.append("news_items is empty")
-if len(d.get("predictions_10_day", [])) < 10:
-    errors.append(f"predictions_10_day has {len(d.get('predictions_10_day', []))} entries (need 10)")
-if "market_sentiment" not in d:
-    errors.append("missing market_sentiment")
-if "current_prices" not in d:
-    errors.append("missing current_prices")
-if "recommendations" not in d:
-    errors.append("missing recommendations")
-
-if errors:
-    print("VALIDATION ERRORS:")
-    for e in errors:
-        print(f"  • {e}")
-    sys.exit(1)
-
-print("✓ Report valid")
-print(f"  _id:         {d.get('_id')}")
-print(f"  date:        {d.get('date')}")
-print(f"  news_items:  {len(d.get('news_items', []))}")
-print(f"  video_news:  {len(d.get('video_news', []))}")
-print(f"  predictions: {len(d.get('predictions_10_day', []))}")
-print(f"  sentiment:   {d.get('market_sentiment', {}).get('overall', 'N/A')}")
-PYEOF
-
-      # ── 7. Commit and push ────────────────────────────────────────────────
       - name: Commit and push report
         run: |
           TODAY=$(TZ=Asia/Kolkata date +%Y-%m-%d)
           FILE="public/reports/maize_warehouse_report_${TODAY}.json"
-
           git add "$FILE"
-
           if git diff --staged --quiet; then
             echo "Nothing new to commit — report for $TODAY already in repo."
             exit 0
           fi
-
           git commit -m "chore: daily maize market report ${TODAY} [automated]"
           git push
-          echo "✓ Pushed $FILE"
+          echo "Pushed $FILE"
 
-      # ── 8. Status summary ─────────────────────────────────────────────────
       - name: Summary
         if: always()
         run: |
@@ -117,8 +61,8 @@ PYEOF
           FILE="public/reports/maize_warehouse_report_${TODAY}.json"
           if [ -f "$FILE" ]; then
             SIZE=$(wc -c < "$FILE")
-            echo "SUCCESS — $FILE (${SIZE} bytes)"
+            echo "SUCCESS: $FILE (${SIZE} bytes)"
           else
-            echo "FAILED — report file was not generated"
+            echo "FAILED: report file was not generated"
             exit 1
           fi
