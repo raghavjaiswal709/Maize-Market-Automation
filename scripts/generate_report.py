@@ -344,7 +344,7 @@ def main():
     print("\n=== Phase 2: GPT-4o generating JSON report ===", flush=True)
 
     response = client.chat.completions.create(
-        model="gpt-5.5-pro-2026-04-23",
+        model="gpt-5.5-2026-04-23",
         messages=[
             {
                 "role": "system",
