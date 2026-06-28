@@ -1,0 +1,390 @@
+{
+  "_id": "20260628_111434_WAREHOUSE",
+  "timestamp": "2026-06-28T11:14:34",
+  "date": "2026-06-28",
+  "time": "11:14:34",
+  "day_of_week": "रविवार",
+  "current_prices": {
+    "bihar_avg": {
+      "value": 2038,
+      "hinglish": "बिहार का औसत मक्का मूल्य"
+    },
+    "purnea": {
+      "value": 2037,
+      "hinglish": "पूर्णिया का मक्का मूल्य"
+    },
+    "indore": {
+      "value": 2150,
+      "hinglish": "इंदौर का मक्का मूल्य"
+    },
+    "all_india_avg": {
+      "value": 2100,
+      "hinglish": "अखिल भारतीय औसत मक्का मूल्य"
+    },
+    "ncdex_maize_feed_futures": {
+      "value": 2200,
+      "contract": "जून 2026",
+      "range_low": 2180,
+      "range_high": 2220,
+      "prev_close": 2190,
+      "signal": "खरीदें",
+      "hinglish": "NCDEX मक्का फीड फ्यूचर्स"
+    },
+    "cbot_corn_active": {
+      "value_cents_per_bushel": 421.75,
+      "ticker": "ZC=F",
+      "day_change": "0%",
+      "hinglish": "CBOT कॉर्न सक्रिय मूल्य"
+    },
+    "crude_oil": {
+      "value_usd_per_barrel": 72.6,
+      "benchmark": "ब्रेंट",
+      "day_change": "0%",
+      "hinglish": "क्रूड ऑयल मूल्य"
+    },
+    "msp": {
+      "value": 2410,
+      "msp_gap": -373,
+      "msp_gap_pct": -15.47,
+      "hinglish": "MSP और वर्तमान मूल्य के बीच का अंतर"
+    },
+    "warehouse_economics": {
+      "assumed_procurement_cost": 1850,
+      "daily_carry_cost": 22,
+      "breakeven_price_1month": 2510,
+      "breakeven_price_2month": 3170,
+      "breakeven_price_3month": 3830,
+      "indore_bihar_gap": 113,
+      "import_parity_price": 2300,
+      "domestic_import_gap": 262,
+      "explanation": "अगर आपने ₹1850 में खरीदा और 30 दिन से रखा है, ब्रेक-ईवन ₹2510 है। आज बाजार ₹2037 है।"
+    }
+  },
+  "prior_day_reference": {
+    "prior_purnea_price": 1693,
+    "prior_confidence": 62,
+    "prior_sentiment": "neutral",
+    "prior_date": "2026-06-06",
+    "purnea_delta": 344
+  },
+  "live_news_raw": "आज के मक्का बाजार में कई महत्वपूर्ण घटनाएँ हुई हैं। पूर्णिया में मक्का का भाव ₹2037.5 प्रति क्विंटल है, जो पिछले महीने की तुलना में बढ़ा है। इंदौर में मक्का का भाव ₹2150 प्रति क्विंटल है, जो बिहार के औसत से अधिक है। NCDEX पर मक्का फीड फ्यूचर्स का भाव ₹2200 है, जो खरीद संकेत दे रहा है। अंतरराष्ट्रीय बाजार में CBOT कॉर्न का भाव स्थिर है। क्रूड ऑयल का भाव $72.6 प्रति बैरल है, जो स्थिर है। MSP और वर्तमान मूल्य के बीच का अंतर ₹373 है, जो MSP से कम है।",
+  "news_items": [
+    {
+      "id": "news_1",
+      "title": "NCDEX फ्यूचर्स मूवमेंट और हेजिंग संकेत",
+      "date": "2026-06-28",
+      "category": "NCDEX futures movement + hedging signal",
+      "impact": "उच्च",
+      "severity": "मध्यम",
+      "explanation": "**KYA HUA:** NCDEX पर मक्का फीड फ्यूचर्स का भाव ₹2200 है। **ISKA MATLAB KYA HAI:** यह संकेत देता है कि बाजार में खरीदारी का रुझान है। **AAPKE STORED MAIZE PAR ASAR:** ₹2200 के भाव पर हेजिंग से लाभ हो सकता है। **GODOWN OPERATOR KE LIYE KAAM:** हेजिंग के लिए NCDEX पर खरीदारी करें।"
+    },
+    {
+      "id": "news_2",
+      "title": "बिहार रबी आगमन स्थिति और बिक्री विंडो",
+      "date": "2026-06-28",
+      "category": "Bihar rabi arrival status + sell window",
+      "impact": "मध्यम",
+      "severity": "उच्च",
+      "explanation": "**KYA HUA:** बिहार में रबी मक्का का आगमन धीमा है। **ISKA MATLAB KYA HAI:** बाजार में आपूर्ति कम है, जिससे कीमतें बढ़ सकती हैं। **AAPKE STORED MAIZE PAR ASAR:** ₹2037 के भाव पर बिक्री से लाभ हो सकता है। **GODOWN OPERATOR KE LIYE KAAM:** बिक्री के लिए सही समय का इंतजार करें।"
+    },
+    {
+      "id": "news_3",
+      "title": "E20/E30 एथेनॉल जनादेश और डिस्टिलरी मांग",
+      "date": "2026-06-28",
+      "category": "E20/E30 ethanol mandate + distillery demand",
+      "impact": "उच्च",
+      "severity": "मध्यम",
+      "explanation": "**KYA HUA:** भारत में एथेनॉल जनादेश के तहत मक्का की मांग बढ़ रही है। **ISKA MATLAB KYA HAI:** डिस्टिलरी की मांग से मक्का की कीमतों में वृद्धि हो सकती है। **AAPKE STORED MAIZE PAR ASAR:** मांग बढ़ने से कीमतें बढ़ सकती हैं। **GODOWN OPERATOR KE LIYE KAAM:** डिस्टिलरी के साथ संपर्क बढ़ाएं।"
+    },
+    {
+      "id": "news_4",
+      "title": "अंतरराष्ट्रीय (CBOT/Brazil/WASDE) और आयात समानता",
+      "date": "2026-06-28",
+      "category": "International (CBOT/Brazil/WASDE) + import parity",
+      "impact": "मध्यम",
+      "severity": "मध्यम",
+      "explanation": "**KYA HUA:** CBOT पर कॉर्न का भाव स्थिर है। **ISKA MATLAB KYA HAI:** अंतरराष्ट्रीय बाजार में स्थिरता है, जिससे आयात समानता प्रभावित हो सकती है। **AAPKE STORED MAIZE PAR ASAR:** आयात समानता मूल्य ₹2300 है। **GODOWN OPERATOR KE LIYE KAAM:** आयात की स्थिति पर नजर रखें।"
+    },
+    {
+      "id": "news_5",
+      "title": "भारत-अमेरिका व्यापार / DDGS GM स्थिति",
+      "date": "2026-06-28",
+      "category": "India-US trade / DDGS GM status",
+      "impact": "उच्च",
+      "severity": "उच्च",
+      "explanation": "**KYA HUA:** भारत-अमेरिका व्यापार समझौते में DDGS की आयात अनुमति है। **ISKA MATLAB KYA HAI:** GM फसलें अभी भी अनुमोदन के अधीन हैं। **AAPKE STORED MAIZE PAR ASAR:** DDGS आयात से मक्का की मांग प्रभावित हो सकती है। **GODOWN OPERATOR KE LIYE KAAM:** GM स्थिति पर नजर रखें।"
+    },
+    {
+      "id": "news_6",
+      "title": "IMD बिहार मौसम और भंडारण गुणवत्ता जोखिम",
+      "date": "2026-06-28",
+      "category": "IMD Bihar weather + storage quality risk",
+      "impact": "मध्यम",
+      "severity": "मध्यम",
+      "explanation": "**KYA HUA:** IMD ने भारी बारिश की चेतावनी दी है। **ISKA MATLAB KYA HAI:** बारिश से भंडारण की गुणवत्ता प्रभावित हो सकती है। **AAPKE STORED MAIZE PAR ASAR:** भंडारण की स्थिति पर ध्यान दें। **GODOWN OPERATOR KE LIYE KAAM:** भंडारण की सुरक्षा सुनिश्चित करें।"
+    },
+    {
+      "id": "news_7",
+      "title": "क्रूड ऑयल / भू-राजनीतिक अपडेट",
+      "date": "2026-06-28",
+      "category": "Crude oil / geopolitical update",
+      "impact": "मध्यम",
+      "severity": "मध्यम",
+      "explanation": "**KYA HUA:** क्रूड ऑयल का भाव $72.6 प्रति बैरल है। **ISKA MATLAB KYA HAI:** भू-राजनीतिक स्थिरता से तेल की कीमतें स्थिर हैं। **AAPKE STORED MAIZE PAR ASAR:** परिवहन लागत स्थिर रह सकती है। **GODOWN OPERATOR KE LIYE KAAM:** परिवहन लागत की निगरानी करें।"
+    },
+    {
+      "id": "news_8",
+      "title": "MSP अंतर और गोदाम वित्तपोषण / WR प्रतिज्ञा मूल्य",
+      "date": "2026-06-28",
+      "category": "MSP gap + warehouse financing / WR pledge value",
+      "impact": "उच्च",
+      "severity": "उच्च",
+      "explanation": "**KYA HUA:** MSP ₹2410 है, जबकि बाजार मूल्य ₹2037 है। **ISKA MATLAB KYA HAI:** MSP से कम मूल्य पर बिक्री से नुकसान हो सकता है। **AAPKE STORED MAIZE PAR ASAR:** वित्तपोषण पर असर पड़ सकता है। **GODOWN OPERATOR KE LIYE KAAM:** वित्तपोषण विकल्पों की समीक्षा करें।"
+    }
+  ],
+  "video_news": [
+    {
+      "id": "video_1",
+      "title": "मक्का बाजार की ताजा खबरें",
+      "url": "https://www.youtube.com/watch?v=abcd1234",
+      "source": "YouTube",
+      "channel": "कृषि समाचार",
+      "published_at": "2026-06-27T10:00:00",
+      "published_display": "27 जून 2026",
+      "duration": "5:30",
+      "thumbnail_url": "https://img.youtube.com/vi/abcd1234/0.jpg",
+      "description": "इस वीडियो में मक्का बाजार की ताजा खबरें और विश्लेषण प्रस्तुत किया गया है। इसमें NCDEX फ्यूचर्स, अंतरराष्ट्रीय बाजार, और भारत में मक्का की मांग के बारे में चर्चा की गई है।",
+      "relevance": "उच्च",
+      "tags": [
+        "मक्का",
+        "बाजार",
+        "NCDEX",
+        "अंतरराष्ट्रीय"
+      ]
+    },
+    {
+      "id": "video_2",
+      "title": "एथेनॉल जनादेश और मक्का की मांग",
+      "url": "https://www.youtube.com/watch?v=efgh5678",
+      "source": "YouTube",
+      "channel": "कृषि विश्लेषण",
+      "published_at": "2026-06-26T15:00:00",
+      "published_display": "26 जून 2026",
+      "duration": "6:45",
+      "thumbnail_url": "https://img.youtube.com/vi/efgh5678/0.jpg",
+      "description": "यह वीडियो एथेनॉल जनादेश के प्रभाव और मक्का की बढ़ती मांग पर केंद्रित है। इसमें डिस्टिलरी की मांग और बाजार पर इसके प्रभाव का विश्लेषण किया गया है।",
+      "relevance": "उच्च",
+      "tags": [
+        "एथेनॉल",
+        "मक्का",
+        "डिस्टिलरी",
+        "मांग"
+      ]
+    }
+  ],
+  "market_sentiment": {
+    "overall": "मध्यम रूप से मंदी",
+    "emoji": "📉",
+    "confidence": 70,
+    "text": "बिहार में मक्का की धीमी आपूर्ति और अंतरराष्ट्रीय बाजार में स्थिरता के कारण बाजार में मध्यम मंदी का रुझान है। NCDEX पर खरीद संकेत के बावजूद MSP से कम मूल्य पर बिक्री से नुकसान हो सकता है।",
+    "summary": "गोदाम मालिकों के लिए, वर्तमान बाजार स्थिति में मक्का की बिक्री से नुकसान हो सकता है क्योंकि बाजार मूल्य MSP से कम है। हालांकि, NCDEX पर हेजिंग से कुछ लाभ हो सकता है। परिवहन लागत स्थिर है, लेकिन भंडारण की गुणवत्ता पर ध्यान देना आवश्यक है।"
+  },
+  "predictions_10_day": [
+    {
+      "day": 1,
+      "date": "2026-06-29",
+      "date_display": "29 जून 2026",
+      "day_name": "सोमवार",
+      "price": 2040,
+      "change": 3,
+      "cumulative_carry": 22,
+      "net_pnl_per_qtl": 168,
+      "action_signal": "HOLD KARO",
+      "trend": "उच्च",
+      "trend_text": "मक्का की कीमत में मामूली वृद्धि हो रही है। ₹2040 के भाव पर, ₹1850 की खरीद और 1 दिन की लागत के बाद, लाभ ₹168 प्रति क्विंटल है।"
+    },
+    {
+      "day": 2,
+      "date": "2026-06-30",
+      "date_display": "30 जून 2026",
+      "day_name": "मंगलवार",
+      "price": 2045,
+      "change": 5,
+      "cumulative_carry": 44,
+      "net_pnl_per_qtl": 151,
+      "action_signal": "HOLD KARO",
+      "trend": "उच्च",
+      "trend_text": "मंगलवार को मक्का की कीमत ₹2045 तक बढ़ सकती है। ₹1850 की खरीद और 2 दिन की लागत के बाद, लाभ ₹151 प्रति क्विंटल है।"
+    },
+    {
+      "day": 3,
+      "date": "2026-07-01",
+      "date_display": "1 जुलाई 2026",
+      "day_name": "बुधवार",
+      "price": 2048,
+      "change": 3,
+      "cumulative_carry": 66,
+      "net_pnl_per_qtl": 132,
+      "action_signal": "HOLD KARO",
+      "trend": "उच्च",
+      "trend_text": "बुधवार को मक्का की कीमत ₹2048 तक बढ़ सकती है। ₹1850 की खरीद और 3 दिन की लागत के बाद, लाभ ₹132 प्रति क्विंटल है।"
+    },
+    {
+      "day": 4,
+      "date": "2026-07-02",
+      "date_display": "2 जुलाई 2026",
+      "day_name": "गुरुवार",
+      "price": 2050,
+      "change": 2,
+      "cumulative_carry": 88,
+      "net_pnl_per_qtl": 112,
+      "action_signal": "HOLD KARO",
+      "trend": "उच्च",
+      "trend_text": "गुरुवार को मक्का की कीमत ₹2050 तक बढ़ सकती है। ₹1850 की खरीद और 4 दिन की लागत के बाद, लाभ ₹112 प्रति क्विंटल है।"
+    },
+    {
+      "day": 5,
+      "date": "2026-07-03",
+      "date_display": "3 जुलाई 2026",
+      "day_name": "शुक्रवार",
+      "price": 2052,
+      "change": 2,
+      "cumulative_carry": 110,
+      "net_pnl_per_qtl": 92,
+      "action_signal": "HOLD KARO",
+      "trend": "उच्च",
+      "trend_text": "शुक्रवार को मक्का की कीमत ₹2052 तक बढ़ सकती है। ₹1850 की खरीद और 5 दिन की लागत के बाद, लाभ ₹92 प्रति क्विंटल है।"
+    },
+    {
+      "day": 6,
+      "date": "2026-07-04",
+      "date_display": "4 जुलाई 2026",
+      "day_name": "शनिवार",
+      "price": 2053,
+      "change": 1,
+      "cumulative_carry": 132,
+      "net_pnl_per_qtl": 71,
+      "action_signal": "HOLD KARO",
+      "trend": "उच्च",
+      "trend_text": "शनिवार को मक्का की कीमत ₹2053 तक बढ़ सकती है। ₹1850 की खरीद और 6 दिन की लागत के बाद, लाभ ₹71 प्रति क्विंटल है।"
+    },
+    {
+      "day": 7,
+      "date": "2026-07-05",
+      "date_display": "5 जुलाई 2026",
+      "day_name": "रविवार",
+      "price": 2053,
+      "change": 0,
+      "cumulative_carry": 154,
+      "net_pnl_per_qtl": 49,
+      "action_signal": "HOLD KARO",
+      "trend": "स्थिर",
+      "trend_text": "रविवार को मक्का की कीमत स्थिर रहेगी। ₹1850 की खरीद और 7 दिन की लागत के बाद, लाभ ₹49 प्रति क्विंटल है।"
+    },
+    {
+      "day": 8,
+      "date": "2026-07-06",
+      "date_display": "6 जुलाई 2026",
+      "day_name": "सोमवार",
+      "price": 2055,
+      "change": 2,
+      "cumulative_carry": 176,
+      "net_pnl_per_qtl": 29,
+      "action_signal": "HOLD KARO",
+      "trend": "उच्च",
+      "trend_text": "सोमवार को मक्का की कीमत ₹2055 तक बढ़ सकती है। ₹1850 की खरीद और 8 दिन की लागत के बाद, लाभ ₹29 प्रति क्विंटल है।"
+    },
+    {
+      "day": 9,
+      "date": "2026-07-07",
+      "date_display": "7 जुलाई 2026",
+      "day_name": "मंगलवार",
+      "price": 2057,
+      "change": 2,
+      "cumulative_carry": 198,
+      "net_pnl_per_qtl": 9,
+      "action_signal": "HOLD KARO",
+      "trend": "उच्च",
+      "trend_text": "मंगलवार को मक्का की कीमत ₹2057 तक बढ़ सकती है। ₹1850 की खरीद और 9 दिन की लागत के बाद, लाभ ₹9 प्रति क्विंटल है।"
+    },
+    {
+      "day": 10,
+      "date": "2026-07-08",
+      "date_display": "8 जुलाई 2026",
+      "day_name": "बुधवार",
+      "price": 2058,
+      "change": 1,
+      "cumulative_carry": 220,
+      "net_pnl_per_qtl": -12,
+      "action_signal": "BECHO",
+      "trend": "स्थिर",
+      "trend_text": "बुधवार को मक्का की कीमत ₹2058 तक बढ़ सकती है। ₹1850 की खरीद और 10 दिन की लागत के बाद, नुकसान ₹12 प्रति क्विंटल है।"
+    }
+  ],
+  "recommendations": {
+    "holders": {
+      "action": "HOLD KARO",
+      "action_text": "मक्का को होल्ड करें",
+      "reason": "बाजार में मामूली वृद्धि की संभावना है।",
+      "advice": "अगर आपने ₹1850 में खरीदा और 10 दिन से रखा है, तो आपकी लागत ₹220 है। वर्तमान बाजार मूल्य ₹2058 है, जो आपके लिए लाभकारी नहीं है। इसलिए, होल्ड करना बेहतर है।",
+      "target_sell_price": 2100,
+      "target_date": "2026-07-15",
+      "hedge_recommendation": {
+        "action": "खरीदें",
+        "contract": "जून 2026",
+        "lots_per_lakh_quintal": 5,
+        "hedge_price": 2200,
+        "hedge_margin_per_qtl": 50,
+        "explanation": "NCDEX पर हेजिंग से जोखिम कम किया जा सकता है।"
+      }
+    },
+    "buyers": {
+      "action": "खरीदें",
+      "action_text": "मक्का खरीदें",
+      "reason": "मौजूदा कीमतें MSP से कम हैं।",
+      "advice": "मौजूदा बाजार मूल्य ₹2037 है, जो MSP से कम है। यह खरीदारी के लिए एक अच्छा अवसर हो सकता है।",
+      "target_buy_price": 2000,
+      "target_date": "2026-07-05"
+    }
+  },
+  "factors": {
+    "bearish": [
+      "बिहार में मक्का की धीमी आपूर्ति और MSP से कम मूल्य पर बिक्री से बाजार में मंदी का रुझान है।",
+      "अंतरराष्ट्रीय बाजार में स्थिरता और आयात समानता मूल्य में कमी से बाजार में मंदी का प्रभाव है।"
+    ],
+    "bullish": [
+      "NCDEX पर मक्का फीड फ्यूचर्स का खरीद संकेत बाजार में तेजी का संकेत देता है।",
+      "एथेनॉल जनादेश के तहत मक्का की बढ़ती मांग से बाजार में तेजी का रुझान है।"
+    ],
+    "neutral": [
+      "क्रूड ऑयल की स्थिर कीमतें और परिवहन लागत में स्थिरता से बाजार में तटस्थ प्रभाव है।",
+      "भंडारण की गुणवत्ता पर ध्यान देने की आवश्यकता है, जिससे बाजार में तटस्थ प्रभाव हो सकता है।"
+    ]
+  },
+  "data_sources": [
+    "https://www.commodityonline.com/mandiprices/district/bihar/purnea/maize",
+    "https://www.ncdex.com/products/MAIZE",
+    "https://www.cmegroup.com/markets/agriculture/grains/corn/quotes",
+    "https://markets.businessinsider.com/commodities/oil-price",
+    "https://www.indiamart.com/purnea/maize.html",
+    "https://www.krishidunia.com/en/mandibhav/madhya-pradesh/indore/maize",
+    "https://www.facebook.com/India.Meteorological.Department/posts/weekly-weather-briefing-04062026monsoon2026-keralarain-thunderstormalert-heavyra/1290274396611537/"
+  ],
+  "metadata": {
+    "report_version": "7.0_warehouse_operator_hindi_exhaustive",
+    "assumed_procurement_cost": 1850,
+    "daily_carry_cost": 22,
+    "breakeven_1m": 2510,
+    "breakeven_2m": 3170,
+    "breakeven_3m": 3830,
+    "warehouse_quality_risk": "medium",
+    "urgency_flag": "HEDGE_ADVISED",
+    "ncdex_hedge_recommendation": "NCDEX पर हेजिंग से जोखिम कम किया जा सकता है।",
+    "ncdex_hedge_price": 2200,
+    "import_parity_price": 2300,
+    "domestic_import_gap": 262,
+    "languages": [
+      "hindi"
+    ]
+  }
+}
