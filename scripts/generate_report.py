@@ -324,17 +324,6 @@ def main():
     report_id = now.strftime("%Y%m%d_%H%M%S") + "_WAREHOUSE"
     out_path  = f"public/reports/maize_warehouse_report_{today}.json"
 
-    # Skip if already done today
-    if os.path.exists(out_path):
-        try:
-            with open(out_path, encoding="utf-8") as f:
-                ex = json.load(f)
-            if ex.get("date") == today and len(ex.get("news_items", [])) >= 8:
-                print(f"Complete report for {today} already exists — skipping.")
-                sys.exit(0)
-        except Exception:
-            pass
-
     os.makedirs("public/reports", exist_ok=True)
 
     prior = load_prior()
